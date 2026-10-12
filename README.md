@@ -32,7 +32,17 @@ This fills `reference/` with:
 Open `reference/INVENTORY.md` to check it.
 
 - **Pages missing?** Add them to the sitemap, or run `npm run capture -- https://www.embracemovementclinic.com.au/that-page` for each one.
-- **Page blocked or blank?** Run `HEADLESS=false npm run capture` to watch it in a visible browser.
+- **Page blocked or blank?** Watch the capture in a visible browser:
+  - Mac / Linux / Git Bash: `HEADLESS=false npm run capture`
+  - Windows PowerShell: `$env:HEADLESS="false"; npm run capture`
+  - Windows Command Prompt: `set HEADLESS=false && npm run capture`
+- **Capture stopped at 100 pages?** Raise the limit the same way with `MAX_PAGES=300`. In PowerShell that's `$env:MAX_PAGES="300"`.
+
+#### Windows notes
+
+- Install **Node.js LTS** (nodejs.org) and **Git for Windows** (git-scm.com). Claude Code on Windows also needs Git for Windows.
+- Unzip with right-click → Extract All. The `.git` folder is hidden, which is normal.
+- In Windows PowerShell 5.1, `&&` doesn't work. Run chained commands as separate lines, for example `git add -A`, then the `git commit` command.
 
 ### 2. Fill in the docs (about 20 minutes, ideally with the business owner)
 
