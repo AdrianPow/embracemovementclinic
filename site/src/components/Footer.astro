@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import wordmark from '../assets/brand/wordmark-white.png';
+import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
 import Button from './Button.astro';
 import Todo from './Todo.astro';
@@ -12,11 +11,12 @@ const { socials, hours, abn, address } = site;
 const hasSocials = Boolean(socials.instagram || socials.facebook);
 ---
 
-<footer class="site-footer on-dark">
+<footer class="site-footer on-brand">
   <div class="wrap site-footer__grid">
     <div class="site-footer__brand">
       <a href="/" class="site-footer__logo">
-        <Image src={wordmark} alt="Embrace Movement Clinic home" width={200} densities={[1, 2]} />
+        <Wordmark />
+        <span class="visually-hidden">{site.name} home</span>
       </a>
       <p class="site-footer__tagline">{site.tagline}</p>
       {
@@ -66,11 +66,11 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
         </li>
         <li>
           <a href={site.email.href} class="site-footer__iconlink site-footer__email">
-            <Icon name="mail" size={18} /><span><span class="visually-hidden">Email </span>{site.email.address}</span>
+            <Icon name="mail" size={18} /><span><span class="visually-hidden">Email </span>{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</span>
           </a>
         </li>
       </ul>
-      <Button href={site.booking.page} variant="light" size="s" class="site-footer__book">Book now</Button>
+      <Button href={site.booking.page} size="s" class="site-footer__book">Book now</Button>
     </div>
 
     <div class="site-footer__col">
@@ -117,17 +117,7 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
 
 <style>
   .site-footer {
-    background: var(--c-teal-900);
-    color: var(--c-white);
     font-size: var(--step--1);
-  }
-
-  .site-footer a:not(.btn) {
-    color: var(--c-white);
-  }
-
-  .site-footer a:not(.btn):hover {
-    color: var(--c-teal-light);
   }
 
   .site-footer__grid {
@@ -137,6 +127,12 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   }
 
+  @media (min-width: 62em) {
+    .site-footer__grid {
+      grid-template-columns: 1.1fr 1fr 1.45fr 1fr 0.9fr;
+    }
+  }
+
   .site-footer__brand {
     display: flex;
     flex-direction: column;
@@ -144,14 +140,18 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     gap: var(--space-s);
   }
 
-  .site-footer__logo img {
-    width: 200px;
+  .site-footer__logo {
+    display: block;
+    width: 11rem;
+    color: inherit;
   }
 
   .site-footer__tagline {
     font-family: var(--font-display);
     font-size: var(--step-1);
-    color: var(--c-teal-light);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-accent-on-brand);
   }
 
   .site-footer__socials {
@@ -166,18 +166,17 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     place-items: center;
     width: 2.75rem;
     height: 2.75rem;
-    border: 1px solid rgb(255 255 255 / 0.35);
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
     border-radius: 50%;
   }
 
   .site-footer__heading {
     margin-bottom: var(--space-xs);
-    font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--c-teal-light);
+    color: var(--color-accent-on-brand);
   }
 
   .site-footer address {
@@ -221,7 +220,7 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
 
   .site-footer__note {
     margin-top: var(--space-xs);
-    color: rgb(255 255 255 / 0.85);
+    color: var(--color-on-brand-muted);
   }
 
   .site-footer__base {
@@ -231,8 +230,8 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     justify-content: space-between;
     gap: var(--space-2xs) var(--space-m);
     padding-block: var(--space-m);
-    border-top: 1px solid rgb(255 255 255 / 0.18);
-    color: rgb(255 255 255 / 0.85);
+    border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    color: var(--color-on-brand-muted);
   }
 
   .site-footer__base p {

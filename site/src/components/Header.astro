@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/brand/logo-colour.png';
+import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
 import Button from './Button.astro';
 import { serviceLinks, primaryLinks } from '../data/navigation';
@@ -14,7 +13,8 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
 <header class="site-header">
   <div class="wrap site-header__bar">
     <a class="site-header__logo" href="/">
-      <Image src={logo} alt="Embrace Movement Clinic home" width={64} height={64} densities={[1, 2]} loading="eager" />
+      <Wordmark />
+      <span class="visually-hidden">{site.name} home</span>
     </a>
 
     <!-- Desktop navigation -->
@@ -136,13 +136,18 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
 </script>
 
 <style>
+  /* Header colours come from the palette, so it can be light or dark. */
   .site-header {
+    --btn-bg: var(--header-btn-bg);
+    --btn-ink: var(--header-btn-ink);
+    --color-focus: var(--header-focus);
+    --divider: color-mix(in srgb, var(--header-ink) 14%, transparent);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgb(255 255 255 / 0.96);
-    border-bottom: 1px solid var(--c-line);
-    backdrop-filter: saturate(1.4) blur(8px);
+    background: var(--header-bg);
+    color: var(--header-ink);
+    border-bottom: 1px solid var(--header-line);
   }
 
   .site-header__bar {
@@ -155,13 +160,10 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
   .site-header__logo {
     display: block;
     flex-shrink: 0;
+    width: 7.5rem;
     margin-right: auto;
-    border-radius: 50%;
-  }
-
-  .site-header__logo img {
-    width: 52px;
-    height: 52px;
+    padding-block: var(--space-2xs);
+    color: inherit;
   }
 
   .site-header__actions {
@@ -178,13 +180,14 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
     min-width: 2.75rem;
     min-height: 2.75rem;
     border-radius: var(--radius-pill);
-    color: var(--c-teal-800);
+    color: inherit;
+    font-family: var(--font-display);
     font-weight: 600;
     text-decoration: none;
   }
 
   .site-header__call:hover {
-    background: var(--c-mist-50);
+    background: var(--header-hover);
   }
 
   /* Number is visually hidden on small screens; the link still reads "Call 0434 686 261". */
@@ -205,11 +208,11 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
     border: 0;
     border-radius: var(--radius-pill);
     background: transparent;
-    color: var(--c-ink);
+    color: inherit;
   }
 
   .site-header__menu:hover {
-    background: var(--c-mist-50);
+    background: var(--header-hover);
   }
 
   .site-header__menu :global(.icon-close),
@@ -229,7 +232,7 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
 
   /* Mobile nav */
   .mobile-nav {
-    border-top: 1px solid var(--c-line);
+    border-top: 1px solid var(--divider);
     max-height: calc(100dvh - var(--header-h));
     overflow-y: auto;
   }
@@ -248,11 +251,12 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
     display: flex;
     align-items: center;
     min-height: 3rem;
-    color: var(--c-ink);
+    color: inherit;
+    font-family: var(--font-display);
     font-size: var(--step-1);
     font-weight: 600;
     text-decoration: none;
-    border-bottom: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--divider);
   }
 
   .mobile-nav__sub {
@@ -261,13 +265,13 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
   }
 
   .mobile-nav__sub a {
+    font-family: var(--font-body);
     font-size: var(--step-0);
     font-weight: 500;
-    color: var(--c-ink-muted);
+    color: color-mix(in srgb, var(--header-ink) 78%, var(--header-bg));
   }
 
   .mobile-nav a[aria-current='page'] {
-    color: var(--c-teal-800);
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 0.3em;
@@ -279,24 +283,19 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
   }
 
   @media (min-width: 30em) {
-    .site-header__logo img {
-      width: 60px;
-      height: 60px;
+    .site-header__logo {
+      width: 8.5rem;
     }
   }
 
   @media (min-width: 62em) {
     .site-header__bar {
-      gap: var(--space-m);
+      gap: var(--space-l);
     }
 
     .site-header__logo {
+      width: 9.5rem;
       margin-right: 0;
-    }
-
-    .site-header__logo img {
-      width: 64px;
-      height: 64px;
     }
 
     .desk-nav {
@@ -327,11 +326,12 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       display: inline-flex;
       align-items: center;
       min-height: 2.75rem;
-      padding-inline: 0.7rem;
-      color: var(--c-ink);
+      padding-inline: 0.75rem;
+      color: inherit;
+      font-family: var(--font-display);
       font-weight: 550;
       text-decoration: none;
-      border-radius: var(--radius-s);
+      border-radius: var(--radius-pill);
     }
 
     .desk-nav__item--has-sub > a {
@@ -339,14 +339,12 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
     }
 
     .desk-nav__item > a:hover {
-      color: var(--c-teal-800);
+      background: var(--header-hover);
     }
 
     .desk-nav__item > a[aria-current='page'],
     .desk-nav__item > a.is-active {
-      color: var(--c-teal-800);
       text-decoration: underline;
-      text-decoration-color: var(--c-teal);
       text-decoration-thickness: 2px;
       text-underline-offset: 0.45em;
     }
@@ -357,9 +355,13 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       width: 2rem;
       height: 2.75rem;
       border: 0;
-      border-radius: var(--radius-s);
+      border-radius: var(--radius-pill);
       background: transparent;
-      color: var(--c-ink);
+      color: inherit;
+    }
+
+    .desk-nav__toggle:hover {
+      background: var(--header-hover);
     }
 
     .desk-nav__toggle :global(svg) {
@@ -370,15 +372,18 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       transform: rotate(180deg);
     }
 
+    /* The dropdown panel is always light, whatever the header colour. */
     .desk-nav__sub {
+      --color-focus: var(--color-link);
       position: absolute;
-      top: calc(100% + 0.5rem);
+      top: calc(100% + 0.6rem);
       left: 0;
       min-width: 19rem;
       padding: var(--space-2xs);
       list-style: none;
-      background: var(--c-white);
-      border: 1px solid var(--c-line);
+      background: var(--color-bg);
+      color: var(--color-ink);
+      border: 1px solid var(--color-line);
       border-radius: var(--radius);
       box-shadow: var(--shadow-m);
     }
@@ -398,30 +403,28 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       gap: 0.4em;
       min-height: 2.75rem;
       padding-inline: var(--space-xs);
-      color: var(--c-ink);
+      color: inherit;
       text-decoration: none;
       border-radius: var(--radius-s);
     }
 
     .desk-nav__sub a:hover,
     .desk-nav__sub a[aria-current='page'] {
-      background: var(--c-mist-50);
-      color: var(--c-teal-900);
+      background: var(--color-bg-alt);
     }
 
     .desk-nav__sub-all {
       margin-top: var(--space-3xs);
       padding-top: var(--space-3xs);
-      border-top: 1px solid var(--c-line);
+      border-top: 1px solid var(--color-line);
     }
 
     .desk-nav__sub-all a {
-      color: var(--c-teal-800);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .site-header__call {
-      padding-inline: 0.6rem;
+      padding-inline: 0.75rem;
     }
 
     .site-header__call-text {

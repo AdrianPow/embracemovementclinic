@@ -20,11 +20,11 @@ Needs Node 22.12 or later.
 |---|---|
 | Clinic details (phone, email, address, booking links, hours, socials, notice banner) | `src/data/site.ts` |
 | Menu and footer links | `src/data/navigation.ts` |
-| Colours, type sizes, spacing | `src/styles/tokens.css` |
-| Logo files used on the site | `src/assets/brand/` (originals in `../assets/brand/`) |
+| Colour palettes, type sizes, spacing | `src/styles/tokens.css` (the active palette is `palette` in `src/data/site.ts`) |
+| Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
 | Fonts | `astro.config.mjs` (`fonts`), self-hosted from `@fontsource-variable/*` |
 | Page shell (head, header, footer) | `src/layouts/BaseLayout.astro` |
-| Style tile for sign-off | `/styleguide` (not indexed) |
+| Style tile and palette options | `/styleguide` (not indexed; `?palette=forest|pine|mono|clay|navy`) |
 
 ## Checks
 

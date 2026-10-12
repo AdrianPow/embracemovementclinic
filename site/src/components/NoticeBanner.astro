@@ -60,9 +60,8 @@ const key = hash.toString(36);
 
 <style>
   .notice {
-    background: var(--c-mist-50);
-    border-bottom: 1px solid var(--c-mist);
-    color: var(--c-ink);
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
     font-size: var(--step--1);
   }
 
@@ -75,7 +74,6 @@ const key = hash.toString(36);
 
   :global(.notice__icon) {
     margin-top: 0.15em;
-    color: var(--c-teal-700);
   }
 
   .notice__text {
@@ -84,7 +82,7 @@ const key = hash.toString(36);
   }
 
   .notice__text a {
-    color: var(--c-teal-800);
+    color: inherit;
     font-weight: 650;
   }
 
@@ -97,7 +95,7 @@ const key = hash.toString(36);
     border: 0;
     border-radius: var(--radius-pill);
     background: transparent;
-    color: var(--c-ink);
+    color: inherit;
   }
 
   .notice__close[hidden] {
@@ -105,6 +103,6 @@ const key = hash.toString(36);
   }
 
   .notice__close:hover {
-    background: var(--c-mist);
+    background: color-mix(in srgb, currentColor 8%, transparent);
   }
 </style>

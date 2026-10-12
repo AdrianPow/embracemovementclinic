@@ -3,7 +3,7 @@ import Icon, { type IconName } from './Icon.astro';
 
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary' | 'light';
+  variant?: 'primary' | 'secondary';
   size?: 's' | 'm' | 'l';
   icon?: IconName;
   class?: string;
@@ -26,10 +26,12 @@ const { href, variant = 'primary', size = 'm', icon, class: className, ...rest }
     gap: 0.5em;
     min-height: 2.75rem;
     padding: 0.7em 1.4em;
-    border: 2px solid transparent;
+    border: 1.5px solid transparent;
     border-radius: var(--radius-pill);
+    font-family: var(--font-display);
     font-weight: 650;
     line-height: 1.2;
+    letter-spacing: -0.005em;
     text-decoration: none;
     white-space: nowrap;
     transition:
@@ -54,36 +56,25 @@ const { href, variant = 'primary', size = 'm', icon, class: className, ...rest }
     font-size: var(--step-1);
   }
 
-  /* White text on teal-700: 6.0:1 */
+  /* Colours come from the palette (--btn-bg/--btn-ink), and switch automatically inside .on-brand. */
   .btn--primary {
-    background: var(--c-teal-700);
-    color: var(--c-white);
+    background: var(--btn-bg);
+    color: var(--btn-ink);
   }
 
   .btn--primary:hover {
-    background: var(--c-teal-900);
-    color: var(--c-white);
+    background: color-mix(in srgb, var(--btn-bg) 84%, #000);
+    color: var(--btn-ink);
   }
 
   .btn--secondary {
-    border-color: var(--c-teal-700);
+    border-color: currentColor;
     background: transparent;
-    color: var(--c-teal-800);
+    color: inherit;
   }
 
   .btn--secondary:hover {
-    background: var(--c-mist-50);
-    color: var(--c-teal-900);
-  }
-
-  /* For dark sections: ink on light teal, 10.5:1 */
-  .btn--light {
-    background: var(--c-teal-light);
-    color: var(--c-ink);
-  }
-
-  .btn--light:hover {
-    background: var(--c-white);
-    color: var(--c-ink);
+    background: color-mix(in srgb, currentColor 8%, transparent);
+    color: inherit;
   }
 </style>

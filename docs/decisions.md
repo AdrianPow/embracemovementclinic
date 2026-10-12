@@ -17,6 +17,8 @@ Fill these in before the build starts. Claude Code will ask about anything left 
 | Goal | **Complete rebuild to modernise and refresh the online presence** | Full redesign, not a copy of the Squarespace layout |
 | URLs | **Clean URLs with 301 redirects (confirmed 12 Oct 2026)** | See the URL table in `changes.md`. |
 | Temporary closure | **Site-wide notice banner (confirmed 12 Oct 2026)** | Set in `site/src/data/site.ts` (`notice`). Also noted on Book Now, Contact and the team cards. |
-| Fonts | TBC: pairing A (Fraunces + Figtree) or B (Red Hat Display + Red Hat Text) | Both self-hosted. Compare them on `/styleguide`. |
+| Fonts | **Red Hat Display (headings) + Red Hat Text (body), chosen 12 Oct 2026** | Self-hosted variable fonts, about 60 KB together. |
+| Logo | **Plain wordmark only, chosen 12 Oct 2026** | The brush-stroke circle is dropped. `assets/brand/logo-wordmark.svg` was traced from the supplied black wordmark and takes any colour. |
+| Colour palette | TBC: one of five options on `/styleguide` | Forest, Pine & Lime, Monochrome, Charcoal & Clay, Navy & Sand. All pass WCAG 2.2 AA. Set in `site/src/data/site.ts` (`palette`). |
 | Launch target | TBC | |
 | Sign-off | TBC | Who approves content and go-live |

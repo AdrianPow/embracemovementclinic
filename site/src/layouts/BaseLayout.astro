@@ -5,7 +5,6 @@ import type { ImageMetadata } from 'astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import NoticeBanner from '../components/NoticeBanner.astro';
-import logo from '../assets/brand/logo-colour.png';
 import { site } from '../data/site';
 
 interface Props {
@@ -24,13 +23,13 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/(.)\/$/, '$1');
 const canonical = new URL(path, site.url).href;
 
-const ogSource = image ?? logo;
-const og = await getImage({ src: ogSource, format: 'jpg', width: Math.min(1200, ogSource.width), background: '#ffffff' });
-const ogUrl = new URL(og.src, site.url).href;
+// TODO: a default share image (wordmark on the brand colour) once the palette is chosen.
+const og = image ? await getImage({ src: image, format: 'jpg', width: Math.min(1200, image.width) }) : null;
+const ogUrl = og ? new URL(og.src, site.url).href : null;
 ---
 
 <!doctype html>
-<html lang="en-AU">
+<html lang="en-AU" data-palette={site.palette}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,12 +49,12 @@ const ogUrl = new URL(og.src, site.url).href;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogUrl} />
-    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    {ogUrl && <meta property="og:image" content={ogUrl} />}
+    {ogUrl && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
     <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
 
-    <Font cssVariable="--font-figtree" preload />
-    <Font cssVariable="--font-fraunces" preload />
+    <Font cssVariable="--font-red-hat-text" preload />
+    <Font cssVariable="--font-red-hat-display" preload />
     <slot name="head" />
 
     <script is:inline>

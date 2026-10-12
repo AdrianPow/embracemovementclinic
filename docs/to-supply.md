@@ -21,9 +21,9 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 ## Brand assets
 
 - [x] Logo: colour circle (500px transparent PNG) and black wordmark (1500px PNG), received 12 Oct 2026 and saved in `assets/brand/`. Favicons and a white footer wordmark were made from them.
-- [ ] Logo as **SVG** (optional, but sharper on high-resolution screens)
-- [x] Brand colours: sampled from the logo (teal `#3AB593`, light teal `#8BDBC5`). See `/styleguide`.
-- [ ] **Font choice:** pairing A or B on `/styleguide` (both are open-licence fonts and self-hosted)
+- [x] Logo as SVG: traced from the black wordmark (`assets/brand/logo-wordmark.svg`). An original vector file from whoever designed it would still be ideal, if one exists.
+- [ ] **Colour palette:** choose one of the five options on `/styleguide` (the owner is moving away from the teal palette)
+- [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
 - [ ] Original high-resolution photos (clinic, team, treatment). The export only links to images (`reference/images.json` has the full-resolution URLs). This environment's network policy blocks `images.squarespace-cdn.com`. Either allow that domain (Edit environment → Network access → Allowed domains) so Claude can download them, or drop the originals into `assets/brand/`. Until then, pages show `TODO: photo` placeholders.
 - [ ] Photo permissions confirmed for anyone pictured
 

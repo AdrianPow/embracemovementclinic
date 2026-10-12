@@ -36,10 +36,11 @@ Each change to what a service involves, conditions treated, or examination or co
 
 ## Design changes
 
-**Full redesign** to modernise the site. Keep the brand identity:
-- the logo
-- the teal palette
-- the tagline "Accept . Support . Challenge ."
+**Full redesign** to modernise the site, with a modern, sleek feel. Brand identity:
+- **Logo:** the plain "embrace / MOVEMENT CLINIC" wordmark only. The teal brush-stroke circle is dropped (owner decision, 12 Oct 2026).
+- **Palette:** moving away from teal and aqua (owner decision, 12 Oct 2026). Choose from the options on `/styleguide`.
+- **Tagline:** "Accept . Support . Challenge ." is kept.
+- **Type:** Red Hat Display + Red Hat Text.
 
 Don't copy the Squarespace layout. Use the screenshots only for content, menu items and brand cues. See "Design direction" in CLAUDE.md.
 

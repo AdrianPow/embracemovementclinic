@@ -1,0 +1,23 @@
+---
+// The "embrace / MOVEMENT CLINIC" wordmark, traced from assets/brand/logo-wordmark-black.png.
+// It's drawn in currentColor, so it takes the colour of whatever it sits in.
+// Decorative here: give the surrounding link or element an accessible name.
+import svg from '../assets/brand/wordmark.svg?raw';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const markup = svg.replace('<svg', '<svg aria-hidden="true" focusable="false" width="100%" height="100%"');
+---
+
+<span class:list={['wordmark', className]} set:html={markup} />
+
+<style>
+  .wordmark {
+    display: block;
+    aspect-ratio: 1241 / 322;
+    line-height: 0;
+  }
+</style>

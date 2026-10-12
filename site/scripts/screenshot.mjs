@@ -32,7 +32,7 @@ for (const vp of viewports) {
       await Promise.race([Promise.all(imgs.map(settle)), new Promise((r) => setTimeout(r, 5000))]);
       await document.fonts.ready;
     });
-    const slug = p === '/' ? 'home' : p.replace(/^\//, '').replace(/\//g, '-');
+    const slug = p === '/' ? 'home' : p.replace(/^\//, '').replace(/[^a-z0-9]+/gi, '-');
     const file = path.join(outDir, `${slug}-${name}.png`);
     await page.screenshot({ path: file, fullPage: true });
     console.log(file);

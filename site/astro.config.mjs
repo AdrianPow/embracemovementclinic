@@ -22,29 +22,6 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: 'Figtree',
-      cssVariable: '--font-figtree',
-      fallbacks: ['system-ui', 'sans-serif'],
-      options: {
-        variants: [
-          { src: [fontFile('figtree', 'figtree-latin-wght-normal.woff2')], weight: '300 900', style: 'normal' },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: 'Fraunces',
-      cssVariable: '--font-fraunces',
-      fallbacks: ['Georgia', 'serif'],
-      options: {
-        variants: [
-          { src: [fontFile('fraunces', 'fraunces-latin-opsz-normal.woff2')], weight: '100 900', style: 'normal' },
-        ],
-      },
-    },
-    // Alternative pairing, shown on /styleguide only until the owner picks one.
-    {
-      provider: fontProviders.local(),
       name: 'Red Hat Display',
       cssVariable: '--font-red-hat-display',
       fallbacks: ['system-ui', 'sans-serif'],

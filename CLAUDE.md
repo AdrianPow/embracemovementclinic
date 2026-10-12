@@ -40,16 +40,16 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 - Photography-led, with generous white space.
 
 **Brand to keep**
-- Logo: teal watercolour circle with "embrace / movement clinic". Use files from `assets/brand/`.
+- Logo: the plain "embrace / MOVEMENT CLINIC" wordmark (`assets/brand/logo-wordmark.svg`). The owner dropped the teal brush-stroke circle on 12 Oct 2026, so don't reintroduce it.
 - Tagline: "Accept . Support . Challenge ."
 
 **Palette**
-- Sampled from screenshots; confirm against the logo files.
-- Brand teal `#38B090`, light teal `#88D8C0`, mist `#A8E0D0`, near-black text, white and `#FAFAFA` backgrounds.
-- Check all text and button colour combinations for AA contrast. Teal on white will likely need a darker shade for text.
+- The owner wants a modern, sleek feel and to move away from teal and aqua (12 Oct 2026). White text on a dark green background is fine.
+- Palette options live in `site/src/styles/tokens.css` and are previewed on `/styleguide`. The chosen one is set in `site/src/data/site.ts` and recorded in `docs/decisions.md`.
+- Check all text and button colour combinations for AA contrast.
 
 **Type**
-- The current site uses a humanist sans for headings. Choose a modern, legible pairing, self-hosted, with no Google Fonts call at runtime.
+- Red Hat Display (headings) + Red Hat Text (body), self-hosted, with no Google Fonts call at runtime. Chosen by the owner on 12 Oct 2026.
 
 **Must-haves**
 - A persistent "Book now" call to action (Nookal) in the header and on every service page.
