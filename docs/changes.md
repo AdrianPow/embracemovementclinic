@@ -2,30 +2,37 @@
 
 Anything not listed here stays as it is on the current site.
 
-## URL clean-up (decide, then add 301 redirects from the old URLs)
+## URL clean-up (decided 12 Oct 2026: clean URLs with 301 redirects)
 
 | Current URL | Content | Suggested new URL | Decision |
 |---|---|---|---|
-| /homepage | Home | / | TBC |
-| /old-services | "Our Services" overview of all services | /services | TBC (confirm it's live and in the menu) |
-| /physiotherapy | Musculoskeletal Physiotherapy | keep | TBC |
-| /exercise-physiology | Exercise Physiology | keep | TBC |
-| /pilates | Pilates & Small Group Classes | keep | TBC |
-| /womens-health-physio | Pelvic Floor Physiotherapy | /pelvic-health-physiotherapy (or keep) | TBC |
-| /pilates-1 | **Vestibular** Physiotherapy (the slug doesn't match the content) | /vestibular-physiotherapy | TBC |
-| /team | Meet The Team | keep | TBC |
-| /contact-us-1 | Contact | /contact | TBC |
-| /book-now | Nookal booking embed | keep | TBC |
-| /group-exercise-timetable | Class timetable and cancellation policy | keep | TBC |
-| /clinic-updates | Clinic news | /news (or keep) | TBC |
-| /xmas-2024 | Christmas 2024 newsletter | archive under /news, or drop | TBC |
-| /baby-news | July 2026 update | archive under /news, or drop | TBC |
-| /blog-posts/* | Linked from homepage and team images, but not in the export | TBC | Do these posts still exist? If not, fix the links. |
+| /homepage | Home | / | **Change** (301) |
+| /old-services | "Our Services" overview of all services | /services | **Change** (301) |
+| /physiotherapy | Musculoskeletal Physiotherapy | keep | **Keep** |
+| /exercise-physiology | Exercise Physiology | keep | **Keep** |
+| /pilates | Pilates & Small Group Classes | keep | **Keep** |
+| /womens-health-physio | Pelvic Floor Physiotherapy | /pelvic-health-physiotherapy | **Change** (301) |
+| /pilates-1 | **Vestibular** Physiotherapy (the slug doesn't match the content) | /vestibular-physiotherapy | **Change** (301) |
+| /team | Meet The Team | keep, plus /team/nicole-saxby and /team/laura-bradford | **Keep** |
+| /contact-us-1 | Contact | /contact | **Change** (301) |
+| /book-now | Nookal booking embed | keep | **Keep** |
+| /group-exercise-timetable | Class timetable and cancellation policy | /classes | **Change** (301) |
+| /clinic-updates | Clinic news | /news/clinic-update-june-2025 | **Change** (301) |
+| /xmas-2024 | Christmas 2024 newsletter | /news/christmas-2024 | **Change** (301) |
+| /baby-news | July 2026 update | /news/july-2026-update | **Change** (301) |
+| /blog-posts/* | Linked from homepage and team images, but not in the export | /news | **Change** (301). The image links aren't carried over. |
 
 ## Content changes
 
-- **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". Decide how it should appear, and who updates it in January.
-- TBC
+- **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". This now shows as a status on the team cards (set in each practitioner's file), plus a site-wide notice banner. Someone needs to turn both off when the clinic reopens (`site/src/data/site.ts` → `notice`).
+- **Temporary closure (new):** a site-wide notice says the clinic is temporarily closed and plans to reopen in January 2027 (source: the July 2026 update).
+
+## Wording change log (clinical copy, for owner approval before launch)
+
+Each change to what a service involves, conditions treated, or examination or consent wording is listed here as it's made.
+
+| Page | Original | New | Why | Approved |
+|---|---|---|---|---|
 
 ## Design changes
 

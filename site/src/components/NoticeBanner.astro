@@ -1,0 +1,110 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const { notice } = site;
+// Brisbane has no daylight saving, so +10:00 is always correct.
+const expired = notice.until ? new Date() > new Date(`${notice.until}T23:59:59+10:00`) : false;
+const show = notice.enabled && !expired;
+
+// A new message gets a new key, so a previous dismissal doesn't hide it.
+let hash = 5381;
+for (const ch of notice.message) hash = ((hash << 5) + hash + ch.charCodeAt(0)) >>> 0;
+const key = hash.toString(36);
+---
+
+{
+  show && (
+    <div class="notice" id="site-notice" role="region" aria-label="Clinic notice" data-key={key} data-until={notice.until ?? ''}>
+      <div class="wrap notice__inner">
+        <Icon name="info" class="notice__icon" />
+        <p class="notice__text">
+          {notice.message}{' '}
+          {notice.link && <a href={notice.link.href}>{notice.link.label}</a>}
+        </p>
+        <button type="button" class="notice__close" data-dismiss hidden>
+          <Icon name="close" size={18} />
+          <span class="visually-hidden">Dismiss notice</span>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+{
+  show && (
+    <script is:inline>
+      (function () {
+        var n = document.getElementById('site-notice');
+        if (!n) return;
+        var storageKey = 'notice-dismissed:' + n.dataset.key;
+        var until = n.dataset.until;
+        try {
+          if (localStorage.getItem(storageKey)) return n.remove();
+        } catch (e) {}
+        if (until && new Date() > new Date(until + 'T23:59:59+10:00')) return n.remove();
+        var btn = n.querySelector('[data-dismiss]');
+        btn.hidden = false;
+        btn.addEventListener('click', function () {
+          try {
+            localStorage.setItem(storageKey, '1');
+          } catch (e) {}
+          n.remove();
+          var logo = document.querySelector('.site-header__logo');
+          if (logo) logo.focus();
+        });
+      })();
+    </script>
+  )
+}
+
+<style>
+  .notice {
+    background: var(--c-mist-50);
+    border-bottom: 1px solid var(--c-mist);
+    color: var(--c-ink);
+    font-size: var(--step--1);
+  }
+
+  .notice__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+    padding-block: var(--space-2xs);
+  }
+
+  :global(.notice__icon) {
+    margin-top: 0.15em;
+    color: var(--c-teal-700);
+  }
+
+  .notice__text {
+    flex: 1;
+    padding-block: 0.1em;
+  }
+
+  .notice__text a {
+    color: var(--c-teal-800);
+    font-weight: 650;
+  }
+
+  .notice__close {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: -0.6rem -0.6rem -0.6rem 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--c-ink);
+  }
+
+  .notice__close[hidden] {
+    display: none;
+  }
+
+  .notice__close:hover {
+    background: var(--c-mist);
+  }
+</style>

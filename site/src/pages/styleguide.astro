@@ -1,0 +1,479 @@
+---
+// Style tile for owner sign-off (build step 0). Not indexed, not in the sitemap.
+import { Font, Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Todo from '../components/Todo.astro';
+import Icon from '../components/Icon.astro';
+import logo from '../assets/brand/logo-colour.png';
+import wordmark from '../assets/brand/wordmark-white.png';
+
+const luminance = (hex: string) => {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a: string, b: string) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+
+const swatches = [
+  { name: 'Brand teal', hex: '#3AB593', use: 'From the logo. Decorative only: rules, shapes, icons beside text.' },
+  { name: 'Light teal', hex: '#8BDBC5', use: 'From the logo. Accents, buttons on dark sections.' },
+  { name: 'Mist', hex: '#A8E0D0', use: 'Borders and accents on tinted sections.' },
+  { name: 'Mist 50', hex: '#EEF8F4', use: 'Tinted section backgrounds, notice banner.' },
+  { name: 'Teal 700', hex: '#2B6E5B', use: 'Links, primary buttons, eyebrow text.' },
+  { name: 'Teal 800', hex: '#225849', use: 'Hover states, text on light teal.' },
+  { name: 'Teal 900', hex: '#173B31', use: 'Footer and dark sections.' },
+  { name: 'Ink', hex: '#1A1D1C', use: 'Body text and headings.' },
+  { name: 'Ink muted', hex: '#4A5250', use: 'Secondary text.' },
+  { name: 'Soft white', hex: '#FAFAFA', use: 'Alternate section background.' },
+].map((s) => ({
+  ...s,
+  onWhite: contrast(s.hex, '#FFFFFF'),
+  withInk: contrast(s.hex, '#1A1D1C'),
+}));
+
+const pairs = [
+  ['White text on Teal 700 (primary button)', '#FFFFFF', '#2B6E5B'],
+  ['Teal 700 link on Soft white', '#2B6E5B', '#FAFAFA'],
+  ['Teal 700 link on Mist 50', '#2B6E5B', '#EEF8F4'],
+  ['Ink on Light teal (button on dark)', '#1A1D1C', '#8BDBC5'],
+  ['Light teal on Teal 900 (footer headings)', '#8BDBC5', '#173B31'],
+  ['White on Teal 900 (footer text)', '#FFFFFF', '#173B31'],
+  ['Brand teal on white (fails, so never for text)', '#3AB593', '#FFFFFF'],
+].map(([label, fg, bg]) => ({ label, fg, bg, ratio: contrast(fg, bg) }));
+
+const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : r >= 3 ? 'AA large only' : 'Fail');
+---
+
+<BaseLayout
+  title="Style tile"
+  description="Design tokens and type options for the Embrace Movement Clinic website. For owner sign-off."
+  noindex
+>
+  <Fragment slot="head">
+    <Font cssVariable="--font-red-hat-display" />
+    <Font cssVariable="--font-red-hat-text" />
+  </Fragment>
+
+  <section class="section">
+    <div class="wrap flow" style="--flow-space: var(--space-s)">
+      <p class="eyebrow">Step 0 · For sign-off</p>
+      <h1>Style tile</h1>
+      <p class="lede prose">
+        The palette, type and core components for the new site. Pick a type pairing (A or B) and confirm the colours, then
+        page building starts. Photos are placeholders until the originals are supplied.
+      </p>
+    </div>
+  </section>
+
+  <!-- Logo -->
+  <section class="section section--soft" aria-labelledby="logo-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="logo-h">Logo</h2>
+      <div class="logo-row">
+        <figure class="logo-card">
+          <Image src={logo} alt="Embrace Movement Clinic logo, colour" width={200} densities={[1, 2]} />
+          <figcaption>Colour logo (header). Supplied as a 500px PNG. An SVG would be sharper.</figcaption>
+        </figure>
+        <figure class="logo-card logo-card--dark">
+          <Image src={wordmark} alt="Embrace Movement Clinic wordmark, white" width={240} densities={[1, 2]} />
+          <figcaption>White wordmark (footer), made from the black wordmark file.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Palette -->
+  <section class="section" aria-labelledby="palette-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="palette-h">Colour</h2>
+      <p class="prose">
+        Brand teal and light teal are sampled from the logo. Teal text and buttons use darker shades of the same hue, so
+        every text combination passes WCAG&nbsp;2.2&nbsp;AA (4.5:1). Ratios below are calculated, not estimated.
+      </p>
+      <ul class="swatches" role="list">
+        {
+          swatches.map((s) => (
+            <li class="swatch">
+              <span class="swatch__chip" style={`background:${s.hex}`} />
+              <span class="swatch__body">
+                <strong>{s.name}</strong>
+                <code>{s.hex}</code>
+                <span class="swatch__use">{s.use}</span>
+                <span class="swatch__ratios">
+                  On white {s.onWhite.toFixed(2)}:1 · with ink {s.withInk.toFixed(2)}:1
+                </span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h3>Text and button combinations</h3>
+      <ul class="pairs" role="list">
+        {
+          pairs.map((p) => (
+            <li class="pair">
+              <svg class="pair__sample" viewBox="0 0 56 48" aria-hidden="true" style={`background:${p.bg}`}>
+                <text x="28" y="31" text-anchor="middle" fill={p.fg} font-size="20" font-weight="650">
+                  Aa
+                </text>
+              </svg>
+              <span class="pair__label">{p.label}</span>
+              <span class:list={['pair__grade', { 'pair__grade--fail': p.ratio < 4.5 }]}>
+                {p.ratio.toFixed(2)}:1 · {grade(p.ratio)}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Type -->
+  <section class="section section--mist" aria-labelledby="type-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="type-h">Type: choose A or B</h2>
+      <p class="prose">
+        Both are self-hosted variable fonts (about 60–90 KB for the pair), with no Google Fonts call. Sample text is from the
+        current site.
+      </p>
+      <div class="type-grid">
+        <article class="type-card type-card--a" aria-labelledby="type-a">
+          <p class="type-card__label" id="type-a">A · Fraunces + Figtree <span>(recommended)</span></p>
+          <p class="eyebrow">Accept . Support . Challenge .</p>
+          <p class="t-h1">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+          <p class="t-h2">Exercise Physiology</p>
+          <p class="t-h3">What to expect</p>
+          <p>
+            During your initial consultation, we will take the time to understand your medical history, current fitness level,
+            and specific health concerns. A detailed physical assessment will follow to evaluate your movement patterns,
+            strength, and flexibility.
+          </p>
+          <p class="type-card__note">A warm, soft serif for headings with a clean, friendly sans for reading. Feels boutique and calm.</p>
+        </article>
+
+        <article class="type-card type-card--b" aria-labelledby="type-b">
+          <p class="type-card__label" id="type-b">B · Red Hat Display + Red Hat Text</p>
+          <p class="eyebrow">Accept . Support . Challenge .</p>
+          <p class="t-h1">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+          <p class="t-h2">Exercise Physiology</p>
+          <p class="t-h3">What to expect</p>
+          <p>
+            During your initial consultation, we will take the time to understand your medical history, current fitness level,
+            and specific health concerns. A detailed physical assessment will follow to evaluate your movement patterns,
+            strength, and flexibility.
+          </p>
+          <p class="type-card__note">An all-sans family, closer to the current site’s humanist headings. Modern and clinical.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section class="section" aria-labelledby="comp-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="comp-h">Components</h2>
+
+      <h3>Buttons and links</h3>
+      <div class="cluster">
+        <Button href="/book-now" icon="calendar">Book now</Button>
+        <Button href="/services" variant="secondary">Our services</Button>
+        <a href="/contact">Text link to Contact</a>
+      </div>
+      <div class="cluster dark-panel on-dark">
+        <Button href="/book-now" variant="light" icon="calendar">Book now</Button>
+        <a href="/classes" class="dark-panel__link">Link on a dark section</a>
+      </div>
+
+      <h3>Service card and photo placeholder</h3>
+      <div class="demo-cards">
+        <a class="demo-card" href="/physiotherapy">
+          <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
+          <div class="demo-card__body">
+            <h4>Musculoskeletal Physiotherapy</h4>
+            <p>Sprains, strains, back and neck pain, joint pain, chronic pain and post-surgical care.</p>
+            <span class="demo-card__more">Learn more <Icon name="arrow-right" size={16} /></span>
+          </div>
+        </a>
+        <a class="demo-card" href="/pilates">
+          <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
+          <div class="demo-card__body">
+            <h4>Pilates &amp; Small Group Classes</h4>
+            <p>Reformer, Wunda Chair, Trapeze Table, CoreAlign and more, in small groups.</p>
+            <span class="demo-card__more">Learn more <Icon name="arrow-right" size={16} /></span>
+          </div>
+        </a>
+      </div>
+
+      <h3>TODO marker</h3>
+      <p>Missing facts show like this until supplied: <Todo>opening hours</Todo></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .logo-row {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .logo-card {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-s);
+    padding: var(--space-l) var(--space-m);
+    background: var(--c-white);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-l);
+  }
+
+  .logo-card img {
+    width: 200px;
+  }
+
+  .logo-card--dark {
+    background: var(--c-teal-900);
+    color: var(--c-white);
+    align-content: center;
+  }
+
+  .logo-card--dark img {
+    width: 240px;
+  }
+
+  .logo-card figcaption {
+    font-size: var(--step--1);
+    text-align: center;
+  }
+
+  .swatches {
+    display: grid;
+    gap: var(--space-s);
+    padding: 0;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .swatch {
+    display: grid;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .swatch__chip {
+    height: 5rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .swatch__body {
+    display: grid;
+    gap: 0.2rem;
+    padding: var(--space-xs) var(--space-s) var(--space-s);
+    font-size: var(--step--1);
+  }
+
+  .swatch__use {
+    color: var(--text-muted);
+  }
+
+  .swatch__ratios {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pairs {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: 0;
+  }
+
+  .pair {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-2xs);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+  }
+
+  .pair__sample {
+    width: 100%;
+    height: 3rem;
+    border-radius: var(--radius-s);
+    font-family: var(--font-body);
+  }
+
+  .pair__grade {
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--c-teal-800);
+    text-align: right;
+  }
+
+  .pair__grade--fail {
+    color: #9b1c1c;
+  }
+
+  @media (max-width: 40em) {
+    .pair {
+      grid-template-columns: 3rem 1fr;
+    }
+
+    .pair__grade {
+      grid-column: 2;
+      text-align: left;
+    }
+  }
+
+  .type-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  }
+
+  .type-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-s);
+    padding: var(--space-l) var(--space-m);
+    background: var(--c-white);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-s);
+  }
+
+  .type-card__label {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--c-ink-muted);
+  }
+
+  .type-card__label span {
+    color: var(--c-teal-700);
+  }
+
+  .t-h1 {
+    font-size: var(--step-3);
+    line-height: 1.15;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .t-h2 {
+    font-size: var(--step-2);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .t-h3 {
+    font-size: var(--step-1);
+    font-weight: 650;
+  }
+
+  .type-card__note {
+    padding-top: var(--space-s);
+    border-top: 1px solid var(--c-line);
+    font-size: var(--step--1);
+    color: var(--c-ink-muted);
+  }
+
+  .type-card--a {
+    font-family: var(--font-figtree), system-ui, sans-serif;
+  }
+
+  .type-card--a :is(.t-h1, .t-h2) {
+    font-family: var(--font-fraunces), Georgia, serif;
+  }
+
+  .type-card--b {
+    font-family: var(--font-red-hat-text), system-ui, sans-serif;
+  }
+
+  .type-card--b :is(.t-h1, .t-h2) {
+    font-family: var(--font-red-hat-display), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s);
+  }
+
+  .dark-panel {
+    padding: var(--space-m);
+    background: var(--c-teal-900);
+    border-radius: var(--radius-l);
+  }
+
+  .dark-panel__link {
+    color: var(--c-white);
+  }
+
+  .dark-panel__link:hover {
+    color: var(--c-teal-light);
+  }
+
+  .demo-cards {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .demo-card {
+    display: grid;
+    overflow: hidden;
+    background: var(--c-white);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-l);
+    color: var(--c-ink);
+    text-decoration: none;
+    transition:
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+
+  .demo-card:hover {
+    color: var(--c-ink);
+    box-shadow: var(--shadow-m);
+    transform: translateY(-2px);
+  }
+
+  .demo-card__body {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+  }
+
+  .demo-card__body p {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  .demo-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-top: var(--space-2xs);
+    color: var(--c-teal-700);
+    font-weight: 650;
+  }
+
+  .photo-ph {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.6), transparent 55%),
+      linear-gradient(135deg, var(--c-mist-50), var(--c-teal-light));
+  }
+</style>

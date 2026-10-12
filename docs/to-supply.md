@@ -20,10 +20,11 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 
 ## Brand assets
 
-- [ ] Logo, ideally SVG (or a high-resolution PNG with a transparent background), plus any icon or favicon version
-- [ ] Brand colours (hex codes), if documented anywhere
-- [ ] Font names and licences (`reference/styles.json` shows what the current site uses)
-- [ ] Original high-resolution photos (clinic, team, treatment). The export only links to images (`reference/images.json` has the full-resolution URLs), and they couldn't be downloaded from this environment.
+- [x] Logo: colour circle (500px transparent PNG) and black wordmark (1500px PNG), received 12 Oct 2026 and saved in `assets/brand/`. Favicons and a white footer wordmark were made from them.
+- [ ] Logo as **SVG** (optional, but sharper on high-resolution screens)
+- [x] Brand colours: sampled from the logo (teal `#3AB593`, light teal `#8BDBC5`). See `/styleguide`.
+- [ ] **Font choice:** pairing A or B on `/styleguide` (both are open-licence fonts and self-hosted)
+- [ ] Original high-resolution photos (clinic, team, treatment). The export only links to images (`reference/images.json` has the full-resolution URLs). This environment's network policy blocks `images.squarespace-cdn.com`. Either allow that domain (Edit environment → Network access → Allowed domains) so Claude can download them, or drop the originals into `assets/brand/`. Until then, pages show `TODO: photo` placeholders.
 - [ ] Photo permissions confirmed for anyone pictured
 
 ## Content
@@ -32,7 +33,14 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [ ] Instagram and Facebook profile URLs (the header has icons, but the links weren't in the export)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
-- [ ] Opening hours, address, phone, email, ABN
+- [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
+- [ ] **ABN** (footer)
+- [ ] **Parking details** for the location section (street parking, driveway, accessibility)
+- [ ] **Reopening date**, so the closure banner can hide itself automatically (`notice.until` in `site/src/data/site.ts`)
+- [ ] **Current class timetable as text** (days, times, class type). The current timetable is an image of the July 2025 timetable, which isn't accessible.
+- [ ] **Which practitioner provides which service.** The draft mapping is inferred from qualifications, so it needs confirming.
+- [ ] **Privacy contact** (name or role, plus email) for the privacy policy
+- [ ] Are the **Google Forms** (feedback survey, SMS list, home program request) still active? They're linked from the archived June 2025 update.
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
 - [ ] Existing privacy policy, terms or cancellation policy
 

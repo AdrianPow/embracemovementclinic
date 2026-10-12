@@ -1,0 +1,89 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'light';
+  size?: 's' | 'm' | 'l';
+  icon?: IconName;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { href, variant = 'primary', size = 'm', icon, class: className, ...rest } = Astro.props;
+---
+
+<a href={href} class:list={['btn', `btn--${variant}`, `btn--${size}`, className]} {...rest}>
+  {icon && <Icon name={icon} size={size === 's' ? 18 : 20} />}
+  <span><slot /></span>
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 2.75rem;
+    padding: 0.7em 1.4em;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    font-weight: 650;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn--s {
+    padding: 0.55em 1.1em;
+    font-size: var(--step--1);
+  }
+
+  .btn--l {
+    min-height: 3.25rem;
+    padding: 0.85em 1.75em;
+    font-size: var(--step-1);
+  }
+
+  /* White text on teal-700: 6.0:1 */
+  .btn--primary {
+    background: var(--c-teal-700);
+    color: var(--c-white);
+  }
+
+  .btn--primary:hover {
+    background: var(--c-teal-900);
+    color: var(--c-white);
+  }
+
+  .btn--secondary {
+    border-color: var(--c-teal-700);
+    background: transparent;
+    color: var(--c-teal-800);
+  }
+
+  .btn--secondary:hover {
+    background: var(--c-mist-50);
+    color: var(--c-teal-900);
+  }
+
+  /* For dark sections: ink on light teal, 10.5:1 */
+  .btn--light {
+    background: var(--c-teal-light);
+    color: var(--c-ink);
+  }
+
+  .btn--light:hover {
+    background: var(--c-white);
+    color: var(--c-ink);
+  }
+</style>

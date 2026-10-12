@@ -1,0 +1,244 @@
+---
+import { Image } from 'astro:assets';
+import wordmark from '../assets/brand/wordmark-white.png';
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import Todo from './Todo.astro';
+import { footerLinks } from '../data/navigation';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+const { socials, hours, abn, address } = site;
+const hasSocials = Boolean(socials.instagram || socials.facebook);
+---
+
+<footer class="site-footer on-dark">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__brand">
+      <a href="/" class="site-footer__logo">
+        <Image src={wordmark} alt="Embrace Movement Clinic home" width={200} densities={[1, 2]} />
+      </a>
+      <p class="site-footer__tagline">{site.tagline}</p>
+      {
+        hasSocials ? (
+          <ul class="site-footer__socials" role="list">
+            {socials.instagram && (
+              <li>
+                <a href={socials.instagram}>
+                  <Icon name="instagram" size={22} />
+                  <span class="visually-hidden">Instagram</span>
+                </a>
+              </li>
+            )}
+            {socials.facebook && (
+              <li>
+                <a href={socials.facebook}>
+                  <Icon name="facebook" size={22} />
+                  <span class="visually-hidden">Facebook</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        ) : (
+          <Todo>Instagram and Facebook links</Todo>
+        )
+      }
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Visit</h2>
+      <address>
+        {address.street}<br />
+        {address.suburb} {address.state} {address.postcode}
+      </address>
+      <a href={address.directionsUrl} class="site-footer__iconlink">
+        <Icon name="map-pin" size={18} /> Get directions
+      </a>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Contact</h2>
+      <ul class="site-footer__list" role="list">
+        <li>
+          <a href={site.phone.href} class="site-footer__iconlink">
+            <Icon name="phone" size={18} /><span><span class="visually-hidden">Phone </span>{site.phone.display}</span>
+          </a>
+        </li>
+        <li>
+          <a href={site.email.href} class="site-footer__iconlink site-footer__email">
+            <Icon name="mail" size={18} /><span><span class="visually-hidden">Email </span>{site.email.address}</span>
+          </a>
+        </li>
+      </ul>
+      <Button href={site.booking.page} variant="light" size="s" class="site-footer__book">Book now</Button>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Hours</h2>
+      {
+        hours ? (
+          <dl class="site-footer__hours">
+            {hours.map((h) => (
+              <div>
+                <dt>{h.days}</dt>
+                <dd>{h.hours}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <Todo>opening hours</Todo>
+        )
+      }
+      {site.notice.enabled && <p class="site-footer__note">{site.notice.message}</p>}
+    </div>
+
+    <nav class="site-footer__col" aria-label="Footer">
+      <h2 class="site-footer__heading">Explore</h2>
+      <ul class="site-footer__list" role="list">
+        {
+          footerLinks.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrap site-footer__base">
+    <p>
+      <span>{`© ${year} ${site.name}`}</span>
+      {abn ? <span>· ABN {abn}</span> : <Todo>ABN</Todo>}
+    </p>
+    <a href="/privacy">Privacy policy</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--c-teal-900);
+    color: var(--c-white);
+    font-size: var(--step--1);
+  }
+
+  .site-footer a:not(.btn) {
+    color: var(--c-white);
+  }
+
+  .site-footer a:not(.btn):hover {
+    color: var(--c-teal-light);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-l) var(--space-m);
+    padding-block: var(--space-xl) var(--space-l);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+  }
+
+  .site-footer__logo img {
+    width: 200px;
+  }
+
+  .site-footer__tagline {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--c-teal-light);
+  }
+
+  .site-footer__socials {
+    display: flex;
+    gap: var(--space-2xs);
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer__socials a {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: 50%;
+  }
+
+  .site-footer__heading {
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-teal-light);
+  }
+
+  .site-footer address {
+    font-style: normal;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .site-footer__list {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer__list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+  }
+
+  .site-footer__iconlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 2rem;
+  }
+
+  .site-footer__email span {
+    overflow-wrap: anywhere;
+  }
+
+  :global(.site-footer__book) {
+    margin-top: var(--space-s);
+  }
+
+  .site-footer__hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+  }
+
+  .site-footer__note {
+    margin-top: var(--space-xs);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .site-footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+    padding-block: var(--space-m);
+    border-top: 1px solid rgb(255 255 255 / 0.18);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .site-footer__base p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4em;
+  }
+</style>

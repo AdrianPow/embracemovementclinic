@@ -1,0 +1,32 @@
+---
+// Visible placeholder for content the owner still needs to supply.
+// Every TODO must be resolved before launch (see docs/to-supply.md).
+interface Props {
+  as?: 'span' | 'div';
+}
+
+const { as: Tag = 'span' } = Astro.props;
+---
+
+<Tag class="todo" data-todo><strong>TODO:</strong> <slot /></Tag>
+
+<style>
+  .todo {
+    display: inline-block;
+    padding: 0.15em 0.55em;
+    border: 1px dashed var(--c-todo-line);
+    border-radius: var(--radius-s);
+    background: var(--c-todo-bg);
+    color: var(--c-todo-ink);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  div.todo {
+    display: block;
+    padding: 0.75em 1em;
+  }
+</style>

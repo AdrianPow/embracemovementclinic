@@ -1,0 +1,77 @@
+/*
+  Design tokens. Brand colours were sampled from assets/brand/logo-colour.png.
+  Contrast ratios are listed on /styleguide (computed at build time).
+  Brand teal and light teal fail AA for text, so they are decorative only.
+*/
+:root {
+  color-scheme: light;
+
+  /* Brand (decorative: rules, shapes, icons beside text, backgrounds) */
+  --c-teal: #3ab593;
+  --c-teal-light: #8bdbc5;
+  --c-mist: #a8e0d0;
+  --c-mist-50: #eef8f4;
+
+  /* Accessible teals derived from the brand hue */
+  --c-teal-700: #2b6e5b; /* links, primary buttons: 6.0:1 on white */
+  --c-teal-800: #225849; /* hover, text on light teal */
+  --c-teal-900: #173b31; /* dark sections, footer */
+
+  /* Neutrals */
+  --c-ink: #1a1d1c;
+  --c-ink-muted: #4a5250;
+  --c-white: #ffffff;
+  --c-bg-soft: #fafafa;
+  --c-line: #dbe5e1;
+
+  /* TODO marker */
+  --c-todo-bg: #fff4d6;
+  --c-todo-ink: #5c3d00;
+  --c-todo-line: #a86b00;
+
+  /* Semantic */
+  --text: var(--c-ink);
+  --text-muted: var(--c-ink-muted);
+  --link: var(--c-teal-700);
+  --link-hover: var(--c-teal-900);
+  --focus: var(--c-teal-900);
+
+  /* Type */
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+
+  --step--1: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.375rem);
+  --step-2: clamp(1.4rem, 1.24rem + 0.8vw, 1.8rem);
+  --step-3: clamp(1.7rem, 1.4rem + 1.5vw, 2.5rem);
+  --step-4: clamp(2.05rem, 1.6rem + 2.3vw, 3.3rem);
+  --step-5: clamp(2.4rem, 1.7rem + 3.5vw, 4.3rem);
+
+  /* Space */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-section: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+  /* Layout */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --wrap: 74rem;
+  --wrap-narrow: 46rem;
+  --measure: 65ch;
+
+  /* Shape */
+  --radius-s: 0.5rem;
+  --radius: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --shadow-s: 0 1px 2px rgb(23 59 49 / 0.06), 0 2px 8px rgb(23 59 49 / 0.06);
+  --shadow-m: 0 2px 6px rgb(23 59 49 / 0.06), 0 12px 32px rgb(23 59 49 / 0.1);
+
+  --header-h: 4.5rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
