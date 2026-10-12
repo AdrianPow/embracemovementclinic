@@ -1,0 +1,13 @@
+{
+  "name": "embrace-site-capture",
+  "private": true,
+  "type": "module",
+  "description": "Captures the current Embrace Movement Clinic website into ../reference for the rebuild",
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "capture": "node capture.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
