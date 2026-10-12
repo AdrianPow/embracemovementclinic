@@ -19,6 +19,7 @@ Needs Node 22.12 or later.
 | What | Where |
 |---|---|
 | Clinic details (phone, email, address, booking links, hours, socials, notice banner) | `src/data/site.ts` |
+| Services and practitioners (one Markdown file each) | `src/content/services/`, `src/content/team/` (schema in `src/content.config.ts`) |
 | Menu and footer links | `src/data/navigation.ts` |
 | Colours (Forest palette), type sizes, spacing | `src/styles/tokens.css` |
 | Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
@@ -32,6 +33,7 @@ Needs Node 22.12 or later.
 npm run build && npm run preview
 node scripts/a11y.mjs http://127.0.0.1:4321 /styleguide        # axe-core, WCAG 2.2 AA
 node scripts/screenshot.mjs http://127.0.0.1:4321 <outDir> /    # desktop and mobile screenshots
+node scripts/lighthouse.mjs http://127.0.0.1:4321 /             # Lighthouse mobile, target 95+
 npx astro check                                                 # types
 ```
 

@@ -26,6 +26,7 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
 - [ ] Original high-resolution photos (clinic, team, treatment). The export only links to images (`reference/images.json` has the full-resolution URLs). This environment's network policy blocks `images.squarespace-cdn.com`. Either allow that domain (Edit environment → Network access → Allowed domains) so Claude can download them, or drop the originals into `assets/brand/`. Until then, pages show `TODO: photo` placeholders.
 - [ ] Photo permissions confirmed for anyone pictured
+- [ ] When photos are added, check each photo's alt text against what's actually in it (placeholders name the intended file)
 
 ## Content
 

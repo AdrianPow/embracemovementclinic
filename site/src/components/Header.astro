@@ -2,8 +2,13 @@
 import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
 import Button from './Button.astro';
-import { serviceLinks, primaryLinks } from '../data/navigation';
+import { getCollection } from 'astro:content';
+import { primaryLinks } from '../data/navigation';
 import { site } from '../data/site';
+
+const serviceLinks = (await getCollection('services'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((s) => ({ label: s.data.title, href: `/${s.id}` }));
 
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 const current = (href: string) => (path === href ? 'page' : undefined);

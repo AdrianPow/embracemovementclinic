@@ -1,0 +1,429 @@
+---
+// Home page. Source content: reference/pages/homepage/content.md (plus the services,
+// team and class facts from their own pages). Wording changes are logged in docs/changes.md.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Photo from '../components/Photo.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TeamCard from '../components/TeamCard.astro';
+import LocationSection from '../components/LocationSection.astro';
+import Icon from '../components/Icon.astro';
+import Todo from '../components/Todo.astro';
+import { site } from '../data/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+
+const classesFor = [
+  'Strength and conditioning',
+  'Injury rehab',
+  'Pilates lovers',
+  'Prenatal & postnatal',
+  'Healthy ageing',
+  'Family and friend group training',
+];
+
+const gallery = [
+  'PXL_20220610_231040021.jpg',
+  'PXL_20220611_045341759-2.jpg',
+  '3-SAM_1300.jpg',
+  'PXL_20220611_052620332-2.jpg',
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['MedicalBusiness', 'Physiotherapy'],
+  name: site.name,
+  url: site.url,
+  image: `${site.url}/og-default.png`,
+  telephone: '+61 434 686 261',
+  email: site.email.address,
+  slogan: 'Accept . Support . Challenge .',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.suburb,
+    addressRegion: site.address.state,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  // TODO: openingHoursSpecification and sameAs (socials) once supplied.
+};
+---
+
+<BaseLayout
+  title="Embrace Movement Clinic | Physiotherapy, Exercise Physiology & Pilates in McDowall"
+  description="Musculoskeletal, pelvic floor and vestibular physiotherapy, exercise physiology, and clinical pilates with small group classes at 33 Brynner Street, McDowall QLD."
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="on-brand hero" aria-labelledby="hero-h">
+    <div class="wrap hero__grid">
+      <div class="hero__text flow">
+        <p class="eyebrow">Physiotherapy · Exercise physiology · Clinical pilates</p>
+        <h1 id="hero-h">{site.tagline}</h1>
+        <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+        <div class="hero__actions">
+          <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
+          <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
+            <span class="visually-hidden">Call </span>{site.phone.display}
+          </Button>
+        </div>
+      </div>
+      <Photo
+        alt="A practitioner in the Embrace Movement Clinic studio"
+        note="PXL_20220610_230334256-2.jpg from the current home page"
+        ratio="4 / 5"
+        tone="dark"
+        loading="eager"
+        class="hero__photo"
+        sizes="(min-width: 56em) 45vw, 100vw"
+      />
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section intro" aria-labelledby="intro-h">
+    <div class="wrap intro__grid">
+      <h2 id="intro-h" class="eyebrow">About Embrace</h2>
+      <p class="intro__statement">
+        We embrace everyone in their health journey, with services in musculoskeletal physiotherapy, exercise
+        physiology/exercise prescription and clinical pilates including group classes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--alt" aria-labelledby="services-h">
+    <div class="wrap flow" style="--flow-space: var(--space-l)">
+      <div class="section-head">
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <p class="eyebrow">Services</p>
+          <h2 id="services-h">How we can help</h2>
+        </div>
+        <a class="section-head__link" href="/services">All services <Icon name="arrow-right" size={18} /></a>
+      </div>
+      <ul class="service-grid" role="list">
+        {
+          services.map((s) => (
+            <li>
+              <ServiceCard service={s} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section class="section classes" aria-labelledby="classes-h">
+    <div class="wrap classes__grid">
+      <Photo
+        alt="The pilates studio at Embrace Movement Clinic"
+        note="PXL_20220610_233959936.jpg from the current Pilates page"
+        ratio="1 / 1"
+        class="classes__photo"
+        sizes="(min-width: 56em) 45vw, 100vw"
+      />
+      <div class="flow" style="--flow-space: var(--space-m)">
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <p class="eyebrow">Classes</p>
+          <h2 id="classes-h">Pilates &amp; small group classes</h2>
+        </div>
+        <p class="lede">
+          Our clinic is equipped with Reformer, Wunda Chair, Trapeze Table, CoreAlign, free weights, Concept2 SkiErg and much
+          more.
+        </p>
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <h3 class="h4">Our classes are perfect for</h3>
+          <ul class="chips" role="list">
+            {classesFor.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+        <p>A once-off pre-class assessment is required before commencing classes.</p>
+        <div class="cluster">
+          <Button href="/classes">Classes &amp; timetable</Button>
+          <Button href="/pilates" variant="secondary">About pilates</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section--alt" aria-labelledby="team-h">
+    <div class="wrap flow" style="--flow-space: var(--space-l)">
+      <div class="section-head">
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <p class="eyebrow">Our team</p>
+          <h2 id="team-h">Meet the team</h2>
+        </div>
+        <a class="section-head__link" href="/team">About the team <Icon name="arrow-right" size={18} /></a>
+      </div>
+      <ul class="team-grid" role="list">
+        {
+          team.map((m) => (
+            <li>
+              <TeamCard member={m} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <LocationSection />
+
+  <!-- Instagram -->
+  <section class="section" aria-labelledby="gram-h">
+    <div class="wrap flow" style="--flow-space: var(--space-l)">
+      <div class="section-head">
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <p class="eyebrow">Instagram</p>
+          <h2 id="gram-h">On the gram</h2>
+        </div>
+        {
+          site.socials.instagram ? (
+            <a class="section-head__link" href={site.socials.instagram}>
+              <Icon name="instagram" size={18} /> Follow us on Instagram
+            </a>
+          ) : (
+            <Todo>Instagram profile link</Todo>
+          )
+        }
+      </div>
+      <ul class="gallery" role="list">
+        {
+          gallery.map((file) => (
+            <li>
+              <Photo alt="" note={file} ratio="1 / 1" sizes="(min-width: 56em) 25vw, 50vw" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Closing call to action -->
+  <section class="on-brand cta" aria-labelledby="cta-h">
+    <div class="wrap cta__inner">
+      <div class="flow" style="--flow-space: var(--space-xs)">
+        <h2 id="cta-h">Book an appointment</h2>
+        <p class="lede">Book online, or call us on {site.phone.display}.</p>
+      </div>
+      <div class="cluster">
+        <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
+        <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
+          <span class="visually-hidden">Call </span>{site.phone.display}
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s);
+  }
+
+  /* Hero */
+  .hero {
+    padding-block: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  .hero__text {
+    --flow-space: var(--space-m);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    padding-top: var(--space-2xs);
+  }
+
+  :global(.hero__photo) {
+    border-radius: var(--radius-l);
+    max-height: 34rem;
+  }
+
+  @media (max-width: 55.99em) {
+    :global(.hero__photo) {
+      aspect-ratio: 4 / 3 !important;
+    }
+  }
+
+  @media (min-width: 56em) {
+    .hero__grid {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Intro */
+  .intro__grid {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .intro__statement {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 56em) {
+    .intro__grid {
+      grid-template-columns: 1fr 3fr;
+      gap: var(--space-xl);
+    }
+
+    .intro__grid .eyebrow {
+      padding-top: 0.6em;
+    }
+  }
+
+  /* Section heading row with a link on the right */
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-l);
+  }
+
+  .section-head__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    min-height: 2.75rem;
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .service-grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 40em) {
+    .service-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Five services: the last card spans the full row. */
+    .service-grid li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* Desktop: three across, then two wider cards. */
+  @media (min-width: 62em) {
+    .service-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .service-grid li {
+      grid-column: span 2;
+    }
+
+    .service-grid li:last-child:nth-child(odd) {
+      grid-column: span 2;
+    }
+
+    .service-grid li:nth-child(4):nth-last-child(2),
+    .service-grid li:nth-child(5):last-child {
+      grid-column: span 3;
+    }
+
+    /* Wider cards get a wider crop so the row height stays even. */
+    .service-grid li:nth-child(4):nth-last-child(2) :global(.photo),
+    .service-grid li:nth-child(5):last-child :global(.photo) {
+      aspect-ratio: 2 / 1 !important;
+    }
+  }
+
+  /* Classes */
+  .classes__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  :global(.classes__photo) {
+    border-radius: var(--radius-l);
+  }
+
+  @media (min-width: 56em) {
+    .classes__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .chips li {
+    padding: 0.35em 0.9em;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg-alt);
+    font-size: var(--step--1);
+    font-weight: 550;
+  }
+
+  /* Team */
+  .team-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    max-width: 52rem;
+  }
+
+  /* Instagram */
+  .gallery {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery :global(.photo) {
+    border-radius: var(--radius);
+  }
+
+  @media (min-width: 56em) {
+    .gallery {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* Closing CTA */
+  .cta {
+    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+
+  .cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+  }
+</style>

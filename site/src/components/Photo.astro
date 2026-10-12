@@ -1,0 +1,83 @@
+---
+// Responsive photo (AVIF/WebP with srcset). Until the original is supplied, it shows a
+// placeholder with a visible TODO naming the intended photo. Check each `alt` against the
+// real photo when it's added.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Todo from './Todo.astro';
+
+interface Props {
+  src?: ImageMetadata;
+  alt: string;
+  /** Which photo is intended, shown in the placeholder until `src` is set. */
+  note?: string;
+  /** CSS aspect ratio, e.g. "4 / 3". */
+  ratio?: string;
+  widths?: number[];
+  sizes?: string;
+  /** Use "eager" only for the main image above the fold. */
+  loading?: 'eager' | 'lazy';
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  note,
+  ratio = '4 / 3',
+  widths = [400, 640, 960, 1280, 1600],
+  sizes = '(min-width: 62em) 50vw, 100vw',
+  loading = 'lazy',
+  tone = 'light',
+  class: className,
+} = Astro.props;
+---
+
+{
+  src ? (
+    <Picture
+      src={src}
+      alt={alt}
+      formats={['avif', 'webp']}
+      widths={widths.filter((w) => w <= src.width)}
+      sizes={sizes}
+      loading={loading}
+      fetchpriority={loading === 'eager' ? 'high' : 'auto'}
+      class:list={['photo', className]}
+      style={`aspect-ratio: ${ratio}`}
+    />
+  ) : (
+    <div class:list={['photo', 'photo--placeholder', `photo--${tone}`, className]} style={`aspect-ratio: ${ratio}`} data-alt={alt}>
+      <Todo>photo{note ? `: ${note}` : ''}</Todo>
+    </div>
+  )
+}
+
+<style>
+  .photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .photo--placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--space-s);
+    text-align: center;
+  }
+
+  .photo--light {
+    background: linear-gradient(135deg, var(--color-accent-soft), var(--color-bg-alt));
+  }
+
+  .photo--dark {
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-brand) 70%, #fff),
+      color-mix(in srgb, var(--color-brand) 88%, #fff)
+    );
+  }
+</style>

@@ -3,13 +3,7 @@ export interface NavLink {
   href: string;
 }
 
-export const serviceLinks: NavLink[] = [
-  { label: 'Musculoskeletal Physiotherapy', href: '/physiotherapy' },
-  { label: 'Exercise Physiology', href: '/exercise-physiology' },
-  { label: 'Pilates & Small Group Classes', href: '/pilates' },
-  { label: 'Pelvic Floor Physiotherapy', href: '/pelvic-health-physiotherapy' },
-  { label: 'Vestibular Physiotherapy', href: '/vestibular-physiotherapy' },
-];
+// The services menu is built from src/content/services (see Header.astro).
 
 export const primaryLinks: NavLink[] = [
   { label: 'Classes & Timetable', href: '/classes' },

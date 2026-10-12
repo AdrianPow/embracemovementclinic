@@ -1,0 +1,80 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  member: CollectionEntry<'team'>;
+}
+
+const { member } = Astro.props;
+const { name, titles, status, photo, photoNote } = member.data;
+---
+
+<a class="team-card" href={`/team/${member.id}`}>
+  <Photo src={photo} alt="" note={photoNote} ratio="4 / 5" sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw" />
+  <div class="team-card__body">
+    <h3 class="h4">{name}</h3>
+    <p class="team-card__titles">{titles.join(' · ')}</p>
+    {status && <p class="team-card__status">{status}</p>}
+    <span class="team-card__more" aria-hidden="true">View profile <Icon name="arrow-right" size={16} /></span>
+  </div>
+</a>
+
+<style>
+  .team-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition:
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+
+  .team-card:hover {
+    box-shadow: var(--shadow-m);
+    transform: translateY(-2px);
+  }
+
+  .team-card__body {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+  }
+
+  .team-card__titles {
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .team-card__status {
+    justify-self: start;
+    padding: 0.2em 0.75em;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  .team-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-top: var(--space-2xs);
+    color: var(--color-link);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .team-card:hover .team-card__more {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

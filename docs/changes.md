@@ -33,6 +33,13 @@ Each change to what a service involves, conditions treated, or examination or co
 
 | Page | Original | New | Why | Approved |
 |---|---|---|---|---|
+| Home (intro) | "We embrace everyone in their health journey, with **specialist** services in musculoskeletal physiotherapy, exercise physiology/exercise prescription and clinical pilates including group classes." | "We embrace everyone in their health journey, with services in musculoskeletal physiotherapy, exercise physiology/exercise prescription and clinical pilates including group classes." | "Specialist" is a protected title. Physiotherapists here aren't registered specialists, so it could mislead (National Law s133 and s118). | TBC |
+| Home and menu (service card summary): Musculoskeletal Physiotherapy | Conditions list on /physiotherapy | "Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care." | New short summary for cards, condensed from the conditions list | TBC |
+| Home (card summary): Exercise Physiology | Conditions list on /exercise-physiology | "Tailored exercise for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance." | New short summary for cards | TBC |
+| Home (card summary): Pilates & Small Group Classes | Equipment and "We see all clients of all ages and exercise ability" on /pilates | "Clinical pilates and small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and exercise abilities." | New short summary for cards | TBC |
+| Home (card summary): Pelvic Floor Physiotherapy | Conditions list on /womens-health-physio | "Assessment and treatment for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care." | New short summary for cards | TBC |
+| Home (card summary): Vestibular Physiotherapy | Intro on /pilates-1 | "Assessment and treatment for vertigo, dizziness and decreased balance, including Benign Paroxysmal Positional Vertigo (BPPV)." | New short summary for cards | TBC |
+| Home (classes) | "A once off pre-class assessment is required prior to commencing classes." / "Healthy Aging" | "A once-off pre-class assessment is required before commencing classes." / "Healthy ageing" | Australian spelling and punctuation only | TBC |
 
 ## Design changes
 
@@ -49,6 +56,7 @@ Don't copy the Squarespace layout. Use the screenshots only for content, menu it
 From a first pass of the exported text. Re-check after the build.
 
 - No patient testimonials or outcome guarantees found in the exported page text. The Instagram feed and any images with text overlays weren't checked.
+- **"Specialist services" (home page).** "Specialist" implies specialist registration, which physiotherapy doesn't have. The new home page says "services" instead (see the wording log).
 - **No privacy policy page found.** One is needed.
 - Clinic Updates mentions using AI tools to reduce admin, reviewed by the practitioner. Make sure the privacy policy (and patient consent processes) cover this.
 - The pelvic health page describes possible internal examinations. Keep the consent wording as is, and have a clinician approve any edits.

@@ -1,0 +1,154 @@
+---
+// Address, directions, contact details, parking and hours. Used on Home and Contact.
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import Todo from './Todo.astro';
+import { site } from '../data/site';
+
+interface Props {
+  /** Heading level for the section title. */
+  as?: 'h1' | 'h2';
+  eyebrow?: string;
+  title?: string;
+}
+
+const { as: Heading = 'h2', eyebrow = 'Visit us', title = 'Find the clinic' } = Astro.props;
+const { address, phone, email, hours, notice } = site;
+---
+
+<section class="section section--alt location" aria-labelledby="location-h">
+  <div class="wrap location__grid">
+    <div class="location__info flow" style="--flow-space: var(--space-m)">
+      <div class="flow" style="--flow-space: var(--space-xs)">
+        <p class="eyebrow">{eyebrow}</p>
+        <Heading id="location-h" class="h2">{title}</Heading>
+      </div>
+
+      <address class="location__address">
+        {site.name}<br />
+        {address.street}<br />
+        {`${address.suburb} ${address.state} ${address.postcode}`}
+      </address>
+
+      <div class="location__actions">
+        <Button href={address.directionsUrl} icon="map-pin">Get directions</Button>
+        <Button href={address.mapUrl} variant="secondary">Open in Google Maps</Button>
+      </div>
+
+      <dl class="location__details">
+        <div>
+          <dt>Phone</dt>
+          <dd><a href={phone.href}>{phone.display}</a></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href={email.href}>{email.address}</a></dd>
+        </div>
+        <div>
+          <dt>Parking</dt>
+          <dd><Todo>parking details</Todo></dd>
+        </div>
+        <div>
+          <dt>Hours</dt>
+          <dd>
+            {
+              hours ? (
+                <ul role="list">
+                  {hours.map((h) => (
+                    <li>
+                      {h.days}: {h.hours}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Todo>opening hours</Todo>
+              )
+            }
+            {notice.enabled && <p class="location__note">{notice.message}</p>}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <Photo
+      alt="The front of Embrace Movement Clinic"
+      note="PXL_20220610_233809257-2.jpg from the current Contact page"
+      ratio="4 / 5"
+      class="location__photo"
+      sizes="(min-width: 62em) 40vw, 100vw"
+    />
+  </div>
+</section>
+
+<style>
+  .location__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .location__grid {
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  .location__address {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .location__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .location__details {
+    display: grid;
+    gap: var(--space-s);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .location__details div {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+
+  @media (min-width: 30em) {
+    .location__details div {
+      grid-template-columns: 6rem 1fr;
+      gap: var(--space-s);
+    }
+  }
+
+  .location__details dt {
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .location__details dd {
+    margin: 0;
+  }
+
+  .location__details a {
+    overflow-wrap: anywhere;
+  }
+
+  .location__note {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  :global(.location__photo) {
+    border-radius: var(--radius-l);
+    max-height: 36rem;
+  }
+</style>
