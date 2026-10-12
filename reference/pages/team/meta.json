@@ -1,0 +1,134 @@
+{
+  "title": "Meet The Team",
+  "url": "/team",
+  "slug": "team",
+  "headings": [
+    "Nicole Saxby (Currently on maternity leave until Jan 2027)",
+    "**Qualifications**",
+    "",
+    "Relevant Post Graduate Training",
+    "Bio",
+    "Laura Bradford",
+    "Qualifications",
+    "",
+    "Relevant Post Graduate Training",
+    "Bio"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Nicole Saxby (Currently on maternity leave until Jan 2027)"
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f27af1bd-c3fe-4005-8cdf-2257742eda75/16-SAM_1372.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f27af1bd-c3fe-4005-8cdf-2257742eda75/16-SAM_1372.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "html",
+          "markdown": "### **Qualifications**\n\nPhysiotherapist\n\nPelvic Health Physiotherapist\n\nExercise Physiologist\n\nClinical Pilates Instructor\n\n###"
+        },
+        {
+          "type": "html",
+          "markdown": "### Relevant Post Graduate Training\n\nNeuro-muscular Dry-Needling\n\nWomen\u2019s Pelvic Health Physiotherapy Level 1 & 2 (APA)\n\nAdvanced Pelvic Floor: Pelvic Organ Prolapse and Stress Urinary Incontinence (WHTA)\n\nAdvanced Pelvic Floor: Exercise, Sport and Musculoskeletal Dysfunction (WHTA)\n\nAdvanced Pelvic Floor: Pelvic Pain (WHTA)\n\n### Bio\n\nNicole has been professionally involved in the health and fitness industry since 2014. Nicole personally embarked on her own rehabilitation journey during her time at The Australian Ballet School back in 2009-2012. This extensive and comprehensive ballet training from a young age made Nicole highly aware of human physiology and the benefits of exercise rehabilitation.\n\nSince then she has graduated with a Bachelor of Physiotherapy with distinction (2021), Bachelor of Clinical Exercise Physiology (2016) and a Diploma of Pilates Movement Therapy (2016).\u00a0Nicole has completed additional training with both WHTA and APA and holds Level 1 & 2 Women\u2019s Pelvic Health certification.\n\nNicole has worked in both public and private sectors across a variety of areas including sport, pelvic health and musculoskeletal.\u00a0Her passion is using exercise as medicine to support people through their journey of health and ageing. With Nicole's wide range of skills and experience she has the confidence to tailor and adapt any treatment plan to meet the needs of each and every person regardless of exercise experience, abilities and pre-existing injuries or health concerns.\n\nNicole\u2019s patients love her vibrant and enthusiastic approach to instructing and educating. No two exercise programs are ever the same, with Nicole individualising and personalising each aspect to fit each patient's health objectives and goals.\n\nWhen Nicole isn\u2019t at work, she enjoys getting out doors, trying new restaurants and relaxing river walks with her pup, Jeff.\n\n\\*\\*You may be lucky to meet the clinic dog - Jeff. He is extremely friendly and just wants to say hello to all the patients, then will go back to sleep on the sunny driveway. If you are not a dog person, don\u2019t stress, he can nap in another room!"
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Laura Bradford"
+        }
+      ]
+    },
+    {
+      "section": 4,
+      "theme": "light-bold",
+      "background": [],
+      "blocks": [
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/27995422-27bf-415f-8a1b-815f3e29f0cc/26-SAM_1423.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/27995422-27bf-415f-8a1b-815f3e29f0cc/26-SAM_1423.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": "/blog-posts/how-to-change-your-bodys-stress-levels",
+          "caption": null
+        },
+        {
+          "type": "html",
+          "markdown": "### Qualifications\n\nPhysiotherapist\n\nPelvic Health Physiotherapist\n\nClinical Pilates Instructor\n\n###"
+        },
+        {
+          "type": "html",
+          "markdown": "### Relevant Post Graduate Training\n\nWomen\u2019s Pelvic Health Physiotherapy Level 1 (APA)\n\n### Bio\n\nLaura's affinity for health and wellness has been ongoing throughout her life, characterised by her enthusiastic participation in multiple sporting teams, and her regular attendance at the gym and aerobics classes. She has always prioritised physical well-being.\n\nHer journey into physiotherapy was sparked by a personal experience with a back injury, during which she discovered physiotherapy and pilates. Inspired by this, she pursued and completed a Diploma in Pilates, subsequently transitioning into teaching clinical pilates alongside a team of esteemed Physiotherapists. Building on this foundation, she completed a Bachelor's degree in Physiotherapy, graduating with distinction. Laura has completed additional training with both WHTA and APA and holds Level 1 Women\u2019s Pelvic Health certification.\n\nLaura's expertise in exercise prescription enriches her approach to physiotherapy, allowing her to tailor treatments effectively. She has accumulated experience in working with a diverse clientele, including peri-natal women, individuals facing cancer, those managing chronic back pain, athletes recovering from sporting injuries, individuals undergoing pre and post-surgery rehabilitation and vestibular dysfunction (dizziness, vertigo and balance problems). Additionally, Laura's firsthand experience navigating the peri-natal journey equips her with invaluable insight, further enhancing her ability to connect with and support clients. Her compassionate nature fosters deep connections with clients, enabling her to understand and address their unique needs with empathy and care.\n\nBeyond her professional endeavours, Laura finds joy in spending time with her husband Zac and caring for their son Theodore. She also indulges her passions for running and baking delicious cookies."
+        }
+      ]
+    },
+    {
+      "section": 5,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "button",
+          "note": "Button: label and link not included in the export (check the screenshot)"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f27af1bd-c3fe-4005-8cdf-2257742eda75/16-SAM_1372.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f27af1bd-c3fe-4005-8cdf-2257742eda75/16-SAM_1372.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/27995422-27bf-415f-8a1b-815f3e29f0cc/26-SAM_1423.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/27995422-27bf-415f-8a1b-815f3e29f0cc/26-SAM_1423.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [
+    {
+      "text": "(image link)",
+      "href": "/blog-posts/how-to-change-your-bodys-stress-levels"
+    }
+  ],
+  "embeds": [],
+  "export_gaps": [
+    "button"
+  ]
+}

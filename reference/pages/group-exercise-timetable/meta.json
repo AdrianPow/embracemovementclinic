@@ -1,0 +1,80 @@
+{
+  "title": "Group Exercise Timetable",
+  "url": "/group-exercise-timetable",
+  "slug": "group-exercise-timetable",
+  "headings": [
+    "Group Exercise Class Timetable",
+    "Timetable July 2025"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Group Exercise Class Timetable"
+        },
+        {
+          "type": "html",
+          "markdown": "### Timetable July 2025\n\nAll the available small group exercise classes currently offered throughout the week are listed below. The easiest way to check availability is via the online [booking portal](https://bookings.nookal.com/bookings/location/GNBYU) - take note select the relevant practitioner when booking. If your preferred class time is not showing as available to book, this is due to being at full capacity of 4-5 participants. However, please feel free to reach out if you would like to be added to the waitlist."
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/032357a7-16f2-48d6-b141-d16a50ec87e1/Heading+%282%29.png",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/032357a7-16f2-48d6-b141-d16a50ec87e1/Heading+%282%29.png?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "button",
+          "note": "Button: label and link not included in the export (check the screenshot)"
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "**Our clinic is equipped with:**\n\nReformer, Wunda Chair, Trapeze Table, CoreAlign, free weights, Concept2 SkiErg and much more\n\n**Our classes are perfect for:**\n\nStrength and conditioning, injury rehab, pilates lovers, pre/postnatal, healthy aging and for family training.\n\nPre-class assessment required prior to commencing classes. All exercise sessions are claimable with private health. Classes have a maximum of 4-5 people and are 45mins in duration.\n\n**Cancellation Policy**\n\nGiven there is a waitlist for many classes, please provide as much notice as possible if you need to cancel or reschedule your booking so the time can be offered to another client.\n\nAll bookings that are cancelled within 8 hours or less of the scheduled appointment or class will be charged at 50% of the applicable price."
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/032357a7-16f2-48d6-b141-d16a50ec87e1/Heading+%282%29.png",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/032357a7-16f2-48d6-b141-d16a50ec87e1/Heading+%282%29.png?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [
+    {
+      "text": "booking portal",
+      "href": "https://bookings.nookal.com/bookings/location/GNBYU"
+    }
+  ],
+  "embeds": [],
+  "export_gaps": [
+    "button"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "title": "Pelvic Floor Physiotherapy",
+  "url": "/womens-health-physio",
+  "slug": "womens-health-physio",
+  "headings": [
+    "",
+    "Pelvic Floor Physiotherapy"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## \n\n## Pelvic Floor Physiotherapy"
+        },
+        {
+          "type": "html",
+          "markdown": "**What to Expect**\n\nDuring your initial consultation your physiotherapist will discuss your medical history and concerns. They will then perform a comprehensive assessment (potentially a vaginal examination if deemed necessary) to determine the best course of treatment.\n\n**Treatment may include**\n\n- Education about pelvic floor anatomy and function\n- Exercises to strengthen and retrain the pelvic floor muscles\n- Biofeedback to improve muscle awareness\n- Manual therapy\n- Electrical stimulation"
+        },
+        {
+          "type": "html",
+          "markdown": "**Conditions we commonly treat**\n\n- Incontinence (urine or bowel)\n- Prolapse\n- Pelvic pain (such as endometriosis, vaginismus etc )\n- Diastasis recti (abdominal separation)\n- Pre- and postnatal care\n- Sexual dysfunction\n- Menopause care"
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/ece2aeee-e537-440f-8dc3-7eba80bcb8d0/PXL_20220611_045341759.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/ece2aeee-e537-440f-8dc3-7eba80bcb8d0/PXL_20220611_045341759.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "dark",
+      "background": [],
+      "blocks": [
+        {
+          "type": "button",
+          "note": "Button: label and link not included in the export (check the screenshot)"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/ece2aeee-e537-440f-8dc3-7eba80bcb8d0/PXL_20220611_045341759.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/ece2aeee-e537-440f-8dc3-7eba80bcb8d0/PXL_20220611_045341759.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [],
+  "embeds": [],
+  "export_gaps": [
+    "button"
+  ]
+}

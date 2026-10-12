@@ -1,0 +1,63 @@
+{
+  "title": "Exercise Physiology",
+  "url": "/exercise-physiology",
+  "slug": "exercise-physiology",
+  "headings": [
+    "Exercise Physiology"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "light",
+      "background": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/576cdb71-432a-4e44-9a1c-bbbe1dd37256/PXL_20220611_043828572.jpg",
+          "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/576cdb71-432a-4e44-9a1c-bbbe1dd37256/PXL_20220611_043828572.jpg?format=2500w",
+          "alt": "",
+          "dimensions": "1500x844"
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "section": 2,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "# Exercise Physiology"
+        },
+        {
+          "type": "html",
+          "markdown": "**Conditions we commonly treat**\n\n- Injury rehabilitation\n- Injury prevention\n- Prenatal and Postnatal exercise\n- Chronic pain and disease management\n- Osteoporosis and healthy ageing\n- Strength and Conditioning\n- Athletic performance\n- Musculoskeletal and Neurological rehabilitation\n\n**What to Expect**\n\nDuring your initial consultation, we will take the time to understand your medical history, current fitness level, and specific health concerns. A detailed physical assessment will follow to evaluate your movement patterns, strength, and flexibility. This thorough approach ensures that we develop a safe and effective exercise plan just for you.\n\n**Treatment may include**\n\n- Functional and Resistance Training: Exercises designed to improve your strength, endurance, and ability to perform everyday activities with ease.\n- Pilates: A focus on core strength, flexibility, and overall body awareness to enhance your physical health.\n- Coaching: One-on-one support and motivation to help you achieve your fitness and health goals.\n- Home Exercises and Gym Programs: Customized exercise routines that can be performed at home or in the gym, tailored to your specific needs.\n- Injury Rehabilitation: Targeted exercises to aid recovery and prevent future injuries.\n- Chronic Pain and Disease Management: Specialized programs to manage conditions like arthritis, diabetes, and cardiovascular disease through exercise.\n- Osteoporosis and Healthy Ageing: Exercises to strengthen bones, improve balance, and promote healthy ageing.\n- Musculoskeletal and Neurological Rehabilitation: Programs designed to improve movement and function for those with musculoskeletal or neurological conditions.\n- Strength and Conditioning & Athletic Performance: Tailored programs to enhance athletic performance and overall physical conditioning."
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "dark",
+      "background": [],
+      "blocks": [
+        {
+          "type": "button",
+          "note": "Button: label and link not included in the export (check the screenshot)"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/576cdb71-432a-4e44-9a1c-bbbe1dd37256/PXL_20220611_043828572.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/576cdb71-432a-4e44-9a1c-bbbe1dd37256/PXL_20220611_043828572.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "1500x844",
+      "role": "section background"
+    }
+  ],
+  "links": [],
+  "embeds": [],
+  "export_gaps": [
+    "button"
+  ]
+}

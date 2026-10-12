@@ -1,0 +1,77 @@
+{
+  "title": "Our Services",
+  "url": "/old-services",
+  "slug": "old-services",
+  "headings": [
+    "Musculoskeletal Physiotherapy",
+    "Exercise Physiology",
+    "Pilates & Small Group Classes",
+    "Pelvic Floor Physiotherapy"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "white",
+      "background": [],
+      "blocks": [
+        {
+          "type": "list-title",
+          "markdown": "Our Services"
+        },
+        {
+          "type": "list-item",
+          "title": "Musculoskeletal Physiotherapy",
+          "markdown": "### Musculoskeletal Physiotherapy\n\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/77acea45-3acf-4dbd-8df3-51c7196b60e2/PXL_20220611_040951368.PORTRAIT.jpg)\n\n**Conditions we commonly treat:**\n\n- Musculoskeletal and sporting injuries: Sprains, strains, muscle tears, tendonitis, overuse injuries, and more.\n- Pregnancy and postnatal aches and pains: Back pain, pelvic pain, diastasis recti, and post-delivery discomfort.\n- Back and neck pain: From acute stiffness to chronic discomfort, we create self management plans for long term support\n- Joint pain: Whether arthritis, auto-immue, or another issue, we help restore mobility and reduce inflammation.\n- Chronic pain: Our holistic approach manages pain and empowers you to take control of your life.\n- Post surgical care: Support your recovery process after surgery with customized physiotherapy programs.\n\n**Services we offer:**\n\n- Comprehensive assessments: We understand your unique needs and goals to craft the perfect treatment plan.\n- Manual therapy: Massage, joint mobilization, and cupping to address muscle tension and improve joint range of motion.\n- Dry needling: Precisely target trigger points for pain relief and muscle activation.\n- Taping: Support your body and enhance athletic performance or move with less discomfort\n- Personalised exercise programs: Strengthen, stabilize, and improve flexibility with tailored exercises.\n- Education and self-management tools: Empower yourself to maintain optimal health and prevent future issues."
+        },
+        {
+          "type": "list-item",
+          "title": "Exercise Physiology",
+          "markdown": "### Exercise Physiology\n\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/242d007c-7efe-4645-82f0-4807de79279a/PXL_20220611_043828572.jpg)\n\n**Conditions we commonly treat:**\n\nInjury rehabilitation\n\nInjury prevention\n\nPrenatal and Postnatal exercise\n\nChronic pain and disease management\n\nOsteoporosis and healthy ageing\n\nMusculoskeletal and Neurological rehabilitation\n\nStrength and Conditioning\n\nAthletic performance\n\n**What to Expect:**\n\nDuring your initial consultation, we will take the time to understand your medical history, current fitness level, and specific health concerns. A detailed physical assessment will follow to evaluate your movement patterns, strength, and flexibility. This thorough approach ensures that we develop a safe and effective exercise plan just for you.\n\n**Treatment may include:**\n\nExercise Guidelines: Personalized advice on how to incorporate exercise into your daily routine safely and effectively.\n\nPilates: A focus on core strength, flexibility, and overall body awareness to enhance your physical health.\n\nFunctional and Resistance Training: Exercises designed to improve your strength, endurance, and ability to perform everyday activities with ease.\n\nCoaching: One-on-one support and motivation to help you achieve your fitness and health goals.\n\nHome Exercises and Gym Programs: Customized exercise routines that can be performed at home or in the gym, tailored to your specific needs.\n\nInjury Rehabilitation: Targeted exercises to aid recovery and prevent future injuries.\n\nInjury Prevention: Strategies and exercises to reduce the risk of future injuries.\n\nChronic Pain and Disease Management: Specialized programs to manage conditions like arthritis, diabetes, and cardiovascular disease through exercise.\n\nOsteoporosis and Healthy Ageing: Exercises to strengthen bones, improve balance, and promote healthy ageing.\n\nMusculoskeletal and Neurological Rehabilitation: Programs designed to improve movement and function for those with musculoskeletal or neurological conditions.\n\nStrength and Conditioning & Athletic Performance: Tailored programs to enhance athletic performance and overall physical conditioning."
+        },
+        {
+          "type": "list-item",
+          "title": "Pilates & Small Group Classes",
+          "markdown": "### Pilates & Small Group Classes\n\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/204749a9-c032-44ff-846c-d85fec6d7863/PXL_20220610_233959936.jpg)\n\n**Our clinic is equipped with:**\n\nReformer, Wunda Chair, Trapeze Table, CoreAlign, free weights and much more\n\n**Our classes are perfect for:**\n\nStrength and conditioning, injury rehab, pilates lovers, pre/postnatal, healthy aging and for family training\n\nPre-class assessment required prior to commencing classes. Claimable with private health. Classes have a maximum of 4 people and are 45mins in duration."
+        },
+        {
+          "type": "list-item",
+          "title": "Pelvic Floor Physiotherapy",
+          "markdown": "### Pelvic Floor Physiotherapy\n\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/992e9de9-5d83-45bf-b4bd-24e9b9c09ff3/PXL_20220611_045341759-2.jpg)\n\n**Conditions we commonly treat:**\n\n- Incontinence (urine or bowel)\n- Prolapse\n- Pelvic pain (such as endometriosis, vulvodynia, vaginismus etc )\n- Diastasis recti (abdominal separation)\n- Pre- and postnatal care\n- Sexual dysfunction\n- Menopause care.\n\n**What to Expect:** During your initial consultation your physiotherapist will discuss your medical history and concerns. They will then perform a comprehensive assessment (potentially a vaginal examination if deemed necessary) to determine the best course of treatment.\n\n**Treatment may include:**\n\n- Education about pelvic floor anatomy and function\n- Exercises to strengthen and retrain the pelvic floor muscles\n- Biofeedback to improve muscle awareness\n- Manual therapy\n- Electrical stimulation"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/77acea45-3acf-4dbd-8df3-51c7196b60e2/PXL_20220611_040951368.PORTRAIT.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/77acea45-3acf-4dbd-8df3-51c7196b60e2/PXL_20220611_040951368.PORTRAIT.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "2268x4032",
+      "role": "list item"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/242d007c-7efe-4645-82f0-4807de79279a/PXL_20220611_043828572.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/242d007c-7efe-4645-82f0-4807de79279a/PXL_20220611_043828572.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "4032x2268",
+      "role": "list item"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/204749a9-c032-44ff-846c-d85fec6d7863/PXL_20220610_233959936.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/204749a9-c032-44ff-846c-d85fec6d7863/PXL_20220610_233959936.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "4032x2268",
+      "role": "list item"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/992e9de9-5d83-45bf-b4bd-24e9b9c09ff3/PXL_20220611_045341759-2.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/992e9de9-5d83-45bf-b4bd-24e9b9c09ff3/PXL_20220611_045341759-2.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "4016x2252",
+      "role": "list item"
+    }
+  ],
+  "links": [],
+  "embeds": [],
+  "export_gaps": []
+}

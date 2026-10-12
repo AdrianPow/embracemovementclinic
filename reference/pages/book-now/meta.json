@@ -1,0 +1,33 @@
+{
+  "title": "Book Now",
+  "url": "/book-now",
+  "slug": "book-now",
+  "headings": [],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "code",
+          "note": "Code block: contents not included in the export (may be a script, embed or custom HTML; check the screenshot)"
+        },
+        {
+          "type": "embed",
+          "embed": [
+            "https://bookings.nookal.com/bookings/company/GNBYU"
+          ]
+        }
+      ]
+    }
+  ],
+  "images": [],
+  "links": [],
+  "embeds": [
+    "https://bookings.nookal.com/bookings/company/GNBYU"
+  ],
+  "export_gaps": [
+    "code"
+  ]
+}

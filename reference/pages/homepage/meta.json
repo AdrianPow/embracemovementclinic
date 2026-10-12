@@ -1,0 +1,134 @@
+{
+  "title": "Embrace Movement Clinic Homepage",
+  "url": "/homepage",
+  "slug": "homepage",
+  "headings": [
+    "Accept . Support . Challenge .",
+    "On the gram"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "white",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "At Embrace we believe the journey of one\u2019s health is as important as the destination.\n\n## Accept . Support . Challenge .\n\nWe embrace everyone in their health journey, with specialist services in musculoskeletal physiotherapy, exercise physiology/exercise prescription and clinical pilates including group classes."
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/de64123c-7b4d-43fe-91a8-0370d37fecaa/PXL_20220610_230334256-2.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/de64123c-7b4d-43fe-91a8-0370d37fecaa/PXL_20220610_230334256-2.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": "/blog-posts/build-a-stronger-core-from-home",
+          "caption": null
+        },
+        {
+          "type": "code",
+          "note": "Code block: contents not included in the export (may be a script, embed or custom HTML; check the screenshot)"
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "white",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "### On the gram"
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "white",
+      "background": [],
+      "blocks": [
+        {
+          "type": "gallery",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c8695638-66ed-4cc4-b037-44c57e2379e7/PXL_20220610_231040021.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c8695638-66ed-4cc4-b037-44c57e2379e7/PXL_20220610_231040021.jpg?format=2500w",
+              "alt": "",
+              "dimensions": "4032x2268"
+            },
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/272c0b29-ae97-4c6d-a08a-623b6dd7be5c/PXL_20220611_045341759-2.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/272c0b29-ae97-4c6d-a08a-623b6dd7be5c/PXL_20220611_045341759-2.jpg?format=2500w",
+              "alt": "",
+              "dimensions": "4016x2252"
+            },
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/1740804118539-6WFDCD350S0RW6D78A3P/3-SAM_1300.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/1740804118539-6WFDCD350S0RW6D78A3P/3-SAM_1300.jpg?format=2500w",
+              "alt": "",
+              "dimensions": "2195x2195"
+            },
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/b10f4b4c-5c0b-4008-9f22-c868785b6ad6/PXL_20220611_052620332-2.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/b10f4b4c-5c0b-4008-9f22-c868785b6ad6/PXL_20220611_052620332-2.jpg?format=2500w",
+              "alt": "",
+              "dimensions": "2252x3153"
+            }
+          ],
+          "markdown": "**Gallery:**\n\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c8695638-66ed-4cc4-b037-44c57e2379e7/PXL_20220610_231040021.jpg)\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/272c0b29-ae97-4c6d-a08a-623b6dd7be5c/PXL_20220611_045341759-2.jpg)\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/1740804118539-6WFDCD350S0RW6D78A3P/3-SAM_1300.jpg)\n![](https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/b10f4b4c-5c0b-4008-9f22-c868785b6ad6/PXL_20220611_052620332-2.jpg)"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/de64123c-7b4d-43fe-91a8-0370d37fecaa/PXL_20220610_230334256-2.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/de64123c-7b4d-43fe-91a8-0370d37fecaa/PXL_20220610_230334256-2.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c8695638-66ed-4cc4-b037-44c57e2379e7/PXL_20220610_231040021.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c8695638-66ed-4cc4-b037-44c57e2379e7/PXL_20220610_231040021.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "4032x2268",
+      "role": "gallery"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/272c0b29-ae97-4c6d-a08a-623b6dd7be5c/PXL_20220611_045341759-2.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/272c0b29-ae97-4c6d-a08a-623b6dd7be5c/PXL_20220611_045341759-2.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "4016x2252",
+      "role": "gallery"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/1740804118539-6WFDCD350S0RW6D78A3P/3-SAM_1300.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/1740804118539-6WFDCD350S0RW6D78A3P/3-SAM_1300.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "2195x2195",
+      "role": "gallery"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/b10f4b4c-5c0b-4008-9f22-c868785b6ad6/PXL_20220611_052620332-2.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/b10f4b4c-5c0b-4008-9f22-c868785b6ad6/PXL_20220611_052620332-2.jpg?format=2500w",
+      "alt": "",
+      "dimensions": "2252x3153",
+      "role": "gallery"
+    }
+  ],
+  "links": [
+    {
+      "text": "(image link)",
+      "href": "/blog-posts/build-a-stronger-core-from-home"
+    }
+  ],
+  "embeds": [],
+  "export_gaps": [
+    "code"
+  ]
+}

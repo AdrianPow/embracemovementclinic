@@ -1,0 +1,170 @@
+{
+  "source": "squarespace-export-2026-10-12.xml",
+  "convertedAt": "2026-10-12T00:50:15.866775+00:00",
+  "site": "https://www.embracemovementclinic.com.au",
+  "pages": [
+    {
+      "slug": "homepage",
+      "url": "/homepage",
+      "title": "Embrace Movement Clinic Homepage",
+      "sections": 3,
+      "images": 5,
+      "words": 141,
+      "export_gaps": [
+        "code"
+      ]
+    },
+    {
+      "slug": "team",
+      "url": "/team",
+      "title": "Meet The Team",
+      "sections": 5,
+      "images": 2,
+      "words": 703,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "old-services",
+      "url": "/old-services",
+      "title": "Our Services",
+      "sections": 1,
+      "images": 4,
+      "words": 664,
+      "export_gaps": []
+    },
+    {
+      "slug": "contact-us-1",
+      "url": "/contact-us-1",
+      "title": "Contact us",
+      "sections": 2,
+      "images": 1,
+      "words": 67,
+      "export_gaps": [
+        "map"
+      ]
+    },
+    {
+      "slug": "clinic-updates",
+      "url": "/clinic-updates",
+      "title": "Clinic Updates",
+      "sections": 6,
+      "images": 3,
+      "words": 564,
+      "export_gaps": []
+    },
+    {
+      "slug": "group-exercise-timetable",
+      "url": "/group-exercise-timetable",
+      "title": "Group Exercise Timetable",
+      "sections": 3,
+      "images": 1,
+      "words": 265,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "physiotherapy",
+      "url": "/physiotherapy",
+      "title": "Musculoskeletal Physiotherapy",
+      "sections": 3,
+      "images": 2,
+      "words": 243,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "exercise-physiology",
+      "url": "/exercise-physiology",
+      "title": "Exercise Physiology",
+      "sections": 3,
+      "images": 1,
+      "words": 296,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "pilates",
+      "url": "/pilates",
+      "title": "Pilates & Small Group Classes",
+      "sections": 3,
+      "images": 1,
+      "words": 189,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "womens-health-physio",
+      "url": "/womens-health-physio",
+      "title": "Pelvic Floor Physiotherapy",
+      "sections": 3,
+      "images": 1,
+      "words": 151,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "pilates-1",
+      "url": "/pilates-1",
+      "title": "Vestibular Physiotherapy",
+      "sections": 2,
+      "images": 0,
+      "words": 209,
+      "export_gaps": [
+        "button"
+      ]
+    },
+    {
+      "slug": "book-now",
+      "url": "/book-now",
+      "title": "Book Now",
+      "sections": 1,
+      "images": 0,
+      "words": 45,
+      "export_gaps": [
+        "code"
+      ]
+    },
+    {
+      "slug": "xmas-2024",
+      "url": "/xmas-2024",
+      "title": "Christmas Newsletter",
+      "sections": 3,
+      "images": 1,
+      "words": 449,
+      "export_gaps": []
+    },
+    {
+      "slug": "baby-news",
+      "url": "/baby-news",
+      "title": "July 2026 Update",
+      "sections": 1,
+      "images": 2,
+      "words": 290,
+      "export_gaps": []
+    }
+  ],
+  "embeds": [
+    "https://bookings.nookal.com/bookings/company/GNBYU"
+  ],
+  "externalLinks": [
+    "https://bookings.nookal.com/bookings/location/GNBYU",
+    "https://forms.gle/jxFKrfqM7K6sCzsw5",
+    "https://goo.gl/maps/8KggSs4E8G9w1cxL6"
+  ],
+  "contactLinks": [
+    "mailto:admin@embracemovementclinic.com.au ?",
+    "mailto:admin@embracemovementclinic.com.au?subject=Enquiry&=undefined",
+    "tel:61434686261"
+  ],
+  "internalLinks": [
+    "/blog-posts/build-a-stronger-core-from-home",
+    "/blog-posts/how-to-change-your-bodys-stress-levels"
+  ]
+}

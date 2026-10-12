@@ -1,0 +1,81 @@
+{
+  "title": "July 2026 Update",
+  "url": "/baby-news",
+  "slug": "baby-news",
+  "headings": [
+    "Baby Arrival News!",
+    "**Clinic Hours & Maternity Leave Updates**",
+    "**Laura's Upcoming Leave**",
+    "**Temporary Closure & Reopening Plans**"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Baby Arrival News!"
+        },
+        {
+          "type": "html",
+          "markdown": "Nicole and Adrian welcomed their beautiful baby girl, Imogen, on Sunday, June 21st, 2026. She arrived weighing 3.4kg (7lb 8oz) and measuring 49cm long.\n\nBoth Nicole and Imogen are healthy, well, and settling into the new rhythm of family life\u2014catching short stints of sleep whenever they can! (Meanwhile, Jeff is still adjusting to his new role as a protective big brother!)\n\nHere are a few quick pictures from Imogen\u2019s first few weeks:"
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/0cce2cfe-3819-41be-a91f-7789fe866aa5/DSC_6425.JPG",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/0cce2cfe-3819-41be-a91f-7789fe866aa5/DSC_6425.JPG?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/33cbc901-0868-4292-ab1d-fe3c022268f2/DSC_6872.JPG",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/33cbc901-0868-4292-ab1d-fe3c022268f2/DSC_6872.JPG?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "html",
+          "markdown": "## **Clinic Hours & Maternity Leave Updates**"
+        },
+        {
+          "type": "html",
+          "markdown": "### **Laura's Upcoming Leave**\n\nLaura\u2019s last day in the clinic before she begins her maternity leave will be **Thursday, August 13th**.\n\n- **Physiotherapy Appointments:** Laura is currently fully booked. If you would like to be added to our cancellation waitlist, please text us at **0434 686 261**.\n- **A Quick Reminder:** If you are unable to attend your booked classes or appointments, please give us as much notice as possible so we can offer the time to someone on our waitlist.\n\n### **Temporary Closure & Reopening Plans**\n\nFollowing Laura\u2019s last day, the clinic will close temporarily. Here is what to expect next:\n\n- **Late 2026:** Nicole hopes to begin a phased return to work. A few sporadic appointments may become available depending on baby care arrangements. We will keep you updated!\n- **January 2027:** We plan to officially reopen Embrace with set days and opening hours.\n\nWe will be in touch with more updates as the year progresses.\n\nThank you all so much for your ongoing support and patience during this exciting season of growth for our team!"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/0cce2cfe-3819-41be-a91f-7789fe866aa5/DSC_6425.JPG",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/0cce2cfe-3819-41be-a91f-7789fe866aa5/DSC_6425.JPG?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/33cbc901-0868-4292-ab1d-fe3c022268f2/DSC_6872.JPG",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/33cbc901-0868-4292-ab1d-fe3c022268f2/DSC_6872.JPG?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [],
+  "embeds": [],
+  "export_gaps": []
+}

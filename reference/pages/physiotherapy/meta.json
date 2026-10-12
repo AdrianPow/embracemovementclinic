@@ -1,0 +1,94 @@
+{
+  "title": "Musculoskeletal Physiotherapy",
+  "url": "/physiotherapy",
+  "slug": "physiotherapy",
+  "headings": [
+    "Musculoskeletal Physiotherapy"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Musculoskeletal Physiotherapy"
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c18f3850-ba8a-4dcc-9b2c-3dbc020523f9/6-SAM_1312+%281%29.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c18f3850-ba8a-4dcc-9b2c-3dbc020523f9/6-SAM_1312+%281%29.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c0b7e576-330c-40dc-9398-57c2f11ec908/PXL_20220611_040951368.PORTRAIT.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c0b7e576-330c-40dc-9398-57c2f11ec908/PXL_20220611_040951368.PORTRAIT.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "**Conditions we commonly treat**\n\n- Musculoskeletal and sporting injuries: Sprains, strains, muscle tears, tendonitis, overuse injuries, and more.\n\n- Pregnancy and postnatal aches and pains: Back pain, pelvic pain, diastasis recti, and post-delivery discomfort.\n- Back and neck pain: From acute stiffness to chronic discomfort, we create self management plans for long term support\n- Joint pain: Whether arthritis, auto-immue, or another issue, we help restore mobility and reduce inflammation.\n- Chronic pain: Our holistic approach manages pain and empowers you to take control of your life.\n- Post surgical care: Support your recovery process after surgery with customised physiotherapy programs."
+        },
+        {
+          "type": "html",
+          "markdown": "**Services we offer**\n\n- Comprehensive assessments: We understand your unique needs and goals to craft the perfect treatment plan.\n- Manual therapy: Massage, joint mobilization, and cupping to address muscle tension and improve joint range of motion.\n- Dry needling: Precisely target trigger points for pain relief and muscle activation.\n- Taping: Support your body and enhance athletic performance or move with less discomfort\n- Personalised exercise programs: Strengthen, stabilize, and improve flexibility with tailored exercises.\n- Education and self-management tools: Empower yourself to maintain optimal health and prevent future issues."
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "dark",
+      "background": [],
+      "blocks": [
+        {
+          "type": "button",
+          "note": "Button: label and link not included in the export (check the screenshot)"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c18f3850-ba8a-4dcc-9b2c-3dbc020523f9/6-SAM_1312+%281%29.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c18f3850-ba8a-4dcc-9b2c-3dbc020523f9/6-SAM_1312+%281%29.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c0b7e576-330c-40dc-9398-57c2f11ec908/PXL_20220611_040951368.PORTRAIT.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/c0b7e576-330c-40dc-9398-57c2f11ec908/PXL_20220611_040951368.PORTRAIT.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [],
+  "embeds": [],
+  "export_gaps": [
+    "button"
+  ]
+}

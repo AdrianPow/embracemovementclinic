@@ -1,6 +1,25 @@
 # Items to supply
 
-Tick each item off as it arrives. Put files in `assets/brand/`.
+## Screenshots (needed now; the export has no layout, header, footer or buttons)
+
+Use Edge: press `Ctrl+Shift+S` and choose "Capture full page". Save as `<folder>-desktop.png` using the folder names from `reference/INVENTORY.md`, and upload them. Mobile versions are a bonus.
+
+- [ ] homepage (`/homepage`, or the root `/` if that's what shows)
+- [ ] team
+- [ ] old-services
+- [ ] physiotherapy
+- [ ] exercise-physiology
+- [ ] pilates
+- [ ] womens-health-physio
+- [ ] pilates-1 (Vestibular)
+- [ ] group-exercise-timetable
+- [ ] contact-us-1
+- [ ] book-now
+- [ ] clinic-updates
+- [ ] Screenshot of the Squarespace **Pages** panel, showing which pages are in the main menu and which aren't linked
+- [ ] Squarespace SEO titles and descriptions, if customised (Page settings → SEO)
+
+Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go in `reference/screenshots/`.
 
 **Never put passwords or logins in this repo.** Keep them in a password manager.
 
@@ -9,7 +28,7 @@ Tick each item off as it arrives. Put files in `assets/brand/`.
 - [ ] Logo, ideally SVG (or a high-resolution PNG with a transparent background), plus any icon or favicon version
 - [ ] Brand colours (hex codes), if documented anywhere
 - [ ] Font names and licences (`reference/styles.json` shows what the current site uses)
-- [ ] Original high-resolution photos (clinic, team, treatment); the captured images may be compressed
+- [ ] Original high-resolution photos (clinic, team, treatment). The export only links to images (`reference/images.json` has the full-resolution URLs), and they couldn't be downloaded from this environment.
 - [ ] Photo permissions confirmed for anyone pictured
 
 ## Content

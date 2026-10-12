@@ -4,9 +4,17 @@ Working repo for rebuilding https://www.embracemovementclinic.com.au/ with Claud
 
 ## Steps
 
-### 1. Capture the current site (run on your Mac)
+### 1. Capture the current site
 
-The live site blocks automated web tools, so this capture has to run from your own computer.
+**Done (12 Oct 2026):** the content came from a Squarespace export. The original file is in `source/`, and `reference/` was generated with:
+
+```bash
+python3 capture/convert_squarespace_export.py source/squarespace-export-2026-10-12.xml
+```
+
+**Still needed:** full-page screenshots of each page (see `docs/to-supply.md`), because the export has no layout, header, footer or buttons.
+
+**Optional, on a personal (non-work) computer:** the live-site capture below also grabs screenshots, images, fonts and colours automatically. If pages come back blocked, temporarily turn off Squarespace's AI crawler blocking (Settings → Website → Crawlers), then turn it back on afterwards.
 
 The easiest way is to open Terminal in this folder, start Claude Code (`claude`), and say:
 

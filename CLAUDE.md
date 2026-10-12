@@ -15,17 +15,29 @@ Rebuild https://www.embracemovementclinic.com.au/ as a new site that:
 
 | Folder | What's in it |
 |---|---|
-| `reference/` | Snapshot of the current live site from `capture/`. **Source of truth for existing content and look.** Start with `reference/INVENTORY.md`. Each page has `pages/<slug>/` containing `content.md` (text), `desktop.png` and `mobile.png` (screenshots), `meta.json` (SEO, images, forms, embeds) and `page.html` (rendered HTML). Site-wide fonts and colours are in `styles.json`. |
+| `reference/` | Snapshot of the current site. **Source of truth for existing content.** Start with `reference/INVENTORY.md`. Each page has `pages/<slug>/` containing `content.md` (text in page order, with section markers), `meta.json` (structure, images, links, embeds) and `export.html` (raw Squarespace markup). Screenshots go in `reference/screenshots/` as `<slug>-desktop.png` and are the **source of truth for look and layout**. `images.json` lists all images with full-resolution URLs. If the live-site capture script has been run, pages also have `desktop.png`, `mobile.png` and `page.html`, and there's a site-wide `styles.json`. |
+| `source/` | Original Squarespace XML export (12 Oct 2026) |
 | `assets/brand/` | Original brand files supplied by the owner (logo, photos, fonts). Prefer these over images in `reference/images/`. |
 | `docs/` | `decisions.md` (stack, hosting, editing), `functionality.md` (what must work), `changes.md` (what to change vs keep), `to-supply.md` (outstanding items) |
-| `capture/` | Script that produced `reference/`. Don't edit unless asked. |
+| `capture/` | `convert_squarespace_export.py` (export → `reference/`) and `capture.mjs` (live-site capture, needs a non-locked-down PC). Don't edit unless asked. |
 | `site/` | The new website. All build work happens here. |
+
+## Known gaps in `reference/`
+
+The Squarespace export doesn't include:
+- header, navigation or footer
+- button labels and links
+- code blocks
+- map settings
+- fonts and colours
+
+Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` rather than guessing.
 
 ## How to work
 
 1. Don't start building until `docs/decisions.md` has the stack and hosting filled in. If it's blank, ask.
 2. Use plan mode first. Propose the page list, the components and the content model, then wait for approval.
-3. Build one page at a time. After each page, compare it with `reference/pages/<slug>/desktop.png` and `mobile.png` and list the differences.
+3. Build one page at a time. After each page, compare it with its screenshot in `reference/screenshots/` and list the differences.
 4. Copy text from `content.md` exactly. Don't rewrite, shorten or "improve" clinical or business copy unless `docs/changes.md` asks for it.
 5. Never invent facts: practitioners, qualifications, services, prices, fees, rebates, opening hours, addresses or phone numbers. If something is missing, leave a visible `TODO:` and add it to `docs/to-supply.md`.
 6. Write in Australian English.

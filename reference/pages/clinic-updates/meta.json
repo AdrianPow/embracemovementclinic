@@ -1,0 +1,204 @@
+{
+  "title": "Clinic Updates",
+  "url": "/clinic-updates",
+  "slug": "clinic-updates",
+  "headings": [
+    "Clinic Update June 2025",
+    "**Nicole\u2019s Leave Update**",
+    "**New Equipment in the Studio!**",
+    "**Online Bookings**",
+    "**AI Tools Trial**",
+    "**Saturday Sessions - Surprise Appointments!**",
+    "**We\u2019d Love Your Input**"
+  ],
+  "sections": [
+    {
+      "section": 1,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "## Clinic Update June 2025"
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/426f46d0-c242-4911-a914-f880008df9cc/41-SAM_1487.jpg",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/426f46d0-c242-4911-a914-f880008df9cc/41-SAM_1487.jpg?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        },
+        {
+          "type": "html",
+          "markdown": "Wow \u2013 that was a jam-packed first half of the year! Here's a little update on some exciting changes and upcoming happenings in the studio."
+        }
+      ]
+    },
+    {
+      "section": 2,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "### **Nicole\u2019s Leave Update**\n\nAs some of you already know, Nicole is heading off for a well-earned break!\n\n- **Last day in clinic:** Friday, 27th June\n- **Return to clinic:** Monday, 4th August\n\nDuring this time, Laura will be increasing her hours to keep things running smoothly.\n\n**Laura\u2019s work hours - July**\n\nMonday\n\n- 6am-3pm on 30th June & 7th July\n- 8 am \u2013 3 pm for the remaining Mondays in July\n\nWednesday: 6 am \u2013 1 pm\n\nThursday: 6 am \u2013 2 pm\n\n**Class timetable - July**"
+        },
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/4b52cdfc-a675-4015-901a-3eaff7951cc5/Heading.png",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/4b52cdfc-a675-4015-901a-3eaff7951cc5/Heading.png?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "section": 3,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "Unfortunately no PM classes will be available, so if you need a home exercise program to keep you going during July please pop your name down on the program request [form](https://forms.gle/jxFKrfqM7K6sCzsw5).\n\nLaura will have the clinic phone so send all appointment requests there. Any other concerns, please email [admin@embracemovementclinic.com.au](mailto:admin@embracemovementclinic.com.au ?)"
+        }
+      ]
+    },
+    {
+      "section": 4,
+      "theme": "light",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "### **New Equipment in the Studio!**"
+        },
+        {
+          "type": "html",
+          "markdown": "As many of you have noticed, we\u2019ve said goodbye to our very first piece of equipment and welcomed a BRAND NEW reformer and reformer-trapeze combo!\n\nTo help keep everything fresh, clean, and long-lasting, we kindly ask:\n\n- Preferably NO sneakers on the new equipment.\n- Grip socks preferred for hygiene and longevity\n\n  - (Forgot yours? No worries\u2014grip socks are available in the studio for $15, or feel free to bring your hospital or trampoline socks).\n- Need orthotics during your session? Sneakers are fine\u2014just let us know so we can adjust the setup for you.\n- There is a shoe rack outside to minimise the dirt coming in"
+        }
+      ]
+    },
+    {
+      "section": 5,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "html",
+          "markdown": "### **Online Bookings**"
+        },
+        {
+          "type": "html",
+          "markdown": "Want to save time and avoid creating new profiles every time you book? Ask Nicole or Laura for your unique online booking code for quicker booking."
+        },
+        {
+          "type": "html",
+          "markdown": "### **AI Tools Trial**"
+        },
+        {
+          "type": "html",
+          "markdown": "We\u2019re trialing healthcare-specific AI tools to help streamline admin and enhance your care. These are used for note efficiency, sending summary emails, and drafting documents/letters.\n\nNo private or identifying info is shared externally, and everything is reviewed by your practitioner. The tools simply help us reduce the administration burden and free up more time to support quality care. If you would like further information please let us know."
+        },
+        {
+          "type": "html",
+          "markdown": "### **Saturday Sessions - Surprise Appointments!**"
+        },
+        {
+          "type": "html",
+          "markdown": "Need a weekend appointment? Nicole will occasionally open up Saturday appointments for physiotherapy or private exercise. These aren't regularly scheduled. If you\u2019d like to be notified when Saturday appointments are available, opt-in to our SMS notification list by popping your name down [here](https://forms.gle/jxFKrfqM7K6sCzsw5)"
+        },
+        {
+          "type": "html",
+          "markdown": "### **We\u2019d Love Your Input**"
+        },
+        {
+          "type": "html",
+          "markdown": "Please take a moment to complete our short feedback survey. We are constantly trying to improve our services and we would love to know your thoughts. Complete the Google Forms survey here: <https://forms.gle/jxFKrfqM7K6sCzsw5>\n\nThank you for being such an amazing part of our Embrace Movement community. We\u2019re here to support you moving well and living well\u2014see you in the clinic soon!\n\nHealthy regards,\n\nNicole & Laura"
+        }
+      ]
+    },
+    {
+      "section": 6,
+      "theme": "",
+      "background": [],
+      "blocks": [
+        {
+          "type": "image",
+          "images": [
+            {
+              "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f0ecb0e6-4ad6-4ea8-9101-6a5426979161/Untitled+design.png",
+              "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f0ecb0e6-4ad6-4ea8-9101-6a5426979161/Untitled+design.png?format=2500w",
+              "alt": "",
+              "dimensions": null
+            }
+          ],
+          "link": null,
+          "caption": null
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/426f46d0-c242-4911-a914-f880008df9cc/41-SAM_1487.jpg",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/426f46d0-c242-4911-a914-f880008df9cc/41-SAM_1487.jpg?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/4b52cdfc-a675-4015-901a-3eaff7951cc5/Heading.png",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/4b52cdfc-a675-4015-901a-3eaff7951cc5/Heading.png?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f0ecb0e6-4ad6-4ea8-9101-6a5426979161/Untitled+design.png",
+      "download": "https://images.squarespace-cdn.com/content/v1/636f852ba3a6ac4e0a6306ce/f0ecb0e6-4ad6-4ea8-9101-6a5426979161/Untitled+design.png?format=2500w",
+      "alt": "",
+      "dimensions": null,
+      "role": "image block"
+    }
+  ],
+  "links": [
+    {
+      "text": "",
+      "href": "mailto:admin@embracemovementclinic.com.au ?"
+    },
+    {
+      "text": "form",
+      "href": "https://forms.gle/jxFKrfqM7K6sCzsw5"
+    },
+    {
+      "text": "admin@embracemovementclinic.com.au",
+      "href": "mailto:admin@embracemovementclinic.com.au ?"
+    },
+    {
+      "text": "",
+      "href": "mailto:admin@embracemovementclinic.com.au ?"
+    },
+    {
+      "text": "here",
+      "href": "https://forms.gle/jxFKrfqM7K6sCzsw5"
+    },
+    {
+      "text": "https://forms.gle/jxFKrfqM7K6sCzsw5",
+      "href": "https://forms.gle/jxFKrfqM7K6sCzsw5"
+    }
+  ],
+  "embeds": [],
+  "export_gaps": []
+}
