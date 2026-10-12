@@ -2,12 +2,8 @@
 // Facts come from reference/pages/*/content.md. Anything not yet supplied is
 // `null` and renders as a visible TODO (see docs/to-supply.md).
 
-export type Palette = 'forest' | 'pine' | 'mono' | 'clay' | 'navy';
-
 export const site = {
   name: 'Embrace Movement Clinic',
-  // Colour palette (see src/styles/tokens.css and /styleguide). TODO: owner to choose.
-  palette: 'forest' as Palette,
   // Non-breaking spaces keep each full stop with its word when the line wraps.
   tagline: 'Accept\u00a0. Support\u00a0. Challenge\u00a0.',
   url: 'https://www.embracemovementclinic.com.au',

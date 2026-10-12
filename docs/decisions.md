@@ -19,6 +19,6 @@ Fill these in before the build starts. Claude Code will ask about anything left 
 | Temporary closure | **Site-wide notice banner (confirmed 12 Oct 2026)** | Set in `site/src/data/site.ts` (`notice`). Also noted on Book Now, Contact and the team cards. |
 | Fonts | **Red Hat Display (headings) + Red Hat Text (body), chosen 12 Oct 2026** | Self-hosted variable fonts, about 60 KB together. |
 | Logo | **Plain wordmark only, chosen 12 Oct 2026** | The brush-stroke circle is dropped. `assets/brand/logo-wordmark.svg` was traced from the supplied black wordmark and takes any colour. |
-| Colour palette | TBC: one of five options on `/styleguide` | Forest, Pine & Lime, Monochrome, Charcoal & Clay, Navy & Sand. All pass WCAG 2.2 AA. Set in `site/src/data/site.ts` (`palette`). |
+| Colour palette | **Forest with a white header bar, chosen 12 Oct 2026** | Forest `#1E3A2F`, sage `#B9CBB0`, bone `#F5F3EE`, ink `#161A18`, white header. All text pairings pass WCAG 2.2 AA. Tokens are in `site/src/styles/tokens.css`; see `/styleguide`. |
 | Launch target | TBC | |
 | Sign-off | TBC | Who approves content and go-live |

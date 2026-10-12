@@ -44,8 +44,8 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 - Tagline: "Accept . Support . Challenge ."
 
 **Palette**
-- The owner wants a modern, sleek feel and to move away from teal and aqua (12 Oct 2026). White text on a dark green background is fine.
-- Palette options live in `site/src/styles/tokens.css` and are previewed on `/styleguide`. The chosen one is set in `site/src/data/site.ts` and recorded in `docs/decisions.md`.
+- **Forest, with a white header bar** (owner decision, 12 Oct 2026): forest `#1E3A2F`, sage `#B9CBB0`, bone `#F5F3EE`, ink `#161A18`. The owner wants a modern, sleek feel, with no teal or aqua.
+- Tokens are in `site/src/styles/tokens.css`. Components use the semantic `--color-*` tokens only. `/styleguide` shows the palette and its contrast checks.
 - Check all text and button colour combinations for AA contrast.
 
 **Type**

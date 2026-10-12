@@ -23,13 +23,14 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/(.)\/$/, '$1');
 const canonical = new URL(path, site.url).href;
 
-// TODO: a default share image (wordmark on the brand colour) once the palette is chosen.
+// Pages can pass their own share image; otherwise the wordmark card in public/og-default.png is used.
 const og = image ? await getImage({ src: image, format: 'jpg', width: Math.min(1200, image.width) }) : null;
-const ogUrl = og ? new URL(og.src, site.url).href : null;
+const ogUrl = new URL(og ? og.src : '/og-default.png', site.url).href;
+const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
 ---
 
 <!doctype html>
-<html lang="en-AU" data-palette={site.palette}>
+<html lang="en-AU">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,9 +50,9 @@ const ogUrl = og ? new URL(og.src, site.url).href : null;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {ogUrl && <meta property="og:image" content={ogUrl} />}
-    {ogUrl && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={ogUrl} />
+    {ogAlt && <meta property="og:image:alt" content={ogAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
 
     <Font cssVariable="--font-red-hat-text" preload />
     <Font cssVariable="--font-red-hat-display" preload />

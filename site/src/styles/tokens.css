@@ -1,9 +1,7 @@
 /*
   Design tokens.
-  Components only use the semantic --color-* tokens. Each palette below sets them,
-  and <html data-palette="…"> picks one (default in src/data/site.ts).
+  Components only use the semantic --color-* tokens below, never raw hex values.
   Every text pairing is contrast-checked on /styleguide (WCAG 2.2 AA, 4.5:1).
-  Once the owner chooses a palette, the unused ones can be deleted.
 */
 :root {
   color-scheme: light;
@@ -62,12 +60,11 @@
   --color-accent-on-brand  accent used as TEXT on brand (eyebrows, footer headings)
   --color-accent-soft      pale tint (notice banner, chips)
   --btn-*                  primary button on light; --btn-dark-* on brand sections (hover is derived)
-  --header-*               header can be light or dark per palette
+  --header-*               header colours (white header bar)
 */
 
-/* 1. Forest: calm and premium. White on deep green, warm bone, sage accent. */
-:root,
-[data-palette='forest'] {
+/* Forest (chosen 12 Oct 2026): calm and premium. Deep green, warm bone, sage accent, white header. */
+:root {
   --color-bg: #ffffff;
   --color-bg-alt: #f5f3ee;
   --color-ink: #161a18;
@@ -88,137 +85,13 @@
   --btn-ink: #ffffff;
   --btn-dark-bg: #b9cbb0;
   --btn-dark-ink: #161a18;
-  --header-bg: #1e3a2f;
-  --header-ink: #ffffff;
-  --header-line: transparent;
-  --header-hover: rgb(255 255 255 / 0.1);
-  --header-btn-bg: #b9cbb0;
-  --header-btn-ink: #161a18;
-  --header-focus: #b9cbb0;
-}
-
-/* 2. Pine & Lime: modern and energetic. Deep pine with an electric lime accent. */
-[data-palette='pine'] {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f2f4ef;
-  --color-ink: #0f1412;
-  --color-ink-muted: #4f5753;
-  --color-line: #dfe4dc;
-  --color-brand: #0e2a21;
-  --color-brand-deep: #071a14;
-  --color-on-brand: #ffffff;
-  --color-on-brand-muted: rgb(255 255 255 / 0.8);
-  --color-accent: #c8f062;
-  --color-accent-on-brand: #c8f062;
-  --color-accent-soft: #f1fbd9;
-  --color-link: #0e2a21;
-  --color-eyebrow: #0e2a21;
-  --color-focus: #0e2a21;
-  --color-focus-on-brand: #c8f062;
-  --btn-bg: #c8f062;
-  --btn-ink: #0e2a21;
-  --btn-dark-bg: #c8f062;
-  --btn-dark-ink: #0e2a21;
   --header-bg: #ffffff;
-  --header-ink: #0f1412;
-  --header-line: #dfe4dc;
-  --header-hover: #f2f4ef;
-  --header-btn-bg: #c8f062;
-  --header-btn-ink: #0e2a21;
-  --header-focus: #0e2a21;
-}
-
-/* 3. Monochrome: minimal and gallery-like. Near-black, white, a hint of sage. */
-[data-palette='mono'] {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f3f4f1;
-  --color-ink: #111312;
-  --color-ink-muted: #565c58;
-  --color-line: #e3e5e1;
-  --color-brand: #111312;
-  --color-brand-deep: #000000;
-  --color-on-brand: #ffffff;
-  --color-on-brand-muted: rgb(255 255 255 / 0.78);
-  --color-accent: #a7b8a0;
-  --color-accent-on-brand: #a7b8a0;
-  --color-accent-soft: #eef1ec;
-  --color-link: #111312;
-  --color-eyebrow: #111312;
-  --color-focus: #111312;
-  --color-focus-on-brand: #ffffff;
-  --btn-bg: #111312;
-  --btn-ink: #ffffff;
-  --btn-dark-bg: #ffffff;
-  --btn-dark-ink: #111312;
-  --header-bg: #ffffff;
-  --header-ink: #111312;
-  --header-line: #e3e5e1;
-  --header-hover: #f3f4f1;
-  --header-btn-bg: #111312;
+  --header-ink: #161a18;
+  --header-line: #e2dfd7;
+  --header-hover: #f5f3ee;
+  --header-btn-bg: #1e3a2f;
   --header-btn-ink: #ffffff;
-  --header-focus: #111312;
-}
-
-/* 4. Charcoal & Clay: warm boutique, no green. Charcoal, sand and terracotta. */
-[data-palette='clay'] {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f4eee7;
-  --color-ink: #1d1b19;
-  --color-ink-muted: #5e5750;
-  --color-line: #e6ded4;
-  --color-brand: #24211f;
-  --color-brand-deep: #141211;
-  --color-on-brand: #ffffff;
-  --color-on-brand-muted: rgb(255 255 255 / 0.8);
-  --color-accent: #a4532f;
-  --color-accent-on-brand: #e09a78;
-  --color-accent-soft: #f6e8df;
-  --color-link: #8a4426;
-  --color-eyebrow: #8a4426;
-  --color-focus: #24211f;
-  --color-focus-on-brand: #e09a78;
-  --btn-bg: #a4532f;
-  --btn-ink: #ffffff;
-  --btn-dark-bg: #a4532f;
-  --btn-dark-ink: #ffffff;
-  --header-bg: #ffffff;
-  --header-ink: #1d1b19;
-  --header-line: #e6ded4;
-  --header-hover: #f4eee7;
-  --header-btn-bg: #a4532f;
-  --header-btn-ink: #ffffff;
-  --header-focus: #24211f;
-}
-
-/* 5. Navy & Sand: coastal and clinical-calm. Deep navy, sand and soft coral. */
-[data-palette='navy'] {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f2ece3;
-  --color-ink: #141b26;
-  --color-ink-muted: #535b66;
-  --color-line: #e3ddd3;
-  --color-brand: #16253d;
-  --color-brand-deep: #0c1626;
-  --color-on-brand: #ffffff;
-  --color-on-brand-muted: rgb(255 255 255 / 0.8);
-  --color-accent: #e39a7a;
-  --color-accent-on-brand: #e39a7a;
-  --color-accent-soft: #faeae2;
-  --color-link: #16253d;
-  --color-eyebrow: #16253d;
-  --color-focus: #16253d;
-  --color-focus-on-brand: #e39a7a;
-  --btn-bg: #16253d;
-  --btn-ink: #ffffff;
-  --btn-dark-bg: #e39a7a;
-  --btn-dark-ink: #141b26;
-  --header-bg: #ffffff;
-  --header-ink: #141b26;
-  --header-line: #e3ddd3;
-  --header-hover: #f2ece3;
-  --header-btn-bg: #16253d;
-  --header-btn-ink: #ffffff;
-  --header-focus: #16253d;
+  --header-focus: #1e3a2f;
 }
 
 /* Inside dark (brand) sections, buttons, links and focus switch to their on-brand versions. */

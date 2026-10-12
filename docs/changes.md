@@ -38,7 +38,7 @@ Each change to what a service involves, conditions treated, or examination or co
 
 **Full redesign** to modernise the site, with a modern, sleek feel. Brand identity:
 - **Logo:** the plain "embrace / MOVEMENT CLINIC" wordmark only. The teal brush-stroke circle is dropped (owner decision, 12 Oct 2026).
-- **Palette:** moving away from teal and aqua (owner decision, 12 Oct 2026). Choose from the options on `/styleguide`.
+- **Palette:** Forest (deep green, sage, bone) with a white header bar, replacing teal and aqua (owner decision, 12 Oct 2026).
 - **Tagline:** "Accept . Support . Challenge ." is kept.
 - **Type:** Red Hat Display + Red Hat Text.
 

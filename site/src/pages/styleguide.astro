@@ -1,6 +1,6 @@
 ---
-// Style tile for owner sign-off. Not indexed, not in the sitemap.
-// Palette options are defined in src/styles/tokens.css; switch with the buttons or ?palette=<id>.
+// Style tile: the chosen design system (Forest palette, white header, Red Hat type).
+// Not indexed and not in the sitemap. Colours mirror src/styles/tokens.css.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Todo from '../components/Todo.astro';
@@ -20,150 +20,93 @@ const contrast = (a: string, b: string) => {
   return (hi + 0.05) / (lo + 0.05);
 };
 
-// Mirrors tokens.css; used for the swatches and the contrast checks.
-const palettes = [
-  {
-    id: 'forest',
-    name: 'Forest',
-    mood: 'Calm and premium. White on deep green, warm bone and a soft sage accent. Dark header.',
-    c: { brand: '#1E3A2F', alt: '#F5F3EE', ink: '#161A18', muted: '#545B57', accent: '#B9CBB0', accentOnBrand: '#B9CBB0', soft: '#EEF2EA', link: '#1E3A2F', btn: '#1E3A2F', btnInk: '#FFFFFF', btnDark: '#B9CBB0', btnDarkInk: '#161A18' },
-  },
-  {
-    id: 'pine',
-    name: 'Pine & Lime',
-    mood: 'Modern and energetic. Deep pine with an electric lime accent, a nod to movement and sport.',
-    c: { brand: '#0E2A21', alt: '#F2F4EF', ink: '#0F1412', muted: '#4F5753', accent: '#C8F062', accentOnBrand: '#C8F062', soft: '#F1FBD9', link: '#0E2A21', btn: '#C8F062', btnInk: '#0E2A21', btnDark: '#C8F062', btnDarkInk: '#0E2A21' },
-  },
-  {
-    id: 'mono',
-    name: 'Monochrome',
-    mood: 'Minimal and gallery-like. Near-black and white with a hint of sage; lets the photography lead.',
-    c: { brand: '#111312', alt: '#F3F4F1', ink: '#111312', muted: '#565C58', accent: '#A7B8A0', accentOnBrand: '#A7B8A0', soft: '#EEF1EC', link: '#111312', btn: '#111312', btnInk: '#FFFFFF', btnDark: '#FFFFFF', btnDarkInk: '#111312' },
-  },
-  {
-    id: 'clay',
-    name: 'Charcoal & Clay',
-    mood: 'Warm boutique, no green. Charcoal, sand and terracotta; feels like a studio.',
-    c: { brand: '#24211F', alt: '#F4EEE7', ink: '#1D1B19', muted: '#5E5750', accent: '#A4532F', accentOnBrand: '#E09A78', soft: '#F6E8DF', link: '#8A4426', btn: '#A4532F', btnInk: '#FFFFFF', btnDark: '#A4532F', btnDarkInk: '#FFFFFF' },
-  },
-  {
-    id: 'navy',
-    name: 'Navy & Sand',
-    mood: 'Coastal and calm. Deep navy, sand and a soft coral accent; clinical but warm.',
-    c: { brand: '#16253D', alt: '#F2ECE3', ink: '#141B26', muted: '#535B66', accent: '#E39A7A', accentOnBrand: '#E39A7A', soft: '#FAEAE2', link: '#16253D', btn: '#16253D', btnInk: '#FFFFFF', btnDark: '#E39A7A', btnDarkInk: '#141B26' },
-  },
-].map((p) => {
-  const c = p.c;
-  const checks = [
-    ['Body text on white', c.ink, '#FFFFFF'],
-    ['Secondary text on sand/alt', c.muted, c.alt],
-    ['Links on white', c.link, '#FFFFFF'],
-    ['Notice banner text', c.ink, c.soft],
-    ['White text on brand', '#FFFFFF', c.brand],
-    ['Accent text on brand', c.accentOnBrand, c.brand],
-    ['Button on light', c.btnInk, c.btn],
-    ['Button on brand', c.btnDarkInk, c.btnDark],
-  ].map(([label, fg, bg]) => ({ label, fg, bg, ratio: contrast(fg, bg) }));
-  return {
-    ...p,
-    checks,
-    min: Math.min(...checks.map((x) => x.ratio)),
-    swatches: [
-      ['Brand', c.brand],
-      ['Accent', c.accent],
-      ['Sand / alt', c.alt],
-      ['Ink', c.ink],
-      ['White', '#FFFFFF'],
-    ],
-  };
-});
+const c = {
+  brand: '#1E3A2F',
+  brandDeep: '#142A21',
+  accent: '#B9CBB0',
+  soft: '#EEF2EA',
+  alt: '#F5F3EE',
+  line: '#E2DFD7',
+  ink: '#161A18',
+  muted: '#545B57',
+  white: '#FFFFFF',
+};
+
+const swatches = [
+  { name: 'Forest', hex: c.brand, use: 'Brand colour: footer, dark sections, primary buttons, links.' },
+  { name: 'Forest deep', hex: c.brandDeep, use: 'Hover and pressed states on forest.' },
+  { name: 'Sage', hex: c.accent, use: 'Accent: buttons and headings on forest, highlights.' },
+  { name: 'Sage soft', hex: c.soft, use: 'Notice banner and soft highlights.' },
+  { name: 'Bone', hex: c.alt, use: 'Alternate section background.' },
+  { name: 'Line', hex: c.line, use: 'Borders and dividers (decorative).' },
+  { name: 'Ink', hex: c.ink, use: 'Body text and headings.' },
+  { name: 'Ink muted', hex: c.muted, use: 'Secondary text.' },
+  { name: 'White', hex: c.white, use: 'Page and header background.' },
+];
+
+const checks = [
+  ['Body text on white', c.ink, c.white],
+  ['Body text on bone', c.ink, c.alt],
+  ['Secondary text on bone', c.muted, c.alt],
+  ['Links on white', c.brand, c.white],
+  ['Notice banner text', c.ink, c.soft],
+  ['Primary button (header and light sections)', c.white, c.brand],
+  ['White text on forest', c.white, c.brand],
+  ['Sage text on forest', c.accent, c.brand],
+  ['Button on forest (ink on sage)', c.ink, c.accent],
+].map(([label, fg, bg]) => ({ label, fg, bg, ratio: contrast(fg, bg) }));
 
 const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
 ---
 
 <BaseLayout
   title="Style tile"
-  description="Palette, type and components for the Embrace Movement Clinic website. For owner sign-off."
+  description="Palette, type and components for the Embrace Movement Clinic website."
   noindex
 >
-  <script is:inline slot="head">
-    (function () {
-      var p = new URLSearchParams(location.search).get('palette');
-      if (p && /^[a-z]+$/.test(p)) document.documentElement.dataset.palette = p;
-    })();
-  </script>
-
-  <section class="section sg-intro">
+  <section class="section">
     <div class="wrap flow" style="--flow-space: var(--space-s)">
-      <p class="eyebrow">Design direction · For sign-off</p>
-      <h1>Palette options</h1>
+      <p class="eyebrow">Design system</p>
+      <h1>Style tile</h1>
       <p class="lede prose">
-        Five directions, all using the plain wordmark and Red Hat type. Each one passes WCAG&nbsp;2.2&nbsp;AA for every
-        text pairing. Choose one below to re-colour this whole page, including the real header and footer.
+        Forest palette with a white header, Red Hat Display and Red Hat Text, and the plain wordmark. Chosen by the owner on
+        12&nbsp;October&nbsp;2026. Every text pairing passes WCAG&nbsp;2.2&nbsp;AA.
       </p>
-      <div class="switcher" role="group" aria-label="Preview palette">
-        {
-          palettes.map((p) => (
-            <button type="button" class="switcher__btn" data-set-palette={p.id} aria-pressed={p.id === site.palette ? 'true' : 'false'}>
-              <span class="switcher__dot" style={`background:${p.c.brand};box-shadow: inset 0 0 0 3px ${p.c.accent}`} />
-              {p.name}
-            </button>
-          ))
-        }
-      </div>
     </div>
   </section>
 
-  <!-- At-a-glance comparison: each card is scoped to its own palette. -->
-  <section class="section section--tight" aria-labelledby="overview-h" id="overview">
+  <section class="section section--tight" aria-labelledby="colour-h">
     <div class="wrap flow" style="--flow-space: var(--space-m)">
-      <h2 id="overview-h" class="h3">At a glance</h2>
-      <ul class="overview" role="list">
+      <h2 id="colour-h" class="h3">Colour</h2>
+      <ul class="swatches" role="list">
         {
-          palettes.map((p, i) => (
-            <li class="ov" data-palette={p.id}>
-              <div class="ov__mock" aria-hidden="true">
-                <div class="ov__header">
-                  <span class="ov__logo">
-                    <Wordmark />
-                  </span>
-                  <span class="ov__nav">Services · Classes · Team</span>
-                  <span class="ov__btn ov__btn--header">Book now</span>
-                </div>
-                <div class="ov__hero on-brand">
-                  <span class="ov__eyebrow">Physiotherapy · Pilates</span>
-                  <span class="ov__title">{site.tagline}</span>
-                  <span class="ov__btn">Book now</span>
-                </div>
-                <div class="ov__strip">
-                  <span class="ov__card">
-                    <span class="ov__card-title">Exercise Physiology</span>
-                    <span class="ov__card-link">Learn more →</span>
-                  </span>
-                  <span class="ov__card">
-                    <span class="ov__card-title">Pelvic Floor Physio</span>
-                    <span class="ov__card-link">Learn more →</span>
-                  </span>
-                </div>
-              </div>
-              <div class="ov__body">
-                <h3 class="ov__name">
-                  {i + 1}. {p.name}
-                </h3>
-                <p class="ov__mood">{p.mood}</p>
-                <ul class="ov__swatches" role="list">
-                  {p.swatches.map(([label, hex]) => (
-                    <li>
-                      <span class="ov__chip" style={`background:${hex}`} />
-                      <span>
-                        {label}
-                        <code>{hex}</code>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <p class="ov__aa">Lowest text contrast {p.min.toFixed(1)}:1 (AA needs 4.5)</p>
-              </div>
+          swatches.map((s) => (
+            <li class="swatch">
+              <span class="swatch__chip" style={`background:${s.hex}`} />
+              <span class="swatch__body">
+                <strong>{s.name}</strong>
+                <code>{s.hex}</code>
+                <span class="swatch__use">{s.use}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h3 class="h4">Contrast checks</h3>
+      <ul class="pairs" role="list">
+        {
+          checks.map((x) => (
+            <li class="pair">
+              <svg class="pair__sample" viewBox="0 0 56 48" aria-hidden="true" style={`background:${x.bg}`}>
+                <text x="28" y="31" text-anchor="middle" fill={x.fg} font-size="20" font-weight="650">
+                  Aa
+                </text>
+              </svg>
+              <span class="pair__label">{x.label}</span>
+              <span class="pair__grade">
+                {x.ratio.toFixed(2)}:1 · {grade(x.ratio)}
+              </span>
             </li>
           ))
         }
@@ -171,170 +114,93 @@ const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
     </div>
   </section>
 
-  <!-- Live preview: follows the palette chosen above. -->
-  <div id="preview">
-    <section class="on-brand hero" aria-labelledby="hero-h">
-      <div class="wrap hero__grid">
-        <div class="hero__text flow" style="--flow-space: var(--space-m)">
-          <p class="eyebrow">Physiotherapy · Exercise physiology · Clinical pilates</p>
-          <h2 id="hero-h" class="h1">{site.tagline}</h2>
-          <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
-          <div class="cluster">
-            <Button href="/book-now" icon="calendar" size="l">Book now</Button>
-            <Button href="/services" variant="secondary" size="l">Our services</Button>
-          </div>
-        </div>
-        <div class="photo-ph photo-ph--hero" role="img" aria-label="Photo placeholder">
-          <Todo>photo</Todo>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" aria-labelledby="svc-h">
-      <div class="wrap flow" style="--flow-space: var(--space-l)">
-        <div class="flow" style="--flow-space: var(--space-xs)">
-          <p class="eyebrow">Services</p>
-          <h2 id="svc-h">We embrace everyone in their health journey</h2>
-        </div>
-        <ul class="cards" role="list">
-          <li>
-            <a class="card" href="/physiotherapy">
-              <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
-              <div class="card__body">
-                <h3 class="h4">Musculoskeletal Physiotherapy</h3>
-                <p>Sporting injuries, back and neck pain, joint pain, chronic pain and post-surgical care.</p>
-                <span class="card__more">Learn more <Icon name="arrow-right" size={16} /></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="/exercise-physiology">
-              <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
-              <div class="card__body">
-                <h3 class="h4">Exercise Physiology</h3>
-                <p>Injury rehabilitation and prevention, chronic disease management, healthy ageing and athletic performance.</p>
-                <span class="card__more">Learn more <Icon name="arrow-right" size={16} /></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="/pilates">
-              <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
-              <div class="card__body">
-                <h3 class="h4">Pilates &amp; Small Group Classes</h3>
-                <p>Small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign.</p>
-                <span class="card__more">Learn more <Icon name="arrow-right" size={16} /></span>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="expect-h">
-      <div class="wrap split">
-        <div class="flow" style="--flow-space: var(--space-s)">
-          <p class="eyebrow">Exercise Physiology</p>
-          <h2 id="expect-h" class="h3">What to expect</h2>
-        </div>
-        <div class="prose">
-          <p>
-            During your initial consultation, we will take the time to understand your medical history, current fitness level,
-            and specific health concerns. A detailed physical assessment will follow to evaluate your movement patterns,
-            strength, and flexibility. This thorough approach ensures that we develop a safe and effective exercise plan just
-            for you.
-          </p>
-          <p><a href="/exercise-physiology">Read about Exercise Physiology</a></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight" aria-labelledby="aa-h">
-      <div class="wrap flow" style="--flow-space: var(--space-m)">
-        <h2 id="aa-h" class="h3">Contrast checks for this palette</h2>
-        {
-          palettes.map((p) => (
-            <ul class="pairs" role="list" data-for={p.id} hidden={p.id !== site.palette}>
-              {p.checks.map((x) => (
-                <li class="pair">
-                  <svg class="pair__sample" viewBox="0 0 56 48" aria-hidden="true" style={`background:${x.bg}`}>
-                    <text x="28" y="31" text-anchor="middle" fill={x.fg} font-size="20" font-weight="650">
-                      Aa
-                    </text>
-                  </svg>
-                  <span class="pair__label">{x.label}</span>
-                  <span class="pair__grade">
-                    {x.ratio.toFixed(2)}:1 · {grade(x.ratio)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="section section--alt" aria-labelledby="type-h">
-      <div class="wrap flow" style="--flow-space: var(--space-m)">
-        <h2 id="type-h" class="h3">Type: Red Hat Display + Red Hat Text</h2>
-        <div class="type-scale">
-          <p class="h1">{site.tagline}</p>
-          <p class="h2">Pilates &amp; Small Group Classes</p>
-          <p class="h3">Conditions we commonly treat</p>
-          <p class="h4">Treatment may include</p>
-          <p class="prose">
-            Vestibular physiotherapy is a specialised form of physiotherapy aimed at treating disorders of the inner ear which
-            play a crucial role in balance, spatial orientation, and coordination.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="comp-h">
-      <div class="wrap flow" style="--flow-space: var(--space-m)">
-        <h2 id="comp-h" class="h3">Wordmark and components</h2>
-        <div class="marks">
-          <div class="mark">
-            <Wordmark />
-          </div>
-          <div class="mark on-brand">
-            <Wordmark />
-          </div>
-        </div>
+  <!-- Preview of the main patterns -->
+  <section class="on-brand hero" aria-labelledby="hero-h">
+    <div class="wrap hero__grid">
+      <div class="hero__text flow" style="--flow-space: var(--space-m)">
+        <p class="eyebrow">Physiotherapy · Exercise physiology · Clinical pilates</p>
+        <h2 id="hero-h" class="h1">{site.tagline}</h2>
+        <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
         <div class="cluster">
-          <Button href="/book-now" icon="calendar">Book now</Button>
-          <Button href="/services" variant="secondary">Our services</Button>
-          <a href="/contact">Text link to Contact</a>
-          <span>Missing facts show like this: <Todo>opening hours</Todo></span>
+          <Button href="/book-now" icon="calendar" size="l">Book now</Button>
+          <Button href="/services" variant="secondary" size="l">Our services</Button>
         </div>
       </div>
-    </section>
-  </div>
+      <div class="photo-ph photo-ph--hero" role="img" aria-label="Photo placeholder">
+        <Todo>photo</Todo>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="svc-h">
+    <div class="wrap flow" style="--flow-space: var(--space-l)">
+      <div class="flow" style="--flow-space: var(--space-xs)">
+        <p class="eyebrow">Card pattern</p>
+        <h2 id="svc-h" class="h3">Service cards</h2>
+      </div>
+      <ul class="cards" role="list">
+        <li>
+          <a class="card" href="/physiotherapy">
+            <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
+            <div class="card__body">
+              <h3 class="h4">Musculoskeletal Physiotherapy</h3>
+              <p>Sporting injuries, back and neck pain, joint pain, chronic pain and post-surgical care.</p>
+              <span class="card__more">Learn more <Icon name="arrow-right" size={16} /></span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="card" href="/pilates">
+            <div class="photo-ph" role="img" aria-label="Photo placeholder"><Todo>photo</Todo></div>
+            <div class="card__body">
+              <h3 class="h4">Pilates &amp; Small Group Classes</h3>
+              <p>Small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign.</p>
+              <span class="card__more">Learn more <Icon name="arrow-right" size={16} /></span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="type-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="type-h" class="h3">Type: Red Hat Display + Red Hat Text</h2>
+      <div class="type-scale">
+        <p class="h1">{site.tagline}</p>
+        <p class="h2">Pilates &amp; Small Group Classes</p>
+        <p class="h3">Conditions we commonly treat</p>
+        <p class="h4">Treatment may include</p>
+        <p class="eyebrow">Eyebrow label</p>
+        <p class="lede prose">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+        <p class="prose">
+          Vestibular physiotherapy is a specialised form of physiotherapy aimed at treating disorders of the inner ear which play
+          a crucial role in balance, spatial orientation, and coordination. <a href="/vestibular-physiotherapy">Text link</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="comp-h">
+    <div class="wrap flow" style="--flow-space: var(--space-m)">
+      <h2 id="comp-h" class="h3">Wordmark and components</h2>
+      <div class="marks">
+        <div class="mark">
+          <Wordmark />
+        </div>
+        <div class="mark on-brand">
+          <Wordmark />
+        </div>
+      </div>
+      <div class="cluster">
+        <Button href="/book-now" icon="calendar">Book now</Button>
+        <Button href="/services" variant="secondary">Our services</Button>
+        <a href="/contact">Text link</a>
+        <span>Missing facts show like this: <Todo>opening hours</Todo></span>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<script>
-  const root = document.documentElement;
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-palette]');
-  const tables = document.querySelectorAll<HTMLElement>('[data-for]');
-
-  const apply = (id: string) => {
-    root.dataset.palette = id;
-    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setPalette === id)));
-    tables.forEach((t) => (t.hidden = t.dataset.for !== id));
-  };
-
-  apply(root.dataset.palette ?? 'forest');
-
-  buttons.forEach((b) =>
-    b.addEventListener('click', () => {
-      const id = b.dataset.setPalette ?? 'forest';
-      apply(id);
-      const url = new URL(location.href);
-      url.searchParams.set('palette', id);
-      history.replaceState(null, '', url);
-    }),
-  );
-</script>
 
 <style>
   .section--tight {
@@ -348,194 +214,66 @@ const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
     gap: var(--space-s);
   }
 
-  /* Switcher */
-  .switcher {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs);
-    padding-top: var(--space-xs);
-  }
-
-  .switcher__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    min-height: 2.75rem;
-    padding: 0.5em 1.1em 0.5em 0.6em;
-    border: 1.5px solid var(--color-line);
-    border-radius: var(--radius-pill);
-    background: var(--color-bg);
-    color: var(--color-ink);
-    font-family: var(--font-display);
-    font-weight: 600;
-  }
-
-  .switcher__btn[aria-pressed='true'] {
-    border-color: var(--color-ink);
-    box-shadow: inset 0 0 0 1px var(--color-ink);
-  }
-
-  .switcher__dot {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-  }
-
-  /* Overview cards */
-  .overview {
+  .swatches {
     display: grid;
-    gap: var(--space-m);
-    padding: 0;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
   }
 
-  .ov {
+  .swatch {
     display: grid;
-    align-content: start;
+    grid-template-rows: auto 1fr;
     overflow: hidden;
-    background: var(--color-bg);
-    color: var(--color-ink);
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
+    border-radius: var(--radius);
   }
 
-  .ov__mock {
-    display: grid;
-    font-family: var(--font-display);
+  .swatch__chip {
+    height: 4.5rem;
     border-bottom: 1px solid var(--color-line);
   }
 
-  .ov__header {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 0.9rem;
-    background: var(--header-bg);
-    color: var(--header-ink);
-    border-bottom: 1px solid var(--header-line);
-  }
-
-  .ov__logo {
-    width: 4.5rem;
-    margin-right: auto;
-  }
-
-  .ov__nav {
-    font-size: 0.6875rem;
-    font-weight: 550;
-  }
-
-  .ov__btn {
-    display: inline-block;
-    justify-self: start;
-    padding: 0.35em 0.9em;
-    border-radius: var(--radius-pill);
-    background: var(--btn-bg);
-    color: var(--btn-ink);
-    font-size: 0.75rem;
-    font-weight: 650;
-  }
-
-  .ov__btn--header {
-    background: var(--header-btn-bg);
-    color: var(--header-btn-ink);
-    font-size: 0.6875rem;
-  }
-
-  .ov__hero {
+  .swatch__body {
     display: grid;
-    gap: 0.55rem;
-    padding: 1.4rem 0.9rem 1.5rem;
-  }
-
-  .ov__eyebrow {
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-accent-on-brand);
-  }
-
-  .ov__title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-
-  .ov__strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    padding: 0.8rem 0.9rem;
-    background: var(--color-bg-alt);
-  }
-
-  .ov__card {
-    display: grid;
-    gap: 0.25rem;
-    padding: 0.6rem 0.7rem;
-    background: var(--color-bg);
-    border-radius: var(--radius-s);
-  }
-
-  .ov__card-title {
-    font-size: 0.75rem;
-    font-weight: 650;
-  }
-
-  .ov__card-link {
-    font-size: 0.6875rem;
-    font-weight: 650;
-    color: var(--color-link);
-  }
-
-  .ov__body {
-    display: grid;
-    gap: var(--space-2xs);
-    padding: var(--space-m);
-  }
-
-  .ov__name {
-    font-size: var(--step-1);
-  }
-
-  .ov__mood {
-    color: var(--color-ink-muted);
+    align-content: start;
+    gap: 0.2rem;
+    padding: var(--space-xs) var(--space-s) var(--space-s);
     font-size: var(--step--1);
   }
 
-  .ov__swatches {
-    display: grid;
-    gap: 0.35rem;
-    padding: var(--space-2xs) 0 0;
-    font-size: 0.8125rem;
-  }
-
-  .ov__swatches li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .ov__swatches code {
-    margin-left: 0.35rem;
+  .swatch__use {
     color: var(--color-ink-muted);
   }
 
-  .ov__chip {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+  .pairs {
+    display: grid;
+    gap: var(--space-2xs);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
   }
 
-  .ov__aa {
-    font-size: 0.8125rem;
-    font-weight: 600;
+  .pair {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-2xs);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    font-size: var(--step--1);
   }
 
-  /* Live preview */
+  .pair__sample {
+    width: 100%;
+    height: 3rem;
+    border-radius: var(--radius-s);
+    font-family: var(--font-body);
+  }
+
+  .pair__grade {
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+
   .hero {
     padding-block: clamp(3rem, 2rem + 5vw, 6.5rem);
   }
@@ -573,7 +311,6 @@ const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
   .cards {
     display: grid;
     gap: var(--space-m);
-    padding: 0;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
   }
 
@@ -618,51 +355,6 @@ const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
     font-weight: 650;
   }
 
-  .split {
-    display: grid;
-    gap: var(--space-m);
-  }
-
-  @media (min-width: 56em) {
-    .split {
-      grid-template-columns: 1fr 2fr;
-    }
-  }
-
-  .pairs {
-    display: grid;
-    gap: var(--space-2xs);
-    padding: 0;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
-  }
-
-  .pairs[hidden] {
-    display: none;
-  }
-
-  .pair {
-    display: grid;
-    grid-template-columns: 3.5rem 1fr auto;
-    align-items: center;
-    gap: var(--space-s);
-    padding: var(--space-2xs);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius);
-    font-size: var(--step--1);
-  }
-
-  .pair__sample {
-    width: 100%;
-    height: 3rem;
-    border-radius: var(--radius-s);
-    font-family: var(--font-body);
-  }
-
-  .pair__grade {
-    font-weight: 650;
-    font-variant-numeric: tabular-nums;
-  }
-
   .type-scale {
     display: grid;
     gap: var(--space-s);
@@ -678,8 +370,13 @@ const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fail');
     display: grid;
     place-items: center;
     padding: var(--space-xl) var(--space-l);
+    background: var(--color-bg);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-l);
+  }
+
+  .mark.on-brand {
+    background: var(--color-brand);
   }
 
   .mark :global(.wordmark) {
