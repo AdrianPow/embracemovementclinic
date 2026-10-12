@@ -33,12 +33,44 @@ The Squarespace export doesn't include:
 
 Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` rather than guessing.
 
+## Design direction (full redesign)
+
+**Feel**
+- Modern, warm, calm and confident: a premium boutique clinic, not a template.
+- Photography-led, with generous white space.
+
+**Brand to keep**
+- Logo: teal watercolour circle with "embrace / movement clinic". Use files from `assets/brand/`.
+- Tagline: "Accept . Support . Challenge ."
+
+**Palette**
+- Sampled from screenshots; confirm against the logo files.
+- Brand teal `#38B090`, light teal `#88D8C0`, mist `#A8E0D0`, near-black text, white and `#FAFAFA` backgrounds.
+- Check all text and button colour combinations for AA contrast. Teal on white will likely need a darker shade for text.
+
+**Type**
+- The current site uses a humanist sans for headings. Choose a modern, legible pairing, self-hosted, with no Google Fonts call at runtime.
+
+**Must-haves**
+- A persistent "Book now" call to action (Nookal) in the header and on every service page.
+- Click-to-call on mobile.
+- Service pages with a consistent structure: who it's for, conditions treated, what to expect, book.
+- Team cards with a modal or detail page for each practitioner.
+- A clear location and parking section.
+- A footer with hours, address, phone, email, socials and the privacy policy link.
+
+**Information architecture**
+- Propose a simplified menu in plan mode, for example: Services (dropdown), Classes & Timetable, Team, Contact, Book Now.
+
+**Performance target**
+- Lighthouse 95+ on mobile for Performance, Accessibility, Best Practices and SEO.
+
 ## How to work
 
-1. Don't start building until `docs/decisions.md` has the stack and hosting filled in. If it's blank, ask.
+1. Read `docs/decisions.md`. If the stack is still marked "recommended — confirm", confirm it with the owner in plan mode before building.
 2. Use plan mode first. Propose the page list, the components and the content model, then wait for approval.
 3. Build one page at a time. After each page, compare it with its screenshot in `reference/screenshots/` and list the differences.
-4. Copy text from `content.md` exactly. Don't rewrite, shorten or "improve" clinical or business copy unless `docs/changes.md` asks for it.
+4. Keep every fact from `content.md`. You may tighten wording, add headings or restructure copy to suit the new design. Log each wording change to clinical copy (what a service involves, conditions treated, the examination or consent wording) in `docs/changes.md` for owner approval before launch.
 5. Never invent facts: practitioners, qualifications, services, prices, fees, rebates, opening hours, addresses or phone numbers. If something is missing, leave a visible `TODO:` and add it to `docs/to-supply.md`.
 6. Write in Australian English.
 

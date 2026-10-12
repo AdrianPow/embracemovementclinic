@@ -1,23 +1,18 @@
 # Items to supply
 
-## Screenshots (needed now; the export has no layout, header, footer or buttons)
+## Screenshots
 
-Use Edge: press `Ctrl+Shift+S` and choose "Capture full page". Save as `<folder>-desktop.png` using the folder names from `reference/INVENTORY.md`, and upload them. Mobile versions are a bonus.
+The redesign doesn't copy the old layout, so only a few more are needed, mainly for content the export missed.
 
-- [ ] homepage (`/homepage`, or the root `/` if that's what shows)
-- [ ] team
-- [ ] old-services
-- [ ] physiotherapy
-- [ ] exercise-physiology
-- [ ] pilates
-- [ ] womens-health-physio
-- [ ] pilates-1 (Vestibular)
-- [ ] group-exercise-timetable
-- [ ] contact-us-1
-- [ ] book-now
-- [ ] clinic-updates
-- [ ] Screenshot of the Squarespace **Pages** panel, showing which pages are in the main menu and which aren't linked
-- [ ] Squarespace SEO titles and descriptions, if customised (Page settings → SEO)
+- [x] homepage (desktop)
+- [x] team (desktop, top of page)
+- [ ] **Footer**: scroll to the bottom of any page (hours, address, social links, anything else there)
+- [ ] **Our Services**, scrolled through, to show button labels
+- [ ] **One service page** (e.g. Physiotherapy) and **Book Now**, to show what the code block is
+- [ ] **Team page, scrolled to the end**, to show all practitioners
+- [ ] Squarespace **Pages** panel, showing pages in and out of the menu
+
+Save them in `reference/screenshots/` as `<page-folder>-desktop.png` (folder names are in `reference/INVENTORY.md`).
 
 Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go in `reference/screenshots/`.
 
@@ -34,6 +29,8 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 ## Content
 
 - [ ] Practitioner bios, headshots, qualifications and AHPRA registration numbers or names as registered
+- [ ] Instagram and Facebook profile URLs (the header has icons, but the links weren't in the export)
+- [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
 - [ ] Opening hours, address, phone, email, ABN
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)

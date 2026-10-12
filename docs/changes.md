@@ -29,7 +29,12 @@ Anything not listed here stays as it is on the current site.
 
 ## Design changes
 
-- TBC (keep the current look, refresh it with the same brand colours, or a full redesign)
+**Full redesign** to modernise the site. Keep the brand identity:
+- the logo
+- the teal palette
+- the tagline "Accept . Support . Challenge ."
+
+Don't copy the Squarespace layout. Use the screenshots only for content, menu items and brand cues. See "Design direction" in CLAUDE.md.
 
 ## Compliance flags
 

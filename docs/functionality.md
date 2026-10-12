@@ -14,6 +14,7 @@ Pre-filled from the Squarespace export (12 Oct 2026). Confirm each row against t
 | Cancellation policy | group-exercise-timetable | Text: cancellations within 8 hours charged at 50% | Keep | Consider a dedicated policies page |
 | Group class timetable | group-exercise-timetable | Text plus a booking portal link | Keep | How often does it change? If often, link to Nookal rather than hard-coding it. |
 | Contact / enquiry form | — | None found in the export | TBC | Is a form wanted, or are phone, email and booking enough? |
-| Header navigation & footer | all | Not in the export | Keep | Capture from screenshots |
+| Header navigation | all | From screenshots: Meet The Team · Group Exercise Timetable · Our Services · Book Now · Contact us. Instagram and Facebook icons top-left; logo centred | Redesign | Social URLs needed (see to-supply) |
+| Footer | all | Not captured yet | TBC | Screenshot needed |
 | Analytics / cookie banner | — | Unknown (Squarespace analytics, built in) | TBC | Must match the privacy policy |
 | Privacy policy page | — | None found in the export | Add | Required; see CLAUDE.md |
