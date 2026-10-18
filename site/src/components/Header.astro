@@ -8,11 +8,15 @@ import { site } from '../data/site';
 
 const serviceLinks = (await getCollection('services'))
   .sort((a, b) => a.data.order - b.data.order)
-  .map((s) => ({ label: s.data.title, href: `/${s.id}` }));
+  .map((s) => ({ label: s.data.title, href: `/${s.id}`, kind: s.data.kind }));
+const serviceGroups = [
+  { label: 'One-on-one appointments', links: serviceLinks.filter((l) => l.kind === 'appointment') },
+  { label: 'Small group classes', links: serviceLinks.filter((l) => l.kind === 'class') },
+];
 
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 const current = (href: string) => (path === href ? 'page' : undefined);
-const inServices = path === '/services' || serviceLinks.some((l) => l.href === path);
+const inServices = path === '/services' || serviceLinks.some((l) => l.kind === 'appointment' && l.href === path);
 ---
 
 <header class="site-header">
@@ -33,11 +37,18 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
           </button>
           <ul class="desk-nav__sub" id="services-menu" role="list">
             {
-              serviceLinks.map((l) => (
-                <li>
-                  <a href={l.href} aria-current={current(l.href)}>
-                    {l.label}
-                  </a>
+              serviceGroups.map((g) => (
+                <li class="desk-nav__group">
+                  <span class="desk-nav__group-label">{g.label}</span>
+                  <ul role="list">
+                    {g.links.map((l) => (
+                      <li>
+                        <a href={l.href} aria-current={current(l.href)}>
+                          {l.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))
             }
@@ -418,6 +429,23 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       background: var(--color-bg-alt);
     }
 
+    .desk-nav__group + .desk-nav__group {
+      margin-top: var(--space-2xs);
+      padding-top: var(--space-2xs);
+      border-top: 1px solid var(--color-line);
+    }
+
+    .desk-nav__group-label {
+      display: block;
+      padding: var(--space-2xs) var(--space-xs) var(--space-3xs);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-ink-muted);
+    }
+
     .desk-nav__sub-all {
       margin-top: var(--space-3xs);
       padding-top: var(--space-3xs);
@@ -432,6 +460,10 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.href === p
       padding-inline: 0.75rem;
     }
 
+  }
+
+  /* Show the phone number beside the icon once there's room. */
+  @media (min-width: 80em) {
     .site-header__call-text {
       position: static;
       width: auto;

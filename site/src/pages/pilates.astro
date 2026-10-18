@@ -1,0 +1,418 @@
+---
+// Pilates & small group classes. Merges the old /pilates and /group-exercise-timetable pages.
+import { getEntry, getEntries, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import Steps from '../components/Steps.astro';
+import Todo from '../components/Todo.astro';
+import PractitionerList from '../components/PractitionerList.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import BookingBand from '../components/BookingBand.astro';
+import ClosureNote from '../components/ClosureNote.astro';
+import { site } from '../data/site';
+import { classFacts, equipment, studioEtiquette, cancellationPolicy, booking, timetable } from '../data/policies';
+
+const service = (await getEntry('services', 'pilates')) as CollectionEntry<'services'>;
+const d = service.data;
+const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
+
+const startSteps = [
+  { name: 'Book a pre-class assessment', detail: 'A once-off pre-class assessment is required before you start classes.' },
+  { name: 'Choose your class times', detail: 'Book online and select the relevant practitioner when booking.' },
+  {
+    name: 'Class full? Join the waitlist',
+    detail: 'If your preferred time isn’t showing, the class is at full capacity. Get in touch and we’ll add you to the waitlist.',
+  },
+];
+---
+
+<BaseLayout title={d.seoTitle} description={d.seoDescription}>
+  <PageHero
+    tone="brand"
+    crumbs={[{ label: 'Services', href: '/services' }, { label: 'Pilates & classes' }]}
+    eyebrow="Small group classes"
+    title={d.title}
+    lede={d.lede}
+  >
+    <Fragment slot="actions">
+      <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
+      <Button href="#timetable" variant="secondary" size="l">Timetable</Button>
+    </Fragment>
+    <Photo slot="aside" src={d.image} alt="" note={d.imageNote} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
+  </PageHero>
+
+  <section class="on-brand factbar" aria-label="Class details">
+    <div class="wrap">
+      <dl class="factbar__list">
+        {
+          classFacts.map((f) => (
+            <div>
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <nav class="onpage" aria-label="On this page">
+    <div class="wrap">
+      <ul role="list">
+        <li><a href="#start">How to start</a></li>
+        <li><a href="#for-you">Who it’s for</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#studio">The studio</a></li>
+        <li><a href="#cancellations">Cancellations</a></li>
+        <li><a href="#who">Instructors</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" id="start" aria-labelledby="start-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Getting started</p>
+        <h2 id="start-h">How to start classes</h2>
+      </div>
+      <Steps steps={startSteps} />
+      <p class="code-tip">
+        <Icon name="info" size={20} />
+        <span>{booking.bookingCode}</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="for-you" aria-labelledby="for-you-h">
+    <div class="wrap two-col">
+      <div class="head">
+        <h2 id="for-you-h">{d.forYou.heading}</h2>
+        <ul class="chips" role="list">
+          {d.forYou.items.map((i) => <li>{i.name}</li>)}
+        </ul>
+      </div>
+      <div class="expect">
+        <h3>What to expect</h3>
+        <p>{d.expect.text}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="timetable" aria-labelledby="timetable-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Weekly classes</p>
+        <h2 id="timetable-h">Timetable</h2>
+        <p class="head__intro">{booking.classes}</p>
+      </div>
+      <ClosureNote />
+      {
+        timetable ? (
+          <table class="timetable">
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Class</th>
+                <th scope="col">With</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timetable.map((r) => (
+                <tr>
+                  <th scope="row">{r.day}</th>
+                  <td>{r.time}</td>
+                  <td>{r.class}</td>
+                  <td>{r.with ?? ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <Todo as="div">current class timetable as text (days, times and class types). The old timetable was an image from July 2025.</Todo>
+        )
+      }
+      <div class="timetable__actions">
+        <Button href={site.booking.portalUrl} icon="external">Check live availability</Button>
+        <Button href={site.phone.href.replace('tel:', 'sms:')} variant="secondary" icon="message">
+          Text us to join a waitlist
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="studio" aria-labelledby="studio-h">
+    <div class="wrap two-col">
+      <div class="head">
+        <p class="eyebrow">The studio</p>
+        <h2 id="studio-h">Our clinic is equipped with</h2>
+        <ul class="chips" role="list">
+          {equipment.map((e) => <li>{e}</li>)}
+          <li>and much more</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4 etiquette__title">Before you come to class</h3>
+        <ul class="etiquette" role="list">
+          {
+            studioEtiquette.map((e) => (
+              <li>
+                <p class="etiquette__name">{e.name}</p>
+                <p>{e.detail}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cancellations" aria-labelledby="cancel-h">
+    <div class="wrap narrow">
+      <p class="eyebrow">Policy</p>
+      <h2 id="cancel-h">Cancellation policy</h2>
+      {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </section>
+
+  <section class="section section--alt" id="who" aria-labelledby="who-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Instructors</p>
+        <h2 id="who-h">Who runs the classes</h2>
+        <p class="head__intro">Both of our physiotherapists are clinical pilates instructors.</p>
+      </div>
+      <PractitionerList refs={d.practitioners} />
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="section" aria-labelledby="related-h">
+        <div class="wrap">
+          <div class="head">
+            <p class="eyebrow">Related</p>
+            <h2 id="related-h">One-on-one appointments</h2>
+          </div>
+          <ul class="related" role="list">
+            {related.map((r) => (
+              <li>
+                <ServiceCard service={r} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <BookingBand title="Ready to start classes?" text="Book your once-off pre-class assessment online, or call us to talk it through." />
+</BaseLayout>
+
+<style>
+  .factbar {
+    padding-bottom: var(--space-l);
+  }
+
+  .factbar__list {
+    display: grid;
+    gap: var(--space-s) var(--space-m);
+    padding-top: var(--space-m);
+    border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+
+  .factbar dt {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-brand);
+  }
+
+  .factbar dd {
+    margin: var(--space-3xs) 0 0;
+  }
+
+  .onpage {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 20;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .onpage ul {
+    display: flex;
+    gap: var(--space-2xs);
+    overflow-x: auto;
+    padding-block: var(--space-2xs);
+    scrollbar-width: none;
+  }
+
+  .onpage a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0.95em;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .onpage a:hover {
+    background: var(--color-bg-alt);
+  }
+
+  :global(html) {
+    scroll-padding-top: calc(var(--header-h) + 4rem);
+  }
+
+  .head {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+    max-width: 46rem;
+    margin-bottom: var(--space-l);
+  }
+
+  .head__intro {
+    color: var(--color-ink-muted);
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .code-tip {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    margin-top: var(--space-l);
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg-alt);
+  }
+
+  .code-tip :global(svg) {
+    margin-top: 0.15em;
+    color: var(--color-brand);
+    flex-shrink: 0;
+  }
+
+  .two-col {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  @media (min-width: 56em) {
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .two-col .head {
+      margin-bottom: 0;
+    }
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    padding-top: var(--space-xs);
+  }
+
+  .chips li {
+    padding: 0.4em 1em;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    font-weight: 550;
+  }
+
+  .expect {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+    padding: var(--space-l) var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+    font-size: var(--step-1);
+    line-height: 1.6;
+  }
+
+  .timetable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .timetable th,
+  .timetable td {
+    padding: var(--space-xs);
+    border-bottom: 1px solid var(--color-line);
+    text-align: left;
+  }
+
+  :global(#timetable .closure) {
+    margin-bottom: var(--space-m);
+  }
+
+  .timetable__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-m);
+  }
+
+  .etiquette__title {
+    margin-bottom: var(--space-s);
+  }
+
+  .etiquette {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .etiquette li {
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+  }
+
+  .etiquette__name {
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .etiquette li p + p {
+    margin-top: var(--space-3xs);
+    color: var(--color-ink-muted);
+  }
+
+  .narrow {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .narrow > * {
+    max-width: 46rem;
+  }
+
+  .narrow p:not(.eyebrow) {
+    font-size: var(--step-1);
+    line-height: 1.6;
+  }
+
+  .related {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+</style>

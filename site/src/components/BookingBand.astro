@@ -1,0 +1,58 @@
+---
+// Closing call to action used at the end of most pages.
+import Button from './Button.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  bookLabel?: string;
+}
+
+const {
+  title = 'Ready to book?',
+  text = `Book online, or call us on ${site.phone.display}.`,
+  bookLabel = 'Book now',
+} = Astro.props;
+---
+
+<section class="on-brand band" aria-labelledby="band-h">
+  <div class="wrap band__inner">
+    <div class="band__text">
+      <h2 id="band-h">{title}</h2>
+      <p class="lede">{text}</p>
+    </div>
+    <div class="band__actions">
+      <Button href={site.booking.page} icon="calendar" size="l">{bookLabel}</Button>
+      <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
+        <span class="visually-hidden">Call </span>{site.phone.display}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band {
+    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+
+  .band__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+  }
+
+  .band__text {
+    display: grid;
+    gap: var(--space-xs);
+    max-width: 38rem;
+  }
+
+  .band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+</style>

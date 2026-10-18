@@ -1,0 +1,111 @@
+---
+// "What can we help with?" Everyday needs, each listing the conditions the clinic treats
+// and linking to the services that cover them. Data: src/data/needs.ts.
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+import { needs } from '../data/needs';
+
+const services = await getCollection('services');
+const byId = new Map(services.map((s) => [s.id, s]));
+---
+
+<ul class="needs" role="list">
+  {
+    needs.map((need) => (
+      <li class="need" id={need.id}>
+        <h3 class="h4 need__title">{need.title}</h3>
+        <ul class="need__examples" role="list">
+          {need.examples.map((e) => (
+            <li>{e}</li>
+          ))}
+        </ul>
+        <ul class="need__links" role="list" aria-label={`Services for ${need.title.toLowerCase()}`}>
+          {need.services.map((id) => {
+            const s = byId.get(id);
+            return (
+              s && (
+                <li>
+                  <a href={`/${s.id}`}>
+                    {s.data.shortTitle ?? s.data.title}
+                    <Icon name="arrow-right" size={15} />
+                  </a>
+                </li>
+              )
+            );
+          })}
+        </ul>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .needs {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+  }
+
+  .need {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-s);
+    padding: var(--space-m);
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    scroll-margin-top: calc(var(--header-h) + var(--space-m));
+  }
+
+  .need__examples {
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .need__examples li {
+    display: grid;
+    grid-template-columns: 0.4rem 1fr;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .need__examples li::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    transform: translateY(-0.1em);
+  }
+
+  .need__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    padding-top: var(--space-s);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .need__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    min-height: 2.5rem;
+    padding: 0.35em 0.9em;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .need__links a:hover {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+</style>

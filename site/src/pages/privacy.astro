@@ -1,0 +1,100 @@
+---
+// DRAFT privacy policy, structured on the Australian Privacy Principles (APPs).
+// Must be reviewed and approved by the owner before launch. Not legal advice.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Todo from '../components/Todo.astro';
+import { site, fullAddress } from '../data/site';
+---
+
+<BaseLayout
+  title="Privacy policy"
+  description="How Embrace Movement Clinic collects, uses, stores and protects your personal and health information."
+>
+  <PageHero crumbs={[{ label: 'Privacy policy' }]} eyebrow="Policy" title="Privacy policy" />
+
+  <section class="section">
+    <div class="wrap-narrow prose policy">
+      <Todo as="div">DRAFT: the owner must review and approve this policy before launch. Consider professional advice.</Todo>
+
+      <p>
+        {site.name} (“we”, “us”) provides physiotherapy, exercise physiology and clinical pilates at {fullAddress}. As a health
+        service provider, we are bound by the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles. This policy
+        explains how we collect, use, store and disclose your personal information, including health information.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>We collect the information we need to provide safe, appropriate care and to run the practice. This may include:</p>
+      <ul>
+        <li>your name, date of birth, address, phone number and email address</li>
+        <li>health information, such as your medical history, symptoms, assessment findings, treatment notes and progress</li>
+        <li>health fund and billing details</li>
+        <li>emergency contact and referrer details</li>
+      </ul>
+      <p>Wherever possible we collect this information directly from you, for example when you book, call, text, email or attend an appointment or class. With your consent, we may also receive information from other health practitioners involved in your care.</p>
+
+      <h2>How we use it</h2>
+      <ul>
+        <li>to assess, treat and care for you</li>
+        <li>to manage bookings, reminders, waitlists and payments</li>
+        <li>to process health fund claims</li>
+        <li>to communicate with other health practitioners involved in your care, with your consent</li>
+        <li>to meet our legal and professional obligations</li>
+      </ul>
+
+      <h2>Who we share it with</h2>
+      <p>We only disclose your information for the purposes above, with your consent, or where the law requires or allows it. This may include:</p>
+      <ul>
+        <li>other health practitioners involved in your care, with your consent</li>
+        <li>your health fund, to process claims</li>
+        <li>service providers who help us run the practice, such as Nookal, our practice management and booking system</li>
+      </ul>
+      <p>
+        <Todo>confirm whether any information is stored or processed overseas (for example by Nookal or other software providers), and where</Todo>
+      </p>
+      <p>
+        <Todo>confirm whether healthcare-specific AI tools are still used for admin (notes, summary emails, letters), which ones, and how information is protected. Describe them here if so.</Todo>
+      </p>
+
+      <h2>How we store and protect it</h2>
+      <p>Your records are stored securely in our practice management system, with access limited to the practitioners and staff who need it. We keep health records for as long as the law requires.</p>
+      <p><Todo>confirm the retention period you follow (for example the Queensland requirements for health records)</Todo></p>
+
+      <h2>This website</h2>
+      <ul>
+        <li>This website has no contact or enquiry forms and does not ask you for health information.</li>
+        <li>It does not use cookies or tracking for advertising or analytics. <Todo>update this if analytics are switched on</Todo></li>
+        <li>If you dismiss the notice banner, your browser remembers that choice on your own device. Nothing is sent to us.</li>
+        <li>Our online booking calendar is provided by Nookal and only loads if you choose to open it. Information you enter there is handled by Nookal on our behalf.</li>
+        <li>Links to other websites, such as Google Maps, Google Forms and social media, are covered by those providers’ own privacy policies.</li>
+      </ul>
+
+      <h2>Accessing and correcting your information</h2>
+      <p>You can ask to see the information we hold about you, or ask us to correct it, at any time. Contact us using the details below. We may need to confirm your identity, and in limited cases the law allows us to refuse access; if so, we will explain why.</p>
+
+      <h2>Questions and complaints</h2>
+      <p>
+        If you have a question or concern about your privacy, please contact us first:
+        <a href={site.email.href}>{site.email.address}</a> or <a href={site.phone.href}>{site.phone.display}</a>.
+        <Todo>name the person or role responsible for privacy</Todo>
+      </p>
+      <p>
+        If you are not satisfied with our response, you can contact the Office of the Australian Information Commissioner (OAIC)
+        at <a href="https://www.oaic.gov.au">www.oaic.gov.au</a> or on 1300 363 992.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy from time to time. The current version is always on this page. <Todo>last updated date</Todo></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy {
+    max-width: none;
+  }
+
+  .policy :global(.todo) {
+    margin-block: var(--space-2xs);
+  }
+</style>

@@ -1,0 +1,334 @@
+---
+// Patient information: practical facts gathered from the old newsletters and pages,
+// in one evergreen place. Facts live in src/data/policies.ts and src/data/site.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import Todo from '../components/Todo.astro';
+import ClosureNote from '../components/ClosureNote.astro';
+import BookingBand from '../components/BookingBand.astro';
+import { site, fullAddress } from '../data/site';
+import { cancellationPolicy, classFacts, studioEtiquette, booking } from '../data/policies';
+
+const sections = [
+  { id: 'booking', label: 'Booking' },
+  { id: 'first-visit', label: 'Your first visit' },
+  { id: 'cancellations', label: 'Cancellations' },
+  { id: 'fees', label: 'Fees and rebates' },
+  { id: 'classes', label: 'Classes' },
+  { id: 'at-the-clinic', label: 'At the clinic' },
+  { id: 'privacy', label: 'Your privacy' },
+];
+---
+
+<BaseLayout
+  title="Patient information"
+  description="Booking, your first visit, cancellations, fees and rebates, class information and what to know before you visit Embrace Movement Clinic in McDowall."
+>
+  <PageHero
+    crumbs={[{ label: 'Patient information' }]}
+    eyebrow="Before you visit"
+    title="Patient information"
+    lede="Everything you need to know about booking, your first visit, cancellations, fees and classes."
+  />
+
+  <div class="section">
+    <div class="wrap layout">
+      <nav class="toc" aria-label="On this page">
+        <p class="toc__title">On this page</p>
+        <ul role="list">
+          {
+            sections.map((s) => (
+              <li>
+                <a href={`#${s.id}`}>{s.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="content">
+        <ClosureNote />
+
+        <section id="booking" aria-labelledby="booking-h" class="block">
+          <h2 id="booking-h">Booking</h2>
+          <div class="cards">
+            <div class="card">
+              <Icon name="calendar" size={24} />
+              <h3 class="h4">Book online</h3>
+              <p>Book appointments, pre-class assessments and classes through our online booking portal.</p>
+              <Button href={site.booking.page} size="s">Book now</Button>
+            </div>
+            <div class="card">
+              <Icon name="phone" size={24} />
+              <h3 class="h4">Call or text</h3>
+              <p>
+                Call <a href={site.phone.href}>{site.phone.display}</a>. {booking.waitlistText}
+                <a href={site.phone.href.replace('tel:', 'sms:')}>{site.phone.display}</a>.
+              </p>
+            </div>
+            <div class="card">
+              <Icon name="mail" size={24} />
+              <h3 class="h4">Email</h3>
+              <p><a href={site.email.href} class="email">{site.email.address}</a></p>
+            </div>
+          </div>
+          <p class="tip"><Icon name="info" size={20} /><span>{booking.bookingCode}</span></p>
+        </section>
+
+        <section id="first-visit" aria-labelledby="first-h" class="block">
+          <h2 id="first-h">Your first visit</h2>
+          <p>
+            New clients start with an initial consultation. Your practitioner will talk with you about your medical history,
+            concerns and goals, and complete an assessment before recommending treatment.
+          </p>
+          <p>
+            Each service page explains what to expect in more detail, including
+            <a href="/pelvic-health-physiotherapy#expect">pelvic floor physiotherapy</a>.
+          </p>
+          <p>For classes, a once-off pre-class assessment is required before you start.</p>
+          <h3 class="h4">What to bring</h3>
+          <Todo as="div">what clients should bring to a first appointment (for example a referral, health fund card or comfortable clothing)</Todo>
+        </section>
+
+        <section id="cancellations" aria-labelledby="cancel-h" class="block">
+          <h2 id="cancel-h">Cancellations</h2>
+          {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
+        </section>
+
+        <section id="fees" aria-labelledby="fees-h" class="block">
+          <h2 id="fees-h">Fees and rebates</h2>
+          <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
+          <ul class="list">
+            <li>Exercise sessions may be claimable with private health, depending on your level of cover.</li>
+            <li>
+              Class packages are available, and you can still claim on your health fund if you purchase a package.
+              <Todo>confirm class packages and prices are current</Todo>
+            </li>
+          </ul>
+          <Todo as="div">whether you accept Medicare (GP care plan) referrals, DVA, NDIS or WorkCover. Add here if so.</Todo>
+        </section>
+
+        <section id="classes" aria-labelledby="classes-h" class="block">
+          <h2 id="classes-h">Classes</h2>
+          <dl class="facts">
+            {
+              classFacts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <p>{booking.classes}</p>
+          <h3 class="h4">What to wear</h3>
+          <ul class="list">
+            {
+              studioEtiquette.map((e) => (
+                <li>
+                  <strong>{e.name}.</strong> {e.detail}
+                </li>
+              ))
+            }
+          </ul>
+          <p><a href="/pilates">Pilates and class timetable</a></p>
+        </section>
+
+        <section id="at-the-clinic" aria-labelledby="clinic-h" class="block">
+          <h2 id="clinic-h">At the clinic</h2>
+          <dl class="facts">
+            <div>
+              <dt>Address</dt>
+              <dd><a href={site.address.directionsUrl}>{fullAddress}</a></dd>
+            </div>
+            <div>
+              <dt>Parking</dt>
+              <dd><Todo>parking details</Todo></dd>
+            </div>
+            <div>
+              <dt>Access</dt>
+              <dd><Todo>accessibility details (e.g. steps, wheelchair access)</Todo></dd>
+            </div>
+          </dl>
+          <h3 class="h4"><Icon name="paw" size={18} /> Meet Jeff</h3>
+          <p>
+            You may be lucky to meet the clinic dog, Jeff. He is extremely friendly and just wants to say hello to all the patients,
+            then will go back to sleep on the sunny driveway. If you are not a dog person, don’t stress: he can nap in another room!
+          </p>
+        </section>
+
+        <section id="privacy" aria-labelledby="privacy-h" class="block">
+          <h2 id="privacy-h">Your privacy</h2>
+          <p>
+            We handle your personal and health information in line with the Australian Privacy Principles. Bookings are managed
+            in Nookal, our practice management system.
+          </p>
+          <p><a href="/privacy">Read our privacy policy</a></p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <BookingBand />
+</BaseLayout>
+
+<style>
+  .layout {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  @media (min-width: 62em) {
+    .layout {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-m));
+    }
+  }
+
+  .toc {
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+  }
+
+  .toc__title {
+    margin-bottom: var(--space-2xs);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-s);
+  }
+
+  @media (min-width: 62em) {
+    .toc ul {
+      display: grid;
+    }
+  }
+
+  .toc a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    font-weight: 550;
+  }
+
+  .content {
+    display: grid;
+    gap: var(--space-xl);
+    max-width: 50rem;
+  }
+
+  .block {
+    display: grid;
+    gap: var(--space-s);
+    scroll-margin-top: calc(var(--header-h) + var(--space-m));
+  }
+
+  .block h2 {
+    font-size: var(--step-3);
+  }
+
+  .block h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: var(--space-xs);
+  }
+
+  .block > p {
+    max-width: var(--measure);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .card {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+    justify-items: start;
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg-alt);
+  }
+
+  .card :global(svg) {
+    color: var(--color-brand);
+  }
+
+  .card p {
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .email {
+    overflow-wrap: anywhere;
+  }
+
+  .tip {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+  }
+
+  .tip :global(svg) {
+    margin-top: 0.15em;
+    flex-shrink: 0;
+    color: var(--color-brand);
+  }
+
+  .list {
+    display: grid;
+    gap: var(--space-xs);
+    padding-left: 1.25em;
+  }
+
+  .facts {
+    display: grid;
+  }
+
+  .facts div {
+    display: grid;
+    gap: var(--space-3xs);
+    padding-block: var(--space-xs);
+    border-top: 1px solid var(--color-line);
+  }
+
+  @media (min-width: 40em) {
+    .facts div {
+      grid-template-columns: 10rem 1fr;
+      gap: var(--space-s);
+    }
+  }
+
+  .facts dt {
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .facts dd {
+    margin: 0;
+  }
+</style>

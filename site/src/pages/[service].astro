@@ -1,0 +1,433 @@
+---
+// One-on-one service pages (physiotherapy, pelvic floor, vestibular, exercise physiology).
+// Same structure for every service: hero → is this for you → what to expect →
+// treatment → who you'll see → good to know → related → book. Pilates has its own page.
+import { getCollection, getEntries, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import Steps from '../components/Steps.astro';
+import PractitionerList from '../components/PractitionerList.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import BookingBand from '../components/BookingBand.astro';
+import ClosureNote from '../components/ClosureNote.astro';
+import { site } from '../data/site';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services', (s) => s.data.kind === 'appointment');
+  return services.map((service) => ({ params: { service: service.id }, props: { service } }));
+}
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+const d = service.data;
+const { Content } = await render(service);
+const hasBody = Boolean(service.body?.trim());
+const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
+const team = (await getEntries(d.practitioners)) as CollectionEntry<'team'>[];
+const names = team.map((t) => t.data.firstName);
+const seeLine = names.length > 1 ? `${names.slice(0, -1).join(', ')} or ${names.at(-1)}` : names[0];
+
+const sections = [
+  { id: 'for-you', label: d.forYou.heading === 'Is this for you?' ? 'Is this for you?' : 'Conditions' },
+  { id: 'expect', label: 'What to expect' },
+  ...(d.treatments ? [{ id: 'treatment', label: 'Treatment' }] : []),
+  { id: 'who', label: 'Who you’ll see' },
+];
+---
+
+<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.image ? d.title : undefined}>
+  <PageHero crumbs={[{ label: 'Services', href: '/services' }, { label: d.title }]} eyebrow="One-on-one appointments" title={d.title} lede={d.lede}>
+    <p class="see">
+      <Icon name="user" size={18} /> You’ll see {seeLine}
+    </p>
+    <Fragment slot="actions">
+      <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
+      <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
+        <span class="visually-hidden">Call </span>{site.phone.display}
+      </Button>
+    </Fragment>
+    <Photo slot="aside" src={d.image} alt="" note={d.imageNote} ratio="4 / 3" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
+  </PageHero>
+
+  <nav class="onpage" aria-label="On this page">
+    <div class="wrap">
+      <ul role="list">
+        {
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`}>{s.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+
+  {
+    hasBody && (
+      <section class="section section--tight" aria-label="About">
+        <div class="wrap prose about">
+          <Content />
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Is this for you? -->
+  <section class="section" id="for-you" aria-labelledby="for-you-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="for-you-h">{d.forYou.heading}</h2>
+        {d.forYou.intro && <p class="head__intro">{d.forYou.intro}:</p>}
+      </div>
+      <ul class="checks" role="list">
+        {
+          d.forYou.items.map((i) => (
+            <li>
+              <Icon name="check" size={20} class="checks__icon" />
+              <div>
+                <p class="checks__name">{i.name}</p>
+                {i.detail && <p class="checks__detail">{i.detail}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="section section--alt" id="expect" aria-labelledby="expect-h">
+    <div class="wrap expect">
+      <div class="expect__head">
+        <p class="eyebrow">Your first appointment</p>
+        <h2 id="expect-h">What to expect</h2>
+      </div>
+      <div class="expect__body">
+        {d.expect.text && <p class="expect__text">{d.expect.text}</p>}
+        {d.expect.steps && <Steps steps={d.expect.steps} />}
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatment -->
+  {
+    d.treatments && (
+      <section class="section" id="treatment" aria-labelledby="treatment-h">
+        <div class="wrap">
+          <div class="head">
+            <h2 id="treatment-h">{d.treatments.heading}</h2>
+          </div>
+          <ul class="treatments" role="list">
+            {d.treatments.items.map((t) => (
+              <li>
+                <h3 class="h4">{t.name}</h3>
+                {t.detail && <p>{t.detail}</p>}
+              </li>
+            ))}
+          </ul>
+          {d.goodToKnow.length > 0 && (
+            <ul class="good" role="list">
+              {d.goodToKnow.map((g) => (
+                <li>
+                  <Icon name="info" size={20} />
+                  <p>
+                    <strong>{g.name}.</strong> {g.detail}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Who you'll see -->
+  <section class="section section--alt" id="who" aria-labelledby="who-h">
+    <div class="wrap who">
+      <div class="head">
+        <h2 id="who-h">Who you’ll see</h2>
+        {d.practitionersNote && <p class="head__intro">{d.practitionersNote}</p>}
+      </div>
+      <PractitionerList refs={d.practitioners} />
+      <ClosureNote />
+    </div>
+  </section>
+
+  <!-- Practical links -->
+  <section class="section section--tight" aria-labelledby="practical-h">
+    <div class="wrap">
+      <h2 id="practical-h" class="h3">Good to know</h2>
+      <ul class="practical" role="list">
+        <li>
+          <a href="/patient-information#fees">
+            <Icon name="card" size={22} />
+            <span><strong>Fees and rebates</strong> What appointments cost and what you can claim</span>
+          </a>
+        </li>
+        <li>
+          <a href="/patient-information#cancellations">
+            <Icon name="calendar" size={22} />
+            <span><strong>Cancellations</strong> Our cancellation policy</span>
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            <Icon name="map-pin" size={22} />
+            <span><strong>Getting here</strong> 33 Brynner Street, McDowall</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="section section--alt" aria-labelledby="related-h">
+        <div class="wrap">
+          <div class="head">
+            <p class="eyebrow">Related</p>
+            <h2 id="related-h">You might also need</h2>
+          </div>
+          <ul class="related" role="list">
+            {related.map((r) => (
+              <li>
+                <ServiceCard service={r} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <BookingBand text={`Book online, or call us on ${site.phone.display} if you’re not sure which appointment you need.`} />
+</BaseLayout>
+
+<style>
+  .see {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 600;
+  }
+
+  /* On this page */
+  .onpage {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 20;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .onpage ul {
+    display: flex;
+    gap: var(--space-2xs);
+    overflow-x: auto;
+    padding-block: var(--space-2xs);
+    scrollbar-width: none;
+  }
+
+  .onpage a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0.95em;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .onpage a:hover {
+    background: var(--color-bg-alt);
+  }
+
+  :global(html) {
+    scroll-padding-top: calc(var(--header-h) + 4rem);
+  }
+
+  .section--tight {
+    padding-block: var(--space-xl);
+  }
+
+  .head {
+    display: grid;
+    gap: var(--space-xs);
+    max-width: 46rem;
+    margin-bottom: var(--space-l);
+  }
+
+  .head__intro {
+    color: var(--color-ink-muted);
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .about {
+    font-size: var(--step-1);
+  }
+
+  /* Conditions */
+  .checks {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+
+  .checks li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding: var(--space-m);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-l);
+  }
+
+  :global(.checks__icon) {
+    margin-top: 0.2em;
+    color: var(--color-brand);
+  }
+
+  .checks__name {
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1.3;
+  }
+
+  .checks__detail {
+    margin-top: var(--space-3xs);
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  /* What to expect */
+  .expect {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  @media (min-width: 56em) {
+    .expect {
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  .expect__head {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+  }
+
+  .expect__body {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .expect__text {
+    font-size: var(--step-1);
+    line-height: 1.6;
+    max-width: var(--measure);
+  }
+
+  /* Treatment */
+  .treatments {
+    display: grid;
+    gap: 0 var(--space-l);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  }
+
+  .treatments li {
+    display: grid;
+    gap: var(--space-3xs);
+    padding-block: var(--space-m);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .treatments p {
+    color: var(--color-ink-muted);
+  }
+
+  .good {
+    margin-top: var(--space-l);
+  }
+
+  .good li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+  }
+
+  .good :global(svg) {
+    margin-top: 0.15em;
+    color: var(--color-brand);
+  }
+
+  /* Who */
+  .who :global(.closure) {
+    margin-top: var(--space-m);
+  }
+
+  /* Practical */
+  .practical {
+    display: grid;
+    gap: var(--space-s);
+    margin-top: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .practical a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    align-items: start;
+    height: 100%;
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .practical a:hover {
+    box-shadow: var(--shadow-m);
+  }
+
+  .practical :global(svg) {
+    color: var(--color-brand);
+  }
+
+  .practical span {
+    display: grid;
+    gap: var(--space-3xs);
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .practical strong {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+  }
+
+  .related {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+</style>

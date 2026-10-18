@@ -1,0 +1,13 @@
+# 301 redirects from the old Squarespace URLs (Cloudflare Pages format).
+# Old URL                     New URL                              Status
+/homepage                     /                                    301
+/old-services                 /services                            301
+/womens-health-physio         /pelvic-health-physiotherapy         301
+/pilates-1                    /vestibular-physiotherapy            301
+/group-exercise-timetable     /pilates#timetable                   301
+/contact-us-1                 /contact                             301
+/clinic-updates               /news/clinic-update-june-2025        301
+/xmas-2024                    /news/christmas-2024                 301
+/baby-news                    /news/july-2026-update               301
+/blog-posts/*                 /news                                301
+/classes                      /pilates                             301

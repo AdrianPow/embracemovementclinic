@@ -1,0 +1,195 @@
+---
+// Book now. The Nookal booking calendar only loads when the visitor asks for it
+// (no third-party content until then); without JavaScript, the portal link still works.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import ClosureNote from '../components/ClosureNote.astro';
+import { site } from '../data/site';
+import { booking, cancellationPolicy } from '../data/policies';
+---
+
+<BaseLayout
+  title="Book now"
+  description="Book physiotherapy, exercise physiology, pre-class assessments and pilates classes online at Embrace Movement Clinic, McDowall."
+>
+  <PageHero crumbs={[{ label: 'Book now' }]} eyebrow="Book online" title="Book an appointment" lede="Book appointments, pre-class assessments and classes online, or call us if you’d like help choosing." />
+
+  <section class="section" aria-labelledby="paths-h">
+    <div class="wrap">
+      <h2 id="paths-h" class="visually-hidden">Before you book</h2>
+      <ClosureNote />
+      <div class="paths">
+        <div class="path">
+          <p class="eyebrow">New to Embrace</p>
+          <h3>Start with an assessment</h3>
+          <p>Book an initial appointment for the service you need. For classes, book a once-off pre-class assessment first.</p>
+          <a href="/services">Not sure which service? <Icon name="arrow-right" size={16} /></a>
+        </div>
+        <div class="path">
+          <p class="eyebrow">Returning</p>
+          <h3>Booking classes</h3>
+          <p>When booking a class, select the relevant practitioner. {booking.bookingCode}</p>
+          <a href="/pilates#timetable">Class timetable <Icon name="arrow-right" size={16} /></a>
+        </div>
+        <div class="path">
+          <p class="eyebrow">Prefer to talk?</p>
+          <h3>Call or text</h3>
+          <p>
+            Call <a href={site.phone.href}>{site.phone.display}</a>, or text us to join the cancellation waitlist.
+          </p>
+          <a href={site.email.href}>Email us <Icon name="arrow-right" size={16} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="portal-h">
+    <div class="wrap portal">
+      <div class="portal__head">
+        <h2 id="portal-h">Online booking</h2>
+        <p>Bookings are handled by Nookal, our practice management system.</p>
+      </div>
+      <div class="portal__frame" data-portal>
+        <div class="portal__placeholder">
+          <Icon name="calendar" size={32} />
+          <p>The booking calendar opens here.</p>
+          <div class="portal__actions">
+            <button type="button" class="portal__load" data-load hidden>Show booking calendar</button>
+            <Button href={site.booking.portalUrl} variant="secondary" icon="external">Open the booking portal</Button>
+          </div>
+        </div>
+      </div>
+      <p class="portal__policy">
+        <strong>Cancellations:</strong>
+        {cancellationPolicy.summary} <a href="/patient-information#cancellations">Cancellation policy</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ embedUrl: site.booking.embedUrl }}>
+  const frame = document.querySelector('[data-portal]');
+  const load = document.querySelector('[data-load]');
+  if (frame && load) {
+    load.hidden = false;
+    load.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = embedUrl;
+      iframe.title = 'Online booking calendar (Nookal)';
+      iframe.loading = 'lazy';
+      frame.replaceChildren(iframe);
+      iframe.focus();
+    });
+  }
+</script>
+
+<style>
+  .wrap > :global(.closure) {
+    margin-bottom: var(--space-l);
+  }
+
+  .paths {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .path {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+  }
+
+  .path h3 {
+    font-size: var(--step-2);
+  }
+
+  .path p:not(.eyebrow) {
+    color: var(--color-ink-muted);
+  }
+
+  .path > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-top: var(--space-2xs);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .portal {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .portal__head {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .portal__head p {
+    color: var(--color-ink-muted);
+  }
+
+  .portal__frame {
+    overflow: hidden;
+    min-height: 22rem;
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+  }
+
+  .portal__frame :global(iframe) {
+    width: 100%;
+    height: 56rem;
+    border: 0;
+  }
+
+  .portal__placeholder {
+    display: grid;
+    place-items: center;
+    gap: var(--space-s);
+    min-height: 22rem;
+    padding: var(--space-l);
+    text-align: center;
+  }
+
+  .portal__placeholder :global(svg) {
+    color: var(--color-brand);
+  }
+
+  .portal__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-xs);
+  }
+
+  .portal__load {
+    min-height: 2.75rem;
+    padding: 0.7em 1.4em;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .portal__load[hidden] {
+    display: none;
+  }
+
+  .portal__load:hover {
+    background: var(--color-brand-deep);
+  }
+
+  .portal__policy {
+    font-size: var(--step--1);
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Photo from '../../components/Photo.astro';
+import Icon from '../../components/Icon.astro';
+import BookingBand from '../../components/BookingBand.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<'news'>;
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
+---
+
+<BaseLayout title={d.title} description={d.summary}>
+  <article class="section" aria-labelledby="page-title">
+    <div class="wrap-narrow article">
+      <Breadcrumbs items={[{ label: 'News', href: '/news' }, { label: d.title }]} />
+      <header class="article__head">
+        <time datetime={d.date.toISOString().slice(0, 10)}>{month}</time>
+        <h1 id="page-title">{d.title}</h1>
+      </header>
+      {
+        d.archivedNote && (
+          <p class="archived">
+            <Icon name="info" size={20} />
+            <span>
+              {d.archivedNote} <a href="/patient-information">Patient information</a>
+            </span>
+          </p>
+        )
+      }
+      {
+        d.imageNotes.length > 0 && (
+          <div class="images">
+            {d.imageNotes.map((n) => (
+              <Photo alt="" note={n} ratio="4 / 3" sizes="(min-width: 46rem) 23rem, 100vw" />
+            ))}
+          </div>
+        )
+      }
+      <div class="prose post-body">
+        <Content />
+      </div>
+      <p class="back"><a href="/news"><Icon name="arrow-right" size={16} class="back__icon" /> All news</a></p>
+    </div>
+  </article>
+  <BookingBand />
+</BaseLayout>
+
+<style>
+  .article {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-m);
+  }
+
+  .article__head {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .article__head time {
+    font-weight: 600;
+    color: var(--color-ink-muted);
+  }
+
+  .article h1 {
+    font-size: var(--step-4);
+  }
+
+  .archived {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+  }
+
+  .archived :global(svg) {
+    margin-top: 0.15em;
+    flex-shrink: 0;
+    color: var(--color-brand);
+  }
+
+  .images {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .images :global(.photo) {
+    border-radius: var(--radius);
+  }
+
+  .post-body {
+    font-size: var(--step-1);
+    line-height: 1.65;
+  }
+
+  .post-body :global(h2) {
+    font-size: var(--step-3);
+  }
+
+  .post-body :global(h3) {
+    font-size: var(--step-2);
+  }
+
+  .back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  :global(.back__icon) {
+    transform: rotate(180deg);
+  }
+</style>

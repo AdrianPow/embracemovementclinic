@@ -60,7 +60,8 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 - A footer with hours, address, phone, email, socials and the privacy policy link.
 
 **Information architecture**
-- Propose a simplified menu in plan mode, for example: Services (dropdown), Classes & Timetable, Team, Contact, Book Now.
+- Redesigned from first principles on 18 Oct 2026. Read `docs/site-strategy.md` before changing structure.
+- Menu: Services (dropdown, grouped into one-on-one and classes) · Classes · Team · Patient info · Contact · Book now.
 
 **Performance target**
 - Lighthouse 95+ on mobile for Performance, Accessibility, Best Practices and SEO.

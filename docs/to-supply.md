@@ -44,6 +44,16 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [ ] Are the **Google Forms** (feedback survey, SMS list, home program request) still active? They're linked from the archived June 2025 update.
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
 - [ ] Existing privacy policy, terms or cancellation policy
+- [ ] **Fees** for initial and follow-up appointments, pre-class assessments and classes
+- [ ] **Class packages:** are they still offered, and at what price?
+- [ ] **Funding:** do you accept Medicare (GP care plan) referrals, DVA, NDIS or WorkCover?
+- [ ] **What to bring** to a first appointment
+- [ ] **Accessibility** of the clinic (steps, wheelchair access)
+- [ ] **Confirm class facts:** a maximum of 4–5 people, 45 minutes, and the 8-hour / 50% cancellation policy (older pages said 4 people, 40 minutes and 24 hours)
+- [ ] **Grip socks:** still sold in the studio? (The June 2025 price was $15; it isn't shown on the new pages)
+- [ ] A photo of Jeff, the clinic dog (optional)
+- [ ] **Privacy policy details:** a privacy contact, whether data is stored overseas (e.g. by Nookal), whether AI admin tools are still used, and your record retention period. Then approve the draft at `/privacy`.
+- [ ] Approve the wording changes in `docs/changes.md`
 
 ## Access (confirm who has it; don't store it here)
 

@@ -1,0 +1,66 @@
+---
+// Visible breadcrumb trail plus BreadcrumbList structured data.
+import { site } from '../data/site';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  /** Light text for use on the forest background. */
+  onBrand?: boolean;
+}
+
+const { items, onBrand = false } = Astro.props;
+const trail: Crumb[] = [{ label: 'Home', href: '/' }, ...items];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: new URL(c.href, site.url).href } : {}),
+  })),
+};
+---
+
+<nav class:list={['crumbs', { 'crumbs--on-brand': onBrand }]} aria-label="Breadcrumb">
+  <ol role="list">
+    {
+      trail.map((c, i) => (
+        <li>
+          {c.href && i < trail.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<style>
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0;
+    font-size: var(--step--1);
+    color: var(--color-ink-muted);
+  }
+
+  .crumbs li + li::before {
+    content: '/';
+    margin-inline: 0.55em;
+    opacity: 0.6;
+  }
+
+  .crumbs a {
+    color: inherit;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  }
+
+  .crumbs--on-brand ol {
+    color: var(--color-on-brand-muted);
+  }
+</style>

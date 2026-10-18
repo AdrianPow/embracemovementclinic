@@ -12,7 +12,7 @@ const { name, titles, status, photo, photoNote } = member.data;
 ---
 
 <a class="team-card" href={`/team/${member.id}`}>
-  <Photo src={photo} alt="" note={photoNote} ratio="4 / 5" sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw" />
+  <Photo src={photo} alt="" note={photoNote} ratio="1 / 1" sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw" />
   <div class="team-card__body">
     <h3 class="h4">{name}</h3>
     <p class="team-card__titles">{titles.join(' · ')}</p>

@@ -1,0 +1,47 @@
+---
+// Inline callout repeating the site-wide notice, for pages where it matters most
+// (booking, contact, practitioners). Hidden automatically when the notice is off.
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const { notice } = site;
+const expired = notice.until ? new Date() > new Date(`${notice.until}T23:59:59+10:00`) : false;
+const show = notice.enabled && !expired;
+---
+
+{
+  show && (
+    <aside class="closure" aria-label="Clinic notice">
+      <Icon name="info" size={22} />
+      <p>
+        <strong>{notice.message}</strong> {notice.link && <a href={notice.link.href}>{notice.link.label}</a>}
+      </p>
+    </aside>
+  )
+}
+
+<style>
+  .closure {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 70%, transparent);
+    color: var(--color-ink);
+  }
+
+  .closure :global(svg) {
+    margin-top: 0.1em;
+    color: var(--color-brand);
+  }
+
+  .closure strong {
+    font-weight: 600;
+  }
+
+  .closure a {
+    font-weight: 650;
+  }
+</style>

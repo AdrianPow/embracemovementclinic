@@ -15,7 +15,8 @@ Fill these in before the build starts. Claude Code will ask about anything left 
 | Analytics | **None at launch** | Cloudflare Web Analytics (cookie-free) can be switched on later, with approval. The privacy policy must match. |
 | Blog / news | **Archive under `/news` (confirmed 12 Oct 2026)** | The three update pages become dated posts. Non-compliant parts are removed and logged in `changes.md`. |
 | Goal | **Complete rebuild to modernise and refresh the online presence** | Full redesign, not a copy of the Squarespace layout |
-| URLs | **Clean URLs with 301 redirects (confirmed 12 Oct 2026)** | See the URL table in `changes.md`. |
+| URLs | **Clean URLs with 301 redirects (confirmed 12 Oct 2026)** | See the URL table in `changes.md`. Classes and timetable merged at `/pilates` (18 Oct 2026). |
+| Site structure | **Redesigned from first principles (owner request, 18 Oct 2026)** | Problem-first navigation, one classes page, a Patient information page, and a standard service page structure. Reasoning in `docs/site-strategy.md`. |
 | Temporary closure | **Site-wide notice banner (confirmed 12 Oct 2026)** | Set in `site/src/data/site.ts` (`notice`). Also noted on Book Now, Contact and the team cards. |
 | Fonts | **Red Hat Display (headings) + Red Hat Text (body), chosen 12 Oct 2026** | Self-hosted variable fonts, about 60 KB together. |
 | Logo | **Plain wordmark only, chosen 12 Oct 2026** | The brush-stroke circle is dropped. `assets/brand/logo-wordmark.svg` was traced from the supplied black wordmark and takes any colour. |

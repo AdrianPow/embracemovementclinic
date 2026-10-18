@@ -1,0 +1,148 @@
+---
+// Services hub (old URL /old-services). Problem finder first, then the two ways to work with us.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import NeedsFinder from '../components/NeedsFinder.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import BookingBand from '../components/BookingBand.astro';
+import Button from '../components/Button.astro';
+import Photo from '../components/Photo.astro';
+import { site } from '../data/site';
+import { classFacts } from '../data/policies';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const appointments = services.filter((s) => s.data.kind === 'appointment');
+const classes = services.find((s) => s.data.kind === 'class');
+---
+
+<BaseLayout
+  title="Services"
+  description="Musculoskeletal, pelvic floor and vestibular physiotherapy, exercise physiology, and clinical pilates and small group classes in McDowall."
+>
+  <PageHero
+    crumbs={[{ label: 'Services' }]}
+    eyebrow="Services"
+    title="How we can help"
+    lede="One-on-one appointments and small group classes for injuries and pain, pelvic health, pregnancy and postnatal care, dizziness and balance, healthy ageing and performance."
+  >
+    <Fragment slot="actions">
+      <Button href="#help">Find help for a problem</Button>
+      <Button href={site.booking.page} variant="secondary" icon="calendar">Book now</Button>
+    </Fragment>
+  </PageHero>
+
+  <section class="section" id="help" aria-labelledby="help-h">
+    <div class="wrap">
+      <SectionHead id="help-h" eyebrow="Find the right care" title="What can we help with?" intro="Start with what you’re dealing with, then choose a service." />
+      <NeedsFinder />
+    </div>
+  </section>
+
+  <section class="section section--alt" id="appointments" aria-labelledby="appts-h">
+    <div class="wrap">
+      <SectionHead
+        id="appts-h"
+        eyebrow="One-on-one"
+        title="Appointments"
+        intro="Assessment and treatment with a physiotherapist or exercise physiologist, built around your needs and goals."
+      />
+      <ul class="service-grid" role="list">
+        {
+          appointments.map((s) => (
+            <li>
+              <ServiceCard service={s} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {
+    classes && (
+      <section class="section" id="classes" aria-labelledby="classes-h">
+        <div class="wrap classes">
+          <Photo alt="" note={classes.data.imageNote} src={classes.data.image} ratio="4 / 3" class="classes__photo" sizes="(min-width: 56em) 45vw, 100vw" />
+          <div class="classes__text">
+            <p class="eyebrow">Small groups</p>
+            <h2 id="classes-h">{classes.data.title}</h2>
+            <p class="lede">{classes.data.lede}</p>
+            <dl class="classes__facts">
+              {classFacts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <div class="classes__cta">
+              <Button href="/pilates">Classes &amp; timetable</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <BookingBand title="Not sure where to start?" text={`Call or text us on ${site.phone.display} and we’ll help you choose, or book online.`} />
+</BaseLayout>
+
+<style>
+  .service-grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 40em) {
+    .service-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .classes {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .classes {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  :global(.classes__photo) {
+    border-radius: var(--radius-l);
+  }
+
+  .classes__text {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .classes__facts div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-xs);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .classes__facts dt {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .classes__facts dd {
+    margin: 0;
+    color: var(--color-ink-muted);
+    text-align: right;
+  }
+
+  .classes__cta {
+    padding-top: var(--space-2xs);
+  }
+</style>

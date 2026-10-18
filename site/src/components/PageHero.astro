@@ -1,0 +1,95 @@
+---
+// Inner-page hero: breadcrumbs, eyebrow, title, lede, actions (slot "actions"),
+// optional side content (slot "aside", e.g. a photo). Forest or light background.
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  lede?: string;
+  crumbs?: { label: string; href?: string }[];
+  tone?: 'brand' | 'light';
+}
+
+const { title, eyebrow, lede, crumbs, tone = 'light' } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+
+<section class:list={['page-hero', `page-hero--${tone}`, { 'on-brand': tone === 'brand' }]} aria-labelledby="page-title">
+  <div class:list={['wrap', 'page-hero__grid', { 'page-hero__grid--split': hasAside }]}>
+    <div class="page-hero__text">
+      {crumbs && <Breadcrumbs items={crumbs} onBrand={tone === 'brand'} />}
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 id="page-title">{title}</h1>
+      {lede && <p class="lede page-hero__lede">{lede}</p>}
+      <slot />
+      {
+        Astro.slots.has('actions') && (
+          <div class="page-hero__actions">
+            <slot name="actions" />
+          </div>
+        )
+      }
+    </div>
+    {
+      hasAside && (
+        <div class="page-hero__aside">
+          <slot name="aside" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-block: clamp(2rem, 1.25rem + 3.5vw, 4.5rem) clamp(2.5rem, 1.5rem + 4.5vw, 5.5rem);
+  }
+
+  .page-hero--light {
+    background: var(--color-bg-alt);
+  }
+
+  .page-hero__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  .page-hero__text {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: start;
+    max-width: 44rem;
+  }
+
+  .page-hero__text :global(.crumbs) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .page-hero h1 {
+    font-size: var(--step-5);
+  }
+
+  .page-hero__lede {
+    max-width: 38rem;
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    padding-top: var(--space-2xs);
+  }
+
+  .page-hero__aside :global(.photo) {
+    border-radius: var(--radius-l);
+  }
+
+  @media (min-width: 56em) {
+    .page-hero__grid--split {
+      grid-template-columns: 1.15fr 1fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

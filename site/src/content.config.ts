@@ -2,28 +2,55 @@ import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Each service is one Markdown file in src/content/services. The file name is the URL,
-// e.g. physiotherapy.md is served at /physiotherapy.
-// Optional fields render as a visible TODO on the service page until they're filled in.
+// A labelled point, e.g. a condition or a treatment, with an optional explanation.
+const item = z.object({
+  name: z.string(),
+  detail: z.string().optional(),
+});
+
+// Each service is one Markdown file in src/content/services. The file name is the URL
+// (physiotherapy.md is /physiotherapy). The Markdown body is an optional "About" section.
+// Clinical wording changes must be logged in docs/changes.md.
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      /** Shorter name for tight spaces (menus, chips). */
+      shortTitle: z.string().optional(),
       order: z.number(),
-      /** One or two sentences for cards and the services menu. */
+      /** One-on-one appointments, or small-group classes. */
+      kind: z.enum(['appointment', 'class']),
+      /** One or two sentences for cards. */
       summary: z.string(),
+      /** Opening line under the page title. */
+      lede: z.string(),
+      forYou: z.object({
+        heading: z.string(),
+        intro: z.string().optional(),
+        items: z.array(item),
+      }),
+      expect: z.object({
+        /** Kept verbatim where it's consent or examination wording. */
+        text: z.string().optional(),
+        steps: z.array(item).optional(),
+      }),
+      treatments: z
+        .object({
+          heading: z.string().default('Treatment may include'),
+          items: z.array(item),
+        })
+        .optional(),
+      goodToKnow: z.array(item).default([]),
+      practitioners: z.array(reference('team')),
+      practitionersNote: z.string().optional(),
+      related: z.array(reference('services')).default([]),
       image: image().optional(),
       /** Which photo is intended, until it's supplied (see reference/images.json). */
       imageNote: z.string().optional(),
-      seoTitle: z.string().optional(),
-      seoDescription: z.string().optional(),
-      whoFor: z.array(z.string()).optional(),
-      conditions: z.array(z.string()).optional(),
-      treatments: z.array(z.string()).optional(),
-      details: z.array(z.string()).optional(),
-      practitioners: z.array(reference('team')).optional(),
-      /** The page's old Squarespace URL, if it changed (301 in public/_redirects). */
+      seoTitle: z.string(),
+      seoDescription: z.string(),
+      /** Old Squarespace URL if it changed (301 in public/_redirects). */
       oldUrl: z.string().optional(),
     }),
 });
@@ -34,15 +61,34 @@ const team = defineCollection({
   schema: ({ image }) =>
     z.object({
       name: z.string(),
+      firstName: z.string(),
       order: z.number(),
       /** Must match the practitioner's AHPRA registration (see docs/to-supply.md). */
       titles: z.array(z.string()),
+      education: z.array(z.string()).default([]),
       postgradTraining: z.array(z.string()).default([]),
+      experience: z.array(z.string()).default([]),
+      experienceHeading: z.string().default('Experience'),
       /** Short status shown on cards, e.g. leave dates. */
       status: z.string().optional(),
       photo: image().optional(),
       photoNote: z.string().optional(),
+      seoDescription: z.string(),
     }),
 });
 
-export const collections = { services, team };
+// Clinic news. Dated posts; older ones carry an "archived" note.
+const news = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
+  schema: z.object({
+    title: z.string(),
+    /** Shown as month and year only. */
+    date: z.coerce.date(),
+    summary: z.string(),
+    archivedNote: z.string().optional(),
+    imageNotes: z.array(z.string()).default([]),
+    oldUrl: z.string().optional(),
+  }),
+});
+
+export const collections = { services, team, news };

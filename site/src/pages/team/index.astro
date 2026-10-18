@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import TeamCard from '../../components/TeamCard.astro';
+import BookingBand from '../../components/BookingBand.astro';
+import ClosureNote from '../../components/ClosureNote.astro';
+import Photo from '../../components/Photo.astro';
+import Icon from '../../components/Icon.astro';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Meet the team"
+  description="Meet the physiotherapists, exercise physiologist and clinical pilates instructors at Embrace Movement Clinic in McDowall."
+>
+  <PageHero
+    crumbs={[{ label: 'Team' }]}
+    eyebrow="Our team"
+    title="Meet the team"
+    lede="Both of our physiotherapists are clinical pilates instructors with Women’s Pelvic Health Physiotherapy training (APA)."
+  />
+
+  <section class="section" aria-labelledby="people-h">
+    <div class="wrap">
+      <h2 id="people-h" class="visually-hidden">Practitioners</h2>
+      <ClosureNote />
+      <ul class="team-grid" role="list">
+        {
+          team.map((m) => (
+            <li>
+              <TeamCard member={m} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="jeff-h">
+    <div class="wrap jeff">
+      <Photo alt="Jeff, the clinic dog" note="a photo of Jeff, if you have one" ratio="1 / 1" class="jeff__photo" sizes="(min-width: 56em) 30vw, 100vw" />
+      <div class="jeff__text">
+        <p class="eyebrow"><Icon name="paw" size={16} /> Also at the clinic</p>
+        <h2 id="jeff-h">Meet Jeff, the clinic dog</h2>
+        <p class="lede">
+          You may be lucky to meet Jeff. He is extremely friendly and just wants to say hello to all the patients, then will go back
+          to sleep on the sunny driveway.
+        </p>
+        <p>If you are not a dog person, don’t stress: he can nap in another room!</p>
+      </div>
+    </div>
+  </section>
+
+  <BookingBand />
+</BaseLayout>
+
+<style>
+  .team-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    max-width: 56rem;
+  }
+
+  .wrap > :global(.closure) {
+    margin-bottom: var(--space-l);
+    max-width: 56rem;
+  }
+
+  .jeff {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .jeff {
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  :global(.jeff__photo) {
+    border-radius: var(--radius-l);
+    max-width: 22rem;
+  }
+
+  .jeff__text {
+    display: grid;
+    gap: var(--space-s);
+    max-width: 40rem;
+  }
+
+  .jeff__text .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+</style>

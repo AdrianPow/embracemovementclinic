@@ -1,0 +1,95 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+
+const posts = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
+---
+
+<BaseLayout title="Clinic news" description="Updates and newsletters from Embrace Movement Clinic, McDowall.">
+  <PageHero crumbs={[{ label: 'News' }]} eyebrow="News" title="Clinic news" lede="Updates and newsletters from the clinic." />
+
+  <section class="section" aria-labelledby="posts-h">
+    <div class="wrap">
+      <h2 id="posts-h" class="visually-hidden">All posts</h2>
+      <ol class="posts" role="list">
+        {
+          posts.map((p) => (
+            <li>
+              <a class="post" href={`/news/${p.id}`}>
+                <time datetime={p.data.date.toISOString().slice(0, 10)}>{month(p.data.date)}</time>
+                <span class="post__title">{p.data.title}</span>
+                <span class="post__summary">{p.data.summary}</span>
+                {p.data.archivedNote && <span class="post__badge">Archived</span>}
+                <Icon name="arrow-right" size={20} class="post__arrow" />
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .posts {
+    display: grid;
+    max-width: 52rem;
+  }
+
+  .post {
+    position: relative;
+    display: grid;
+    gap: var(--space-2xs);
+    padding: var(--space-l) var(--space-xl) var(--space-l) 0;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .posts li:last-child .post {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .post time {
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--color-ink-muted);
+  }
+
+  .post__title {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+
+  .post:hover .post__title {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .post__summary {
+    color: var(--color-ink-muted);
+  }
+
+  .post__badge {
+    justify-self: start;
+    padding: 0.15em 0.7em;
+    border-radius: var(--radius-pill);
+    background: var(--color-bg-alt);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  :global(.post__arrow) {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-brand);
+  }
+</style>

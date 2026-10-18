@@ -19,7 +19,10 @@ Needs Node 22.12 or later.
 | What | Where |
 |---|---|
 | Clinic details (phone, email, address, booking links, hours, socials, notice banner) | `src/data/site.ts` |
-| Services and practitioners (one Markdown file each) | `src/content/services/`, `src/content/team/` (schema in `src/content.config.ts`) |
+| Services, practitioners and news (one Markdown file each) | `src/content/services/`, `src/content/team/`, `src/content/news/` (schema in `src/content.config.ts`) |
+| "What can we help with?" groups | `src/data/needs.ts` |
+| Cancellation policy, class facts, equipment, studio rules, timetable | `src/data/policies.ts` |
+| Old URL redirects | `public/_redirects` |
 | Menu and footer links | `src/data/navigation.ts` |
 | Colours (Forest palette), type sizes, spacing | `src/styles/tokens.css` |
 | Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
@@ -34,6 +37,7 @@ npm run build && npm run preview
 node scripts/a11y.mjs http://127.0.0.1:4321 /styleguide        # axe-core, WCAG 2.2 AA
 node scripts/screenshot.mjs http://127.0.0.1:4321 <outDir> /    # desktop and mobile screenshots
 node scripts/lighthouse.mjs http://127.0.0.1:4321 /             # Lighthouse mobile, target 95+
+node scripts/check-links.mjs                                    # internal links, anchors and redirects
 npx astro check                                                 # types
 ```
 

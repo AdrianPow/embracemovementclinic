@@ -1,0 +1,278 @@
+---
+// Practitioner profile: photo and roles → status → experience → qualifications → bio → services → book.
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import ClosureNote from '../../components/ClosureNote.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import BookingBand from '../../components/BookingBand.astro';
+import Todo from '../../components/Todo.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const team = await getCollection('team');
+  return team.map((member) => ({ params: { slug: member.id }, props: { member } }));
+}
+
+interface Props {
+  member: CollectionEntry<'team'>;
+}
+
+const { member } = Astro.props;
+const d = member.data;
+const { Content } = await render(member);
+const services = (await getCollection('services', (s) => s.data.practitioners.some((p) => p.id === member.id))).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: d.name,
+  jobTitle: d.titles,
+  worksFor: { '@type': 'MedicalBusiness', name: site.name, url: site.url },
+  url: new URL(`/team/${member.id}`, site.url).href,
+};
+---
+
+<BaseLayout title={`${d.name}`} description={d.seoDescription} jsonLd={jsonLd}>
+  <section class="profile-hero" aria-labelledby="page-title">
+    <div class="wrap profile-hero__grid">
+      <Photo src={d.photo} alt={`${d.name}`} note={d.photoNote} ratio="4 / 5" loading="eager" class="profile-hero__photo" sizes="(min-width: 56em) 35vw, 100vw" />
+      <div class="profile-hero__text">
+        <Breadcrumbs items={[{ label: 'Team', href: '/team' }, { label: d.name }]} />
+        <h1 id="page-title">{d.name}</h1>
+        <ul class="roles" role="list">
+          {d.titles.map((t) => <li>{t}</li>)}
+        </ul>
+        {d.status && <p class="status">{d.status}</p>}
+        <p class="ahpra"><Todo>AHPRA registration name and number, to match the public register</Todo></p>
+        <div class="actions">
+          <Button href={site.booking.page} icon="calendar" size="l">Book with {d.firstName}</Button>
+          <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
+            <span class="visually-hidden">Call </span>{site.phone.display}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about-h">
+    <div class="wrap profile">
+      <aside class="profile__side" aria-label="Qualifications and experience">
+        {
+          d.experience.length > 0 && (
+            <div class="block">
+              <h2 class="h4">{d.experienceHeading}</h2>
+              <ul role="list">
+                {d.experience.map((e) => (
+                  <li>
+                    <Icon name="check" size={18} />
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          d.education.length > 0 && (
+            <div class="block">
+              <h2 class="h4">Qualifications</h2>
+              <ul role="list">
+                {d.education.map((e) => (
+                  <li>
+                    <Icon name="check" size={18} />
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          d.postgradTraining.length > 0 && (
+            <div class="block">
+              <h2 class="h4">Postgraduate training</h2>
+              <ul role="list">
+                {d.postgradTraining.map((e) => (
+                  <li>
+                    <Icon name="check" size={18} />
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+      <div class="profile__main">
+        <h2 id="about-h">About {d.firstName}</h2>
+        <ClosureNote />
+        <div class="prose bio">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    services.length > 0 && (
+      <section class="section section--alt" aria-labelledby="services-h">
+        <div class="wrap">
+          <div class="head">
+            <p class="eyebrow">Services</p>
+            <h2 id="services-h">See {d.firstName} for</h2>
+          </div>
+          <ul class="services" role="list">
+            {services.map((s) => (
+              <li>
+                <ServiceCard service={s} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <BookingBand title={`Book with ${d.firstName}`} text={`When booking online, select ${d.firstName} as your practitioner.`} bookLabel="Book now" />
+</BaseLayout>
+
+<style>
+  .profile-hero {
+    padding-block: clamp(2rem, 1.25rem + 3vw, 4rem);
+    background: var(--color-bg-alt);
+  }
+
+  .profile-hero__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .profile-hero__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+      gap: var(--space-xl);
+    }
+  }
+
+  :global(.profile-hero__photo) {
+    border-radius: var(--radius-l);
+    max-height: 34rem;
+  }
+
+  .profile-hero__text {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: start;
+  }
+
+  .profile-hero h1 {
+    font-size: var(--step-5);
+  }
+
+  .roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .roles li {
+    padding: 0.35em 0.9em;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  .status {
+    padding: 0.3em 0.9em;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    font-size: var(--step--1);
+    font-weight: 650;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    padding-top: var(--space-2xs);
+  }
+
+  .profile {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 56em) {
+    .profile {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    }
+
+    .profile__side {
+      order: 2;
+    }
+  }
+
+  .profile__side {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+  }
+
+  .block {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+  }
+
+  .block ul {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .block li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+  }
+
+  .block :global(svg) {
+    margin-top: 0.2em;
+    color: var(--color-brand);
+  }
+
+  .profile__main {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+  }
+
+  .bio {
+    font-size: var(--step-1);
+    line-height: 1.65;
+  }
+
+  .head {
+    display: grid;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-l);
+  }
+
+  .services {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+</style>

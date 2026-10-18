@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="Page not found" description="The page you’re looking for doesn’t exist." noindex>
+  <section class="section">
+    <div class="wrap-narrow nf">
+      <p class="eyebrow">404</p>
+      <h1>We can’t find that page</h1>
+      <p class="lede">It may have moved when we updated our website. These might help:</p>
+      <div class="nf__actions">
+        <Button href="/">Home</Button>
+        <Button href="/services" variant="secondary">Services</Button>
+        <Button href="/book-now" variant="secondary">Book now</Button>
+        <Button href="/contact" variant="secondary">Contact</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+</style>

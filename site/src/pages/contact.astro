@@ -1,0 +1,138 @@
+---
+// Contact & visit (old URL /contact-us-1).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import LocationSection from '../components/LocationSection.astro';
+import ClosureNote from '../components/ClosureNote.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const ways = [
+  { icon: 'phone', title: 'Call', text: site.phone.display, href: site.phone.href, note: 'For appointment requests and questions.' },
+  { icon: 'message', title: 'Text', text: site.phone.display, href: site.phone.href.replace('tel:', 'sms:'), note: 'To join the cancellation waitlist.' },
+  { icon: 'mail', title: 'Email', text: site.email.address, href: site.email.href, note: 'For anything else.' },
+  { icon: 'calendar', title: 'Book online', text: 'Booking portal', href: site.booking.page, note: 'Appointments, assessments and classes.' },
+] as const;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  about: {
+    '@type': ['MedicalBusiness', 'Physiotherapy'],
+    name: site.name,
+    url: site.url,
+    telephone: '+61 434 686 261',
+    email: site.email.address,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      addressLocality: site.address.suburb,
+      addressRegion: site.address.state,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+};
+---
+
+<BaseLayout
+  title="Contact & visit"
+  description="Call, text or email Embrace Movement Clinic, or find us at 33 Brynner Street, McDowall QLD 4053. Directions, parking and hours."
+  jsonLd={jsonLd}
+>
+  <PageHero
+    crumbs={[{ label: 'Contact' }]}
+    eyebrow="Contact"
+    title="Get in touch"
+    lede={`Call, text, email or book online. We’re at ${site.address.street}, ${site.address.suburb}.`}
+  />
+
+  <section class="section" aria-labelledby="ways-h">
+    <div class="wrap">
+      <h2 id="ways-h" class="visually-hidden">Ways to contact us</h2>
+      <ClosureNote />
+      <ul class="ways" role="list">
+        {
+          ways.map((w) => (
+            <li>
+              <a class="way" href={w.href}>
+                <Icon name={w.icon} size={26} />
+                <span class="way__title">{w.title}</span>
+                <span class="way__text">{w.text}</span>
+                <span class="way__note">{w.note}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="before">
+        First time? Read <a href="/patient-information">patient information</a> for booking, cancellations and what to expect.
+      </p>
+    </div>
+  </section>
+
+  <LocationSection eyebrow="Visit us" title="Find the clinic" />
+</BaseLayout>
+
+<style>
+  .wrap > :global(.closure) {
+    margin-bottom: var(--space-l);
+  }
+
+  .ways {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .way {
+    display: grid;
+    gap: var(--space-3xs);
+    height: 100%;
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: box-shadow 0.2s var(--ease);
+  }
+
+  .way:hover {
+    box-shadow: var(--shadow-m);
+  }
+
+  .way :global(svg) {
+    margin-bottom: var(--space-xs);
+    color: var(--color-brand);
+  }
+
+  .way__title {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .way__text {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 650;
+    overflow-wrap: anywhere;
+  }
+
+  .way:hover .way__text {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .way__note {
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .before {
+    margin-top: var(--space-l);
+  }
+</style>

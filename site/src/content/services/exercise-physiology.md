@@ -1,6 +1,56 @@
 ---
 title: Exercise Physiology
 order: 2
+kind: appointment
 summary: Tailored exercise for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
+lede: Exercise programs built around your medical history, fitness and goals, for rehabilitation, chronic conditions, healthy ageing and performance.
+forYou:
+  heading: Conditions we commonly treat
+  items:
+    - name: Injury rehabilitation
+    - name: Injury prevention
+    - name: Prenatal and postnatal exercise
+    - name: Chronic pain and disease management
+    - name: Osteoporosis and healthy ageing
+    - name: Strength and conditioning
+    - name: Athletic performance
+    - name: Musculoskeletal and neurological rehabilitation
+expect:
+  steps:
+    - name: Your history and goals
+      detail: During your initial consultation, we take the time to understand your medical history, current fitness level and specific health concerns.
+    - name: A detailed physical assessment
+      detail: We evaluate your movement patterns, strength and flexibility.
+    - name: Your exercise plan
+      detail: This thorough approach means we can develop a safe exercise plan suited to you.
+treatments:
+  heading: Treatment may include
+  items:
+    - name: Functional and resistance training
+      detail: Exercises designed to improve your strength, endurance and ability to perform everyday activities with ease.
+    - name: Pilates
+      detail: A focus on core strength, flexibility and overall body awareness to enhance your physical health.
+    - name: Coaching
+      detail: One-on-one support and motivation to help you work towards your fitness and health goals.
+    - name: Home exercises and gym programs
+      detail: Customised exercise routines you can do at home or in the gym, tailored to your specific needs.
+    - name: Exercise guidelines
+      detail: Personalised advice on how to fit exercise into your daily routine safely and effectively.
+    - name: Injury rehabilitation
+      detail: Targeted exercises to aid recovery and reduce the risk of future injuries.
+    - name: Injury prevention
+      detail: Strategies and exercises to reduce the risk of future injuries.
+    - name: Chronic pain and disease management
+      detail: Specialised programs to manage conditions like arthritis, diabetes and cardiovascular disease through exercise.
+    - name: Osteoporosis and healthy ageing
+      detail: Exercises for bone strength, balance and healthy ageing.
+    - name: Musculoskeletal and neurological rehabilitation
+      detail: Programs designed to improve movement and function for people with musculoskeletal or neurological conditions.
+    - name: Strength and conditioning and athletic performance
+      detail: Tailored programs for athletic performance and overall physical conditioning.
+practitioners: [nicole-saxby]
+related: [pilates, physiotherapy]
 imageNote: PXL_20220611_043828572.jpg from the current Exercise Physiology page
+seoTitle: Exercise Physiology in McDowall
+seoDescription: Exercise physiology in McDowall for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
 ---

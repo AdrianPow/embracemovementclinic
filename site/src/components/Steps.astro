@@ -1,0 +1,60 @@
+---
+// Numbered steps, e.g. "how it works" or "what to expect".
+interface Props {
+  steps: { name: string; detail?: string }[];
+  /** Heading level for each step title. */
+  as?: 'h3' | 'h4';
+}
+
+const { steps, as: Heading = 'h3' } = Astro.props;
+---
+
+<ol class="steps" role="list">
+  {
+    steps.map((s, i) => (
+      <li class="steps__item">
+        <span class="steps__num" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <Heading class="h4 steps__title">
+          <span class="visually-hidden">Step {i + 1}: </span>
+          {s.name}
+        </Heading>
+        {s.detail && <p class="steps__detail">{s.detail}</p>}
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    counter-reset: step;
+  }
+
+  .steps__item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2xs);
+    padding-top: var(--space-s);
+    border-top: 2px solid var(--color-brand);
+  }
+
+  :global(.on-brand) .steps__item {
+    border-top-color: var(--color-accent-on-brand);
+  }
+
+  .steps__num {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-eyebrow);
+  }
+
+  .steps__detail {
+    color: var(--color-ink-muted);
+  }
+</style>
