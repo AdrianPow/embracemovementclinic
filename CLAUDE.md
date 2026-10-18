@@ -44,7 +44,8 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 - Tagline: "Accept . Support . Challenge ."
 
 **Palette**
-- **Forest, with a white header bar** (owner decision, 12 Oct 2026): forest `#1E3A2F`, sage `#B9CBB0`, bone `#F5F3EE`, ink `#161A18`. The owner wants a modern, sleek feel, with no teal or aqua.
+- **Under review (18 Oct 2026).** Forest (`#1E3A2F`, sage, bone) is too close to a local competitor (dark green `#003721`, `#006838` buttons, bone `#FAF8F2`, lime/pear greens). Don't use dark greens, sage or bone.
+- Replacement: a logo-based palette (`site/src/data/palette.ts`). Logo teal `#3AB593` goes on the logo, icons and highlights; a non-green anchor (petrol, navy, aubergine or charcoal) on buttons, links and dark sections; plus an accent of the owner's choice. The owner picks the combination on `/palette`. Until then, Forest remains the site default.
 - Tokens are in `site/src/styles/tokens.css`. Components use the semantic `--color-*` tokens only. `/styleguide` shows the palette and its contrast checks.
 - Check all text and button colour combinations for AA contrast.
 

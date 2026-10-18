@@ -16,7 +16,7 @@ export default defineConfig({
   build: { format: 'file' },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/styleguide') && !page.includes('/404'),
+      filter: (page) => !/\/(styleguide|palette|404)/.test(page),
     }),
   ],
   fonts: [

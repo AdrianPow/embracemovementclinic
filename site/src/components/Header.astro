@@ -182,6 +182,15 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
     color: inherit;
   }
 
+  /* Wordmark in the logo's own colours when a logo-based palette is active. */
+  .site-header__logo :global([data-part='top']) {
+    fill: var(--header-wordmark-top, currentColor);
+  }
+
+  .site-header__logo :global([data-part='bottom']) {
+    fill: var(--header-wordmark-bottom, currentColor);
+  }
+
   .site-header__actions {
     display: flex;
     align-items: center;

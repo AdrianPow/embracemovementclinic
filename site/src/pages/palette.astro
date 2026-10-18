@@ -1,0 +1,726 @@
+---
+// Logo-based palette builder (temporary, for choosing colours; delete after the decision).
+// Not indexed, not in the sitemap. Data: src/data/palette.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Wordmark from '../components/Wordmark.astro';
+import Steps from '../components/Steps.astro';
+import Icon from '../components/Icon.astro';
+import { logoColours, scales, logoBase, darks, accents, suggestions } from '../data/palette';
+
+const luminance = (hex: string) => {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a: string, b: string) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+
+const comparison = [
+  { label: 'Local competitor (sampled from your screenshots)', colours: ['#003721', '#006838', '#4E9133', '#9ECB3B', '#E0EFD8', '#FAF8F2'] },
+  { label: 'Current site (Forest)', colours: ['#1E3A2F', '#142A21', '#B9CBB0', '#EEF2EA', '#F5F3EE', '#FFFFFF'] },
+  { label: 'Logo-based (e.g. petrol + coral)', colours: ['#083D42', '#3AB593', '#8BDBC5', '#EB7660', '#F2F8F8', '#FFFFFF'] },
+];
+
+const darkIds = Object.keys(darks) as (keyof typeof darks)[];
+const accentIds = Object.keys(accents) as (keyof typeof accents)[];
+---
+
+<BaseLayout title="Palette builder" description="Logo-based colour palette options for Embrace Movement Clinic." noindex>
+  <section class="section section--tight">
+    <div class="wrap intro">
+      <p class="eyebrow">Branding · For your decision</p>
+      <h1>Your logo palette</h1>
+      <p class="lede">
+        Every colour here comes from your logo’s teal, light teal and grey, generated so they sit together. Pick an anchor
+        colour and an accent below, and this whole page, including the header and footer, changes to match. Then preview the
+        whole site in your choice.
+      </p>
+    </div>
+  </section>
+
+  <!-- From the logo -->
+  <section class="section section--alt" aria-labelledby="logo-h">
+    <div class="wrap two">
+      <div class="stack">
+        <h2 id="logo-h" class="h3">From your logo</h2>
+        <ul class="logo-swatches" role="list">
+          {
+            logoColours.map((c) => (
+              <li>
+                <span class="chip" style={`background:${c.hex}`} />
+                <span>
+                  <strong>{c.name}</strong> <code>{c.hex}</code>
+                  <br />
+                  <span class="muted">{c.note}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="muted">
+          The header wordmark now uses these same colours: teal “embrace” and grey “MOVEMENT CLINIC”, without the brush circle.
+        </p>
+      </div>
+      <div class="wordmark-demo">
+        <div class="wm wm--logo"><Wordmark /></div>
+        <div class="wm wm--dark on-brand"><Wordmark /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor comparison -->
+  <section class="section" aria-labelledby="compare-h">
+    <div class="wrap stack">
+      <h2 id="compare-h" class="h3">Why move away from forest</h2>
+      <p class="muted narrow">
+        The competitor’s dark green (#003721) and bone background (#FAF8F2) are almost identical to Forest (#1E3A2F and
+        #F5F3EE). The logo-based palette keeps your teal for the logo, icons and highlights, and uses a non-green anchor for
+        buttons and dark sections. It also swaps bone for a cool grey-teal background.
+      </p>
+      <ul class="compare" role="list">
+        {
+          comparison.map((row) => (
+            <li>
+              <p class="compare__label">{row.label}</p>
+              <ul class="compare__row" role="list">
+                {row.colours.map((c) => (
+                  <li>
+                    <span class="compare__chip" style={`background:${c}`} />
+                    <code>{c}</code>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Builder -->
+  <section class="section section--alt" id="builder" aria-labelledby="builder-h">
+    <div class="wrap stack">
+      <h2 id="builder-h" class="h3">Build your palette</h2>
+      <form class="builder" data-builder>
+        <fieldset>
+          <legend>1. Anchor colour <span class="muted">(buttons, links, footer and dark sections)</span></legend>
+          <div class="options">
+            {
+              darkIds.map((id, i) => (
+                <label class="option">
+                  <input type="radio" name="dark" value={id} checked={i === 0} />
+                  <span class="option__chip" style={`background:${darks[id].hex}`} />
+                  <span class="option__text">
+                    <strong>{darks[id].label}</strong>
+                    <span>{darks[id].note}</span>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>2. Accent colour <span class="muted">(highlights, and buttons on dark sections)</span></legend>
+          <div class="options">
+            {
+              accentIds.map((id) => (
+                <label class="option">
+                  <input type="radio" name="accent" value={id} checked={id === 'coral'} />
+                  <span class="option__chip" style={`background:${accents[id].deco}`} />
+                  <span class="option__text">
+                    <strong>{accents[id].label}</strong>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <div class="suggest">
+          <p class="suggest__label">Or start from a suggestion:</p>
+          <div class="suggest__list">
+            {
+              suggestions.map((s) => (
+                <button type="button" class="suggest__btn" data-dark={s.dark} data-accent={s.accent} title={s.why}>
+                  <span class="suggest__dots" aria-hidden="true">
+                    <span style={`background:${darks[s.dark].hex}`} />
+                    <span style="background:#3AB593" />
+                    <span style={`background:${accents[s.accent].deco}`} />
+                  </span>
+                  {s.name}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div class="builder__go">
+          <a class="go" href="/?palette=petrol-coral" data-go>
+            Preview the whole site in this palette <Icon name="arrow-right" size={18} />
+          </a>
+          <p class="muted">Browse any page; a bar at the bottom shows the preview is on, with a link to exit.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Live preview -->
+  <section class="on-brand demo-hero" aria-labelledby="demo-h">
+    <div class="wrap demo-hero__inner">
+      <p class="eyebrow">Physiotherapy · Exercise physiology · Clinical pilates</p>
+      <h2 id="demo-h" class="h1">Accept&nbsp;. Support&nbsp;. Challenge&nbsp;.</h2>
+      <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+      <div class="cluster">
+        <Button href="#builder" icon="calendar" size="l">Book now</Button>
+        <Button href="#builder" variant="secondary" size="l">Our services</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="light-h">
+    <div class="wrap stack">
+      <h2 id="light-h" class="h3">On light backgrounds</h2>
+      <div class="cluster">
+        <Button href="#builder" icon="calendar">Book now</Button>
+        <Button href="#builder" variant="secondary">Our services</Button>
+        <a href="#builder">A text link</a>
+        <p class="eyebrow">Eyebrow label</p>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3 class="h4">Pregnancy and postnatal</h3>
+          <ul class="dots" role="list">
+            <li>Pregnancy back and pelvic pain</li>
+            <li>Diastasis recti</li>
+            <li>Prenatal and postnatal exercise</li>
+          </ul>
+          <div class="demo-chips">
+            <span>Pelvic floor</span>
+            <span>Physiotherapy</span>
+          </div>
+        </div>
+        <div class="demo-card demo-card--alt">
+          <p class="demo-icon"><Icon name="check" size={20} /> Icons and ticks use the logo teal</p>
+          <p class="demo-notice"><Icon name="info" size={20} /> Notices use a soft tint of your accent.</p>
+        </div>
+      </div>
+      <Steps
+        steps={[
+          { name: 'Start with an assessment', detail: 'The line above each step uses the logo teal.' },
+          { name: 'A plan tailored to you', detail: 'Body text stays near-black for readability.' },
+          { name: 'Keep moving', detail: 'Links and buttons use your anchor colour.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="aa-h">
+    <div class="wrap stack">
+      <h2 id="aa-h" class="h3">Contrast checks for this combination</h2>
+      <ul class="aa" role="list" data-aa></ul>
+      <p class="muted">All 24 combinations pass WCAG 2.2 AA (4.5:1 for text, 3:1 for icons).</p>
+    </div>
+  </section>
+
+  <!-- Full scales -->
+  <section class="section" aria-labelledby="scales-h">
+    <div class="wrap stack">
+      <h2 id="scales-h" class="h3">The full palette</h2>
+      <p class="muted narrow">
+        Each colour has eleven shades with the same lightness steps as your logo teal. “W” means white text is readable on it;
+        “D” means dark text is readable on it (both 4.5:1 or more).
+      </p>
+      {
+        Object.entries(scales).map(([id, fam]) => (
+          <div class="scale">
+            <p class="scale__name">
+              <strong>{fam.label}</strong> <span class="muted">{fam.role}</span>
+            </p>
+            <ul class="scale__row" role="list">
+              {Object.entries(fam.scale).map(([step, hex]) => {
+                const w = contrast('#FFFFFF', hex) >= 4.5;
+                const dk = contrast(logoBase.ink, hex) >= 4.5;
+                return (
+                  <li class="scale__sw">
+                    <span class="scale__block" style={`background:${hex}`} />
+                    <span class="scale__step">{step}</span>
+                    <span class="scale__hex">{hex}</span>
+                    <span class="scale__aa">{[w ? 'W' : '', dk ? 'D' : ''].filter(Boolean).join(' ') || '–'}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ darks, accents, base: logoBase }}>
+  const d = document.documentElement;
+  const form = document.querySelector('[data-builder]');
+  const go = document.querySelector('[data-go]');
+  const aa = document.querySelector('[data-aa]');
+
+  const lum = (hex) => {
+    const c = [1, 3, 5].map((i) => {
+      const v = parseInt(hex.slice(i, i + 2), 16) / 255;
+      return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const ratio = (a, b) => {
+    const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
+    return (x + 0.05) / (y + 0.05);
+  };
+
+  function apply(dark, accent) {
+    d.dataset.base = 'logo';
+    d.dataset.dark = dark;
+    d.dataset.accent = accent;
+    form.elements.dark.value = dark;
+    form.elements.accent.value = accent;
+    go.href = `/?palette=${dark}-${accent}`;
+    const D = darks[dark];
+    const A = accents[accent];
+    const rows = [
+      ['Body text on white', base.ink, '#FFFFFF', 4.5],
+      ['Secondary text on background', base.muted, base.bgAlt, 4.5],
+      ['Links and eyebrows on white', D.hex, '#FFFFFF', 4.5],
+      ['Button: white on anchor', '#FFFFFF', D.hex, 4.5],
+      ['White text on dark sections', '#FFFFFF', D.hex, 4.5],
+      ['Accent text on dark sections', A.onDark, D.hex, 4.5],
+      ['Button on dark: ink on accent', base.ink, A.onDark, 4.5],
+      ['Notice text on accent tint', base.ink, A.soft, 4.5],
+      ['Icons (teal) on white', base.icon, '#FFFFFF', 3],
+    ];
+    aa.innerHTML = rows
+      .map(([label, fg, bg, min]) => {
+        const r = ratio(fg, bg);
+        return `<li class="aa__row"><svg class="aa__sample" viewBox="0 0 48 40" aria-hidden="true" style="background:${bg}"><text x="24" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="${fg}">Aa</text></svg><span>${label}</span><strong>${r.toFixed(2)}:1 ${r >= min ? '✓' : '✗'}</strong></li>`;
+      })
+      .join('');
+  }
+
+  const start = (d.dataset.preview || 'petrol-coral').split('-');
+  apply(start[0], start[1]);
+
+  form.addEventListener('change', () => apply(form.elements.dark.value, form.elements.accent.value));
+  document.querySelectorAll('.suggest__btn').forEach((b) => b.addEventListener('click', () => apply(b.dataset.dark, b.dataset.accent)));
+</script>
+
+<style>
+  .section--tight {
+    padding-block: var(--space-xl) var(--space-l);
+  }
+
+  .intro {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .intro > * {
+    max-width: 50rem;
+  }
+
+  .stack {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .narrow {
+    max-width: 50rem;
+  }
+
+  .muted {
+    color: var(--color-ink-muted);
+  }
+
+  .two {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .two {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .logo-swatches {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .logo-swatches li {
+    display: flex;
+    gap: var(--space-s);
+    align-items: center;
+  }
+
+  .chip {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .wordmark-demo {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .wm {
+    display: grid;
+    place-items: center;
+    padding: var(--space-l);
+    border-radius: var(--radius-l);
+    background: #fff;
+    border: 1px solid var(--color-line);
+  }
+
+  .wm :global(.wordmark) {
+    width: min(100%, 16rem);
+  }
+
+  .wm--logo :global([data-part='top']) {
+    fill: #3ab593;
+  }
+
+  .wm--logo :global([data-part='bottom']) {
+    fill: #737373;
+  }
+
+  .wm--dark {
+    background: var(--color-brand);
+    border-color: transparent;
+  }
+
+  .compare {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .compare__label {
+    margin-bottom: var(--space-2xs);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .compare__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .compare__row li {
+    display: grid;
+    gap: var(--space-3xs);
+    justify-items: center;
+    font-size: 0.75rem;
+  }
+
+  .compare__chip {
+    width: 4.5rem;
+    height: 3rem;
+    border-radius: var(--radius-s);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+  }
+
+  .builder {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  fieldset {
+    display: grid;
+    gap: var(--space-s);
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  legend {
+    margin-bottom: var(--space-s);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 650;
+  }
+
+  .options {
+    display: grid;
+    gap: var(--space-xs);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+
+  .option {
+    position: relative;
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    min-height: 3.5rem;
+    padding: var(--space-xs) var(--space-s);
+    border: 1.5px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    cursor: pointer;
+  }
+
+  .option:has(input:checked) {
+    border-color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-ink);
+  }
+
+  .option:has(input:focus-visible) {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .option input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .option__chip {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+  }
+
+  .option__text {
+    display: grid;
+    font-size: var(--step--1);
+  }
+
+  .option__text span {
+    color: var(--color-ink-muted);
+  }
+
+  .suggest__label {
+    margin-bottom: var(--space-2xs);
+    font-weight: 600;
+  }
+
+  .suggest__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .suggest__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    min-height: 2.75rem;
+    padding: 0.4em 1em 0.4em 0.6em;
+    border: 1.5px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .suggest__dots {
+    display: inline-flex;
+  }
+
+  .suggest__dots span {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: -0.3rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+
+  .builder__go {
+    display: grid;
+    gap: var(--space-2xs);
+    justify-items: start;
+  }
+
+  .go {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 3.25rem;
+    padding: 0.85em 1.6em;
+    border-radius: var(--radius-pill);
+    background: var(--btn-bg);
+    color: var(--btn-ink);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .demo-hero {
+    padding-block: var(--space-xl);
+  }
+
+  .demo-hero__inner {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s);
+  }
+
+  .demo-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .demo-card {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+  }
+
+  .demo-card--alt {
+    background: var(--color-bg-alt);
+  }
+
+  .dots {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .dots li {
+    display: grid;
+    grid-template-columns: 0.4rem 1fr;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .dots li::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .demo-chips {
+    display: flex;
+    gap: var(--space-2xs);
+  }
+
+  .demo-chips span {
+    padding: 0.35em 0.9em;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 650;
+  }
+
+  .demo-icon,
+  .demo-notice {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .demo-icon :global(svg) {
+    color: var(--color-icon);
+  }
+
+  .demo-notice {
+    padding: var(--space-s);
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+  }
+
+  .aa {
+    display: grid;
+    gap: var(--space-2xs);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  }
+
+  .aa :global(.aa__row) {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-2xs);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    font-size: var(--step--1);
+  }
+
+  .aa :global(.aa__sample) {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: var(--radius-s);
+    font-family: var(--font-body);
+  }
+
+  .scale {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .scale__name {
+    font-size: var(--step--1);
+  }
+
+  .scale__row {
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: repeat(11, minmax(0, 1fr));
+  }
+
+  .scale__sw {
+    display: grid;
+    gap: 0.1rem;
+    font-size: 0.6875rem;
+    line-height: 1.25;
+  }
+
+  .scale__block {
+    height: 3.5rem;
+    margin-bottom: 0.2rem;
+    border-radius: var(--radius-s);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  .scale__step {
+    font-weight: 700;
+  }
+
+  .scale__hex {
+    font-family: ui-monospace, monospace;
+    overflow-wrap: anywhere;
+    color: var(--color-ink-muted);
+  }
+
+  .scale__aa {
+    font-weight: 700;
+  }
+
+  @media (max-width: 40em) {
+    .scale__row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

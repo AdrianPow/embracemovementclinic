@@ -1,0 +1,60 @@
+---
+// Shows while a palette preview is active (temporary, for choosing colours).
+// Hidden unless <html data-preview> is set by the preview script in BaseLayout.
+import { darks, accents } from '../data/palette';
+
+const names = Object.fromEntries([
+  ...Object.entries(darks).map(([k, v]) => [k, v.label]),
+  ...Object.entries(accents).map(([k, v]) => [k, v.label]),
+]);
+---
+
+<div class="preview-bar" role="region" aria-label="Palette preview" data-preview-bar hidden>
+  <span>Previewing palette: <strong data-preview-name></strong></span>
+  <a href="/palette">Change</a>
+  <a href="?palette=off" data-preview-exit>Exit preview</a>
+</div>
+
+<script is:inline define:vars={{ names }}>
+  (function () {
+    var v = document.documentElement.dataset.preview;
+    var bar = document.querySelector('[data-preview-bar]');
+    if (!v || !bar) return;
+    var p = v.split('-');
+    bar.querySelector('[data-preview-name]').textContent = names[p[0]] + ' + ' + names[p[1]];
+    bar.hidden = false;
+  })();
+</script>
+
+<style>
+  .preview-bar {
+    position: fixed;
+    left: var(--space-s);
+    bottom: var(--space-s);
+    z-index: 90;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-s);
+    max-width: calc(100vw - 2 * var(--space-s));
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius);
+    background: #161a18;
+    color: #fff;
+    font-size: var(--step--1);
+    box-shadow: var(--shadow-m);
+  }
+
+  .preview-bar[hidden] {
+    display: none;
+  }
+
+  .preview-bar a {
+    color: #fff;
+    font-weight: 650;
+  }
+
+  .preview-bar a:focus-visible {
+    outline-color: #fff;
+  }
+</style>

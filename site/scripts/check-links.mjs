@@ -40,7 +40,8 @@ for (const page of pages) {
   const rel = '/' + path.relative(dist, page).replace(/\.html$/, '').replace(/index$/, '');
   for (const [, href] of html.matchAll(/<a\s[^>]*href="([^"]+)"/g)) {
     if (/^(https?:|mailto:|tel:|sms:)/.test(href)) continue;
-    const [p, hash] = href.split('#');
+    const [withQuery, hash] = href.split('#');
+    const p = withQuery.split('?')[0];
     const target = p ? fileFor(p) : page;
     if (!target) {
       problems.push(`${rel}: broken link ${href}`);

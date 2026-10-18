@@ -6,6 +6,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import NoticeBanner from '../components/NoticeBanner.astro';
 import { site } from '../data/site';
+import PreviewBar from '../components/PreviewBar.astro';
+import { themeCss, previewIds } from '../data/palette';
 
 interface Props {
   /** Page name; " | Embrace Movement Clinic" is appended unless it already contains the clinic name. */
@@ -61,6 +63,29 @@ const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
     <script is:inline>
       document.documentElement.classList.add('js');
     </script>
+    <style is:global set:html={themeCss()}></style>
+    <!-- Palette preview (temporary, for choosing colours): ?palette=petrol-coral, or ?palette=off -->
+    <script is:inline define:vars={{ ids: previewIds }}>
+      (function () {
+        var d = document.documentElement;
+        var q = new URLSearchParams(location.search).get('palette');
+        var v = null;
+        try {
+          if (q === 'off') localStorage.removeItem('palette-preview');
+          else if (q && ids.indexOf(q) > -1) localStorage.setItem('palette-preview', q);
+          v = localStorage.getItem('palette-preview');
+        } catch (e) {
+          v = q;
+        }
+        if (v && ids.indexOf(v) > -1) {
+          var p = v.split('-');
+          d.dataset.base = 'logo';
+          d.dataset.dark = p[0];
+          d.dataset.accent = p[1];
+          d.dataset.preview = v;
+        }
+      })();
+    </script>
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
@@ -71,6 +96,7 @@ const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
       <slot />
     </main>
     <Footer />
+    <PreviewBar />
   </body>
 </html>
 
