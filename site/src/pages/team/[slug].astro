@@ -51,7 +51,7 @@ const jsonLd = {
         {d.status && <p class="status">{d.status}</p>}
         <p class="ahpra"><Todo>AHPRA registration name and number, to match the public register</Todo></p>
         <div class="actions">
-          <Button href={site.booking.page} icon="calendar" size="l">Book with {d.firstName}</Button>
+          <Button href={site.booking.url} icon="calendar" size="l">Book with {d.firstName}</Button>
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
             <span class="visually-hidden">Call </span>{site.phone.display}
           </Button>

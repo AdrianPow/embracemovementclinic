@@ -15,7 +15,7 @@ Anything not listed here stays as it is on the current site.
 | /pilates-1 | **Vestibular** Physiotherapy (the slug doesn't match the content) | /vestibular-physiotherapy | **Change** (301) |
 | /team | Meet The Team | keep, plus /team/nicole-saxby and /team/laura-bradford | **Keep** |
 | /contact-us-1 | Contact | /contact | **Change** (301) |
-| /book-now | Nookal booking embed | keep | **Keep** |
+| /book-now | Nookal booking embed | Nookal booking page (new link supplied 19 Oct 2026) | **Change** (302 to Nookal; every "Book now" links there directly) |
 | /group-exercise-timetable | Class timetable and cancellation policy | /pilates#timetable (merged with the Pilates page, 18 Oct 2026) | **Change** (301) |
 | /clinic-updates | Clinic news | /news/clinic-update-june-2025 | **Change** (301) |
 | /xmas-2024 | Christmas 2024 newsletter | /news/christmas-2024 | **Change** (301) |
@@ -95,8 +95,8 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 **Full redesign** to modernise the site, with a modern, sleek feel. Brand identity:
 - **Logo:** the plain "embrace / MOVEMENT CLINIC" wordmark only. The teal brush-stroke circle is dropped (owner decision, 12 Oct 2026).
-- **Palette:** Forest was chosen on 12 Oct 2026, then reopened on 18 Oct 2026 because it's too close to a local competitor. A logo-based palette (logo teal + a non-green anchor + an accent) is being chosen on `/palette`.
-- **Wordmark colours:** with a logo-based palette, the header wordmark uses the logo's own colours (teal “embrace”, grey “MOVEMENT CLINIC”). The brush circle stays dropped.
+- **Palette:** Petrol + Coral, a logo-based palette chosen on 19 Oct 2026. Forest was chosen on 12 Oct 2026, then dropped on 18 Oct 2026 because it's too close to a local competitor. `/palette` stays for previewing other combinations.
+- **Wordmark colours:** the header wordmark uses the logo's own colours (teal “embrace”, grey “MOVEMENT CLINIC”). The brush circle stays dropped. Favicons and the default share image are white on petrol.
 - **Tagline:** "Accept . Support . Challenge ." is kept.
 - **Type:** Red Hat Display + Red Hat Text.
 

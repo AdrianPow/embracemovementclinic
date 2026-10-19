@@ -1,5 +1,6 @@
-// Checks the built site (dist/): every internal link and #anchor resolves, and every
-// redirect in public/_redirects points at a page that exists.
+// Checks the built site (dist/): every internal link and #anchor resolves, every redirect
+// in public/_redirects points at a page that exists, and every redirect to another site
+// (e.g. /book-now → Nookal) goes to a URL the site itself links to, so they can't drift apart.
 // Usage: node scripts/check-links.mjs
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -34,11 +35,13 @@ async function idsIn(file) {
 }
 
 const problems = [];
+const externalLinks = new Set();
 const pages = await walk(dist);
 for (const page of pages) {
   const html = await readFile(page, 'utf8');
   const rel = '/' + path.relative(dist, page).replace(/\.html$/, '').replace(/index$/, '');
   for (const [, href] of html.matchAll(/<a\s[^>]*href="([^"]+)"/g)) {
+    if (/^https?:/.test(href)) externalLinks.add(href.replaceAll('&amp;', '&'));
     if (/^(https?:|mailto:|tel:|sms:)/.test(href)) continue;
     const [withQuery, hash] = href.split('#');
     const p = withQuery.split('?')[0];
@@ -57,6 +60,11 @@ const redirects = await readFile(path.resolve('public/_redirects'), 'utf8');
 for (const line of redirects.split('\n')) {
   if (!line.trim() || line.startsWith('#')) continue;
   const [from, to] = line.trim().split(/\s+/);
+  if (/^https?:/.test(to)) {
+    if (!externalLinks.has(to)) problems.push(`_redirects: ${from} → ${to} (no page links to this URL; out of step with the site?)`);
+    if (fileFor(from)) problems.push(`_redirects: ${from} is shadowed by a real page`);
+    continue;
+  }
   const [p, hash] = to.split('#');
   const target = fileFor(p);
   if (!target) problems.push(`_redirects: ${from} → ${to} (target missing)`);

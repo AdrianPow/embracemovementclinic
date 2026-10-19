@@ -4,7 +4,7 @@ Pre-filled from the Squarespace export (12 Oct 2026). Confirm each row against t
 
 | Feature | Found on page(s) | Current behaviour | Keep / change / drop | Notes |
 |---|---|---|---|---|
-| Online booking (Nookal) | book-now; links on group-exercise-timetable and service pages | iframe embed `https://bookings.nookal.com/bookings/company/GNBYU`; text links to `https://bookings.nookal.com/bookings/location/GNBYU` | **Keep, improved** | `/book-now` shows the embed only when the visitor clicks "Show booking calendar", so no third-party content loads until then. There's also a direct link to the portal, and "Book now" buttons appear in the header and on every page. |
+| Online booking (Nookal) | book-now; links on group-exercise-timetable and service pages | iframe embed `https://bookings.nookal.com/bookings/company/GNBYU`; text links to `https://bookings.nookal.com/bookings/location/GNBYU` | **Change (19 Oct 2026)** | "Book now" buttons in the header and on every page link straight to the owner's new Nookal booking page (`booking.url` in `site/src/data/site.ts`). `/book-now` redirects there. No embed, so no third-party content loads on the site. |
 | Phone | contact-us-1 | Link `tel:61434686261` (0434 686 261) | Keep, fix | The link is missing the `+`, so it may not dial correctly. Use `tel:+61434686261`. |
 | Email | contact-us-1 and others | `admin@embracemovementclinic.com.au` | Keep, fix | Two current mailto links are malformed (a trailing ` ?` and `&=undefined`). |
 | Address & map | contact-us-1 | 33 Brynner Street, McDowall QLD 4053; Google Maps link `https://goo.gl/maps/8KggSs4E8G9w1cxL6` plus a Squarespace map block | Keep | The map block's settings weren't exported. Embed a Google Maps iframe or use a static map with a link. |

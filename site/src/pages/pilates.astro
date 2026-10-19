@@ -38,7 +38,7 @@ const startSteps = [
     lede={d.lede}
   >
     <Fragment slot="actions">
-      <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
+      <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
       <Button href="#timetable" variant="secondary" size="l">Timetable</Button>
     </Fragment>
     <Photo slot="aside" src={d.image} alt={d.imageAlt ?? ''} note={d.imageNote} position={d.imagePosition} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
@@ -136,7 +136,7 @@ const startSteps = [
         )
       }
       <div class="timetable__actions">
-        <Button href={site.booking.portalUrl} icon="external">Check live availability</Button>
+        <Button href={site.booking.url} icon="external">Check live availability</Button>
         <Button href={site.phone.href.replace('tel:', 'sms:')} variant="secondary" icon="message">
           Text us to join a waitlist
         </Button>

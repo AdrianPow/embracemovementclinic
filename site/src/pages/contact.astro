@@ -11,7 +11,7 @@ const ways = [
   { icon: 'phone', title: 'Call', text: site.phone.display, href: site.phone.href, note: 'For appointment requests and questions.' },
   { icon: 'message', title: 'Text', text: site.phone.display, href: site.phone.href.replace('tel:', 'sms:'), note: 'To join the cancellation waitlist.' },
   { icon: 'mail', title: 'Email', text: site.email.address, href: site.email.href, note: 'For anything else.' },
-  { icon: 'calendar', title: 'Book online', text: 'Booking portal', href: site.booking.page, note: 'Appointments, assessments and classes.' },
+  { icon: 'calendar', title: 'Book online', text: 'Booking portal', href: site.booking.url, note: 'Appointments, assessments and classes.' },
 ] as const;
 
 const jsonLd = {

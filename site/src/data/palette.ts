@@ -1,6 +1,6 @@
-// Logo-based palette (18 Oct 2026). Generated in OKLCH from the logo colours, so every
-// scale shares the logo's lightness steps. Used by /palette and by the theme overrides in
-// BaseLayout. Every accent × dark combination is AA-checked on /palette.
+// The site's colours. Generated in OKLCH from the logo colours (18 Oct 2026), so every
+// scale shares the logo's lightness steps. `sitePalette` is the combination the site uses;
+// /palette previews the others. Every anchor × accent combination is AA-checked on /palette.
 //
 // Logo colours (sampled from assets/brand/logo-colour.png):
 //   teal  #3AB593  oklch(0.697 0.119 171°)  — "embrace" and the brush circle
@@ -68,11 +68,12 @@ export const scales: Record<string, { label: string; role: string; scale: Scale 
   },
 };
 
-// Shared tokens for every logo-based combination. To stay clearly apart from a local
-// competitor's greens (sampled: #006838 buttons, #003721 footer, #FAF8F2 bone), teal is
-// used for the logo, icons and highlights; buttons, links and dark sections use the
-// chosen anchor colour; backgrounds are a cool grey-teal rather than bone.
+// Shared tokens for every combination. To stay clearly apart from a local competitor's
+// greens (sampled: #006838 buttons, #003721 footer, #FAF8F2 bone), teal is used for the
+// logo, icons and highlights; buttons, links and dark sections use the anchor colour;
+// backgrounds are a cool grey-teal rather than bone.
 export const logoBase = {
+  bg: '#FFFFFF',
   ink: '#161A18',
   muted: '#5C605E',
   bgAlt: '#F2F8F8',
@@ -112,18 +113,61 @@ export const suggestions: { name: string; dark: DarkId; accent: AccentId; why: s
   { name: 'Embrace', dark: 'aubergine', accent: 'berry', why: 'Warm and caring; stands out from other local clinics.' },
 ];
 
-/** CSS for the logo-based theme, applied with <html data-base="logo" data-dark="…" data-accent="…">. */
+// The palette the site uses: Petrol + Coral ("Lagoon"), chosen by the owner on 19 Oct 2026.
+// To switch, change these two values (preview the options on /palette first).
+export const sitePalette: { dark: DarkId; accent: AccentId } = { dark: 'petrol', accent: 'coral' };
+
+// Semantic colour tokens (see src/styles/tokens.css for what each one is for).
+const b = logoBase;
+const baseTokens = {
+  '--color-bg': b.bg,
+  '--color-bg-alt': b.bgAlt,
+  '--color-ink': b.ink,
+  '--color-ink-muted': b.muted,
+  '--color-line': b.line,
+  '--color-icon': b.icon,
+  '--color-on-brand': '#FFFFFF',
+  '--color-on-brand-muted': 'rgb(255 255 255 / 0.8)',
+  '--btn-ink': '#FFFFFF',
+  '--header-bg': '#FFFFFF',
+  '--header-ink': b.ink,
+  '--header-line': b.line,
+  '--header-hover': b.bgAlt,
+  '--header-btn-ink': '#FFFFFF',
+  '--header-wordmark-top': b.wordmarkTop,
+  '--header-wordmark-bottom': b.wordmarkBottom,
+};
+const darkTokens = (d: (typeof darks)[DarkId]) => ({
+  '--color-brand': d.hex,
+  '--color-brand-deep': d.deep,
+  '--color-link': d.hex,
+  '--color-eyebrow': d.hex,
+  '--color-focus': d.hex,
+  '--btn-bg': d.hex,
+  '--header-btn-bg': d.hex,
+  '--header-focus': d.hex,
+});
+const accentTokens = (a: (typeof accents)[AccentId]) => ({
+  '--color-accent': a.deco,
+  '--color-accent-on-brand': a.onDark,
+  '--color-accent-soft': a.soft,
+  '--color-focus-on-brand': a.onDark,
+  '--btn-dark-bg': a.onDark,
+  '--btn-dark-ink': b.ink,
+});
+const rule = (selector: string, tokens: Record<string, string>) =>
+  `${selector}{${Object.entries(tokens).map(([k, v]) => `${k}:${v}`).join(';')}}`;
+
+/**
+ * The palette as CSS, inlined in every page by BaseLayout: the site palette on :root, plus
+ * overrides for previewing other combinations with <html data-dark="…" data-accent="…">.
+ */
 export function themeCss(): string {
-  const b = logoBase;
-  let css = `html[data-base='logo']{--color-bg-alt:${b.bgAlt};--color-ink:${b.ink};--color-ink-muted:${b.muted};--color-line:${b.line};--color-icon:${b.icon};--btn-ink:#fff;--header-bg:#fff;--header-ink:${b.ink};--header-line:${b.line};--header-hover:${b.bgAlt};--header-btn-ink:#fff;--header-wordmark-top:${b.wordmarkTop};--header-wordmark-bottom:${b.wordmarkBottom};--color-on-brand:#fff;--color-on-brand-muted:rgb(255 255 255 / 0.8)}`;
-  for (const [id, d] of Object.entries(darks)) {
-    css += `html[data-base='logo'][data-dark='${id}']{--color-brand:${d.hex};--color-brand-deep:${d.deep};--color-link:${d.hex};--color-eyebrow:${d.hex};--color-focus:${d.hex};--btn-bg:${d.hex};--header-btn-bg:${d.hex};--header-focus:${d.hex}}`;
-  }
-  for (const [id, a] of Object.entries(accents)) {
-    css += `html[data-base='logo'][data-accent='${id}']{--color-accent:${a.deco};--color-accent-on-brand:${a.onDark};--color-accent-soft:${a.soft};--color-focus-on-brand:${a.onDark};--btn-dark-bg:${a.onDark};--btn-dark-ink:${b.ink}}`;
-  }
+  let css = rule(':root', { ...baseTokens, ...darkTokens(darks[sitePalette.dark]), ...accentTokens(accents[sitePalette.accent]) });
+  for (const [id, d] of Object.entries(darks)) css += rule(`html[data-dark='${id}']`, darkTokens(d));
+  for (const [id, a] of Object.entries(accents)) css += rule(`html[data-accent='${id}']`, accentTokens(a));
   return css;
 }
 
-/** Ids accepted by the preview script, e.g. "petrol-coral". */
+/** Ids accepted by the preview script, e.g. "navy-teal". */
 export const previewIds = Object.keys(darks).flatMap((d) => Object.keys(accents).map((a) => `${d}-${a}`));

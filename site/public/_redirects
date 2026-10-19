@@ -11,3 +11,7 @@
 /baby-news                    /news/july-2026-update               301
 /blog-posts/*                 /news                                301
 /classes                      /pilates                             301
+
+# Online booking (Nookal). 302 rather than 301, so browsers don't cache it if the booking
+# link changes. Keep in step with booking.url in src/data/site.ts.
+/book-now                     https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location    302

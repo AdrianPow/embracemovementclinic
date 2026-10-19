@@ -29,10 +29,10 @@ export const site = {
       'https://www.google.com/maps/dir/?api=1&destination=33+Brynner+Street%2C+McDowall+QLD+4053',
   },
 
+  // Online booking (Nookal), supplied by the owner on 19 Oct 2026. Every "Book now" links
+  // straight here. The old /book-now URL redirects here too: keep public/_redirects in step.
   booking: {
-    page: '/book-now',
-    embedUrl: 'https://bookings.nookal.com/bookings/company/GNBYU',
-    portalUrl: 'https://bookings.nookal.com/bookings/location/GNBYU',
+    url: 'https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location',
   },
 
   // TODO: profile URLs (docs/to-supply.md)

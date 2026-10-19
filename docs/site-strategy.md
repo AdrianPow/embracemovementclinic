@@ -48,7 +48,7 @@ Home
 │   └── Laura Bradford                       /team/laura-bradford
 ├── Patient information                      /patient-information  (booking, cancellations, fees and rebates, what to wear, clinic dog)
 ├── Contact & visit                          /contact   (location, parking, hours, phone, text, email)
-├── Book now                                 /book-now  (Nookal)
+├── Book now                                 Nookal booking page (/book-now redirects there)
 ├── News                                     /news      (footer only)
 └── Privacy policy                           /privacy   (footer only)
 ```

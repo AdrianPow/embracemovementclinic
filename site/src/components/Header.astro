@@ -74,7 +74,7 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
         <Icon name="phone" size={20} />
         <span class="site-header__call-text"><span class="visually-hidden">Call </span>{site.phone.display}</span>
       </a>
-      <Button href={site.booking.page} size="s" class="site-header__book">Book now</Button>
+      <Button href={site.booking.url} size="s" class="site-header__book">Book now</Button>
       <button type="button" class="site-header__menu" aria-expanded="false" aria-controls="mobile-nav" data-disclosure>
         <Icon name="menu" size={24} class="icon-open" />
         <Icon name="close" size={24} class="icon-close" />

@@ -24,7 +24,9 @@ Needs Node 22.12 or later.
 | Cancellation policy, class facts, equipment, studio rules, timetable | `src/data/policies.ts` |
 | Old URL redirects | `public/_redirects` |
 | Menu and footer links | `src/data/navigation.ts` |
-| Colours (Forest palette), type sizes, spacing | `src/styles/tokens.css` |
+| Colours (Petrol + Coral) | `src/data/palette.ts`: change `sitePalette` to switch combination; preview the options on `/palette` (not indexed) |
+| Type sizes, spacing, what each colour token is for | `src/styles/tokens.css` |
+| Online booking link | `booking.url` in `src/data/site.ts`, plus the `/book-now` line in `public/_redirects` (the link checker flags them if they differ) |
 | Photos | `src/assets/photos/`. A service sets `image`, `imageAlt` and (optionally) `imagePosition` in its Markdown file; a practitioner sets `photo`; a news post lists `images`; home page photos are imported at the top of `src/pages/index.astro`. `imagePosition` / `position` picks which part of the photo is kept when it's cropped, e.g. `'50% 30%'`. The build makes the AVIF/WebP sizes. Placements and alt text are logged in `docs/changes.md`. |
 | Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
 | Fonts | `astro.config.mjs` (`fonts`), self-hosted from `@fontsource-variable/*` |

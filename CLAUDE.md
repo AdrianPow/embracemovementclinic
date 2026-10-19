@@ -44,16 +44,17 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 - Tagline: "Accept . Support . Challenge ."
 
 **Palette**
-- **Under review (18 Oct 2026).** Forest (`#1E3A2F`, sage, bone) is too close to a local competitor (dark green `#003721`, `#006838` buttons, bone `#FAF8F2`, lime/pear greens). Don't use dark greens, sage or bone.
-- Replacement: a logo-based palette (`site/src/data/palette.ts`). Logo teal `#3AB593` goes on the logo, icons and highlights; a non-green anchor (petrol, navy, aubergine or charcoal) on buttons, links and dark sections; plus an accent of the owner's choice. The owner picks the combination on `/palette`. Until then, Forest remains the site default.
-- Tokens are in `site/src/styles/tokens.css`. Components use the semantic `--color-*` tokens only. `/styleguide` shows the palette and its contrast checks.
+- **Petrol + Coral, chosen by the owner on 19 Oct 2026.** A logo-based palette: logo teal `#3AB593` on the logo, with teal 600 `#179677` for icons and highlights; petrol `#083D42` on buttons, links and dark sections; coral `#EB7660` as a decorative accent, with light coral `#FEB3A4` for text and buttons on petrol; a cool mist `#F2F8F8` for alternate backgrounds.
+- Forest (`#1E3A2F`, sage, bone) was dropped on 18 Oct 2026 as too close to a local competitor (dark green `#003721`, `#006838` buttons, bone `#FAF8F2`, lime/pear greens). Don't use dark greens, sage or bone.
+- Palette values live in `site/src/data/palette.ts` (`sitePalette` picks the combination); `site/src/styles/tokens.css` documents the semantic tokens and holds the non-colour tokens. Components use the semantic `--color-*` tokens only. `/styleguide` shows the palette and its contrast checks.
+- Keep `/palette` (the picker): the owner may want to try other combinations later. It's not indexed or in the sitemap.
 - Check all text and button colour combinations for AA contrast.
 
 **Type**
 - Red Hat Display (headings) + Red Hat Text (body), self-hosted, with no Google Fonts call at runtime. Chosen by the owner on 12 Oct 2026.
 
 **Must-haves**
-- A persistent "Book now" call to action (Nookal) in the header and on every service page.
+- A persistent "Book now" call to action (Nookal) in the header and on every service page. It links straight to the Nookal booking page (`booking.url` in `site/src/data/site.ts`); `/book-now` redirects there.
 - Click-to-call on mobile.
 - Service pages with a consistent structure: who it's for, conditions treated, what to expect, book.
 - Team cards with a modal or detail page for each practitioner.

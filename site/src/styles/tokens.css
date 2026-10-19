@@ -53,47 +53,20 @@
 }
 
 /*
-  Palette tokens
-  --color-brand            dark brand colour: dark sections, footer, dark header
+  Palette tokens. The values come from src/data/palette.ts (sitePalette: Petrol + Coral,
+  chosen 19 Oct 2026) and are inlined on :root by BaseLayout, so /palette can preview
+  other combinations.
+  --color-bg, --color-bg-alt  page and alternate section backgrounds
+  --color-ink, --color-ink-muted, --color-line
+  --color-brand            dark anchor colour: dark sections, footer, buttons, links
   --color-on-brand         text on brand
-  --color-accent           highlight colour
+  --color-accent           highlight colour (decorative only, never text on light)
   --color-accent-on-brand  accent used as TEXT on brand (eyebrows, footer headings)
   --color-accent-soft      pale tint (notice banner, chips)
+  --color-icon             logo teal for icons and rules
   --btn-*                  primary button on light; --btn-dark-* on brand sections (hover is derived)
-  --header-*               header colours (white header bar)
+  --header-*               header colours (white header bar, logo-coloured wordmark)
 */
-
-/* Forest (chosen 12 Oct 2026): calm and premium. Deep green, warm bone, sage accent, white header. */
-:root {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f5f3ee;
-  --color-ink: #161a18;
-  --color-ink-muted: #545b57;
-  --color-line: #e2dfd7;
-  --color-brand: #1e3a2f;
-  --color-brand-deep: #142a21;
-  --color-on-brand: #ffffff;
-  --color-on-brand-muted: rgb(255 255 255 / 0.8);
-  --color-accent: #b9cbb0;
-  --color-accent-on-brand: #b9cbb0;
-  --color-accent-soft: #eef2ea;
-  --color-link: #1e3a2f;
-  --color-icon: #1e3a2f;
-  --color-eyebrow: #1e3a2f;
-  --color-focus: #1e3a2f;
-  --color-focus-on-brand: #b9cbb0;
-  --btn-bg: #1e3a2f;
-  --btn-ink: #ffffff;
-  --btn-dark-bg: #b9cbb0;
-  --btn-dark-ink: #161a18;
-  --header-bg: #ffffff;
-  --header-ink: #161a18;
-  --header-line: #e2dfd7;
-  --header-hover: #f5f3ee;
-  --header-btn-bg: #1e3a2f;
-  --header-btn-ink: #ffffff;
-  --header-focus: #1e3a2f;
-}
 
 /* Inside dark (brand) sections, buttons, links and focus switch to their on-brand versions. */
 .on-brand {

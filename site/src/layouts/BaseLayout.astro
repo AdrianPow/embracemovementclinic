@@ -64,7 +64,7 @@ const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
       document.documentElement.classList.add('js');
     </script>
     <style is:global set:html={themeCss()}></style>
-    <!-- Palette preview (temporary, for choosing colours): ?palette=petrol-coral, or ?palette=off -->
+    <!-- Palette preview, for trying other colours from /palette: ?palette=navy-teal, or ?palette=off -->
     <script is:inline define:vars={{ ids: previewIds }}>
       (function () {
         var d = document.documentElement;
@@ -79,7 +79,6 @@ const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
         }
         if (v && ids.indexOf(v) > -1) {
           var p = v.split('-');
-          d.dataset.base = 'logo';
           d.dataset.dark = p[0];
           d.dataset.accent = p[1];
           d.dataset.preview = v;
