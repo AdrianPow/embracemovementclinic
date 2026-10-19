@@ -34,7 +34,8 @@ treatments:
 practitioners: [nicole-saxby, laura-bradford]
 practitionersNote: Both of our physiotherapists have completed Women’s Pelvic Health Physiotherapy training with the APA.
 related: [physiotherapy, pilates, exercise-physiology]
-imageNote: PXL_20220611_045341759.jpg from the current Pelvic Floor Physiotherapy page
+image: ../../assets/photos/pxl-20220611-045341759-2.webp
+imageAlt: A physiotherapist guiding a pregnant client through a lunge
 seoTitle: Pelvic Floor Physiotherapy in McDowall
 seoDescription: Pelvic floor physiotherapy in McDowall for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
 oldUrl: /womens-health-physio

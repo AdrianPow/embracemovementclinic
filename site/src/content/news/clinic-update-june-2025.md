@@ -3,8 +3,10 @@ title: 'Clinic update, June 2025'
 date: 2025-06-01
 summary: Nicole’s leave over July 2025, new reformer equipment, online booking codes, an AI tools trial, Saturday sessions and our feedback survey.
 archivedNote: This update is from June 2025. Hours, leave dates and the July timetable no longer apply. For current information, see Patient information.
-imageNotes:
-  - 41-SAM_1487.jpg (studio)
+images:
+  - src: ../../assets/photos/41-sam-1487.webp
+    alt: Laura and Nicole with Jeff, the clinic dog
+    position: '50% 20%'
 oldUrl: /clinic-updates
 ---
 

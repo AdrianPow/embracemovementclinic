@@ -64,7 +64,7 @@ const classes = services.find((s) => s.data.kind === 'class');
     classes && (
       <section class="section" id="classes" aria-labelledby="classes-h">
         <div class="wrap classes">
-          <Photo alt="" note={classes.data.imageNote} src={classes.data.image} ratio="4 / 3" class="classes__photo" sizes="(min-width: 56em) 45vw, 100vw" />
+          <Photo alt="" note={classes.data.imageNote} src={classes.data.image} position={classes.data.imagePosition} ratio="4 / 3" class="classes__photo" sizes="(min-width: 56em) 45vw, 100vw" />
           <div class="classes__text">
             <p class="eyebrow">Small groups</p>
             <h2 id="classes-h">{classes.data.title}</h2>

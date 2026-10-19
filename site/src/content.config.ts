@@ -45,7 +45,12 @@ const services = defineCollection({
       practitioners: z.array(reference('team')),
       practitionersNote: z.string().optional(),
       related: z.array(reference('services')).default([]),
+      /** Photo in src/assets/photos, used on the page, its card and when the page is shared. */
       image: image().optional(),
+      /** Describes the photo for screen readers and when the page is shared. */
+      imageAlt: z.string().optional(),
+      /** Which part to keep when the photo is cropped (CSS object-position), e.g. "50% 30%". */
+      imagePosition: z.string().optional(),
       /** Which photo is intended, until it's supplied (see reference/images.json). */
       imageNote: z.string().optional(),
       seoTitle: z.string(),
@@ -72,6 +77,8 @@ const team = defineCollection({
       /** Short status shown on cards, e.g. leave dates. */
       status: z.string().optional(),
       photo: image().optional(),
+      /** Which part to keep when the photo is cropped square (CSS object-position). */
+      photoPosition: z.string().default('50% 25%'),
       photoNote: z.string().optional(),
       seoDescription: z.string(),
     }),
@@ -80,15 +87,19 @@ const team = defineCollection({
 // Clinic news. Dated posts; older ones carry an "archived" note.
 const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
-  schema: z.object({
-    title: z.string(),
-    /** Shown as month and year only. */
-    date: z.coerce.date(),
-    summary: z.string(),
-    archivedNote: z.string().optional(),
-    imageNotes: z.array(z.string()).default([]),
-    oldUrl: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      /** Shown as month and year only. */
+      date: z.coerce.date(),
+      summary: z.string(),
+      archivedNote: z.string().optional(),
+      /** Photos in src/assets/photos, each with a description and an optional crop position. */
+      images: z.array(z.object({ src: image(), alt: z.string(), position: z.string().optional() })).default([]),
+      /** Photos still to be supplied (shown as placeholders). */
+      imageNotes: z.array(z.string()).default([]),
+      oldUrl: z.string().optional(),
+    }),
 });
 
 export const collections = { services, team, news };

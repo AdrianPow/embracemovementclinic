@@ -20,7 +20,7 @@ experience:
   - Pre- and post-surgery rehabilitation
   - Vestibular dysfunction (dizziness, vertigo and balance problems)
 status: On maternity leave
-photoNote: 26-SAM_1423.jpg from the current Team page
+photo: ../../assets/photos/26-sam-1423.webp
 seoDescription: Laura Bradford is a physiotherapist, pelvic health physiotherapist and clinical pilates instructor at Embrace Movement Clinic, McDowall, with experience in vestibular physiotherapy.
 ---
 

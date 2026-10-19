@@ -6,6 +6,7 @@ import TeamCard from '../../components/TeamCard.astro';
 import BookingBand from '../../components/BookingBand.astro';
 import ClosureNote from '../../components/ClosureNote.astro';
 import Photo from '../../components/Photo.astro';
+import jeffPhoto from '../../assets/photos/41-sam-1487.webp';
 import Icon from '../../components/Icon.astro';
 
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
@@ -40,7 +41,7 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
 
   <section class="section section--alt" aria-labelledby="jeff-h">
     <div class="wrap jeff">
-      <Photo alt="Jeff, the clinic dog" note="a photo of Jeff, if you have one" ratio="1 / 1" class="jeff__photo" sizes="(min-width: 56em) 30vw, 100vw" />
+      <Photo src={jeffPhoto} alt="Laura and Nicole with Jeff, the clinic dog" position="50% 30%" ratio="1 / 1" class="jeff__photo" sizes="(min-width: 56em) 30vw, 100vw" />
       <div class="jeff__text">
         <p class="eyebrow"><Icon name="paw" size={16} /> Also at the clinic</p>
         <h2 id="jeff-h">Meet Jeff, the clinic dog</h2>

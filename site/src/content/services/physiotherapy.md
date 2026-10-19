@@ -43,7 +43,9 @@ treatments:
       detail: To help you look after your health and reduce the risk of future issues.
 practitioners: [nicole-saxby, laura-bradford]
 related: [exercise-physiology, pelvic-health-physiotherapy, pilates]
-imageNote: 6-SAM_1312 (1).jpg or PXL_20220611_040951368.PORTRAIT.jpg from the current Physiotherapy page
+image: ../../assets/photos/3-sam-1300.webp
+imageAlt: A physiotherapist treating a patient’s neck as they lie on the treatment table
+imagePosition: '50% 60%'
 seoTitle: Musculoskeletal Physiotherapy in McDowall
 seoDescription: Physiotherapy in McDowall for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
 ---

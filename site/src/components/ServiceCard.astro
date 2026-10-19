@@ -8,11 +8,11 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const { title, summary, image, imageNote } = service.data;
+const { title, summary, image, imagePosition, imageNote } = service.data;
 ---
 
 <a class="service-card" href={`/${service.id}`}>
-  <Photo src={image} alt="" note={imageNote} ratio="3 / 2" sizes="(min-width: 62em) 33vw, (min-width: 40em) 50vw, 100vw" />
+  <Photo src={image} alt="" note={imageNote} position={imagePosition} ratio="3 / 2" sizes="(min-width: 62em) 33vw, (min-width: 40em) 50vw, 100vw" />
   <div class="service-card__body">
     <h3 class="h4">{title}</h3>
     <p>{summary}</p>

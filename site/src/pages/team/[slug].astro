@@ -38,10 +38,10 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title={`${d.name}`} description={d.seoDescription} jsonLd={jsonLd}>
+<BaseLayout title={`${d.name}`} description={d.seoDescription} image={d.photo} imageAlt={d.photo ? d.name : undefined} jsonLd={jsonLd}>
   <section class="profile-hero" aria-labelledby="page-title">
     <div class="wrap profile-hero__grid">
-      <Photo src={d.photo} alt={`${d.name}`} note={d.photoNote} ratio="4 / 5" loading="eager" class="profile-hero__photo" sizes="(min-width: 56em) 35vw, 100vw" />
+      <Photo src={d.photo} alt={d.name} note={d.photoNote} position={d.photoPosition} ratio="4 / 5" loading="eager" class="profile-hero__photo" sizes="(min-width: 56em) 35vw, 100vw" />
       <div class="profile-hero__text">
         <Breadcrumbs items={[{ label: 'Team', href: '/team' }, { label: d.name }]} />
         <h1 id="page-title">{d.name}</h1>

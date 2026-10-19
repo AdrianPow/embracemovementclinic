@@ -23,7 +23,7 @@ experience:
   - Public and private sectors, across sport, pelvic health and musculoskeletal care
   - Trained at The Australian Ballet School (2009–2012)
 status: On maternity leave until January 2027
-photoNote: 16-SAM_1372.jpg from the current Team page
+photo: ../../assets/photos/16-sam-1372.webp
 seoDescription: Nicole Saxby is a physiotherapist, pelvic health physiotherapist, exercise physiologist and clinical pilates instructor at Embrace Movement Clinic, McDowall.
 ---
 

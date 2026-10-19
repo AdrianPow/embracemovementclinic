@@ -41,7 +41,7 @@ const sections = [
 ];
 ---
 
-<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.image ? d.title : undefined}>
+<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
   <PageHero crumbs={[{ label: 'Services', href: '/services' }, { label: d.title }]} eyebrow="One-on-one appointments" title={d.title} lede={d.lede}>
     <p class="see">
       <Icon name="user" size={18} /> You’ll see {seeLine}
@@ -52,7 +52,7 @@ const sections = [
         <span class="visually-hidden">Call </span>{site.phone.display}
       </Button>
     </Fragment>
-    <Photo slot="aside" src={d.image} alt="" note={d.imageNote} ratio="4 / 3" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
+    <Photo slot="aside" src={d.image} alt={d.imageAlt ?? ''} note={d.imageNote} position={d.imagePosition} ratio="4 / 3" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
   </PageHero>
 
   <nav class="onpage" aria-label="On this page">

@@ -102,6 +102,35 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 Don't copy the Squarespace layout. Use the screenshots only for content, menu items and brand cues. See "Design direction" in CLAUDE.md.
 
+## Photos (added 19 Oct 2026)
+
+The owner supplied 16 photos. 14 are in `site/src/assets/photos/` (file names lower-cased). The site serves them as AVIF with a WebP fallback, sized for each screen. Please check each description (alt text), which screen readers read out and which is used when a page is shared. Photos marked "decorative" sit beside a heading that already says what they show, so they have no description.
+
+| Photo | Where | Alt text |
+|---|---|---|
+| `pxl-20220610-230251564-2` | Home hero | A practitioner with Jeff, the clinic dog, at the Trapeze Table in the studio |
+| `3-sam-1300` | Home "Appointments" card (decorative); Musculoskeletal Physiotherapy page and card | A physiotherapist treating a patient’s neck as they lie on the treatment table |
+| `pxl-20220610-231040021` | Home "Pilates & classes" card | Decorative |
+| `pxl-20220610-231913214` | Home studio gallery | A client holding a plank with their feet in the Trapeze Table straps |
+| `pxl-20220611-041127782` | Home studio gallery | A physiotherapist treating a patient lying on the treatment table |
+| `pxl-20220611-044952545` | Home studio gallery | A pregnant client kneeling beside an exercise ball |
+| `6-sam-1312` | Home studio gallery | A physiotherapist treating a patient’s lower back |
+| `pxl-20220611-043748537` | Exercise Physiology page and card | A practitioner guiding a client through a side-lying exercise on the reformer |
+| `pxl-20220611-045341759-2` | Pelvic Floor Physiotherapy page and card | A physiotherapist guiding a pregnant client through a lunge |
+| `pxl-20220611-040951368` | Vestibular Physiotherapy page and card | A physiotherapist supporting a patient’s head as they lie on the treatment table |
+| `pxl-20220610-233959936` | Pilates & classes page; Services page | A client exercising on the reformer while a practitioner watches |
+| `16-sam-1372` | Nicole’s card and profile | Nicole Saxby |
+| `26-sam-1423` | Laura’s card and profile | Laura Bradford |
+| `41-sam-1487` | Team page (Jeff section); archived June 2025 update | Laura and Nicole with Jeff, the clinic dog |
+
+**Differences from the old site:**
+- Musculoskeletal Physiotherapy uses `3-SAM_1300` rather than `6-SAM_1312`. The page photo is landscape, and `6-SAM_1312` is a tall portrait that would have cropped out either the practitioner's face or the patient. `6-SAM_1312` is in the home page gallery instead.
+- Exercise Physiology uses `PXL_20220611_043748537`. The old page used `PXL_20220611_043828572`, which wasn't supplied; it was taken a minute later in the same session.
+- Vestibular Physiotherapy had no photo before.
+
+**Held back (not on the site):**
+- `PXL_20220610_235914156` (a child using a wheelchair beside the reformer) and `PXL_20220611_052505665` (a child on the treatment table). Photos of children need a parent's or guardian's consent for website use. Confirm consent and they can go in (for example in the studio gallery, or on the Exercise Physiology page).
+
 ## Compliance flags
 
 **Removed from the archived news posts (not republished):**

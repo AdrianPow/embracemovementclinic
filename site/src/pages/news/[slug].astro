@@ -21,7 +21,7 @@ const { Content } = await render(post);
 const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
 ---
 
-<BaseLayout title={d.title} description={d.summary}>
+<BaseLayout title={d.title} description={d.summary} image={d.images[0]?.src} imageAlt={d.images[0]?.alt}>
   <article class="section" aria-labelledby="page-title">
     <div class="wrap-narrow article">
       <Breadcrumbs items={[{ label: 'News', href: '/news' }, { label: d.title }]} />
@@ -40,8 +40,11 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
         )
       }
       {
-        d.imageNotes.length > 0 && (
+        d.images.length + d.imageNotes.length > 0 && (
           <div class="images">
+            {d.images.map((img) => (
+              <Photo src={img.src} alt={img.alt} position={img.position} ratio="4 / 3" sizes="(min-width: 46rem) 23rem, 100vw" />
+            ))}
             {d.imageNotes.map((n) => (
               <Photo alt="" note={n} ratio="4 / 3" sizes="(min-width: 46rem) 23rem, 100vw" />
             ))}

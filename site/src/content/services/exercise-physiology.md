@@ -50,7 +50,8 @@ treatments:
       detail: Tailored programs for athletic performance and overall physical conditioning.
 practitioners: [nicole-saxby]
 related: [pilates, physiotherapy]
-imageNote: PXL_20220611_043828572.jpg from the current Exercise Physiology page
+image: ../../assets/photos/pxl-20220611-043748537.webp
+imageAlt: A practitioner guiding a client through a side-lying exercise on the reformer
 seoTitle: Exercise Physiology in McDowall
 seoDescription: Exercise physiology in McDowall for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
 ---

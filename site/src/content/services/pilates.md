@@ -18,7 +18,8 @@ expect:
   text: We see clients of all ages and exercise abilities. From those who have never stepped foot in a gym to high-level athletes, we aim to keep you comfortable yet challenged to improve. We always tailor exercise prescription to suit your experience and individual goals and requirements.
 practitioners: [nicole-saxby, laura-bradford]
 related: [exercise-physiology, physiotherapy, pelvic-health-physiotherapy]
-imageNote: PXL_20220610_233959936.jpg from the current Pilates page
+image: ../../assets/photos/pxl-20220610-233959936.webp
+imageAlt: A client exercising on the reformer while a practitioner watches
 seoTitle: Clinical Pilates & Small Group Classes in McDowall
 seoDescription: Clinical pilates and small group exercise classes in McDowall on the Reformer, Wunda Chair, Trapeze Table and CoreAlign. Pre-class assessment, timetable and booking.
 ---

@@ -29,7 +29,7 @@ const startSteps = [
 ];
 ---
 
-<BaseLayout title={d.seoTitle} description={d.seoDescription}>
+<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
   <PageHero
     tone="brand"
     crumbs={[{ label: 'Services', href: '/services' }, { label: 'Pilates & classes' }]}
@@ -41,7 +41,7 @@ const startSteps = [
       <Button href={site.booking.page} icon="calendar" size="l">Book now</Button>
       <Button href="#timetable" variant="secondary" size="l">Timetable</Button>
     </Fragment>
-    <Photo slot="aside" src={d.image} alt="" note={d.imageNote} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
+    <Photo slot="aside" src={d.image} alt={d.imageAlt ?? ''} note={d.imageNote} position={d.imagePosition} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
   </PageHero>
 
   <section class="on-brand factbar" aria-label="Class details">

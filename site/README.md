@@ -25,6 +25,7 @@ Needs Node 22.12 or later.
 | Old URL redirects | `public/_redirects` |
 | Menu and footer links | `src/data/navigation.ts` |
 | Colours (Forest palette), type sizes, spacing | `src/styles/tokens.css` |
+| Photos | `src/assets/photos/`. A service sets `image`, `imageAlt` and (optionally) `imagePosition` in its Markdown file; a practitioner sets `photo`; a news post lists `images`; home page photos are imported at the top of `src/pages/index.astro`. `imagePosition` / `position` picks which part of the photo is kept when it's cropped, e.g. `'50% 30%'`. The build makes the AVIF/WebP sizes. Placements and alt text are logged in `docs/changes.md`. |
 | Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
 | Fonts | `astro.config.mjs` (`fonts`), self-hosted from `@fontsource-variable/*` |
 | Page shell (head, header, footer) | `src/layouts/BaseLayout.astro` |
