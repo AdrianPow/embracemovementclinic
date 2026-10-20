@@ -108,7 +108,7 @@ The owner supplied 16 photos. 14 are in `site/src/assets/photos/` (file names lo
 
 | Photo | Where | Alt text |
 |---|---|---|
-| `pxl-20220610-230251564-2` | Home hero | A practitioner with Jeff, the clinic dog, at the Trapeze Table in the studio |
+| `pxl-20220610-230251564-hires` (higher-resolution version supplied 20 Oct 2026, resized to 3000 px wide) | Home hero | A practitioner with Jeff, the clinic dog, at the Trapeze Table in the studio |
 | `3-sam-1300` | Home "Appointments" card (decorative); Musculoskeletal Physiotherapy page and card | A physiotherapist treating a patient’s neck as they lie on the treatment table |
 | `pxl-20220610-231040021` | Home "Pilates & classes" card | Decorative |
 | `pxl-20220610-231913214` | Home studio gallery | A client holding a plank with their feet in the Trapeze Table straps |
