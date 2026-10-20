@@ -115,7 +115,7 @@ export const suggestions: { name: string; dark: DarkId; accent: AccentId; why: s
 
 // The palette the site uses: Petrol + Coral ("Lagoon"), chosen by the owner on 19 Oct 2026.
 // To switch, change these two values (preview the options on /palette first).
-export const sitePalette: { dark: DarkId; accent: AccentId } = { dark: 'petrol', accent: 'coral' };
+export const sitePalette: { dark: DarkId; accent: AccentId } = { dark: 'petrol', accent: 'teal' };
 
 // Semantic colour tokens (see src/styles/tokens.css for what each one is for).
 const b = logoBase;
