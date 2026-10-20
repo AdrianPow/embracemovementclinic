@@ -21,7 +21,7 @@ import classesPhoto from '../assets/photos/pxl-20220610-231040021.webp';
 import trapezePhoto from '../assets/photos/pxl-20220610-231913214.webp';
 import treatmentPhoto from '../assets/photos/pxl-20220611-041127782.webp';
 import pregnancyPhoto from '../assets/photos/pxl-20220611-044952545.webp';
-import backPhoto from '../assets/photos/6-sam-1312.webp';
+import reformerPhoto from '../assets/photos/pxl-20220610-233959936.webp';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const appointments = services.filter((s) => s.data.kind === 'appointment');
@@ -51,9 +51,9 @@ const howItWorks = [
 
 const gallery = [
   { src: trapezePhoto, alt: 'A client holding a plank with their feet in the Trapeze Table straps', position: '60% 50%' },
-  { src: treatmentPhoto, alt: 'A physiotherapist treating a patient lying on the treatment table', position: '50% 40%' },
+  { src: treatmentPhoto, alt: 'A physiotherapist treating a patient lying on the treatment table', position: '50% 28%' },
   { src: pregnancyPhoto, alt: 'A pregnant client kneeling beside an exercise ball', position: '50% 45%' },
-  { src: backPhoto, alt: 'A physiotherapist treating a patient’s lower back', position: '50% 70%' },
+  { src: reformerPhoto, alt: 'A client exercising on the reformer while a practitioner watches', position: '40% 50%' },
 ];
 
 const jsonLd = {
@@ -141,7 +141,7 @@ const jsonLd = {
       <SectionHead id="ways-h" eyebrow="Services" title="Two ways to work with us" />
       <div class="ways">
         <article class="way" aria-labelledby="way-1">
-          <Photo src={appointmentsPhoto} alt="" position="50% 66%" ratio="3 / 2" sizes="(min-width: 56em) 50vw, 100vw" />
+          <Photo src={appointmentsPhoto} alt="" position="50% 58%" ratio="3 / 2" sizes="(min-width: 56em) 50vw, 100vw" />
           <div class="way__body">
             <p class="eyebrow">One-on-one</p>
             <h3 id="way-1">Appointments</h3>

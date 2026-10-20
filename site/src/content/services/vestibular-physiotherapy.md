@@ -39,7 +39,7 @@ practitionersNote: Book vestibular physiotherapy appointments with Laura.
 related: [physiotherapy, exercise-physiology]
 image: ../../assets/photos/pxl-20220611-040951368.webp
 imageAlt: A physiotherapist supporting a patient’s head as they lie on the treatment table
-imagePosition: '50% 45%'
+imagePosition: '50% 38%'
 seoTitle: Vestibular Physiotherapy for Vertigo and Dizziness in McDowall
 seoDescription: Vestibular physiotherapy in McDowall for vertigo, dizziness and decreased balance, including BPPV. Assessment and an individualised treatment plan.
 oldUrl: /pilates-1
