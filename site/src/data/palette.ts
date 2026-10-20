@@ -113,8 +113,9 @@ export const suggestions: { name: string; dark: DarkId; accent: AccentId; why: s
   { name: 'Embrace', dark: 'aubergine', accent: 'berry', why: 'Warm and caring; stands out from other local clinics.' },
 ];
 
-// The palette the site uses: Petrol + Coral ("Lagoon"), chosen by the owner on 19 Oct 2026.
-// To switch, change these two values (preview the options on /palette first).
+// The palette the site uses: Petrol + Teal. The owner chose petrol on 19 Oct 2026 and changed
+// the accent from coral to teal on 20 Oct 2026. To switch, change these two values (preview
+// the options on /palette first).
 export const sitePalette: { dark: DarkId; accent: AccentId } = { dark: 'petrol', accent: 'teal' };
 
 // Semantic colour tokens (see src/styles/tokens.css for what each one is for).
@@ -168,6 +169,9 @@ export function themeCss(): string {
   for (const [id, a] of Object.entries(accents)) css += rule(`html[data-accent='${id}']`, accentTokens(a));
   return css;
 }
+
+/** Accent name for prose, e.g. "Teal" rather than the picker's "Teal only". */
+export const accentName = (id: AccentId) => accents[id].label.replace(/ only$/, '');
 
 /** Ids accepted by the preview script, e.g. "navy-teal". */
 export const previewIds = Object.keys(darks).flatMap((d) => Object.keys(accents).map((a) => `${d}-${a}`));

@@ -95,7 +95,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 **Full redesign** to modernise the site, with a modern, sleek feel. Brand identity:
 - **Logo:** the plain "embrace / MOVEMENT CLINIC" wordmark only. The teal brush-stroke circle is dropped (owner decision, 12 Oct 2026).
-- **Palette:** Petrol + Coral, a logo-based palette chosen on 19 Oct 2026. Forest was chosen on 12 Oct 2026, then dropped on 18 Oct 2026 because it's too close to a local competitor. `/palette` stays for previewing other combinations.
+- **Palette:** Petrol + Teal, a logo-based palette (Petrol + Coral chosen on 19 Oct 2026; the owner changed the accent to teal on 20 Oct 2026). Forest was chosen on 12 Oct 2026, then dropped on 18 Oct 2026 because it's too close to a local competitor. `/palette` stays for previewing other combinations.
 - **Wordmark colours:** the header wordmark uses the logo's own colours (teal “embrace”, grey “MOVEMENT CLINIC”). The brush circle stays dropped. Favicons and the default share image are white on petrol.
 - **Tagline:** "Accept . Support . Challenge ." is kept.
 - **Type:** Red Hat Display + Red Hat Text.

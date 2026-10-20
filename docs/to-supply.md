@@ -22,7 +22,7 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 
 - [x] Logo: colour circle (500px transparent PNG) and black wordmark (1500px PNG), received 12 Oct 2026 and saved in `assets/brand/`. Favicons and a white footer wordmark were made from them.
 - [x] Logo as SVG: traced from the black wordmark (`assets/brand/logo-wordmark.svg`). An original vector file from whoever designed it would still be ideal, if one exists.
-- [x] **Colour palette:** Petrol + Coral, chosen 19 Oct 2026. `/palette` stays for trying other combinations later.
+- [x] **Colour palette:** Petrol + Teal (petrol chosen 19 Oct 2026; accent changed from coral to teal on 20 Oct). `/palette` stays for trying other combinations later.
 - [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
 - [x] Clinic, team and treatment photos: 16 received on 19 Oct 2026. 14 are on the site (`site/src/assets/photos/`): headshots, the team photo with Jeff, the home page, every service page and the studio gallery.
 - [ ] **Guardian consent for the two photos of children** (`PXL_20220610_235914156`, a child using a wheelchair beside the reformer, and `PXL_20220611_052505665`, a child on the treatment table). They're held back until you confirm a parent or guardian agreed to their use on the website.

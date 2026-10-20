@@ -53,9 +53,8 @@
 }
 
 /*
-  Palette tokens. The values come from src/data/palette.ts (sitePalette: Petrol + Coral,
-  chosen 19 Oct 2026) and are inlined on :root by BaseLayout, so /palette can preview
-  other combinations.
+  Palette tokens. The values come from src/data/palette.ts (sitePalette, currently Petrol +
+  Teal) and are inlined on :root by BaseLayout, so /palette can preview other combinations.
   --color-bg, --color-bg-alt  page and alternate section backgrounds
   --color-ink, --color-ink-muted, --color-line
   --color-brand            dark anchor colour: dark sections, footer, buttons, links
