@@ -1,6 +1,6 @@
 ---
-// Address, directions, contact details, parking and hours. Used on Home (compact: address,
-// directions, hours and the static map) and Contact (everything).
+// Address, directions, hours and a static street map. Used on Home (compact) and Contact,
+// which also lists phone, email and parking. TODO: add a front-of-clinic photo here once supplied.
 import Photo from './Photo.astro';
 import Icon from './Icon.astro';
 import mapImage from '../assets/maps/clinic-map.png';
@@ -94,33 +94,21 @@ const { address, phone, email, hours, notice } = site;
       }
     </div>
 
-    {
-      compact ? (
-        <figure class="location__map">
-          <a href={address.mapUrl}>
-            <Photo
-              src={mapImage}
-              alt={`Map showing the clinic at ${address.street}, ${address.suburb}. Opens Google Maps`}
-              ratio="4 / 5"
-              widths={[400, 600, 800, 1200]}
-              sizes="(min-width: 56em) 40vw, 100vw"
-            />
-          </a>
-          <figcaption>
-            Map data ©{' '}
-            <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
-          </figcaption>
-        </figure>
-      ) : (
+    <figure class="location__map">
+      <a href={address.mapUrl}>
         <Photo
-          alt="The front of Embrace Movement Clinic"
-          note="PXL_20220610_233809257-2.jpg from the current Contact page"
+          src={mapImage}
+          alt={`Map showing the clinic at ${address.street}, ${address.suburb}. Opens Google Maps`}
           ratio="4 / 5"
-          class="location__photo"
-          sizes="(min-width: 62em) 40vw, 100vw"
+          widths={[400, 600, 800, 1200]}
+          sizes="(min-width: 56em) 40vw, 100vw"
         />
-      )
-    }
+      </a>
+      <figcaption>
+        Map data ©{' '}
+        <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -188,11 +176,6 @@ const { address, phone, email, hours, notice } = site;
     margin-top: var(--space-2xs);
     color: var(--color-ink-muted);
     font-size: var(--step--1);
-  }
-
-  :global(.location__photo) {
-    border-radius: var(--radius-l);
-    max-height: 36rem;
   }
 
   .location__more {

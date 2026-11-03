@@ -183,6 +183,19 @@ strong {
   border-bottom-right-radius: 50% var(--curve);
 }
 
+/* Buttons shown only on phones (e.g. Call in page headers) or only on larger screens. */
+@media (min-width: 56em) {
+  .phone-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 55.99em) {
+  .wide-only {
+    display: none !important;
+  }
+}
+
 .flow > * + * {
   margin-top: var(--flow-space, 1em);
 }

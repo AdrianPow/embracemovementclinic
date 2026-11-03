@@ -44,6 +44,12 @@ The owner felt the home page had too much text compared with three competitors (
 - The result is about 350 words in 6 sections (was about 550 in 8): roughly 5,800 px tall on desktop (was 7,300) and 7,900 px on mobile (was 11,600).
 - **Map:** a static image made once from OpenStreetMap (`site/scripts/make-location-map.mjs`), credited "© OpenStreetMap contributors" under the map. It's a local image, so no map script or third-party request loads on the page.
 
+**Carried to the inner pages (3 Nov 2026):**
+- **Services** uses the same photo cards as Home (`ServiceGrid`) in place of the separate Appointments grid and Pilates panel. The class facts it showed are on `/pilates`.
+- **Contact** shows the street map where the front-of-clinic photo placeholder was.
+- **Call button on phones** in the Services and Pilates headers (it replaces the second button on small screens). Service and profile pages already had one.
+- **Pilates:** "How to start classes" is the same slim strip as Home's "How it works" (`StepStrip`), one line per step: "Book a once-off pre-class assessment", "Choose your class times online, selecting the relevant practitioner", "Class full? Get in touch to join the waitlist". The full waitlist explanation stays in the Timetable section.
+
 ## Content changes
 
 - **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". This now shows as a status on the team cards (set in each practitioner's file), plus a site-wide notice banner. Someone needs to turn both off when the clinic reopens (`site/src/data/site.ts` → `notice`).

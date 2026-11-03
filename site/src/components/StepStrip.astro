@@ -1,0 +1,106 @@
+---
+// A slim strip of numbered one-line steps, e.g. "How it works". Used on Home and Pilates.
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  steps: string[];
+  link?: { href: string; label: string };
+  /** Heading level and id for the strip title. */
+  as?: 'h2' | 'h3';
+  id?: string;
+  class?: string;
+}
+
+const { title, steps, link, as: Heading = 'h3', id, class: className } = Astro.props;
+---
+
+<div class:list={['how', { 'how--no-link': !link }, className]}>
+  <Heading class="how__title" id={id}>{title}</Heading>
+  <ol class="how__steps" role="list">
+    {
+      steps.map((step, i) => (
+        <li>
+          <span class="how__n" aria-hidden="true">
+            {i + 1}
+          </span>
+          <span>{step}</span>
+        </li>
+      ))
+    }
+  </ol>
+  {
+    link && (
+      <a class="how__link" href={link.href}>
+        {link.label} <Icon name="arrow-right" size={16} />
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .how {
+    display: grid;
+    gap: var(--space-s) var(--space-l);
+    align-items: center;
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg-alt);
+  }
+
+  @media (min-width: 62em) {
+    .how {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .how--no-link {
+      grid-template-columns: auto 1fr;
+    }
+  }
+
+  .how__title {
+    font-size: var(--step-1);
+  }
+
+  .how__steps {
+    display: grid;
+    gap: var(--space-s) var(--space-m);
+  }
+
+  @media (min-width: 48em) {
+    .how__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .how__steps li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    line-height: 1.45;
+  }
+
+  .how__n {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    font-family: var(--font-display);
+    font-weight: 700;
+    transform: translateY(0.35em);
+  }
+
+  .how__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: var(--font-display);
+    font-weight: 650;
+    white-space: nowrap;
+  }
+
+</style>

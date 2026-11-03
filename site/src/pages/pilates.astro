@@ -6,7 +6,7 @@ import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
-import Steps from '../components/Steps.astro';
+import StepStrip from '../components/StepStrip.astro';
 import Todo from '../components/Todo.astro';
 import PractitionerList from '../components/PractitionerList.astro';
 import ServiceCard from '../components/ServiceCard.astro';
@@ -19,13 +19,11 @@ const service = (await getEntry('services', 'pilates')) as CollectionEntry<'serv
 const d = service.data;
 const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
 
+// One line per step. The full waitlist explanation is in the Timetable section.
 const startSteps = [
-  { name: 'Book a pre-class assessment', detail: 'A once-off pre-class assessment is required before you start classes.' },
-  { name: 'Choose your class times', detail: 'Book online and select the relevant practitioner when booking.' },
-  {
-    name: 'Class full? Join the waitlist',
-    detail: 'If your preferred time isn’t showing, the class is at full capacity. Get in touch and we’ll add you to the waitlist.',
-  },
+  'Book a once-off pre-class assessment',
+  'Choose your class times online, selecting the relevant practitioner',
+  'Class full? Get in touch to join the waitlist',
 ];
 ---
 
@@ -39,7 +37,8 @@ const startSteps = [
   >
     <Fragment slot="actions">
       <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
-      <Button href="#timetable" variant="secondary" size="l">Timetable</Button>
+      <Button href="#timetable" variant="secondary" size="l" class="wide-only">Timetable</Button>
+      <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="phone-only">Call {site.phone.display}</Button>
     </Fragment>
     <Photo slot="aside" src={d.image} alt={d.imageAlt ?? ''} note={d.imageNote} position={d.imagePosition} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
   </PageHero>
@@ -72,12 +71,9 @@ const startSteps = [
     </div>
   </nav>
 
-  <section class="section" id="start" aria-labelledby="start-h">
+  <section class="section start" id="start" aria-labelledby="start-h">
     <div class="wrap">
-      <div class="head">
-        <h2 id="start-h">How to start classes</h2>
-      </div>
-      <Steps steps={startSteps} />
+      <StepStrip as="h2" id="start-h" title="How to start classes" steps={startSteps} />
       <p class="code-tip">
         <Icon name="info" size={20} />
         <span>{booking.bookingCode}</span>
@@ -291,11 +287,15 @@ const startSteps = [
     line-height: 1.5;
   }
 
+  .start {
+    padding-block: var(--space-xl);
+  }
+
   .code-tip {
     display: flex;
     gap: var(--space-xs);
     align-items: flex-start;
-    margin-top: var(--space-l);
+    margin-top: var(--space-s);
     padding: var(--space-m);
     border-radius: var(--radius-l);
     background: var(--color-bg-alt);

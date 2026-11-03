@@ -26,7 +26,7 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
 - [x] Clinic, team and treatment photos: 16 received on 19 Oct 2026. 14 are on the site (`site/src/assets/photos/`): headshots, the team photo with Jeff, the home page, every service page and the studio gallery.
 - [ ] **Guardian consent for the two photos of children** (`PXL_20220610_235914156`, a child using a wheelchair beside the reformer, and `PXL_20220611_052505665`, a child on the treatment table). They're held back until you confirm a parent or guardian agreed to their use on the website.
-- [ ] **Photo of the front of the clinic** (or the driveway and parking) for the location section on the home and Contact pages
+- [ ] **Photo of the front of the clinic** (or the driveway and parking). Optional now: Home and Contact show a street map, but a photo of the entrance would still help on Contact
 - [ ] **Two photos of baby Imogen** for the archived July 2026 update (`DSC_6425.JPG` and `DSC_6872.JPG` on the old site), if you'd like them kept
 - [ ] Photo permissions confirmed for everyone pictured (clients as well as staff)
 - [ ] Check the alt text (the description read out by screen readers) for each photo. They're listed in `docs/changes.md` under "Photos".

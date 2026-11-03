@@ -10,6 +10,8 @@ import TeamCard from '../components/TeamCard.astro';
 import LocationSection from '../components/LocationSection.astro';
 import SectionHead from '../components/SectionHead.astro';
 import BookingBand from '../components/BookingBand.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import StepStrip from '../components/StepStrip.astro';
 import Icon from '../components/Icon.astro';
 import Todo from '../components/Todo.astro';
 import { site } from '../data/site';
@@ -68,8 +70,8 @@ const jsonLd = {
         <p class="lede">We embrace everyone in their health journey, with one-on-one appointments and small group classes.</p>
         <div class="hero__actions">
           <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
-          <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="hero__call">Call {site.phone.display}</Button>
-          <Button href="#help" variant="secondary" size="l" class="hero__explore">What can we help with?</Button>
+          <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="phone-only">Call {site.phone.display}</Button>
+          <Button href="#help" variant="secondary" size="l" class="wide-only">What can we help with?</Button>
         </div>
       </div>
       <Photo
@@ -116,45 +118,10 @@ const jsonLd = {
       </ul>
 
       <h3 class="visually-hidden">Our services</h3>
-      <ul class="cards" role="list">
-        {
-          services.map((s) => (
-            <li class:list={['card', s.data.kind === 'class' && 'card--feature']}>
-              <a href={`/${s.id}`}>
-                <Photo
-                  src={s.data.image}
-                  alt=""
-                  note={s.data.imageNote}
-                  position={s.data.imagePosition}
-                  ratio="3 / 2"
-                  widths={[400, 640, 960]}
-                  sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw"
-                />
-                <div class="card__body">
-                  <p class="card__kind">{s.data.kind === 'class' ? 'Small group classes' : 'One-on-one'}</p>
-                  <h4 class="card__title">{s.data.title}</h4>
-                  <p class="card__blurb">{s.data.blurb ?? s.data.summary}</p>
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="how">
-        <h3 class="how__title">How it works</h3>
-        <ol class="how__steps" role="list">
-          {
-            steps.map((step, i) => (
-              <li>
-                <span class="how__n" aria-hidden="true">{i + 1}</span>
-                <span>{step}</span>
-              </li>
-            ))
-          }
-        </ol>
-        <a class="how__link" href="/patient-information">First visit <Icon name="arrow-right" size={16} /></a>
+      <div class="help__cards">
+        <ServiceGrid services={services} as="h4" />
       </div>
+      <StepStrip title="How it works" steps={steps} link={{ href: '/patient-information', label: 'First visit' }} class="help__steps" />
     </div>
   </section>
 
@@ -262,19 +229,6 @@ const jsonLd = {
     gap: var(--space-s);
   }
 
-  /* Call on phones, "What can we help with?" on larger screens. */
-  @media (min-width: 56em) {
-    .hero__actions :global(.hero__call) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 55.99em) {
-    .hero__actions :global(.hero__explore) {
-      display: none;
-    }
-  }
-
   :global(.hero__photo) {
     border-radius: var(--radius-l);
     max-height: 34rem;
@@ -369,200 +323,12 @@ const jsonLd = {
     }
   }
 
-  /* Service cards: on wide screens, four one-on-one services in a 2×2 grid beside a tall classes card */
-  .cards {
-    display: grid;
-    gap: var(--space-m);
+  .help__cards {
     margin-top: var(--space-l);
   }
 
-  @media (min-width: 40em) {
-    .cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card--feature {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media (min-width: 40em) and (max-width: 61.99em) {
-    .card--feature :global(.photo) {
-      aspect-ratio: 2 / 1 !important;
-    }
-  }
-
-  @media (min-width: 62em) {
-    .cards {
-      grid-template-columns: 1fr 1fr 1.1fr;
-    }
-
-    .card--feature {
-      grid-column: 3;
-      grid-row: 1 / span 2;
-    }
-
-    .cards .card--feature a {
-      grid-template-rows: 1fr auto;
-    }
-
-    .card--feature :global(picture) {
-      display: block;
-      position: relative;
-      min-height: 18rem;
-    }
-
-    .card--feature :global(.photo) {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      aspect-ratio: auto !important;
-    }
-  }
-
-  .card a {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
-    background: var(--color-bg);
-    color: var(--color-ink);
-    text-decoration: none;
-    transition:
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease);
-  }
-
-  .card a:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 39.99em) {
-    .cards {
-      gap: var(--space-s);
-    }
-
-    .card a {
-      grid-template-columns: 6.5rem 1fr;
-      grid-template-rows: none;
-    }
-
-    .card :global(picture) {
-      display: block;
-      position: relative;
-    }
-
-    .card :global(.photo) {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      aspect-ratio: auto !important;
-    }
-
-    .card__body {
-      padding: var(--space-s);
-    }
-
-    .card__title {
-      font-size: var(--step-0);
-    }
-
-    .card__blurb {
-      font-size: var(--step--1);
-    }
-  }
-
-  .card__body {
-    display: grid;
-    align-content: start;
-    gap: var(--space-2xs);
-    padding: var(--space-m);
-  }
-
-  .card__kind {
-    color: var(--color-eyebrow);
-    font-size: var(--step--1);
-    font-weight: 650;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .card__title {
-    font-size: var(--step-1);
-  }
-
-  .card a:hover .card__title {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  .card__blurb {
-    color: var(--color-ink-muted);
-  }
-
-  /* How it works: one slim strip */
-  .how {
-    display: grid;
-    gap: var(--space-s) var(--space-l);
-    align-items: center;
+  :global(.help__steps) {
     margin-top: var(--space-l);
-    padding: var(--space-m);
-    border-radius: var(--radius-l);
-    background: var(--color-bg-alt);
-  }
-
-  @media (min-width: 62em) {
-    .how {
-      grid-template-columns: auto 1fr auto;
-    }
-  }
-
-  .how__title {
-    font-size: var(--step-1);
-  }
-
-  .how__steps {
-    display: grid;
-    gap: var(--space-s) var(--space-m);
-  }
-
-  @media (min-width: 48em) {
-    .how__steps {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  .how__steps li {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-xs);
-    line-height: 1.45;
-  }
-
-  .how__n {
-    display: inline-grid;
-    flex-shrink: 0;
-    place-items: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 50%;
-    background: var(--color-brand);
-    color: var(--color-on-brand);
-    font-family: var(--font-display);
-    font-weight: 700;
-    transform: translateY(0.35em);
-  }
-
-  .how__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35em;
-    font-family: var(--font-display);
-    font-weight: 650;
-    white-space: nowrap;
   }
 
   /* Team */
