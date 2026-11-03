@@ -17,7 +17,7 @@ interface Props {
   compact?: boolean;
 }
 
-const { as: Heading = 'h2', eyebrow = 'Visit us', title = 'Find the clinic', compact = false } = Astro.props;
+const { as: Heading = 'h2', eyebrow, title = 'Find the clinic', compact = false } = Astro.props;
 const { address, phone, email, hours, notice } = site;
 ---
 
@@ -25,7 +25,7 @@ const { address, phone, email, hours, notice } = site;
   <div class="wrap location__grid">
     <div class="location__info flow" style="--flow-space: var(--space-m)">
       <div class="flow" style="--flow-space: var(--space-xs)">
-        <p class="eyebrow">{eyebrow}</p>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
         <Heading id="location-h" class="h2">{title}</Heading>
       </div>
 

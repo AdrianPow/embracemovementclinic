@@ -61,7 +61,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <!-- Hero: what, where, who for -->
-  <section class="on-brand hero" aria-labelledby="hero-h">
+  <section class="on-brand hero curve-bottom" aria-labelledby="hero-h">
     <div class="wrap hero__grid">
       <div class="hero__text">
         <h1 id="hero-h">Physiotherapy, exercise physiology and pilates in McDowall</h1>
@@ -100,7 +100,7 @@ const jsonLd = {
   <!-- What can we help with? Needs, then services, then how to start -->
   <section class="section" id="help" aria-labelledby="help-h">
     <div class="wrap">
-      <SectionHead id="help-h" eyebrow="How we can help" title="What can we help with?" link={{ href: '/services', label: 'All services' }} />
+      <SectionHead id="help-h" title="What can we help with?" link={{ href: '/services', label: 'All services' }} />
       <ul class="needs" role="list">
         {
           needs.map((n) => (
@@ -163,7 +163,6 @@ const jsonLd = {
     <div class="wrap">
       <SectionHead
         id="team-h"
-        eyebrow="Our team"
         title="Who you’ll see"
         intro="Both of our physiotherapists are clinical pilates instructors with Women’s Pelvic Health Physiotherapy training (APA)."
         link={{ href: '/team', label: 'Meet the team' }}
@@ -233,7 +232,7 @@ const jsonLd = {
 <style>
   /* Hero */
   .hero {
-    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) var(--space-l);
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) calc(var(--space-l) + var(--curve) * 0.75);
   }
 
   .hero__grid {
@@ -540,7 +539,6 @@ const jsonLd = {
     display: flex;
     align-items: baseline;
     gap: var(--space-xs);
-    font-size: var(--step--1);
     line-height: 1.45;
   }
 

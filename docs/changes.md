@@ -115,6 +115,8 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 - **Palette:** Petrol + Teal, a logo-based palette (Petrol + Coral chosen on 19 Oct 2026; the owner changed the accent to teal on 20 Oct 2026). Forest was chosen on 12 Oct 2026, then dropped on 18 Oct 2026 because it's too close to a local competitor. `/palette` stays for previewing other combinations.
 - **Wordmark colours:** the header wordmark uses the logo's own colours (teal “embrace”, grey “MOVEMENT CLINIC”). The brush circle stays dropped. Favicons and the default share image are white on petrol.
 - **Tagline:** "Accept . Support . Challenge ." is kept.
+- **Brand detail (3 Nov 2026):** every page header ends in a gentle curve (`.curve-bottom`, depth `--curve`), on the last header band before the page content (on Pilates, the class facts strip).
+- **Fewer elements per section (3 Nov 2026):** one card style everywhere (white, thin border, rounded, lifts on hover); practitioner titles, "perfect for" and equipment lists shown as plain lists instead of pills; condition lists, "Good to know", studio tips and profile details without boxes; callouts as a soft tint with no outline; small labels above headings removed where they repeated the heading; descriptions at 16 px or more (small text only for labels and captions).
 - **Type:** Red Hat Display + Red Hat Text.
 
 Don't copy the Squarespace layout. Use the screenshots only for content, menu items and brand cues. See "Design direction" in CLAUDE.md.

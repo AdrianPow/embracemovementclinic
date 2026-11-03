@@ -32,8 +32,8 @@ const startSteps = [
 <BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
   <PageHero
     tone="brand"
+    curve={false}
     crumbs={[{ label: 'Services', href: '/services' }, { label: 'Pilates & classes' }]}
-    eyebrow="Small group classes"
     title={d.title}
     lede={d.lede}
   >
@@ -44,7 +44,7 @@ const startSteps = [
     <Photo slot="aside" src={d.image} alt={d.imageAlt ?? ''} note={d.imageNote} position={d.imagePosition} ratio="4 / 3" tone="dark" loading="eager" sizes="(min-width: 56em) 45vw, 100vw" />
   </PageHero>
 
-  <section class="on-brand factbar" aria-label="Class details">
+  <section class="on-brand factbar curve-bottom" aria-label="Class details">
     <div class="wrap">
       <dl class="factbar__list">
         {
@@ -75,7 +75,6 @@ const startSteps = [
   <section class="section" id="start" aria-labelledby="start-h">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">Getting started</p>
         <h2 id="start-h">How to start classes</h2>
       </div>
       <Steps steps={startSteps} />
@@ -90,8 +89,15 @@ const startSteps = [
     <div class="wrap two-col">
       <div class="head">
         <h2 id="for-you-h">{d.forYou.heading}</h2>
-        <ul class="chips" role="list">
-          {d.forYou.items.map((i) => <li>{i.name}</li>)}
+        <ul class="ticks" role="list">
+          {
+            d.forYou.items.map((i) => (
+              <li>
+                <Icon name="check" size={20} />
+                {i.name}
+              </li>
+            ))
+          }
         </ul>
       </div>
       <div class="expect">
@@ -104,7 +110,6 @@ const startSteps = [
   <section class="section" id="timetable" aria-labelledby="timetable-h">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">Weekly classes</p>
         <h2 id="timetable-h">Timetable</h2>
         <p class="head__intro">{booking.classes}</p>
       </div>
@@ -147,9 +152,8 @@ const startSteps = [
   <section class="section section--alt" id="studio" aria-labelledby="studio-h">
     <div class="wrap two-col">
       <div class="head">
-        <p class="eyebrow">The studio</p>
         <h2 id="studio-h">Our clinic is equipped with</h2>
-        <ul class="chips" role="list">
+        <ul class="kit" role="list">
           {equipment.map((e) => <li>{e}</li>)}
           <li>and much more</li>
         </ul>
@@ -172,7 +176,6 @@ const startSteps = [
 
   <section class="section" id="cancellations" aria-labelledby="cancel-h">
     <div class="wrap narrow">
-      <p class="eyebrow">Policy</p>
       <h2 id="cancel-h">Cancellation policy</h2>
       {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
     </div>
@@ -181,7 +184,6 @@ const startSteps = [
   <section class="section section--alt" id="who" aria-labelledby="who-h">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">Instructors</p>
         <h2 id="who-h">Who runs the classes</h2>
         <p class="head__intro">Both of our physiotherapists are clinical pilates instructors.</p>
       </div>
@@ -194,7 +196,6 @@ const startSteps = [
       <section class="section" aria-labelledby="related-h">
         <div class="wrap">
           <div class="head">
-            <p class="eyebrow">Related</p>
             <h2 id="related-h">One-on-one appointments</h2>
           </div>
           <ul class="related" role="list">
@@ -214,7 +215,7 @@ const startSteps = [
 
 <style>
   .factbar {
-    padding-bottom: var(--space-l);
+    padding-bottom: calc(var(--space-l) + var(--curve) * 0.75);
   }
 
   .factbar__list {
@@ -322,28 +323,51 @@ const startSteps = [
     }
   }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs);
+  .ticks {
+    display: grid;
+    gap: var(--space-xs);
     padding-top: var(--space-xs);
   }
 
-  .chips li {
-    padding: 0.4em 1em;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-pill);
-    background: var(--color-bg);
+  .ticks li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
     font-weight: 550;
+  }
+
+  .ticks :global(svg) {
+    color: var(--color-icon);
+  }
+
+  .kit {
+    display: grid;
+    gap: var(--space-2xs) var(--space-m);
+    padding-top: var(--space-xs);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kit li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    font-weight: 550;
+  }
+
+  .kit li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 50%;
+    background: var(--color-accent);
+    transform: translateY(-0.15em);
   }
 
   .expect {
     display: grid;
     gap: var(--space-s);
     align-content: start;
-    padding: var(--space-l) var(--space-m);
-    border-radius: var(--radius-l);
-    background: var(--color-bg);
     font-size: var(--step-1);
     line-height: 1.6;
   }
@@ -375,15 +399,9 @@ const startSteps = [
     margin-bottom: var(--space-s);
   }
 
-  .etiquette {
-    display: grid;
-    gap: var(--space-s);
-  }
-
   .etiquette li {
-    padding: var(--space-m);
-    border-radius: var(--radius-l);
-    background: var(--color-bg);
+    padding-block: var(--space-s);
+    border-top: 1px solid var(--color-line);
   }
 
   .etiquette__name {

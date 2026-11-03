@@ -45,6 +45,8 @@
   --radius: 0.75rem;
   --radius-l: 1.25rem;
   --radius-pill: 999px;
+  /* Depth of the gentle curve along the bottom of page headers (the recurring brand detail) */
+  --curve: clamp(1.25rem, 0.25rem + 3.5vw, 3.75rem);
   --shadow-s: 0 1px 2px rgb(0 0 0 / 0.05), 0 2px 8px rgb(0 0 0 / 0.05);
   --shadow-m: 0 2px 6px rgb(0 0 0 / 0.05), 0 16px 40px rgb(0 0 0 / 0.1);
 

@@ -176,6 +176,13 @@ strong {
   background: var(--color-bg-alt);
 }
 
+/* Brand detail: page headers end in a gentle curve. Use it on the last header band before
+   a white section, so the curve shows against the page background. */
+.curve-bottom {
+  border-bottom-left-radius: 50% var(--curve);
+  border-bottom-right-radius: 50% var(--curve);
+}
+
 .flow > * + * {
   margin-top: var(--flow-space, 1em);
 }

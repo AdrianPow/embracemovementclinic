@@ -42,6 +42,7 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 **Brand to keep**
 - Logo: the plain "embrace / MOVEMENT CLINIC" wordmark (`assets/brand/logo-wordmark.svg`). The owner dropped the teal brush-stroke circle on 12 Oct 2026, so don't reintroduce it.
 - Tagline: "Accept . Support . Challenge ."
+- Recurring brand detail: page headers end in a gentle curve (`.curve-bottom` in `site/src/styles/global.css`). Keep sections uncluttered: one card style, plain lists rather than pill tags, no boxes around simple lists, and no label above a heading that repeats it.
 
 **Palette**
 - **Petrol + Teal.** The owner chose petrol on 19 Oct 2026 and changed the accent from coral to teal on 20 Oct 2026. A logo-based palette: logo teal `#3AB593` on the logo and as the decorative accent, with teal 600 `#179677` for icons and highlights; petrol `#083D42` on buttons, links and dark sections; light teal `#90DBC1` for text and buttons on petrol; pale teal `#EEFAF5` for the notice banner and chips; a cool mist `#F2F8F8` for alternate backgrounds. Teal is only ever paired with petrol, never with a dark green.

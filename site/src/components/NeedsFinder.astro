@@ -62,7 +62,6 @@ const byId = new Map(services.map((s) => [s.id, s]));
     align-content: start;
     gap: 0.35rem;
     color: var(--color-ink-muted);
-    font-size: var(--step--1);
   }
 
   .need__examples li {
@@ -84,28 +83,16 @@ const byId = new Map(services.map((s) => [s.id, s]));
   .need__links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2xs);
-    padding-top: var(--space-s);
-    border-top: 1px solid var(--color-line);
+    gap: var(--space-3xs) var(--space-m);
+    padding-top: var(--space-2xs);
   }
 
   .need__links a {
     display: inline-flex;
     align-items: center;
     gap: 0.35em;
-    min-height: 2.5rem;
-    padding: 0.35em 0.9em;
-    border-radius: var(--radius-pill);
-    background: var(--color-accent-soft);
-    color: var(--color-ink);
+    min-height: 2.75rem;
     font-family: var(--font-display);
-    font-size: var(--step--1);
     font-weight: 650;
-    text-decoration: none;
-  }
-
-  .need__links a:hover {
-    background: var(--color-brand);
-    color: var(--color-on-brand);
   }
 </style>

@@ -39,7 +39,7 @@ const jsonLd = {
 ---
 
 <BaseLayout title={`${d.name}`} description={d.seoDescription} image={d.photo} imageAlt={d.photo ? d.name : undefined} jsonLd={jsonLd}>
-  <section class="profile-hero" aria-labelledby="page-title">
+  <section class="profile-hero curve-bottom" aria-labelledby="page-title">
     <div class="wrap profile-hero__grid">
       <Photo src={d.photo} alt={d.name} note={d.photoNote} position={d.photoPosition} ratio="4 / 5" loading="eager" class="profile-hero__photo" sizes="(min-width: 56em) 35vw, 100vw" />
       <div class="profile-hero__text">
@@ -124,7 +124,6 @@ const jsonLd = {
       <section class="section section--alt" aria-labelledby="services-h">
         <div class="wrap">
           <div class="head">
-            <p class="eyebrow">Services</p>
             <h2 id="services-h">See {d.firstName} for</h2>
           </div>
           <ul class="services" role="list">
@@ -144,7 +143,7 @@ const jsonLd = {
 
 <style>
   .profile-hero {
-    padding-block: clamp(2rem, 1.25rem + 3vw, 4rem);
+    padding-block: clamp(2rem, 1.25rem + 3vw, 4rem) calc(clamp(2rem, 1.25rem + 3vw, 4rem) + var(--curve) * 0.5);
     background: var(--color-bg-alt);
   }
 
@@ -183,12 +182,14 @@ const jsonLd = {
   }
 
   .roles li {
-    padding: 0.35em 0.9em;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-pill);
-    background: var(--color-bg);
-    font-size: var(--step--1);
-    font-weight: 600;
+    color: var(--color-ink-muted);
+    font-weight: 550;
+  }
+
+  .roles li:not(:last-child)::after {
+    content: '·';
+    margin-left: var(--space-2xs);
+    color: var(--color-ink-muted);
   }
 
   .status {
@@ -231,9 +232,8 @@ const jsonLd = {
   .block {
     display: grid;
     gap: var(--space-s);
-    padding: var(--space-m);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--color-line);
   }
 
   .block ul {
@@ -245,7 +245,6 @@ const jsonLd = {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-xs);
-    font-size: var(--step--1);
   }
 
   .block :global(svg) {

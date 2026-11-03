@@ -9,13 +9,15 @@ interface Props {
   lede?: string;
   crumbs?: { label: string; href?: string }[];
   tone?: 'brand' | 'light';
+  /** End in the brand curve. Turn off when another header band follows (e.g. the Pilates facts). */
+  curve?: boolean;
 }
 
-const { title, eyebrow, lede, crumbs, tone = 'light' } = Astro.props;
+const { title, eyebrow, lede, crumbs, tone = 'light', curve = true } = Astro.props;
 const hasAside = Astro.slots.has('aside');
 ---
 
-<section class:list={['page-hero', `page-hero--${tone}`, { 'on-brand': tone === 'brand' }]} aria-labelledby="page-title">
+<section class:list={['page-hero', `page-hero--${tone}`, { 'on-brand': tone === 'brand', 'curve-bottom': curve }]} aria-labelledby="page-title">
   <div class:list={['wrap', 'page-hero__grid', { 'page-hero__grid--split': hasAside }]}>
     <div class="page-hero__text">
       {crumbs && <Breadcrumbs items={crumbs} onBrand={tone === 'brand'} />}

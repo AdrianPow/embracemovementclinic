@@ -193,7 +193,6 @@ const sections = [
       <section class="section section--alt" aria-labelledby="related-h">
         <div class="wrap">
           <div class="head">
-            <p class="eyebrow">Related</p>
             <h2 id="related-h">You might also need</h2>
           </div>
           <ul class="related" role="list">
@@ -282,7 +281,7 @@ const sections = [
   /* Conditions */
   .checks {
     display: grid;
-    gap: var(--space-s);
+    gap: var(--space-l) var(--space-xl);
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
   }
 
@@ -290,9 +289,6 @@ const sections = [
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-s);
-    padding: var(--space-m);
-    background: var(--color-bg-alt);
-    border-radius: var(--radius-l);
   }
 
   :global(.checks__icon) {
@@ -309,7 +305,6 @@ const sections = [
   .checks__detail {
     margin-top: var(--space-3xs);
     color: var(--color-ink-muted);
-    font-size: var(--step--1);
   }
 
   /* What to expect */
@@ -386,7 +381,7 @@ const sections = [
   /* Practical */
   .practical {
     display: grid;
-    gap: var(--space-s);
+    gap: var(--space-m) var(--space-xl);
     margin-top: var(--space-m);
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
   }
@@ -396,16 +391,13 @@ const sections = [
     grid-template-columns: auto 1fr;
     gap: var(--space-s);
     align-items: start;
-    height: 100%;
-    padding: var(--space-m);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
     color: var(--color-ink);
     text-decoration: none;
   }
 
-  .practical a:hover {
-    box-shadow: var(--shadow-m);
+  .practical a:hover strong {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .practical :global(svg) {
@@ -416,7 +408,6 @@ const sections = [
     display: grid;
     gap: var(--space-3xs);
     color: var(--color-ink-muted);
-    font-size: var(--step--1);
   }
 
   .practical strong {
