@@ -1,30 +1,24 @@
 ---
-// Home. Structure from docs/site-strategy.md: promise → what can we help with → two ways
-// to work with us → how it works → team → studio → visit → book.
+// Home. Structure from docs/site-strategy.md, tightened on 3 Nov 2026 after a competitor review
+// (shorter and photo-led, about 300–350 words): promise → what can we help with (needs, services,
+// how it works) → team → studio and values → visit → book.
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Photo from '../components/Photo.astro';
 import TeamCard from '../components/TeamCard.astro';
 import LocationSection from '../components/LocationSection.astro';
-import NeedsFinder from '../components/NeedsFinder.astro';
 import SectionHead from '../components/SectionHead.astro';
-import Steps from '../components/Steps.astro';
 import BookingBand from '../components/BookingBand.astro';
 import Icon from '../components/Icon.astro';
 import Todo from '../components/Todo.astro';
 import { site } from '../data/site';
-import { equipment, classFacts } from '../data/policies';
+import { needs } from '../data/needs';
 import heroPhoto from '../assets/photos/pxl-20220610-230251564-hires.webp';
-import appointmentsPhoto from '../assets/photos/3-sam-1300.webp';
-import classesPhoto from '../assets/photos/pxl-20220610-231040021.webp';
-import trapezePhoto from '../assets/photos/pxl-20220610-231913214.webp';
-import treatmentPhoto from '../assets/photos/pxl-20220611-041127782.webp';
-import pregnancyPhoto from '../assets/photos/pxl-20220611-044952545.webp';
-import reformerPhoto from '../assets/photos/pxl-20220610-233959936.webp';
+import studioPhoto from '../assets/photos/pxl-20220610-231040021.webp';
+import studioInsetPhoto from '../assets/photos/pxl-20220611-044952545.webp';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-const appointments = services.filter((s) => s.data.kind === 'appointment');
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
 
 const facts = [
@@ -34,26 +28,10 @@ const facts = [
   { icon: 'map-pin', text: '33 Brynner Street, McDowall' },
 ] as const;
 
-const howItWorks = [
-  {
-    name: 'Start with an assessment',
-    detail: 'New clients begin with an initial consultation and assessment. For classes, that’s a once-off pre-class assessment.',
-  },
-  {
-    name: 'A plan tailored to you',
-    detail: 'We take the time to understand your history, needs and goals, and tailor treatment and exercise to suit you.',
-  },
-  {
-    name: 'Keep moving',
-    detail: 'Continue with one-on-one appointments, a home or gym program, or small group classes in the studio.',
-  },
-];
-
-const gallery = [
-  { src: trapezePhoto, alt: 'A client holding a plank with their feet in the Trapeze Table straps', position: '60% 50%' },
-  { src: treatmentPhoto, alt: 'A physiotherapist treating a patient lying on the treatment table', position: '50% 28%' },
-  { src: pregnancyPhoto, alt: 'A pregnant client kneeling beside an exercise ball', position: '50% 45%' },
-  { src: reformerPhoto, alt: 'A client exercising on the reformer while a practitioner watches', position: '40% 50%' },
+const steps = [
+  'Start with an initial assessment',
+  'Get a plan tailored to your needs and goals',
+  'Keep moving with appointments, a home or gym program, or classes',
 ];
 
 const jsonLd = {
@@ -86,15 +64,12 @@ const jsonLd = {
   <section class="on-brand hero" aria-labelledby="hero-h">
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="eyebrow">{site.tagline}</p>
         <h1 id="hero-h">Physiotherapy, exercise physiology and pilates in McDowall</h1>
-        <p class="lede">
-          We embrace everyone in their health journey, with one-on-one appointments and small group classes. At Embrace we
-          believe the journey of one’s health is as important as the destination.
-        </p>
+        <p class="lede">We embrace everyone in their health journey, with one-on-one appointments and small group classes.</p>
         <div class="hero__actions">
           <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
-          <Button href="#help" variant="secondary" size="l">What can we help with?</Button>
+          <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="hero__call">Call {site.phone.display}</Button>
+          <Button href="#help" variant="secondary" size="l" class="hero__explore">What can we help with?</Button>
         </div>
       </div>
       <Photo
@@ -122,78 +97,64 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- What can we help with? -->
+  <!-- What can we help with? Needs, then services, then how to start -->
   <section class="section" id="help" aria-labelledby="help-h">
     <div class="wrap">
-      <SectionHead
-        id="help-h"
-        eyebrow="Find the right care"
-        title="What can we help with?"
-        intro="Start with what you’re dealing with. Each one links to the services that can help."
-        link={{ href: '/services', label: 'All services' }}
-      />
-      <NeedsFinder />
-    </div>
-  </section>
+      <SectionHead id="help-h" eyebrow="How we can help" title="What can we help with?" link={{ href: '/services', label: 'All services' }} />
+      <ul class="needs" role="list">
+        {
+          needs.map((n) => (
+            <li>
+              <a href={`/services#${n.id}`}>
+                <Icon name={n.icon} size={22} />
+                <span>{n.short}</span>
+                <Icon name="arrow-right" size={16} class="needs__arrow" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-  <!-- Two ways to work with us -->
-  <section class="section section--alt" aria-labelledby="ways-h">
-    <div class="wrap">
-      <SectionHead id="ways-h" eyebrow="Services" title="Two ways to work with us" />
-      <div class="ways">
-        <article class="way" aria-labelledby="way-1">
-          <Photo src={appointmentsPhoto} alt="" position="50% 58%" ratio="3 / 2" sizes="(min-width: 56em) 50vw, 100vw" />
-          <div class="way__body">
-            <p class="eyebrow">One-on-one</p>
-            <h3 id="way-1">Appointments</h3>
-            <p class="way__intro">Assessment and treatment with a physiotherapist or exercise physiologist, built around your needs and goals.</p>
-            <ul class="way__list" role="list">
-              {
-                appointments.map((s) => (
-                  <li>
-                    <a href={`/${s.id}`}>
-                      <span class="way__name">{s.data.title}</span>
-                      <Icon name="arrow-right" size={18} />
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </article>
-        <article class="way" aria-labelledby="way-2">
-          <Photo src={classesPhoto} alt="" ratio="3 / 2" sizes="(min-width: 56em) 50vw, 100vw" />
-          <div class="way__body">
-            <p class="eyebrow">Small groups</p>
-            <h3 id="way-2">Pilates &amp; classes</h3>
-            <p class="way__intro">
-              Clinical pilates and small group exercise on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and
-              abilities.
-            </p>
-            <dl class="way__facts">
-              {
-                classFacts.slice(0, 3).map((f) => (
-                  <div>
-                    <dt>{f.label}</dt>
-                    <dd>{f.value}</dd>
-                  </div>
-                ))
-              }
-            </dl>
-            <div class="way__cta">
-              <Button href="/pilates">Classes &amp; timetable</Button>
-            </div>
-          </div>
-        </article>
+      <h3 class="visually-hidden">Our services</h3>
+      <ul class="cards" role="list">
+        {
+          services.map((s) => (
+            <li class:list={['card', s.data.kind === 'class' && 'card--feature']}>
+              <a href={`/${s.id}`}>
+                <Photo
+                  src={s.data.image}
+                  alt=""
+                  note={s.data.imageNote}
+                  position={s.data.imagePosition}
+                  ratio="3 / 2"
+                  widths={[400, 640, 960]}
+                  sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw"
+                />
+                <div class="card__body">
+                  <p class="card__kind">{s.data.kind === 'class' ? 'Small group classes' : 'One-on-one'}</p>
+                  <h4 class="card__title">{s.data.title}</h4>
+                  <p class="card__blurb">{s.data.blurb ?? s.data.summary}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="how">
+        <h3 class="how__title">How it works</h3>
+        <ol class="how__steps" role="list">
+          {
+            steps.map((step, i) => (
+              <li>
+                <span class="how__n" aria-hidden="true">{i + 1}</span>
+                <span>{step}</span>
+              </li>
+            ))
+          }
+        </ol>
+        <a class="how__link" href="/patient-information">First visit <Icon name="arrow-right" size={16} /></a>
       </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="section" aria-labelledby="how-h">
-    <div class="wrap">
-      <SectionHead id="how-h" eyebrow="Getting started" title="How it works" link={{ href: '/patient-information', label: 'Patient information' }} />
-      <Steps steps={howItWorks} />
     </div>
   </section>
 
@@ -219,45 +180,52 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- The studio -->
-  <section class="section studio" aria-labelledby="studio-h">
-    <div class="wrap">
-      <div class="studio__intro">
-        <blockquote class="studio__quote">
-          <p>At Embrace we believe the journey of one’s health is as important as the destination.</p>
-        </blockquote>
-        <div class="studio__text">
-          <p class="eyebrow">The studio</p>
-          <h2 id="studio-h" class="h3">Our studio and equipment</h2>
-          <ul class="chips" role="list">
-            {equipment.map((e) => <li>{e}</li>)}
-          </ul>
-        </div>
+  <!-- Studio and values -->
+  <section class="section values" aria-labelledby="values-h">
+    <div class="wrap values__grid">
+      <div class="values__photos">
+        <Photo
+          src={studioPhoto}
+          alt="A side stretch on the Wunda Chair in the pilates studio"
+          ratio="4 / 3"
+          class="values__main"
+          sizes="(min-width: 56em) 45vw, 90vw"
+        />
+        <Photo
+          src={studioInsetPhoto}
+          alt="A pregnant client kneeling beside an exercise ball"
+          ratio="3 / 4"
+          position="50% 35%"
+          widths={[300, 600]}
+          class="values__inset"
+          sizes="(min-width: 56em) 18vw, 40vw"
+        />
       </div>
-      <ul class="gallery" role="list">
-        {
-          gallery.map((g) => (
-            <li>
-              <Photo src={g.src} alt={g.alt} position={g.position} ratio="1 / 1" sizes="(min-width: 56em) 25vw, 50vw" />
-            </li>
-          ))
-        }
-      </ul>
-      <p class="studio__gram">
-        {
-          site.socials.instagram ? (
-            <a href={site.socials.instagram}>
-              <Icon name="instagram" size={18} /> Follow us on Instagram
-            </a>
-          ) : (
-            <Todo>Instagram profile link</Todo>
-          )
-        }
-      </p>
+      <div class="values__text">
+        <p class="eyebrow">Our approach</p>
+        <h2 id="values-h" class="values__tagline">{site.tagline}</h2>
+        <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+        <ul class="values__links" role="list">
+          <li>
+            <a href="/pilates#studio">Our studio and equipment <Icon name="arrow-right" size={16} /></a>
+          </li>
+          <li>
+            {
+              site.socials.instagram ? (
+                <a href={site.socials.instagram}>
+                  <Icon name="instagram" size={18} /> Follow us on Instagram
+                </a>
+              ) : (
+                <Todo>Instagram profile link</Todo>
+              )
+            }
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <LocationSection />
+  <LocationSection compact />
 
   <BookingBand title="Book an appointment" text={`Book online, or call us on ${site.phone.display}. New to classes? Start with a pre-class assessment.`} />
 </BaseLayout>
@@ -285,10 +253,27 @@ const jsonLd = {
     line-height: 1.04;
   }
 
+  .hero .lede {
+    max-width: 32rem;
+  }
+
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-s);
+  }
+
+  /* Call on phones, "What can we help with?" on larger screens. */
+  @media (min-width: 56em) {
+    .hero__actions :global(.hero__call) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 55.99em) {
+    .hero__actions :global(.hero__explore) {
+      display: none;
+    }
   }
 
   :global(.hero__photo) {
@@ -329,84 +314,257 @@ const jsonLd = {
     color: var(--color-accent-on-brand);
   }
 
-  /* Two ways */
-  .ways {
+  /* Needs: one-line tiles */
+  .needs {
     display: grid;
-    gap: var(--space-m);
+    gap: var(--space-xs);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (min-width: 56em) {
-    .ways {
-      grid-template-columns: 1fr 1fr;
+  @media (min-width: 48em) {
+    .needs {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  .way {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    overflow: hidden;
-    background: var(--color-bg);
-    border-radius: var(--radius-l);
+  .needs a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-height: 3.5rem;
+    height: 100%;
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius);
+    background: var(--color-bg-alt);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.2s var(--ease);
   }
 
-  .way__body {
-    display: grid;
-    align-content: start;
-    gap: var(--space-s);
-    padding: var(--space-l) var(--space-m);
+  .needs a:hover {
+    background: var(--color-accent-soft);
   }
 
-  .way__intro {
+  .needs a > :global(svg:first-child) {
+    color: var(--color-icon);
+  }
+
+  .needs a > span {
+    flex: 1;
+  }
+
+  .needs :global(.needs__arrow) {
     color: var(--color-ink-muted);
   }
 
-  .way__list li + li {
-    border-top: 1px solid var(--color-line);
+  @media (max-width: 39.99em) {
+    .needs a {
+      font-size: var(--step--1);
+    }
+
+    .needs :global(.needs__arrow) {
+      display: none;
+    }
   }
 
-  .way__list a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-s);
-    min-height: 3.25rem;
+  /* Service cards: on wide screens, four one-on-one services in a 2×2 grid beside a tall classes card */
+  .cards {
+    display: grid;
+    gap: var(--space-m);
+    margin-top: var(--space-l);
+  }
+
+  @media (min-width: 40em) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card--feature {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 40em) and (max-width: 61.99em) {
+    .card--feature :global(.photo) {
+      aspect-ratio: 2 / 1 !important;
+    }
+  }
+
+  @media (min-width: 62em) {
+    .cards {
+      grid-template-columns: 1fr 1fr 1.1fr;
+    }
+
+    .card--feature {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+
+    .cards .card--feature a {
+      grid-template-rows: 1fr auto;
+    }
+
+    .card--feature :global(picture) {
+      display: block;
+      position: relative;
+      min-height: 18rem;
+    }
+
+    .card--feature :global(.photo) {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      aspect-ratio: auto !important;
+    }
+  }
+
+  .card a {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
     color: var(--color-ink);
-    font-family: var(--font-display);
-    font-weight: 600;
     text-decoration: none;
+    transition:
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease);
   }
 
-  .way__list a:hover .way__name {
+  .card a:hover {
+    box-shadow: var(--shadow-m);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 39.99em) {
+    .cards {
+      gap: var(--space-s);
+    }
+
+    .card a {
+      grid-template-columns: 6.5rem 1fr;
+      grid-template-rows: none;
+    }
+
+    .card :global(picture) {
+      display: block;
+      position: relative;
+    }
+
+    .card :global(.photo) {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      aspect-ratio: auto !important;
+    }
+
+    .card__body {
+      padding: var(--space-s);
+    }
+
+    .card__title {
+      font-size: var(--step-0);
+    }
+
+    .card__blurb {
+      font-size: var(--step--1);
+    }
+  }
+
+  .card__body {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+  }
+
+  .card__kind {
+    color: var(--color-eyebrow);
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+  }
+
+  .card a:hover .card__title {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
 
-  .way__facts {
-    display: grid;
-    gap: 0;
-  }
-
-  .way__facts div {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-s);
-    padding-block: var(--space-xs);
-    border-top: 1px solid var(--color-line);
-  }
-
-  .way__facts dt {
-    font-family: var(--font-display);
-    font-weight: 600;
-  }
-
-  .way__facts dd {
-    margin: 0;
+  .card__blurb {
     color: var(--color-ink-muted);
-    text-align: right;
   }
 
-  .way__cta {
-    padding-top: var(--space-2xs);
+  /* How it works: one slim strip */
+  .how {
+    display: grid;
+    gap: var(--space-s) var(--space-l);
+    align-items: center;
+    margin-top: var(--space-l);
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-bg-alt);
+  }
+
+  @media (min-width: 62em) {
+    .how {
+      grid-template-columns: auto 1fr auto;
+    }
+  }
+
+  .how__title {
+    font-size: var(--step-1);
+  }
+
+  .how__steps {
+    display: grid;
+    gap: var(--space-s) var(--space-m);
+  }
+
+  @media (min-width: 48em) {
+    .how__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .how__steps li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+    line-height: 1.45;
+  }
+
+  .how__n {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    font-family: var(--font-display);
+    font-weight: 700;
+    transform: translateY(0.35em);
+  }
+
+  .how__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: var(--font-display);
+    font-weight: 650;
+    white-space: nowrap;
   }
 
   /* Team */
@@ -417,85 +575,61 @@ const jsonLd = {
     max-width: 52rem;
   }
 
-  /* Studio */
-  .studio__intro {
+  /* Studio and values: two overlapping photos beside the tagline */
+  .values__grid {
     display: grid;
-    gap: var(--space-l);
-    margin-bottom: var(--space-l);
+    gap: var(--space-xl);
+    align-items: center;
   }
 
   @media (min-width: 56em) {
-    .studio__intro {
-      grid-template-columns: 1.3fr 1fr;
-      gap: var(--space-xl);
-      align-items: end;
+    .values__grid {
+      grid-template-columns: 1.15fr 1fr;
     }
   }
 
-  .studio__quote p {
-    font-family: var(--font-display);
+  .values__photos {
+    position: relative;
+    padding-bottom: 12%;
+  }
+
+  .values__photos :global(.values__main) {
+    width: 82%;
+    border-radius: var(--radius-l);
+  }
+
+  .values__photos :global(.values__inset) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    border: 0.375rem solid var(--color-bg);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-m);
+  }
+
+  .values__text {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: start;
+  }
+
+  .values__tagline {
     font-size: var(--step-4);
-    font-weight: 600;
-    line-height: 1.12;
+    line-height: 1.08;
     letter-spacing: -0.025em;
-    text-wrap: balance;
   }
 
-  .studio__quote p::before {
-    content: '“';
-    color: var(--color-accent);
-  }
-
-  .studio__quote p::after {
-    content: '”';
-    color: var(--color-accent);
-  }
-
-  .studio__text {
+  .values__links {
     display: grid;
     gap: var(--space-xs);
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs);
     padding-top: var(--space-2xs);
   }
 
-  .chips li {
-    padding: 0.35em 0.9em;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-pill);
-    background: var(--color-bg-alt);
-    font-size: var(--step--1);
-    font-weight: 550;
-  }
-
-  .gallery {
-    display: grid;
-    gap: var(--space-s);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .gallery :global(.photo) {
-    border-radius: var(--radius);
-  }
-
-  @media (min-width: 56em) {
-    .gallery {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  .studio__gram {
-    margin-top: var(--space-m);
-  }
-
-  .studio__gram a {
+  .values__links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.4em;
+    gap: 0.35em;
     font-family: var(--font-display);
     font-weight: 650;
   }

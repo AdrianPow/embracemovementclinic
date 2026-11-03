@@ -4,6 +4,7 @@ shortTitle: Pilates & classes
 order: 5
 kind: class
 summary: Clinical pilates and small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and exercise abilities.
+blurb: Clinical pilates and small group classes for all ages and abilities.
 lede: Clinical pilates and small group exercise classes for all ages and abilities, from people who have never stepped foot in a gym to high-level athletes.
 forYou:
   heading: Our classes are perfect for

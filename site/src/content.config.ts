@@ -23,6 +23,8 @@ const services = defineCollection({
       kind: z.enum(['appointment', 'class']),
       /** One or two sentences for cards. */
       summary: z.string(),
+      /** Very short description (15 words or fewer) for the home page cards. */
+      blurb: z.string().optional(),
       /** Opening line under the page title. */
       lede: z.string(),
       forYou: z.object({

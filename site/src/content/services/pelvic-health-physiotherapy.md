@@ -4,6 +4,7 @@ shortTitle: Pelvic floor
 order: 3
 kind: appointment
 summary: Assessment and treatment for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
+blurb: Assessment and treatment for pelvic health concerns, including pregnancy, postnatal and menopause care.
 lede: Assessment and treatment for pelvic floor and pelvic health concerns, including pregnancy, postnatal and menopause care.
 forYou:
   heading: Conditions we commonly treat

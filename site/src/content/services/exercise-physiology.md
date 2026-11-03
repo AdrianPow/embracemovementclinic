@@ -3,6 +3,7 @@ title: Exercise Physiology
 order: 2
 kind: appointment
 summary: Tailored exercise for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
+blurb: Exercise programs built around your medical history, fitness and goals.
 lede: Exercise programs built around your medical history, fitness and goals, for rehabilitation, chronic conditions, healthy ageing and performance.
 forYou:
   heading: Conditions we commonly treat

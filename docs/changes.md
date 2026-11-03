@@ -33,6 +33,17 @@ The owner asked for the site to be rethought rather than copied (see `docs/site-
 - **Standard service page structure:** hero → is this for you → what to expect → treatment → who you'll see → good to know → related → book.
 - **Practitioner profiles** with qualifications, training and experience pulled out of the bios into lists.
 
+## Home page tightened (3 Nov 2026, after a competitor review)
+
+The owner felt the home page had too much text compared with three competitors (All Women's Health, Pear Exercise Physiology, The Healthy Peach Physio) and chose suggestions 1–7:
+- **Hero:** shorter intro (the "journey of one's health" line now appears once, in the values band), no tagline eyebrow, and the second button is "Call 0434 686 261" on phones ("What can we help with?" on larger screens).
+- **What can we help with?** The six needs are one-line tiles with icons, linking to the full lists on `/services`. Below them, one photo card per service (15 words or fewer each) replaces the old "Two ways to work with us" panels; class size, length and equipment stay on `/pilates`.
+- **How it works** is a slim three-step strip.
+- **Studio and values:** two overlapping photos beside "Accept . Support . Challenge ." and the journey line. The equipment list moved to `/pilates` only.
+- **Find the clinic:** address, directions, hours and a static street map. Phone, email and parking stay on `/contact`.
+- The result is about 350 words in 6 sections (was about 550 in 8): roughly 5,800 px tall on desktop (was 7,300) and 7,900 px on mobile (was 11,600).
+- **Map:** a static image made once from OpenStreetMap (`site/scripts/make-location-map.mjs`), credited "© OpenStreetMap contributors" under the map. It's a local image, so no map script or third-party request loads on the page.
+
 ## Content changes
 
 - **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". This now shows as a status on the team cards (set in each practitioner's file), plus a site-wide notice banner. Someone needs to turn both off when the clinic reopens (`site/src/data/site.ts` → `notice`).
@@ -48,6 +59,12 @@ Each change to what a service involves, conditions treated, or examination or co
 | Home and menu (service card summary): Musculoskeletal Physiotherapy | Conditions list on /physiotherapy | "Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care." | New short summary for cards, condensed from the conditions list | TBC |
 | Home (card summary): Exercise Physiology | Conditions list on /exercise-physiology | "Tailored exercise for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance." | New short summary for cards | TBC |
 | Home (card summary): Pilates & Small Group Classes | Equipment and "We see all clients of all ages and exercise ability" on /pilates | "Clinical pilates and small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and exercise abilities." | New short summary for cards | TBC |
+| Home service cards (3 Nov 2026): Musculoskeletal Physiotherapy | Card summary above | "Assessment, hands-on treatment and exercise for injuries, pain and recovery after surgery." | Shorter home page (15 words or fewer); condensed from the page's opening line. The full conditions list stays on the service page | TBC |
+| Home service cards: Exercise Physiology | Card summary above | "Exercise programs built around your medical history, fitness and goals." | As above | TBC |
+| Home service cards: Pelvic Floor Physiotherapy | Card summary | "Assessment and treatment for pelvic health concerns, including pregnancy, postnatal and menopause care." | As above | TBC |
+| Home service cards: Vestibular Physiotherapy | Card summary | "Assessment and treatment for vertigo, dizziness and balance problems." | As above | TBC |
+| Home service cards: Pilates & Small Group Classes | Card summary above | "Clinical pilates and small group classes for all ages and abilities." | As above; the equipment is listed on /pilates | TBC |
+| Home "How it works" (3 Nov 2026) | "New clients begin with an initial consultation and assessment. For classes, that's a once-off pre-class assessment." / "We take the time to understand your history, needs and goals, and tailor treatment and exercise to suit you." / "Continue with one-on-one appointments, a home or gym program, or small group classes in the studio." | "Start with an initial assessment" / "Get a plan tailored to your needs and goals" / "Keep moving with appointments, a home or gym program, or classes" | One line per step. The pre-class assessment is still in the booking band below and on Patient information | TBC |
 | Home (card summary): Pelvic Floor Physiotherapy | Conditions list on /womens-health-physio | "Assessment and treatment for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care." | New short summary for cards | TBC |
 | Home (card summary): Vestibular Physiotherapy | Intro on /pilates-1 | "Assessment and treatment for vertigo, dizziness and decreased balance, including Benign Paroxysmal Positional Vertigo (BPPV)." | New short summary for cards | TBC |
 | Home (classes) | "A once off pre-class assessment is required prior to commencing classes." / "Healthy Aging" | "A once-off pre-class assessment is required before commencing classes." / "Healthy ageing" | Australian spelling and punctuation only | TBC |

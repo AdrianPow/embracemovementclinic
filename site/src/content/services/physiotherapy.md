@@ -4,6 +4,7 @@ shortTitle: Physiotherapy
 order: 1
 kind: appointment
 summary: Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
+blurb: Assessment, hands-on treatment and exercise for injuries, pain and recovery after surgery.
 lede: Assessment, hands-on treatment, exercise and education for musculoskeletal and sporting injuries, pain, and recovery after surgery.
 forYou:
   heading: Conditions we commonly treat

@@ -59,7 +59,7 @@ Home
 
 ## 5. Page templates
 
-- **Home:** a clear promise (what, where, who for) → problem finder → two ways to work with us → how it works (3 steps) → the team → the studio → visit us → book.
+- **Home:** a clear promise (what, where, who for) → what can we help with (need tiles, one photo card per service, a slim how-it-works strip) → the team → studio and values → visit us (address, directions, hours, map) → book. Tightened on 3 Nov 2026 to about 350 words and 6 sections; see `docs/changes.md`.
 - **Service page:** hero (summary, Book, Call, who you'll see) → "Is this for you?" (conditions) → what to expect (steps) → treatment may include → practitioners → good to know → related services → book.
 - **Classes page:** what the classes are → who they suit → how to start (assessment → book → waitlist) → class details → timetable → equipment → studio rules → cancellation policy → book.
 - **Practitioner page:** photo and roles → current status → experience → qualifications and training → bio → book with them.

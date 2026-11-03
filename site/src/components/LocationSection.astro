@@ -1,6 +1,9 @@
 ---
-// Address, directions, contact details, parking and hours. Used on Home and Contact.
+// Address, directions, contact details, parking and hours. Used on Home (compact: address,
+// directions, hours and the static map) and Contact (everything).
 import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import mapImage from '../assets/maps/clinic-map.png';
 import Button from './Button.astro';
 import Todo from './Todo.astro';
 import { site } from '../data/site';
@@ -10,9 +13,11 @@ interface Props {
   as?: 'h1' | 'h2';
   eyebrow?: string;
   title?: string;
+  /** Home page version: address, directions, hours and a map. Contact shows everything. */
+  compact?: boolean;
 }
 
-const { as: Heading = 'h2', eyebrow = 'Visit us', title = 'Find the clinic' } = Astro.props;
+const { as: Heading = 'h2', eyebrow = 'Visit us', title = 'Find the clinic', compact = false } = Astro.props;
 const { address, phone, email, hours, notice } = site;
 ---
 
@@ -32,22 +37,34 @@ const { address, phone, email, hours, notice } = site;
 
       <div class="location__actions">
         <Button href={address.directionsUrl} icon="map-pin">Get directions</Button>
-        <Button href={address.mapUrl} variant="secondary">Open in Google Maps</Button>
+        {!compact && <Button href={address.mapUrl} variant="secondary">Open in Google Maps</Button>}
       </div>
 
       <dl class="location__details">
-        <div>
-          <dt>Phone</dt>
-          <dd><a href={phone.href}>{phone.display}</a></dd>
-        </div>
-        <div>
-          <dt>Email</dt>
-          <dd><a href={email.href}>{email.address}</a></dd>
-        </div>
-        <div>
-          <dt>Parking</dt>
-          <dd><Todo>parking details</Todo></dd>
-        </div>
+        {
+          !compact && (
+            <>
+              <div>
+                <dt>Phone</dt>
+                <dd>
+                  <a href={phone.href}>{phone.display}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd>
+                  <a href={email.href}>{email.address}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Parking</dt>
+                <dd>
+                  <Todo>parking details</Todo>
+                </dd>
+              </div>
+            </>
+          )
+        }
         <div>
           <dt>Hours</dt>
           <dd>
@@ -68,15 +85,42 @@ const { address, phone, email, hours, notice } = site;
           </dd>
         </div>
       </dl>
+      {
+        compact && (
+          <a class="location__more" href="/contact">
+            Parking, phone and email <Icon name="arrow-right" size={16} />
+          </a>
+        )
+      }
     </div>
 
-    <Photo
-      alt="The front of Embrace Movement Clinic"
-      note="PXL_20220610_233809257-2.jpg from the current Contact page"
-      ratio="4 / 5"
-      class="location__photo"
-      sizes="(min-width: 62em) 40vw, 100vw"
-    />
+    {
+      compact ? (
+        <figure class="location__map">
+          <a href={address.mapUrl}>
+            <Photo
+              src={mapImage}
+              alt={`Map showing the clinic at ${address.street}, ${address.suburb}. Opens Google Maps`}
+              ratio="4 / 5"
+              widths={[400, 600, 800, 1200]}
+              sizes="(min-width: 56em) 40vw, 100vw"
+            />
+          </a>
+          <figcaption>
+            Map data ©{' '}
+            <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+          </figcaption>
+        </figure>
+      ) : (
+        <Photo
+          alt="The front of Embrace Movement Clinic"
+          note="PXL_20220610_233809257-2.jpg from the current Contact page"
+          ratio="4 / 5"
+          class="location__photo"
+          sizes="(min-width: 62em) 40vw, 100vw"
+        />
+      )
+    }
   </div>
 </section>
 
@@ -149,5 +193,39 @@ const { address, phone, email, hours, notice } = site;
   :global(.location__photo) {
     border-radius: var(--radius-l);
     max-height: 36rem;
+  }
+
+  .location__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .location__map {
+    margin: 0;
+  }
+
+  .location__map > a {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+  }
+
+  .location__map :global(.photo) {
+    max-height: 32rem;
+  }
+
+  @media (max-width: 55.99em) {
+    .location__map :global(.photo) {
+      aspect-ratio: 4 / 3 !important;
+    }
+  }
+
+  .location__map figcaption {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
   }
 </style>

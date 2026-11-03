@@ -4,6 +4,7 @@ shortTitle: Vestibular
 order: 4
 kind: appointment
 summary: Assessment and treatment for vertigo, dizziness and decreased balance, including Benign Paroxysmal Positional Vertigo (BPPV).
+blurb: Assessment and treatment for vertigo, dizziness and balance problems.
 lede: Assessment and treatment for vertigo, dizziness and balance problems caused by disorders of the inner ear.
 forYou:
   heading: Is this for you?
