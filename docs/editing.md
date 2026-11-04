@@ -1,0 +1,60 @@
+# Editing the website
+
+The website has an editing screen at **`/admin`** (Sveltia CMS: free and open source). Staff sign in, change text or photos in simple forms, and press **Save**. Each save is stored in the project on GitHub, and Cloudflare republishes the site a minute or two later. There's no server or database to look after.
+
+## What you can edit
+
+| Section in the editor | What's in it |
+|---|---|
+| **Services** | Each service page: photo and its description, home page card text, opening line, conditions treated, what to expect, treatments, "good to know" notes, who you'll see, related services, Google title and description |
+| **Team** | Each practitioner: headshot, status (e.g. "On maternity leave until January 2027"), titles, qualifications, training, experience, bio |
+| **News** | Add, edit or delete posts, with photos |
+| **Home page** | Headline, intro, main photo, "How it works" steps, team intro, the "Our approach" line and its two photos |
+| **Clinic settings → Clinic details** | Phone, email, opening hours, the notice banner (on/off, message, link, an end date), Instagram and Facebook links, ABN |
+| **Clinic settings → Policies and timetable** | Class timetable, cancellation policy, class facts, studio equipment, "before you come to class" tips, booking notes |
+
+**Stays with Claude Code:** layout and design, new types of section, colours, the clinic name and address, the booking link (it's tied to a redirect), old-address redirects, and anything technical.
+
+## Rules for every change
+
+- **This is regulated health advertising (AHPRA).** No testimonials or reviews about treatment, no promises of results, no "specialist" or "expert" wording, and no offers without their terms next to them. Titles must match each practitioner's AHPRA registration.
+- **Clinical wording** (conditions treated, what a service involves, examination or consent wording) goes past Adrian before it's published.
+- **Photos of people** need their consent, and a parent's or guardian's for children. Never upload anything that identifies a patient without it.
+- **Fill in the photo description** for every photo. It's read out to people using screen readers.
+- Photos can come straight off a phone. The editor converts them to WebP and scales them down before saving, and the site makes the smaller sizes itself.
+- Mistakes are fine: every save is kept in the project history, so anything can be put back. Ask Claude to "restore the version from before my last change".
+
+## Trying it now (demo on the preview site)
+
+The editor is currently connected to the **preview** branch (`claude/tender-mayer-vvk5i5`), so changes only affect the preview site, not the live Squarespace site. Until the "Sign in with GitHub" login helper is set up (see below), sign in with an access token:
+
+1. **Make a token** (Adrian, once): on GitHub, go to *Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token*.
+   - Name: `Embrace website editor demo`. Expiration: 30 days.
+   - Repository access: *Only select repositories* → `AdrianPow/embracemovementclinic`.
+   - Permissions: *Repository permissions → Contents → Read and write*.
+   - Generate it and copy it. Treat it like a password: don't email it, and don't save it in the project.
+2. **Open the editor:** the preview site's address followed by `/admin/` (with the slash at the end). The preview address for this branch is listed in Cloudflare under the project's deployments.
+3. Choose **Sign In Using Access Token** and paste the token.
+4. **Make a change**, e.g. *Clinic settings → Clinic details → Opening hours → Add row*, then **Save**.
+5. After a minute or two, refresh the preview site to see it.
+
+Each demo save is a real change on the preview branch. Ask Claude to undo demo edits afterwards if you don't want to keep them.
+
+## Setting it up for launch (one-off)
+
+1. **Accounts:** a free GitHub account for each editor (e.g. Nicole). Add them to the repository (*Settings → Collaborators*) with write access.
+2. **"Sign in with GitHub"** needs a small, free login helper:
+   - Create a GitHub OAuth app (*GitHub → Settings → Developer settings → OAuth Apps*).
+   - Deploy Sveltia's login helper (`sveltia-cms-auth`) as a free Cloudflare Worker, following its instructions. The OAuth app's client ID and secret are stored as secrets in Cloudflare, never in the project.
+   - Put the Worker's address in `base_url` in `site/public/admin/config.yml`.
+3. **Point the editor at the live site:** change `branch` in `config.yml` from the preview branch to `main`.
+4. **Optional approval step:** set `publish_mode` to `preview` or `editorial_workflow`, so each change waits as a draft with a preview link until Adrian approves it.
+5. Delete the demo token on GitHub.
+
+## Technical notes (for Claude Code)
+
+- Editor config: `site/public/admin/config.yml`. Validate it against `site/node_modules/@sveltia/cms/schema/sveltia-cms.json` after changes.
+- The editor is pinned in `site/package.json` (`@sveltia/cms`), and `scripts/copy-cms.mjs` copies it into `public/admin` before each build. That copy is ignored by Git. To update, pick a release at least two weeks old, rebuild, and test `/admin`.
+- **Keep the editor and the site in step:** when a field changes in `site/src/content.config.ts`, `site/src/data/clinic.json`, `site/src/data/policies.json` or `site/src/content/home/home.md`, update `config.yml` too. The editor leaves out blank optional fields (`omit_empty_optional_fields`), so site code must treat optional values as possibly missing.
+- Editable files: `site/src/content/services/*.md`, `site/src/content/team/*.md`, `site/src/content/news/*.md`, `site/src/content/home/home.md`, `site/src/data/clinic.json`, `site/src/data/policies.json`, and photos in `site/src/assets/photos/`.
+- The editor runs only on `/admin` (not indexed; disallowed in `robots.txt`). It talks to GitHub, and also loads resources and status checks from `unpkg.com`, `cdn.jsdelivr.net` and `githubstatus.com`. Public pages load no third-party scripts.

@@ -2,7 +2,7 @@
 // Home. Structure from docs/site-strategy.md, tightened on 3 Nov 2026 after a competitor review
 // (shorter and photo-led, about 300–350 words): promise → what can we help with (needs, services,
 // how it works) → team → studio and values → visit → book.
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Photo from '../components/Photo.astro';
@@ -16,12 +16,13 @@ import Icon from '../components/Icon.astro';
 import Todo from '../components/Todo.astro';
 import { site } from '../data/site';
 import { needs } from '../data/needs';
-import heroPhoto from '../assets/photos/pxl-20220610-230251564-hires.webp';
-import studioPhoto from '../assets/photos/pxl-20220610-231040021.webp';
-import studioInsetPhoto from '../assets/photos/pxl-20220611-044952545.webp';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+// Text and photos staff can edit on /admin ("Home page").
+const homeEntry = await getEntry('home', 'home');
+if (!homeEntry) throw new Error('Missing src/content/home/home.md');
+const home = homeEntry.data;
 
 const facts = [
   { icon: 'user', text: 'One-on-one physiotherapy and exercise physiology' },
@@ -29,12 +30,6 @@ const facts = [
   { icon: 'shield', text: 'Physiotherapists with women’s pelvic health training' },
   { icon: 'map-pin', text: '33 Brynner Street, McDowall' },
 ] as const;
-
-const steps = [
-  'Start with an initial assessment',
-  'Get a plan tailored to your needs and goals',
-  'Keep moving with appointments, a home or gym program, or classes',
-];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -66,8 +61,8 @@ const jsonLd = {
   <section class="on-brand hero curve-bottom" aria-labelledby="hero-h">
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <h1 id="hero-h">Physiotherapy, exercise physiology and pilates in McDowall</h1>
-        <p class="lede">We embrace everyone in their health journey, with one-on-one appointments and small group classes.</p>
+        <h1 id="hero-h">{home.heroTitle}</h1>
+        <p class="lede">{home.heroIntro}</p>
         <div class="hero__actions">
           <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="phone-only">Call {site.phone.display}</Button>
@@ -75,9 +70,9 @@ const jsonLd = {
         </div>
       </div>
       <Photo
-        src={heroPhoto}
-        alt="A practitioner with Jeff, the clinic dog, at the Trapeze Table in the studio"
-        position="75% 50%"
+        src={home.heroImage}
+        alt={home.heroImageAlt}
+        position={home.heroImagePosition}
         ratio="4 / 5"
         tone="dark"
         loading="eager"
@@ -121,7 +116,7 @@ const jsonLd = {
       <div class="help__cards">
         <ServiceGrid services={services} as="h4" />
       </div>
-      <StepStrip title="How it works" steps={steps} link={{ href: '/patient-information', label: 'First visit' }} class="help__steps" />
+      <StepStrip title="How it works" steps={home.steps} link={{ href: '/patient-information', label: 'First visit' }} class="help__steps" />
     </div>
   </section>
 
@@ -131,7 +126,7 @@ const jsonLd = {
       <SectionHead
         id="team-h"
         title="Who you’ll see"
-        intro="Both of our physiotherapists are clinical pilates instructors with Women’s Pelvic Health Physiotherapy training (APA)."
+        intro={home.teamIntro}
         link={{ href: '/team', label: 'Meet the team' }}
       />
       <ul class="team-grid" role="list">
@@ -151,17 +146,17 @@ const jsonLd = {
     <div class="wrap values__grid">
       <div class="values__photos">
         <Photo
-          src={studioPhoto}
-          alt="A side stretch on the Wunda Chair in the pilates studio"
+          src={home.approach.image}
+          alt={home.approach.imageAlt}
           ratio="4 / 3"
           class="values__main"
           sizes="(min-width: 56em) 45vw, 90vw"
         />
         <Photo
-          src={studioInsetPhoto}
-          alt="A pregnant client kneeling beside an exercise ball"
+          src={home.approach.insetImage}
+          alt={home.approach.insetImageAlt}
           ratio="3 / 4"
-          position="50% 35%"
+          position={home.approach.insetImagePosition}
           widths={[300, 600]}
           class="values__inset"
           sizes="(min-width: 56em) 18vw, 40vw"
@@ -170,7 +165,7 @@ const jsonLd = {
       <div class="values__text">
         <p class="eyebrow">Our approach</p>
         <h2 id="values-h" class="values__tagline">{site.tagline}</h2>
-        <p class="lede">At Embrace we believe the journey of one’s health is as important as the destination.</p>
+        <p class="lede">{home.approach.text}</p>
         <ul class="values__links" role="list">
           <li>
             <a href="/pilates#studio">Our studio and equipment <Icon name="arrow-right" size={16} /></a>

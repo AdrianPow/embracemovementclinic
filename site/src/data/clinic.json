@@ -1,0 +1,15 @@
+{
+  "phone": "0434 686 261",
+  "email": "admin@embracemovementclinic.com.au",
+  "hours": [],
+  "notice": {
+    "enabled": true,
+    "message": "The clinic is temporarily closed. We plan to reopen in January 2027 with set days and opening hours.",
+    "linkLabel": "Read the latest update",
+    "linkHref": "/news/july-2026-update",
+    "until": ""
+  },
+  "instagram": "",
+  "facebook": "",
+  "abn": ""
+}

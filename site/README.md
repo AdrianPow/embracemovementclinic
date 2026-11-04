@@ -18,10 +18,12 @@ Needs Node 22.12 or later.
 
 | What | Where |
 |---|---|
-| Clinic details (phone, email, address, booking links, hours, socials, notice banner) | `src/data/site.ts` |
+| Clinic details | `src/data/clinic.json` (phone, email, hours, notice banner, socials, ABN; editable on `/admin`) read by `src/data/site.ts` (name, address, booking link) |
+| Website editor for staff | `/admin` (Sveltia CMS): `public/admin/config.yml`. Guide: `../docs/editing.md` |
+| Home page text and photos | `src/content/home/home.md` (editable on `/admin`) |
 | Services, practitioners and news (one Markdown file each) | `src/content/services/`, `src/content/team/`, `src/content/news/` (schema in `src/content.config.ts`) |
 | "What can we help with?" groups | `src/data/needs.ts` |
-| Cancellation policy, class facts, equipment, studio rules, timetable | `src/data/policies.ts` |
+| Cancellation policy, class facts, equipment, studio rules, timetable | `src/data/policies.json` (editable on `/admin`) read by `src/data/policies.ts` |
 | Old URL redirects | `public/_redirects` |
 | Menu and footer links | `src/data/navigation.ts` |
 | Colours (Petrol + Teal) | `src/data/palette.ts`: change `sitePalette` to switch combination; preview the options on `/palette` (not indexed) |

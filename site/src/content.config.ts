@@ -104,4 +104,29 @@ const news = defineCollection({
     }),
 });
 
-export const collections = { services, team, news };
+// Home page text and photos (one file: src/content/home/home.md, edited on /admin).
+const home = defineCollection({
+  loader: glob({ pattern: 'home.md', base: './src/content/home' }),
+  schema: ({ image }) =>
+    z.object({
+      heroTitle: z.string(),
+      heroIntro: z.string(),
+      heroImage: image(),
+      heroImageAlt: z.string(),
+      heroImagePosition: z.string().optional(),
+      /** "How it works", one line per step. */
+      steps: z.array(z.string()).min(1),
+      teamIntro: z.string(),
+      /** "Our approach": the values line and two overlapping photos. */
+      approach: z.object({
+        text: z.string(),
+        image: image(),
+        imageAlt: z.string(),
+        insetImage: image(),
+        insetImageAlt: z.string(),
+        insetImagePosition: z.string().optional(),
+      }),
+    }),
+});
+
+export const collections = { services, team, news, home };

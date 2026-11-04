@@ -63,7 +63,9 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [ ] Current website platform admin, plus a content export if it offers one
 - [ ] Domain registrar / DNS: login for Web Address Registration (the registrar), or whoever manages the domain's DNS, for go-live
 - [ ] Is Google Workspace (the clinic's email) billed through Squarespace? Check before cancelling Squarespace
-- [ ] Free GitHub accounts for anyone who'll use the admin page (e.g. Nicole), once it's set up
+- [ ] Free GitHub accounts for anyone who'll use the admin page (e.g. Nicole)
+- [ ] For the admin demo: a GitHub fine-grained access token (Adrian makes it; never stored in the project). See `docs/editing.md`
+- [ ] At launch: a GitHub OAuth app and the free Cloudflare login helper for "Sign in with GitHub" (Adrian, with Claude's help)
 - [x] Nookal online booking URL (supplied 19 Oct 2026; test a booking from the preview site before launch)
 - [ ] Google Business Profile (to update the website link and check the details match)
 - [ ] Analytics / Search Console

@@ -5,3 +5,6 @@ node_modules/
 .env.*
 site/dist/
 site/.astro/
+# Website editor files copied from node_modules at build time (scripts/copy-cms.mjs)
+site/public/admin/sveltia-cms.js
+site/public/admin/chunks/

@@ -1,0 +1,353 @@
+# Website editor (Sveltia CMS) for Embrace Movement Clinic, served at /admin.
+# Staff edit content here. Claude Code handles layout and design.
+# Each save is a commit to the branch below, and Cloudflare Pages republishes the site in a minute or two.
+# Field names match the content schema in site/src/content.config.ts. Keep the two in step.
+
+backend:
+  name: github
+  repo: AdrianPow/embracemovementclinic
+  # Demo: the preview branch. Change to `main` at launch.
+  branch: claude/tender-mayer-vvk5i5
+  # "Sign in with GitHub" needs a small login helper (a Cloudflare Worker). Until it's set up,
+  # sign in with a GitHub access token instead. See docs/editing.md.
+  # base_url: https://embrace-cms-auth.<your-account>.workers.dev
+
+site_url: https://www.embracemovementclinic.com.au
+logo:
+  src: /icon-192.png
+
+# Leave out optional fields that are blank, instead of saving empty text.
+output:
+  omit_empty_optional_fields: true
+
+# Photos. Uploads are converted to WebP and scaled down to 3000 px wide in the browser before
+# they're saved, so photos straight off a phone are fine. The site makes the smaller sizes itself.
+media_folder: site/src/assets/photos
+public_folder: /src/assets/photos
+media_libraries:
+  default:
+    config:
+      max_file_size: 40000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 3000
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  # ── Services ──────────────────────────────────────────────────────────────
+  - name: services
+    label: Services
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    label_singular: Service
+    description: >-
+      One page per service. This is regulated health advertising: no testimonials, no promises of
+      results, and changes to clinical wording (conditions, what a service involves, examination or
+      consent wording) need owner approval.
+    folder: site/src/content/services
+    extension: md
+    format: frontmatter
+    create: false
+    delete: false
+    identifier_field: title
+    sortable_fields: [order, title]
+    media_folder: ../../assets/photos
+    public_folder: ../../assets/photos
+    fields:
+      - { name: title, label: Page title, widget: string }
+      - { name: shortTitle, label: Short name, widget: string, required: false, hint: 'Used in the menu, e.g. "Physiotherapy".' }
+      - { name: order, label: Order in lists, widget: number, value_type: int, hint: '1 shows first.' }
+      - name: kind
+        label: Type
+        widget: select
+        readonly: true
+        options:
+          - { label: One-on-one appointment, value: appointment }
+          - { label: Small group classes, value: class }
+      - name: image
+        label: Photo
+        widget: image
+        required: false
+        hint: Shown at the top of the page and on its card.
+      - { name: imageAlt, label: Photo description, widget: string, required: false, hint: 'What the photo shows, for people using screen readers. E.g. "A physiotherapist treating a patient’s neck".' }
+      - { name: imagePosition, label: Photo crop, widget: string, required: false, hint: 'Which part of the photo to keep when it’s cropped: left–right then top–bottom, e.g. `50% 30%`. Leave blank for the centre.' }
+      - name: blurb
+        label: Home page card (15 words or fewer)
+        widget: text
+        required: false
+        pattern: ['^\s*(\S+\s+){0,14}\S+\s*$', 'Keep it to 15 words or fewer.']
+      - { name: summary, label: Card summary, widget: text, hint: 'One or two sentences, used on cards elsewhere on the site.' }
+      - { name: lede, label: Opening line, widget: text, hint: Shown under the page title. }
+      - name: forYou
+        label: Is this for you?
+        widget: object
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - { name: intro, label: Intro, widget: string, required: false }
+          - name: items
+            label: Conditions or reasons
+            label_singular: item
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: detail, label: Detail, widget: text, required: false }
+      - name: expect
+        label: What to expect
+        widget: object
+        fields:
+          - { name: text, label: Text, widget: text, required: false, hint: 'Keep consent or examination wording word for word unless the owner has approved a change.' }
+          - name: steps
+            label: Steps
+            label_singular: step
+            widget: list
+            required: false
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Step, widget: string }
+              - { name: detail, label: Detail, widget: text, required: false }
+      - name: treatments
+        label: Treatment may include
+        widget: object
+        required: false
+        fields:
+          - { name: heading, label: Heading, widget: string, default: Treatment may include }
+          - name: items
+            label: Treatments
+            label_singular: treatment
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: detail, label: Detail, widget: text, required: false }
+      - name: goodToKnow
+        label: Good to know
+        label_singular: note
+        widget: list
+        required: false
+        summary: '{{fields.name}}'
+        fields:
+          - { name: name, label: Title, widget: string }
+          - { name: detail, label: Detail, widget: text }
+      - name: practitioners
+        label: Who you’ll see
+        widget: relation
+        collection: team
+        value_field: '{{slug}}'
+        search_fields: [name]
+        display_fields: [name]
+        multiple: true
+      - { name: practitionersNote, label: Note about who you’ll see, widget: string, required: false }
+      - name: related
+        label: Related services
+        widget: relation
+        collection: services
+        value_field: '{{slug}}'
+        search_fields: [title]
+        display_fields: [title]
+        multiple: true
+        required: false
+      - { name: imageNote, label: Photo still to come (note), widget: string, required: false, hint: Only used while there’s no photo. }
+      - { name: seoTitle, label: Title in Google results, widget: string }
+      - { name: seoDescription, label: Description in Google results, widget: text }
+      - { name: oldUrl, label: Old Squarespace address, widget: string, required: false, readonly: true, hint: Redirected to this page. }
+      - { name: body, label: About (optional extra text), widget: markdown, required: false }
+
+  # ── Team ──────────────────────────────────────────────────────────────────
+  - name: team
+    label: Team
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    label_singular: Practitioner
+    description: One profile per practitioner. Titles and qualifications must match the practitioner’s AHPRA registration.
+    folder: site/src/content/team
+    extension: md
+    format: frontmatter
+    create: true
+    delete: false
+    identifier_field: name
+    slug: '{{fields.name}}'
+    sortable_fields: [order, name]
+    media_folder: ../../assets/photos
+    public_folder: ../../assets/photos
+    fields:
+      - { name: name, label: Full name, widget: string }
+      - { name: firstName, label: First name, widget: string, hint: 'Used in "Book with …".' }
+      - { name: order, label: Order on the team page, widget: number, value_type: int, hint: '1 shows first.' }
+      - name: photo
+        label: Headshot
+        widget: image
+        required: false
+        hint: A portrait with a little space above the head works best.
+      - { name: photoPosition, label: Photo crop, widget: string, required: false, hint: 'Leave blank to keep the top of the photo (the whole head). Or e.g. `50% 20%`.' }
+      - { name: status, label: Status, widget: string, required: false, hint: 'Shown on the card, e.g. "On maternity leave until January 2027". Leave blank when not needed.' }
+      - name: titles
+        label: Titles
+        widget: list
+        hint: Must match the practitioner’s AHPRA registration.
+      - { name: education, label: Qualifications, widget: list, required: false }
+      - { name: postgradTraining, label: Postgraduate training, widget: list, required: false }
+      - { name: experienceHeading, label: Experience heading, widget: string, default: Experience }
+      - { name: experience, label: Experience, widget: list, required: false }
+      - { name: photoNote, label: Photo still to come (note), widget: string, required: false }
+      - { name: seoDescription, label: Description in Google results, widget: text }
+      - { name: body, label: Bio, widget: markdown }
+
+  # ── News ──────────────────────────────────────────────────────────────────
+  - name: news
+    label: News
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    label_singular: News post
+    description: Clinic updates. No offers without clear terms, and no patient stories about treatment results.
+    folder: site/src/content/news
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    identifier_field: title
+    slug: '{{fields.title}}'
+    sortable_fields: [date, title]
+    media_folder: ../../assets/photos
+    public_folder: ../../assets/photos
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, time_format: false, format: 'YYYY-MM-DD' }
+      - { name: summary, label: Summary, widget: text, hint: One or two sentences for the news list. }
+      - { name: archivedNote, label: Archived note, widget: text, required: false, hint: 'For old posts, e.g. "This update is from June 2025…".' }
+      - name: images
+        label: Photos
+        label_singular: photo
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: Photo, widget: image }
+          - { name: alt, label: Photo description, widget: string }
+          - { name: position, label: Photo crop, widget: string, required: false }
+      - { name: imageNotes, label: Photos still to come (notes), widget: list, required: false }
+      - { name: oldUrl, label: Old Squarespace address, widget: string, required: false, readonly: true }
+      - { name: body, label: Post, widget: markdown }
+
+  # ── Home page ─────────────────────────────────────────────────────────────
+  - name: home
+    label: Home page
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    description: The home page headline, intro and photos. Service cards come from Services; team cards from Team.
+    files:
+      - name: home
+        label: Home page
+        file: site/src/content/home/home.md
+        format: frontmatter
+        media_folder: ../../assets/photos
+        public_folder: ../../assets/photos
+        fields:
+          - { name: heroTitle, label: Headline, widget: string }
+          - { name: heroIntro, label: Intro, widget: text, hint: One sentence. }
+          - { name: heroImage, label: Main photo, widget: image }
+          - { name: heroImageAlt, label: Main photo description, widget: string }
+          - { name: heroImagePosition, label: Main photo crop, widget: string, required: false, hint: 'E.g. `75% 50%` keeps the right-hand side. Leave blank for the centre.' }
+          - name: steps
+            label: How it works (one line per step)
+            widget: list
+            min: 1
+            max: 4
+          - { name: teamIntro, label: Team intro, widget: text }
+          - name: approach
+            label: Our approach
+            widget: object
+            fields:
+              - { name: text, label: Values line, widget: text }
+              - { name: image, label: Large photo, widget: image }
+              - { name: imageAlt, label: Large photo description, widget: string }
+              - { name: insetImage, label: Small overlapping photo, widget: image }
+              - { name: insetImageAlt, label: Small photo description, widget: string }
+              - { name: insetImagePosition, label: Small photo crop, widget: string, required: false }
+
+  # ── Clinic settings ───────────────────────────────────────────────────────
+  - name: settings
+    label: Clinic settings
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    description: Contact details, hours, the notice banner, policies and the class timetable.
+    files:
+      - name: clinic
+        label: Clinic details
+        file: site/src/data/clinic.json
+        format: json
+        fields:
+          - { name: phone, label: Phone, widget: string, hint: 'Shown as typed, e.g. "0434 686 261". Tap-to-call links are made from it.' }
+          - { name: email, label: Email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter an email address.'] }
+          - name: hours
+            label: Opening hours
+            label_singular: row
+            widget: list
+            required: false
+            hint: Leave empty until the reopening hours are set; the site shows a note instead.
+            summary: '{{fields.days}}: {{fields.hours}}'
+            fields:
+              - { name: days, label: Days, widget: string, hint: 'E.g. "Monday" or "Tuesday to Thursday".' }
+              - { name: hours, label: Hours, widget: string, hint: 'E.g. "6am – 3pm" or "Closed".' }
+          - name: notice
+            label: Notice banner
+            widget: object
+            hint: The strip at the top of every page.
+            fields:
+              - { name: enabled, label: Show the banner, widget: boolean }
+              - { name: message, label: Message, widget: text }
+              - { name: linkLabel, label: Link text, widget: string, required: false }
+              - { name: linkHref, label: Link address, widget: string, required: false, hint: 'A page on the site, e.g. `/news/july-2026-update`.' }
+              - { name: until, label: Hide automatically after, widget: datetime, time_format: false, format: 'YYYY-MM-DD', required: false }
+          - { name: instagram, label: Instagram profile link, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'] }
+          - { name: facebook, label: Facebook page link, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'] }
+          - { name: abn, label: ABN, widget: string, required: false }
+      - name: policies
+        label: Policies and timetable
+        file: site/src/data/policies.json
+        format: json
+        fields:
+          - name: timetable
+            label: Class timetable
+            label_singular: class
+            widget: list
+            required: false
+            hint: Leave empty until it’s ready; the Pilates page shows a note instead.
+            summary: '{{fields.day}} {{fields.time}} – {{fields.class}}'
+            fields:
+              - name: day
+                label: Day
+                widget: select
+                options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+              - { name: time, label: Time, widget: string, hint: 'E.g. "6:00am".' }
+              - { name: class, label: Class, widget: string }
+              - { name: with, label: With, widget: string, required: false }
+          - name: cancellation
+            label: Cancellation policy
+            widget: object
+            fields:
+              - { name: paragraphs, label: Paragraphs, label_singular: paragraph, widget: list, field: { name: paragraph, label: Paragraph, widget: text } }
+          - name: classFacts
+            label: Class facts
+            label_singular: fact
+            widget: list
+            summary: '{{fields.label}}: {{fields.value}}'
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: value, label: Value, widget: string }
+          - { name: equipment, label: Studio equipment, widget: list }
+          - name: studioEtiquette
+            label: Before you come to class
+            label_singular: tip
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Title, widget: string }
+              - { name: detail, label: Detail, widget: text }
+          - name: booking
+            label: Booking notes
+            widget: object
+            fields:
+              - { name: classes, label: Booking classes, widget: text }
+              - { name: bookingCode, label: Booking code tip, widget: text }
+              - { name: waitlistText, label: Waitlist text, widget: string }

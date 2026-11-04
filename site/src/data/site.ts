@@ -1,6 +1,30 @@
 // Single source of truth for clinic details used across the site.
 // Facts come from reference/pages/*/content.md. Anything not yet supplied is
 // `null` and renders as a visible TODO (see docs/to-supply.md).
+// Phone, email, hours, socials, ABN and the notice banner live in clinic.json, which
+// staff can edit on /admin ("Clinic details"). Name, address and booking link stay here.
+import clinicJson from './clinic.json';
+
+// The editor leaves out optional fields that are blank, so treat everything optional as possibly missing.
+interface ClinicData {
+  phone: string;
+  email: string;
+  hours?: { days: string; hours: string }[];
+  notice: { enabled: boolean; message: string; linkLabel?: string; linkHref?: string; until?: string };
+  instagram?: string;
+  facebook?: string;
+  abn?: string;
+}
+const clinic = clinicJson as ClinicData;
+
+/** Blank or missing values mean "not supplied yet". */
+const orNull = (value?: string | null) => value?.trim() || null;
+
+/** "0434 686 261" → "tel:+61434686261" (Australian numbers). */
+const telHref = (display: string) => {
+  const digits = display.replace(/\D/g, '');
+  return `tel:${digits.startsWith('0') ? `+61${digits.slice(1)}` : `+${digits}`}`;
+};
 
 export const site = {
   name: 'Embrace Movement Clinic',
@@ -9,13 +33,13 @@ export const site = {
   url: 'https://www.embracemovementclinic.com.au',
 
   phone: {
-    display: '0434 686 261',
-    href: 'tel:+61434686261',
+    display: clinic.phone,
+    href: telHref(clinic.phone),
   },
 
   email: {
-    address: 'admin@embracemovementclinic.com.au',
-    href: 'mailto:admin@embracemovementclinic.com.au',
+    address: clinic.email,
+    href: `mailto:${clinic.email}`,
   },
 
   address: {
@@ -35,27 +59,28 @@ export const site = {
     url: 'https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location',
   },
 
-  // TODO: profile URLs (docs/to-supply.md)
+  // TODO until supplied: profile URLs (docs/to-supply.md)
   socials: {
-    instagram: null as string | null,
-    facebook: null as string | null,
+    instagram: orNull(clinic.instagram),
+    facebook: orNull(clinic.facebook),
   },
 
-  // TODO: opening hours, e.g. [{ days: 'Monday', hours: '6am – 3pm' }]
-  hours: null as { days: string; hours: string }[] | null,
+  // TODO until supplied: opening hours, e.g. [{ days: 'Monday', hours: '6am – 3pm' }]
+  hours: clinic.hours?.length ? clinic.hours : null,
 
-  // TODO: ABN
-  abn: null as string | null,
+  // TODO until supplied: ABN
+  abn: orNull(clinic.abn),
 
   // Site-wide notice banner. Source: reference/pages/baby-news/content.md.
-  // Set `until` (YYYY-MM-DD) to hide the banner automatically after that date.
+  // `until` (YYYY-MM-DD) hides the banner automatically after that date.
   notice: {
-    enabled: true,
-    message:
-      'The clinic is temporarily closed. We plan to reopen in January 2027 with set days and opening hours.',
-    link: { href: '/news/july-2026-update', label: 'Read the latest update' },
-    until: null as string | null,
+    enabled: clinic.notice.enabled,
+    message: clinic.notice.message,
+    link: clinic.notice.linkHref?.trim()
+      ? { href: clinic.notice.linkHref.trim(), label: clinic.notice.linkLabel?.trim() || 'Read more' }
+      : null,
+    until: orNull(clinic.notice.until),
   },
-} as const;
+};
 
 export const fullAddress = `${site.address.street}, ${site.address.suburb} ${site.address.state} ${site.address.postcode}`;
