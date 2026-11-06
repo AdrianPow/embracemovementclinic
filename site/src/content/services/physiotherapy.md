@@ -5,7 +5,7 @@ order: 1
 kind: appointment
 image: /src/assets/photos/sam_1329-1.webp
 imageAlt: A physiotherapist treating a patient’s neck as they lie on the treatment table
-imagePosition: 50% 60%
+imagePosition: 51% 72%
 blurb: Assessment, hands-on treatment and exercise for injuries, pain and recovery after surgery.
 summary: Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
 lede: Assessment, hands-on treatment, exercise and education for musculoskeletal and sporting injuries, pain, and recovery after surgery.
