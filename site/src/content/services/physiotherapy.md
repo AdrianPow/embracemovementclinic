@@ -3,8 +3,11 @@ title: Musculoskeletal Physiotherapy
 shortTitle: Physiotherapy
 order: 1
 kind: appointment
-summary: Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
+image: /src/assets/photos/sam_1329-1.webp
+imageAlt: A physiotherapist treating a patient’s neck as they lie on the treatment table
+imagePosition: 50% 60%
 blurb: Assessment, hands-on treatment and exercise for injuries, pain and recovery after surgery.
+summary: Assessment and treatment for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
 lede: Assessment, hands-on treatment, exercise and education for musculoskeletal and sporting injuries, pain, and recovery after surgery.
 forYou:
   heading: Conditions we commonly treat
@@ -42,11 +45,13 @@ treatments:
       detail: Tailored exercises to build strength, stability and flexibility.
     - name: Education and self-management tools
       detail: To help you look after your health and reduce the risk of future issues.
-practitioners: [nicole-saxby, laura-bradford]
-related: [exercise-physiology, pelvic-health-physiotherapy, pilates]
-image: ../../assets/photos/3-sam-1300.webp
-imageAlt: A physiotherapist treating a patient’s neck as they lie on the treatment table
-imagePosition: '50% 60%'
+practitioners:
+  - nicole-saxby
+  - laura-bradford
+related:
+  - exercise-physiology
+  - pelvic-health-physiotherapy
+  - pilates
 seoTitle: Musculoskeletal Physiotherapy in McDowall
 seoDescription: Physiotherapy in McDowall for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
 ---
