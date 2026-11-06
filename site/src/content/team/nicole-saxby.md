@@ -3,7 +3,7 @@ name: Nicole Saxby
 firstName: Nicole
 order: 1
 photo: /src/assets/photos/sam_1372.webp
-photoPosition: 10%
+photoPosition: 46% 55%
 status: On maternity leave until January 2027
 titles:
   - Physiotherapist
