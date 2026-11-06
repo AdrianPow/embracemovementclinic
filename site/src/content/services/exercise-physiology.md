@@ -4,6 +4,7 @@ order: 2
 kind: appointment
 image: /src/assets/photos/file_00000000abd8820b845426267182cca5.webp
 imageAlt: A practitioner guiding a client through a side-lying exercise on the reformer
+imagePosition: 38% 53%
 blurb: Exercise programs built around your medical history, fitness and goals.
 summary: Tailored exercise for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
 lede: Exercise programs built around your medical history, fitness and goals, for rehabilitation, chronic conditions, healthy ageing and performance.
