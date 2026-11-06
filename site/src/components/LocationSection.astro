@@ -53,7 +53,7 @@ const { address, phone, email, hours, notice } = site;
               <div>
                 <dt>Email</dt>
                 <dd>
-                  <a href={email.href}>{email.address}</a>
+                  <a href={email.href}>{email.address.split('@')[0]}@<wbr />{email.address.split('@')[1]}</a>
                 </dd>
               </div>
               <div>

@@ -4,7 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TeamCard from '../../components/TeamCard.astro';
 import BookingBand from '../../components/BookingBand.astro';
-import ClosureNote from '../../components/ClosureNote.astro';
 import Photo from '../../components/Photo.astro';
 import Icon from '../../components/Icon.astro';
 
@@ -28,12 +27,11 @@ const { intro, jeff } = pageEntry.data;
   <section class="section" aria-labelledby="people-h">
     <div class="wrap">
       <h2 id="people-h" class="visually-hidden">Practitioners</h2>
-      <ClosureNote />
       <ul class="team-grid" role="list">
         {
           team.map((m) => (
             <li>
-              <TeamCard member={m} />
+              <TeamCard member={m} ratio="4 / 3" sizes="(min-width: 75em) 37rem, (min-width: 40em) 50vw, 100vw" />
             </li>
           ))
         }
@@ -41,7 +39,7 @@ const { intro, jeff } = pageEntry.data;
     </div>
   </section>
 
-  <section class="section section--alt" aria-labelledby="jeff-h">
+  <section class="section section--alt" id="jeff" aria-labelledby="jeff-h">
     <div class="wrap jeff">
       <Photo src={jeff.photo} alt={jeff.photoAlt} position={jeff.photoPosition} ratio="1 / 1" class="jeff__photo" sizes="(min-width: 56em) 30vw, 100vw" />
       <div class="jeff__text">
@@ -60,14 +58,15 @@ const { intro, jeff } = pageEntry.data;
   .team-grid {
     display: grid;
     gap: var(--space-m);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
-    max-width: 56rem;
+    grid-template-columns: 1fr;
   }
 
-  .wrap > :global(.closure) {
-    margin-bottom: var(--space-l);
-    max-width: 56rem;
+  @media (min-width: 40em) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
+
 
   .jeff {
     display: grid;

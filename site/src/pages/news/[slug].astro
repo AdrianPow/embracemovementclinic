@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Photo from '../../components/Photo.astro';
 import Icon from '../../components/Icon.astro';
 import BookingBand from '../../components/BookingBand.astro';
+import { site } from '../../data/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('news');
@@ -18,10 +19,31 @@ interface Props {
 const { post } = Astro.props;
 const d = post.data;
 const { Content } = await render(post);
+// "…see Patient information." → link that phrase rather than repeating it after the note.
+const noteParts = d.archivedNote ? d.archivedNote.split('Patient information') : [];
+// One photo fills the column; two or three share it (the grid fits up to three across).
+const imageSizes = `(min-width: 46rem) ${Math.round(46 / Math.min(Math.max(d.images.length, 1), 3))}rem, 100vw`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.summary,
+  datePublished: d.date.toISOString().slice(0, 10),
+  url: new URL(`/news/${post.id}`, site.url).href,
+  publisher: { '@type': 'MedicalBusiness', '@id': `${site.url}/#clinic`, name: site.name, url: site.url },
+};
 const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
 ---
 
-<BaseLayout title={d.title} description={d.summary} image={d.images[0]?.src} imageAlt={d.images[0]?.alt}>
+<BaseLayout
+  title={d.title}
+  description={d.summary}
+  image={d.images[0]?.src}
+  imageAlt={d.images[0]?.alt}
+  imagePosition={d.images[0]?.position}
+  ogType="article"
+  jsonLd={jsonLd}
+>
   <article class="section" aria-labelledby="page-title">
     <div class="wrap-narrow article">
       <Breadcrumbs items={[{ label: 'News', href: '/news' }, { label: d.title }]} />
@@ -34,19 +56,27 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
           <p class="archived">
             <Icon name="info" size={20} />
             <span>
-              {d.archivedNote} <a href="/patient-information">Patient information</a>
+              {noteParts.length > 1 ? (
+                noteParts.map((part, i) => (
+                  <>
+                    {part}
+                    {i < noteParts.length - 1 && <a href="/patient-information">Patient information</a>}
+                  </>
+                ))
+              ) : (
+                <>
+                  {d.archivedNote} <a href="/patient-information">Patient information</a>
+                </>
+              )}
             </span>
           </p>
         )
       }
       {
-        d.images.length + d.imageNotes.length > 0 && (
+        d.images.length > 0 && (
           <div class="images">
             {d.images.map((img) => (
-              <Photo src={img.src} alt={img.alt} position={img.position} ratio="4 / 3" sizes="(min-width: 46rem) 23rem, 100vw" />
-            ))}
-            {d.imageNotes.map((n) => (
-              <Photo alt="" note={n} ratio="4 / 3" sizes="(min-width: 46rem) 23rem, 100vw" />
+              <Photo src={img.src} alt={img.alt} position={img.position} ratio="4 / 3" sizes={imageSizes} />
             ))}
           </div>
         )
@@ -54,6 +84,15 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
       <div class="prose post-body">
         <Content />
       </div>
+      {
+        d.imageNotes.length > 0 && (
+          <div class="images">
+            {d.imageNotes.map((n) => (
+              <Photo alt="" note={n} ratio="4 / 3" />
+            ))}
+          </div>
+        )
+      }
       <p class="back"><a href="/news"><Icon name="arrow-right" size={16} class="back__icon" /> All news</a></p>
     </div>
   </article>

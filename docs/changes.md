@@ -53,7 +53,7 @@ The owner felt the home page had too much text compared with three competitors (
 
 ## Content changes
 
-- **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". This now shows as a status on the team cards (set in each practitioner's file), plus a site-wide notice banner. Someone needs to turn both off when the clinic reopens (`site/src/data/site.ts` → `notice`).
+- **Time-sensitive content:** Team page says "Currently on maternity leave until Jan 2027". This now shows as a status on the team cards (set in each practitioner's file), plus a site-wide notice banner. Someone needs to turn both off when the clinic reopens (on /admin: Clinic settings → Clinic details → Notice banner, and each practitioner's Status).
 - **Temporary closure (new):** a site-wide notice says the clinic is temporarily closed and plans to reopen in January 2027 (source: the July 2026 update).
 
 ## Wording change log (clinical copy, for owner approval before launch)
@@ -103,8 +103,11 @@ Each change to what a service involves, conditions treated, or examination or co
 | Home (how it works) | (new) | Three steps: start with an assessment, a plan tailored to you, keep moving | New copy built from existing facts (initial consultation, pre-class assessment, tailored programs, classes) | TBC |
 | Home and Services ("What can we help with?") | Conditions spread across five pages | Grouped into six everyday needs (`site/src/data/needs.ts`) | New grouping; conditions unchanged | TBC |
 | Christmas 2024 (archived) | "These classes are designed to enhance your recovery and promote overall strength…" | "…designed to support your recovery and overall strength…" | Softens an outcome claim | TBC |
+| Exercise Physiology (treatments, 6 Nov 2026) | "Treatment may include" listed 11 items, 6 of which repeated the conditions list (injury rehabilitation, injury prevention, chronic pain and disease management, osteoporosis and healthy ageing, musculoskeletal and neurological rehabilitation, strength and conditioning and athletic performance) | Treatments now list the 5 ways of working (functional and resistance training, pilates, coaching, home and gym programs, exercise guidelines). "Arthritis, diabetes and cardiovascular disease" moved to the condition "Chronic pain and disease management" | The same items appeared twice on one page. No condition or fact removed | TBC |
+| Vestibular ("Good to know", 6 Nov 2026) | Heading "An evidence-based approach" above "Vestibular physiotherapy is an evidence-based approach…" | Heading "Our approach"; sentence unchanged | The heading repeated the sentence | TBC |
+| Pilates (opening line, 6 Nov 2026) | "…for all ages and abilities, from people who have never stepped foot in a gym to high-level athletes." | "…on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and abilities." | The gym-to-athletes line was repeated word for word further down the page, where it stays | TBC |
 
-Mechanical edits across all pages (one entry): Australian spelling (customised, stabilise, mobilisation, specialised, personalised, ageing), "Dumbells" → "dumbbells", `tel:` link fixed to `+61`, malformed `mailto:` links fixed.
+Mechanical edits across all pages (one entry): Australian spelling (customised, stabilise, mobilisation, specialised, personalised, ageing), "Dumbells" → "dumbbells", `tel:` link fixed to `+61`, malformed `mailto:` links fixed. Added 6 Nov 2026: "Peri-natal" → "Perinatal" (Laura's experience), "Neuro-muscular Dry-Needling" → "Neuromuscular Dry Needling" (Nicole's training: check the course's own spelling), news dates in Australian style ("Sunday 21 June 2026", not "Sunday, June 21st, 2026"), and the June 2025 post's "here" link now reads "SMS notification list".
 
 ### Conflicting facts: most recent page used, please confirm
 
@@ -113,7 +116,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | Class size | "maximum of 4 people" (Our Services, Jun 2024) | "a maximum of 4–5 people" (Pilates, Mar 2025, and Timetable, Aug 2025) |
 | Class length | "40mins" (Pilates, Mar 2025) | "45 minutes" (Timetable, Aug 2025, and Our Services) |
 | Cancellation notice | "24 hours notice" (Christmas 2024) | "within 8 hours… charged at 50%" (Timetable, Aug 2025) |
-| Equipment | Different lists on three pages | One combined list (`site/src/data/policies.ts`) |
+| Equipment | Different lists on three pages | One combined list (`site/src/data/policies.json`, editable on /admin) |
 
 ## Design changes
 
@@ -125,6 +128,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 - **Brand detail (3 Nov 2026):** every page header ends in a gentle curve (`.curve-bottom`, depth `--curve`), on the last header band before the page content (on Pilates, the class facts strip).
 - **Fewer elements per section (3 Nov 2026):** one card style everywhere (white, thin border, rounded, lifts on hover); practitioner titles, "perfect for" and equipment lists shown as plain lists instead of pills; condition lists, "Good to know", studio tips and profile details without boxes; callouts as a soft tint with no outline; small labels above headings removed where they repeated the heading; descriptions at 16 px or more (small text only for labels and captions).
 - **Type:** Red Hat Display + Red Hat Text.
+- **Review fixes (6 Nov 2026):** the closure message now shows on Contact, Patient information and the Pilates timetable only (plus the banner and the leave status on practitioner cards), not three or four times per page. The home "Who you'll see" row adds a card for Jeff, the clinic dog, using the Team page's existing text and photo. Grids size to their number of cards, so rows don't end in an empty column. Share images for practitioner and service pages are made at 1200×630 without cutting off heads (`site/scripts/make-share-images.mjs`).
 
 Don't copy the Squarespace layout. Use the screenshots only for content, menu items and brand cues. See "Design direction" in CLAUDE.md.
 

@@ -15,7 +15,7 @@ education:
   - Bachelor of Clinical Exercise Physiology (2016)
   - Diploma of Pilates Movement Therapy (2016)
 postgradTraining:
-  - Neuro-muscular Dry-Needling
+  - Neuromuscular Dry Needling
   - Women’s Pelvic Health Physiotherapy Level 1 & 2 (APA)
   - 'Advanced Pelvic Floor: Pelvic Organ Prolapse and Stress Urinary Incontinence (WHTA)'
   - 'Advanced Pelvic Floor: Exercise, Sport and Musculoskeletal Dysfunction (WHTA)'

@@ -28,7 +28,7 @@ Class packages are available, and you can still claim on your health fund if you
 
 ## Important dates
 
-The last day the clinic is open for 2024 is Friday, December 20th, as we take a break for Christmas. We will resume normal operations on Monday, January 6th. We look forward to seeing you in 2025.
+The last day the clinic is open for 2024 is Friday 20 December, as we take a break for Christmas. We will resume normal operations on Monday 6 January. We look forward to seeing you in 2025.
 
 We wish you a Merry Christmas and a Happy and Healthy New Year,
 

@@ -221,6 +221,10 @@ strong {
   margin-top: 0.4em;
 }
 
+.prose li::marker {
+  color: var(--color-icon);
+}
+
 .visually-hidden:not(:focus, :active) {
   position: absolute !important;
   width: 1px;
@@ -228,6 +232,11 @@ strong {
   overflow: hidden;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Keeps short phrases (phone numbers, job titles) on one line. */
+.nowrap {
   white-space: nowrap;
 }
 

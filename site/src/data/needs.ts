@@ -16,4 +16,17 @@ export interface Need {
   services: string[];
 }
 
-export const needs = data.needs as Need[];
+// A group added on /admin may have no link name yet: make one from its title ("Pregnancy and after" → "pregnancy-and-after").
+const slug = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+export const needs = (data.needs as (Omit<Need, 'id'> & { id?: string })[]).map((n) => ({
+  ...n,
+  id: n.id?.trim() || slug(n.title),
+  examples: n.examples ?? [],
+  services: n.services ?? [],
+})) as Need[];

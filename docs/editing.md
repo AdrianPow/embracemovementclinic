@@ -30,6 +30,10 @@ Empty fields like fees, what to bring or parking show a "TODO" note on the site 
 - **Fill in the photo description** for every photo. It's read out to people using screen readers.
 - **Photo focus:** under each photo, click (or drag) on the part of the photo to keep in view, such as faces. The small previews underneath show exactly how it will be cropped on the site: page header, card, phone. Use the quick picks (Top, Middle, Bottom) or **Reset** to go back to the default. For headshots, the default keeps the top of the photo, so the whole head shows.
 - Photos can come straight off a phone. The editor converts them to WebP and scales them down before saving, and the site makes the smaller sizes itself.
+- **Text boxes are text only.** Photos go in the photo fields (each service, practitioner and news post has its own), not inside the text.
+- **Google titles** are short (about 35 characters, e.g. "Physiotherapy in McDowall"): " | Embrace Movement Clinic" is added after them.
+- **Don't delete the three older news posts** (Christmas 2024, June 2025, July 2026): old Squarespace addresses and the notice banner point to them.
+- **If a change doesn't appear** after five minutes, the site check probably stopped it (for example a link to a page that no longer exists). The live site stays as it was. Ask Claude to look at the latest Cloudflare deployment.
 - Mistakes are fine: every save is kept in the project history, so anything can be put back. Ask Claude to "restore the version from before my last change".
 
 ## Trying it now (demo on the preview site)
@@ -67,4 +71,7 @@ Each demo save is a real change on the preview branch. Ask Claude to undo demo e
 - **Keep the editor and the site in step:** when a field changes in `site/src/content.config.ts`, `site/src/data/clinic.json`, `site/src/data/policies.json` or `site/src/content/home/home.md`, update `config.yml` too. The editor leaves out blank optional fields (`omit_empty_optional_fields`), so site code must treat optional values as possibly missing.
 - Editable files: `site/src/content/services/*.md`, `site/src/content/team/*.md`, `site/src/content/news/*.md`, `site/src/content/home/home.md`, `site/src/content/pages/*.md` (Team, Patient information, Contact, Services page text), `site/src/data/clinic.json`, `site/src/data/policies.json`, `site/src/data/needs.json`, and photos in `site/src/assets/photos/`.
 - Moving the editor between files by typing an address (`#/collections/settings/entries/…` straight to another file in the same section) can show a blank form. Going through the list or the back arrow works.
-- The editor runs only on `/admin` (not indexed; disallowed in `robots.txt`). It talks to GitHub, and also loads resources and status checks from `unpkg.com`, `cdn.jsdelivr.net` and `githubstatus.com`. Public pages load no third-party scripts.
+- **Build checks:** `prebuild` copies the editor and makes share images (`scripts/make-share-images.mjs` → `public/og/`, not in Git); `postbuild` runs `scripts/check-links.mjs`, so a broken internal link, anchor or redirect fails the Cloudflare deploy and the previous version stays live.
+- Markdown body fields have `editor_components: []` (no image button): Astro leaves `/src/...` image paths inside Markdown text unresolved, so a body image would 404. Photo fields are fine with either path style.
+- A new "What can we help with?" group may have a blank `id`; `src/data/needs.ts` makes one from the title.
+- The editor runs only on `/admin` (not indexed; disallowed in `robots.txt`, and `X-Robots-Tag: noindex` in `public/_headers`). It talks to GitHub, and also loads resources and status checks from `unpkg.com`, `cdn.jsdelivr.net` and `githubstatus.com`. Public pages load no third-party scripts.

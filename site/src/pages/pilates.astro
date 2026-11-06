@@ -21,7 +21,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
 
 ---
 
-<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
+<BaseLayout title={d.seoTitle} description={d.seoDescription} shareImage={d.image ? `/og/services/${service.id}.jpg` : undefined} imageAlt={d.imageAlt}>
   <PageHero
     tone="brand"
     curve={false}
@@ -175,7 +175,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
     <div class="wrap">
       <div class="head">
         <h2 id="who-h">Who runs the classes</h2>
-        <p class="head__intro">Both of our physiotherapists are clinical pilates instructors.</p>
+        {d.practitionersNote && <p class="head__intro">{d.practitionersNote}</p>}
       </div>
       <PractitionerList refs={d.practitioners} />
     </div>
@@ -186,7 +186,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
       <section class="section" aria-labelledby="related-h">
         <div class="wrap">
           <div class="head">
-            <h2 id="related-h">One-on-one appointments</h2>
+            <h2 id="related-h"><span class="nowrap">One-on-one</span> appointments</h2>
           </div>
           <ul class="related" role="list">
             {related.map((r) => (

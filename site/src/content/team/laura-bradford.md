@@ -16,13 +16,13 @@ postgradTraining:
   - Women’s Pelvic Health Physiotherapy Level 1 (APA)
 experienceHeading: Experience working with
 experience:
-  - Peri-natal women
+  - Perinatal women
   - People facing cancer
   - People managing chronic back pain
   - Athletes recovering from sporting injuries
   - Pre- and post-surgery rehabilitation
   - Vestibular dysfunction (dizziness, vertigo and balance problems)
-seoDescription: Laura Bradford is a physiotherapist, pelvic health physiotherapist and clinical pilates instructor at Embrace Movement Clinic, McDowall, with experience in vestibular physiotherapy.
+seoDescription: Laura Bradford, physiotherapist and clinical pilates instructor in McDowall, with experience in pelvic health and vestibular physiotherapy.
 ---
 
 Laura’s interest in health and wellness has been lifelong, from playing in multiple sporting teams to regular gym and aerobics classes. She has always prioritised physical wellbeing.

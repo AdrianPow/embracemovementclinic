@@ -36,7 +36,7 @@ treatments:
     - name: Education
       detail: Information about the vestibular disorder, strategies to manage symptoms and advice on lifestyle changes.
 goodToKnow:
-  - name: An evidence-based approach
+  - name: Our approach
     detail: Vestibular physiotherapy is an evidence-based approach to managing the symptoms of vestibular disorders.
 practitioners:
   - laura-bradford
@@ -44,7 +44,7 @@ practitionersNote: Book vestibular physiotherapy appointments with Laura.
 related:
   - physiotherapy
   - exercise-physiology
-seoTitle: Vestibular Physiotherapy for Vertigo and Dizziness in McDowall
+seoTitle: Vestibular Physiotherapy in McDowall
 seoDescription: Vestibular physiotherapy in McDowall for vertigo, dizziness and decreased balance, including BPPV. Assessment and an individualised treatment plan.
 oldUrl: /pilates-1
 ---

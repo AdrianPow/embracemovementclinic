@@ -74,8 +74,8 @@ import { site, fullAddress } from '../data/site';
 
       <h2>Questions and complaints</h2>
       <p>
-        If you have a question or concern about your privacy, please contact us first:
-        <a href={site.email.href}>{site.email.address}</a> or <a href={site.phone.href}>{site.phone.display}</a>.
+        If you have a question or concern about your privacy, please contact us first:{' '}
+        <a href={site.email.href}>{site.email.address}</a> or <a href={site.phone.href}>{site.phone.display}</a>.{' '}
         <Todo>name the person or role responsible for privacy</Todo>
       </p>
       <p>
@@ -92,6 +92,11 @@ import { site, fullAddress } from '../data/site';
 <style>
   .policy {
     max-width: none;
+  }
+
+  /* A long document: smaller section headings than a marketing page. */
+  .policy h2 {
+    font-size: var(--step-2);
   }
 
   .policy :global(.todo) {

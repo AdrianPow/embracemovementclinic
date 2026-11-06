@@ -1,23 +1,48 @@
 ---
+// Practitioner card (photo, name, titles, status). Also used for Jeff, the clinic dog, via `extra`.
 import type { CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
 import Photo from './Photo.astro';
 import Icon from './Icon.astro';
 
 interface Props {
-  member: CollectionEntry<'team'>;
+  member?: CollectionEntry<'team'>;
+  /** A card that isn't a practitioner, e.g. Jeff on the home page. */
+  extra?: { href: string; name: string; titles: string[]; photo: ImageMetadata; position?: string; more: string };
+  /** Photo shape: square by default, wider on the Team page. */
+  ratio?: string;
+  sizes?: string;
 }
 
-const { member } = Astro.props;
-const { name, titles, status, photo, photoPosition, photoNote } = member.data;
+const { member, extra, ratio = '1 / 1', sizes = '(min-width: 62em) 24rem, (min-width: 40em) 50vw, 100vw' } = Astro.props;
+const card = member
+  ? {
+      href: `/team/${member.id}`,
+      name: member.data.name,
+      titles: member.data.titles,
+      status: member.data.status,
+      photo: member.data.photo,
+      position: member.data.photoPosition,
+      note: member.data.photoNote,
+      more: 'View profile',
+    }
+  : { ...extra!, status: undefined, note: undefined };
 ---
 
-<a class="team-card" href={`/team/${member.id}`}>
-  <Photo src={photo} alt="" note={photoNote} position={photoPosition} ratio="1 / 1" sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw" />
+<a class="team-card" href={card.href}>
+  <Photo src={card.photo} alt="" note={card.note} position={card.position} ratio={ratio} sizes={sizes} />
   <div class="team-card__body">
-    <h3 class="h4">{name}</h3>
-    <p class="team-card__titles">{titles.join(' · ')}</p>
-    {status && <p class="team-card__status">{status}</p>}
-    <span class="team-card__more" aria-hidden="true">View profile <Icon name="arrow-right" size={16} /></span>
+    <h3 class="h4">{card.name}</h3>
+    <p class="team-card__titles">
+      {card.titles.map((t, i) => (
+        <>
+          <span class="nowrap">{t}</span>
+          {i < card.titles.length - 1 && ' · '}
+        </>
+      ))}
+    </p>
+    {card.status && <p class="team-card__status">{card.status}</p>}
+    <span class="team-card__more" aria-hidden="true">{card.more} <Icon name="arrow-right" size={16} /></span>
   </div>
 </a>
 

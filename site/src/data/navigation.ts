@@ -1,5 +1,3 @@
-import { site } from './site';
-
 export interface NavLink {
   label: string;
   href: string;
@@ -20,6 +18,5 @@ export const footerLinks: NavLink[] = [
   { label: 'Our team', href: '/team' },
   { label: 'Patient information', href: '/patient-information' },
   { label: 'Clinic news', href: '/news' },
-  { label: 'Contact & visit', href: '/contact' },
-  { label: 'Book now', href: site.booking.url },
+  { label: 'Contact', href: '/contact' },
 ];

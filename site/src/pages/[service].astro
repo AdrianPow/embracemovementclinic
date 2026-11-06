@@ -12,7 +12,6 @@ import Steps from '../components/Steps.astro';
 import PractitionerList from '../components/PractitionerList.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import BookingBand from '../components/BookingBand.astro';
-import ClosureNote from '../components/ClosureNote.astro';
 import { site } from '../data/site';
 
 export async function getStaticPaths() {
@@ -33,15 +32,16 @@ const team = (await getEntries(d.practitioners)) as CollectionEntry<'team'>[];
 const names = team.map((t) => t.data.firstName);
 const seeLine = names.length > 1 ? `${names.slice(0, -1).join(', ')} or ${names.at(-1)}` : names[0];
 
+const hasExpect = Boolean(d.expect.text || d.expect.steps?.length);
 const sections = [
   { id: 'for-you', label: d.forYou.heading === 'Is this for you?' ? 'Is this for you?' : 'Conditions' },
-  { id: 'expect', label: 'What to expect' },
+  ...(hasExpect ? [{ id: 'expect', label: 'What to expect' }] : []),
   ...(d.treatments ? [{ id: 'treatment', label: 'Treatment' }] : []),
   { id: 'who', label: 'Who you’ll see' },
 ];
 ---
 
-<BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
+<BaseLayout title={d.seoTitle} description={d.seoDescription} shareImage={d.image ? `/og/services/${service.id}.jpg` : undefined} imageAlt={d.imageAlt}>
   <PageHero crumbs={[{ label: 'Services', href: '/services' }, { label: d.title }]} eyebrow="One-on-one appointments" title={d.title} lede={d.lede}>
     <p class="see">
       <Icon name="user" size={18} /> You’ll see {seeLine}
@@ -103,18 +103,22 @@ const sections = [
   </section>
 
   <!-- What to expect -->
-  <section class="section section--alt" id="expect" aria-labelledby="expect-h">
-    <div class="wrap expect">
-      <div class="expect__head">
-        <p class="eyebrow">Your first appointment</p>
-        <h2 id="expect-h">What to expect</h2>
-      </div>
-      <div class="expect__body">
-        {d.expect.text && <p class="expect__text">{d.expect.text}</p>}
-        {d.expect.steps && <Steps steps={d.expect.steps} />}
-      </div>
-    </div>
-  </section>
+  {
+    hasExpect && (
+      <section class="section section--alt" id="expect" aria-labelledby="expect-h">
+        <div class="wrap expect">
+          <div class="expect__head">
+            <p class="eyebrow">Your first appointment</p>
+            <h2 id="expect-h">What to expect</h2>
+          </div>
+          <div class="expect__body">
+            {d.expect.text && <p class="expect__text">{d.expect.text}</p>}
+            {d.expect.steps && <Steps steps={d.expect.steps} />}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Treatment -->
   {
@@ -157,8 +161,7 @@ const sections = [
         {d.practitionersNote && <p class="head__intro">{d.practitionersNote}</p>}
       </div>
       <PractitionerList refs={d.practitioners} />
-      <ClosureNote />
-    </div>
+          </div>
   </section>
 
   <!-- Practical links -->
@@ -195,7 +198,7 @@ const sections = [
           <div class="head">
             <h2 id="related-h">You might also need</h2>
           </div>
-          <ul class="related" role="list">
+          <ul class="related" role="list" style={`--n: ${Math.min(related.length, 3)}`}>
             {related.map((r) => (
               <li>
                 <ServiceCard service={r} />
@@ -346,6 +349,7 @@ const sections = [
 
   .treatments li {
     display: grid;
+    align-content: start;
     gap: var(--space-3xs);
     padding-block: var(--space-m);
     border-top: 1px solid var(--color-line);
@@ -374,9 +378,6 @@ const sections = [
   }
 
   /* Who */
-  .who :global(.closure) {
-    margin-top: var(--space-m);
-  }
 
   /* Practical */
   .practical {
@@ -416,9 +417,22 @@ const sections = [
     font-size: var(--step-0);
   }
 
+  /* As many columns as cards (up to 3), so two related services don't leave an empty column. */
   .related {
     display: grid;
     gap: var(--space-m);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 40em) {
+    .related {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 62em) {
+    .related {
+      grid-template-columns: repeat(var(--n, 3), 1fr);
+    }
   }
 </style>

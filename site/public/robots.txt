@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /styleguide
-Disallow: /palette
 Disallow: /admin
 
 Sitemap: https://www.embracemovementclinic.com.au/sitemap-index.xml

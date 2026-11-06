@@ -72,14 +72,14 @@ const sections = [
               <Icon name="phone" size={24} />
               <h3 class="h4">Call or text</h3>
               <p>
-                Call <a href={site.phone.href}>{site.phone.display}</a>. {booking.waitlistText}
+                Call <a href={site.phone.href}>{site.phone.display}</a>. {booking.waitlistText}{' '}
                 <a href={site.phone.href.replace('tel:', 'sms:')}>{site.phone.display}</a>.
               </p>
             </div>
             <div class="card">
               <Icon name="mail" size={24} />
               <h3 class="h4">Email</h3>
-              <p><a href={site.email.href} class="email">{site.email.address}</a></p>
+              <p><a href={site.email.href} class="email">{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</a></p>
             </div>
           </div>
           <p class="tip"><Icon name="info" size={20} /><span>{booking.bookingCode}</span></p>
@@ -89,7 +89,7 @@ const sections = [
           <h2 id="first-h">Your first visit</h2>
           {p.firstVisit[0] && <p>{p.firstVisit[0]}</p>}
           <p>
-            Each service page explains what to expect in more detail, including
+            Each service page explains what to expect in more detail, including{' '}
             <a href="/pelvic-health-physiotherapy#expect">pelvic floor physiotherapy</a>.
           </p>
           {p.firstVisit.slice(1).map((para) => <p>{para}</p>)}
@@ -172,7 +172,7 @@ const sections = [
             {
               studioEtiquette.map((e) => (
                 <li>
-                  <strong>{e.name}.</strong> {e.detail}
+                  <strong>{/[.?!]$/.test(e.name) ? e.name : `${e.name}.`}</strong> {e.detail}
                 </li>
               ))
             }
@@ -319,7 +319,7 @@ const sections = [
   }
 
   .email {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 
   .tip {
@@ -341,6 +341,10 @@ const sections = [
     display: grid;
     gap: var(--space-xs);
     padding-left: 1.25em;
+  }
+
+  .list li::marker {
+    color: var(--color-icon);
   }
 
   .facts {

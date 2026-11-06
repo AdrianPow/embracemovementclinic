@@ -16,8 +16,8 @@ Wow, that was a jam-packed first half of the year! Here’s a little update on s
 
 As some of you already know, Nicole is heading off for a well-earned break!
 
-- **Last day in clinic:** Friday, 27th June
-- **Return to clinic:** Monday, 4th August
+- **Last day in clinic:** Friday 27 June
+- **Return to clinic:** Monday 4 August
 
 During this time, Laura will be increasing her hours to keep things running smoothly.
 
@@ -54,7 +54,7 @@ No private or identifying info is shared externally, and everything is reviewed 
 
 ## Saturday sessions: surprise appointments!
 
-Need a weekend appointment? Nicole will occasionally open up Saturday appointments for physiotherapy or private exercise. These aren’t regularly scheduled. If you’d like to be notified when Saturday appointments are available, opt in to our SMS notification list by popping your name down [here](https://forms.gle/jxFKrfqM7K6sCzsw5).
+Need a weekend appointment? Nicole will occasionally open up Saturday appointments for physiotherapy or private exercise. These aren’t regularly scheduled. If you’d like to be notified when Saturday appointments are available, pop your name down for our [SMS notification list](https://forms.gle/jxFKrfqM7K6sCzsw5).
 
 ## We’d love your input
 

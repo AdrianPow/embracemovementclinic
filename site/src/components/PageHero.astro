@@ -21,7 +21,19 @@ const hasAside = Astro.slots.has('aside');
   <div class:list={['wrap', 'page-hero__grid', { 'page-hero__grid--split': hasAside }]}>
     <div class="page-hero__text">
       {crumbs && <Breadcrumbs items={crumbs} onBrand={tone === 'brand'} />}
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      {
+        eyebrow && (
+          <p class="eyebrow">
+            {/* Keep hyphenated words like "One-on-one" on one line. */}
+            {eyebrow.split(' ').map((w, i) => (
+              <>
+                {i > 0 && ' '}
+                {w.includes('-') ? <span class="nowrap">{w}</span> : w}
+              </>
+            ))}
+          </p>
+        )
+      }
       <h1 id="page-title">{title}</h1>
       {lede && <p class="lede page-hero__lede">{lede}</p>}
       <slot />

@@ -27,7 +27,7 @@ Written 18 Oct 2026, when the owner asked for the site to be rethought rather th
 
 1. **Lead with problems, then services.** A "What can we help with?" finder groups every condition the clinic already lists into six everyday needs, each linking to the right service.
 2. **Two ways to work with us.** One-on-one appointments (physiotherapy, pelvic floor, vestibular, exercise physiology) and small-group classes (pilates). This is the clinic's real model, and it makes the path to classes obvious.
-3. **One home for each fact.** Clinic details live in `site.ts`, services in their own files and policies on the Patient information page. Everything else links to them, so the copies can't disagree again.
+3. **One home for each fact.** Clinic details live in `clinic.json` (editable on /admin), services in their own files and policies on the Patient information page. Everything else links to them, so the copies can't disagree again.
 4. **Every service page answers the same questions in the same order:** what it is → is it for me → what happens → treatment options → who I'll see → book.
 5. **Evergreen first, news second.** Practical facts move from newsletters into Patient information. Time-sensitive news (the closure) goes in the notice banner and a dated post.
 6. **Booking is never more than one tap away:** a sticky header with "Book now" and click-to-call, plus a booking band at the end of every page.

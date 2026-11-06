@@ -52,6 +52,6 @@ related:
   - exercise-physiology
   - pelvic-health-physiotherapy
   - pilates
-seoTitle: Musculoskeletal Physiotherapy in McDowall
+seoTitle: Physiotherapy in McDowall
 seoDescription: Physiotherapy in McDowall for sporting injuries, back and neck pain, joint pain, chronic pain, pregnancy and postnatal aches and pains, and post-surgical care.
 ---

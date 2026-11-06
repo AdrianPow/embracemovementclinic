@@ -24,7 +24,7 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [x] Logo as SVG: traced from the black wordmark (`assets/brand/logo-wordmark.svg`). An original vector file from whoever designed it would still be ideal, if one exists.
 - [x] **Colour palette:** Petrol + Teal (petrol chosen 19 Oct 2026; accent changed from coral to teal on 20 Oct). `/palette` stays for trying other combinations later.
 - [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
-- [x] Clinic, team and treatment photos: 16 received on 19 Oct 2026. 14 are on the site (`site/src/assets/photos/`): headshots, the team photo with Jeff, the home page, every service page and the studio gallery.
+- [x] Clinic, team and treatment photos: 16 received on 19 Oct 2026. 13 are on the site (`site/src/assets/photos/`): headshots, the team photo with Jeff, the home page and every service page. More can be added on /admin.
 - [ ] **Guardian consent for the two photos of children** (`PXL_20220610_235914156`, a child using a wheelchair beside the reformer, and `PXL_20220611_052505665`, a child on the treatment table). They're held back until you confirm a parent or guardian agreed to their use on the website.
 - [ ] **Photo of the front of the clinic** (or the driveway and parking). Optional now: Home and Contact show a street map, but a photo of the entrance would still help on Contact
 - [ ] **Two photos of baby Imogen** for the archived July 2026 update (`DSC_6425.JPG` and `DSC_6872.JPG` on the old site), if you'd like them kept
@@ -36,13 +36,13 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
 
 - [ ] Practitioner bios, qualifications and AHPRA registration numbers or names as registered
-- [ ] Instagram and Facebook profile URLs (the header has icons, but the links weren't in the export)
+- [ ] Instagram and Facebook profile URLs (the footer shows icons once they're added on /admin: Clinic settings → Clinic details)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
 - [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
 - [ ] **ABN** (footer)
 - [ ] **Parking details** for the location section (street parking, driveway, accessibility)
-- [ ] **Reopening date**, so the closure banner can hide itself automatically (`notice.until` in `site/src/data/site.ts`)
+- [ ] **Reopening date**, so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
 - [ ] **Current class timetable as text** (days, times, class type). The current timetable is an image of the July 2025 timetable, which isn't accessible.
 - [ ] **Which practitioner provides which service.** The draft mapping is inferred from qualifications, so it needs confirming.
 - [ ] **Privacy contact** (name or role, plus email) for the privacy policy

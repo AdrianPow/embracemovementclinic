@@ -35,7 +35,8 @@ export const site = {
   url: 'https://www.embracemovementclinic.com.au',
 
   phone: {
-    display: clinic.phone,
+    // Non-breaking spaces keep the number on one line.
+    display: clinic.phone.trim().replace(/\s+/g, '\u00a0'),
     href: telHref(clinic.phone),
   },
 
@@ -50,7 +51,11 @@ export const site = {
     state: 'QLD',
     postcode: '4053',
     country: 'AU',
-    mapUrl: 'https://goo.gl/maps/8KggSs4E8G9w1cxL6',
+    // The clinic's Google Maps listing (the old goo.gl short link resolved here; goo.gl is retired).
+    mapUrl: 'https://maps.google.com/?cid=9375169901916606838',
+    // The listing's pin, used in structured data.
+    lat: -27.3852737,
+    lon: 152.992564,
     directionsUrl:
       'https://www.google.com/maps/dir/?api=1&destination=33+Brynner+Street%2C+McDowall+QLD+4053',
   },

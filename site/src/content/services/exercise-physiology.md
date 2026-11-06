@@ -15,6 +15,7 @@ forYou:
     - name: Injury prevention
     - name: Prenatal and postnatal exercise
     - name: Chronic pain and disease management
+      detail: For example arthritis, diabetes and cardiovascular disease.
     - name: Osteoporosis and healthy ageing
     - name: Strength and conditioning
     - name: Athletic performance
@@ -40,23 +41,11 @@ treatments:
       detail: Customised exercise routines you can do at home or in the gym, tailored to your specific needs.
     - name: Exercise guidelines
       detail: Personalised advice on how to fit exercise into your daily routine safely and effectively.
-    - name: Injury rehabilitation
-      detail: Targeted exercises to aid recovery and reduce the risk of future injuries.
-    - name: Injury prevention
-      detail: Strategies and exercises to reduce the risk of future injuries.
-    - name: Chronic pain and disease management
-      detail: Specialised programs to manage conditions like arthritis, diabetes and cardiovascular disease through exercise.
-    - name: Osteoporosis and healthy ageing
-      detail: Exercises for bone strength, balance and healthy ageing.
-    - name: Musculoskeletal and neurological rehabilitation
-      detail: Programs designed to improve movement and function for people with musculoskeletal or neurological conditions.
-    - name: Strength and conditioning and athletic performance
-      detail: Tailored programs for athletic performance and overall physical conditioning.
 practitioners:
   - nicole-saxby
 related:
   - pilates
   - physiotherapy
 seoTitle: Exercise Physiology in McDowall
-seoDescription: Exercise physiology in McDowall for injury rehabilitation and prevention, chronic pain and disease management, osteoporosis and healthy ageing, and athletic performance.
+seoDescription: Exercise physiology in McDowall for injury rehabilitation, chronic pain and disease management, osteoporosis, healthy ageing and athletic performance.
 ---

@@ -11,8 +11,10 @@ const serviceLinks = (await getCollection('services'))
   .map((s) => ({ label: s.data.title, href: `/${s.id}`, kind: s.data.kind }));
 const serviceGroups = [
   { label: 'One-on-one appointments', links: serviceLinks.filter((l) => l.kind === 'appointment') },
-  { label: 'Small group classes', links: serviceLinks.filter((l) => l.kind === 'class') },
+  { label: 'Classes', links: serviceLinks.filter((l) => l.kind === 'class') },
 ];
+// The mobile menu lists every service under Services, so leave out top-level links that repeat one (Classes).
+const mobileLinks = primaryLinks.filter((l) => !serviceLinks.some((s) => s.href === l.href));
 
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 const current = (href: string) => (path === href ? 'page' : undefined);
@@ -101,7 +103,7 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
         </ul>
       </li>
       {
-        primaryLinks.map((l) => (
+        mobileLinks.map((l) => (
           <li>
             <a href={l.href} aria-current={current(l.href)}>
               {l.label}
@@ -137,9 +139,20 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
       }
     });
 
-    document.addEventListener('click', (e) => {
-      if (scope && !scope.contains(e.target as Node)) set(false);
-    });
+    const isMenu = target.classList.contains('mobile-nav');
+    document.addEventListener(
+      'click',
+      (e) => {
+        if (!scope || scope.contains(e.target as Node) || btn.getAttribute('aria-expanded') !== 'true') return;
+        // A tap on the dimmed page below the mobile menu only closes the menu, not follows a link there.
+        if (isMenu) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        set(false);
+      },
+      true,
+    );
 
     // Close the dropdown when focus leaves it.
     if (btn.closest('[data-dropdown]')) {
@@ -266,6 +279,12 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
     display: none;
   }
 
+  /* Dim the page below the open menu (the shadow is clipped so it never covers the header). */
+  .mobile-nav[data-open] {
+    box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.35);
+    clip-path: inset(0 -100vmax -100vmax -100vmax);
+  }
+
   .mobile-nav__list {
     padding-block: var(--space-2xs) var(--space-m);
     padding-left: 0;
@@ -305,6 +324,26 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
   /* Desktop nav */
   .desk-nav {
     display: none;
+  }
+
+  /* Very narrow screens (320px phones, or 400% zoom): shrink the logo and gaps so
+     Call, Book now and Menu all fit without sideways scrolling (WCAG 1.4.10). */
+  @media (max-width: 24em) {
+    .site-header__bar {
+      gap: var(--space-2xs);
+    }
+
+    .site-header__logo {
+      width: 6rem;
+    }
+
+    .site-header__actions {
+      gap: var(--space-3xs);
+    }
+
+    .site-header__actions :global(.site-header__book) {
+      padding-inline: 0.85em;
+    }
   }
 
   @media (min-width: 30em) {

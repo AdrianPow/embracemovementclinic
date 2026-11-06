@@ -20,7 +20,14 @@ const people = (await getEntries(Astro.props.refs)) as CollectionEntry<'team'>[]
           <h3 class="h4">
             <a href={`/team/${p.id}`}>{p.data.name}</a>
           </h3>
-          <p class="person__titles">{p.data.titles.join(' · ')}</p>
+          <p class="person__titles">
+            {p.data.titles.map((t, i) => (
+              <>
+                <span class="person__title">{t}</span>
+                {i < p.data.titles.length - 1 && ' · '}
+              </>
+            ))}
+          </p>
           {p.data.status && <p class="person__status">{p.data.status}</p>}
         </div>
         <Icon name="chevron-right" size={20} class="person__chev" />
@@ -33,7 +40,7 @@ const people = (await getEntries(Astro.props.refs)) as CollectionEntry<'team'>[]
   .people {
     display: grid;
     gap: var(--space-s);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
   }
 
   .person {
@@ -96,6 +103,18 @@ const people = (await getEntries(Astro.props.refs)) as CollectionEntry<'team'>[]
   .person__titles {
     color: var(--color-ink-muted);
     font-size: var(--step--1);
+  }
+
+  @media (min-width: 40em) {
+    .person__title {
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 24em) {
+    .person {
+      grid-template-columns: 4.5rem 1fr auto;
+    }
   }
 
   .person__status {

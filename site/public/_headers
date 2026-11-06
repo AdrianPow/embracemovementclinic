@@ -1,0 +1,16 @@
+# Cloudflare Pages response headers (https://developers.cloudflare.com/pages/configuration/headers/).
+
+# Basic protections for every page.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'self'
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Built CSS, JS, images and fonts have a content hash in their names, so they can be cached for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The website editor is for staff only: keep it out of search results.
+/admin/*
+  X-Robots-Tag: noindex

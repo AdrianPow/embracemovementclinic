@@ -8,3 +8,5 @@ site/.astro/
 # Website editor files copied from node_modules at build time (scripts/copy-cms.mjs)
 site/public/admin/sveltia-cms.js
 site/public/admin/chunks/
+# Practitioner share images, made before each build (scripts/make-share-images.mjs)
+site/public/og/

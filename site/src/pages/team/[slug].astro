@@ -6,7 +6,6 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Photo from '../../components/Photo.astro';
 import Button from '../../components/Button.astro';
 import Icon from '../../components/Icon.astro';
-import ClosureNote from '../../components/ClosureNote.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import BookingBand from '../../components/BookingBand.astro';
 import Todo from '../../components/Todo.astro';
@@ -38,7 +37,14 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title={`${d.name}`} description={d.seoDescription} image={d.photo} imageAlt={d.photo ? d.name : undefined} jsonLd={jsonLd}>
+<!-- Share image: the whole headshot beside the wordmark (made by scripts/make-share-images.mjs before each build). -->
+<BaseLayout
+  title={`${d.name}`}
+  description={d.seoDescription}
+  shareImage={d.photo ? `/og/team/${member.id}.jpg` : undefined}
+  imageAlt={d.photo ? `${d.name}, Embrace Movement Clinic` : undefined}
+  jsonLd={jsonLd}
+>
   <section class="profile-hero curve-bottom" aria-labelledby="page-title">
     <div class="wrap profile-hero__grid">
       <Photo src={d.photo} alt={d.name} note={d.photoNote} position={d.photoPosition} ratio="4 / 5" loading="eager" class="profile-hero__photo" sizes="(min-width: 56em) 35vw, 100vw" />
@@ -111,7 +117,6 @@ const jsonLd = {
       </aside>
       <div class="profile__main">
         <h2 id="about-h">About {d.firstName}</h2>
-        <ClosureNote />
         <div class="prose bio">
           <Content />
         </div>
@@ -126,7 +131,7 @@ const jsonLd = {
           <div class="head">
             <h2 id="services-h">See {d.firstName} for</h2>
           </div>
-          <ul class="services" role="list">
+          <ul class="services" role="list" style={`--n: ${Math.min(services.length, 4)}`}>
             {services.map((s) => (
               <li>
                 <ServiceCard service={s} />
@@ -160,9 +165,17 @@ const jsonLd = {
     }
   }
 
+  /* Keeps the 4:5 portrait shape at every width (the editor previews this shape). */
   :global(.profile-hero__photo) {
+    width: 100%;
+    max-width: 26rem;
     border-radius: var(--radius-l);
-    max-height: 34rem;
+  }
+
+  @media (min-width: 56em) {
+    :global(.profile-hero__photo) {
+      max-width: none;
+    }
   }
 
   .profile-hero__text {
@@ -192,11 +205,23 @@ const jsonLd = {
     color: var(--color-ink-muted);
   }
 
+  /* Phones: one title per line, so no dot is left dangling at a line end. */
+  @media (max-width: 39.99em) {
+    .roles {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .roles li::after {
+      content: none !important;
+    }
+  }
+
   .status {
     padding: 0.3em 0.9em;
     border-radius: var(--radius-pill);
-    background: var(--color-brand);
-    color: var(--color-on-brand);
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
     font-size: var(--step--1);
     font-weight: 650;
   }
@@ -269,9 +294,22 @@ const jsonLd = {
     margin-bottom: var(--space-l);
   }
 
+  /* 1, then 2, then all of them (up to 4) across, so a single card never sits alone on a wide row. */
   .services {
     display: grid;
     gap: var(--space-m);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 40em) {
+    .services {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 75em) {
+    .services {
+      grid-template-columns: repeat(var(--n, 4), 1fr);
+    }
   }
 </style>

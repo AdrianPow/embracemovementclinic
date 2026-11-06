@@ -19,7 +19,7 @@ const groups = [
 ---
 
 <div class="service-groups">
-  <h3 class="eyebrow group-label">One-on-one appointments</h3>
+  <h3 class="eyebrow group-label"><span class="nowrap">One-on-one</span> appointments</h3>
   {
     groups.map(
       ({ kind, list }) =>
@@ -81,7 +81,14 @@ const groups = [
     }
   }
 
-  /* Wide screens: the heading and 2×2 grid on the left, the classes card full height on the right. */
+  /* Below wide screens the classes card follows the one-on-one cards: a little more space sets it apart. */
+  @media (max-width: 61.99em) {
+    .cards--classes {
+      margin-top: var(--space-s);
+    }
+  }
+
+  /* Wide screens: the heading and 2×2 grid on the left, the classes card beside the grid, tops aligned. */
   @media (min-width: 62em) {
     .service-groups {
       grid-template-columns: 2fr 1.1fr;
@@ -100,7 +107,7 @@ const groups = [
 
     .cards--classes {
       grid-column: 2;
-      grid-row: 1 / span 2;
+      grid-row: 2;
       grid-template-rows: 1fr;
     }
 

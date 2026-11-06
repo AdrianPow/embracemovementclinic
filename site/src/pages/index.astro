@@ -23,13 +23,18 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
 const homeEntry = await getEntry('home', 'home');
 if (!homeEntry) throw new Error('Missing src/content/home/home.md');
 const home = homeEntry.data;
+// Jeff's photo and heading come from the Team page text ("Pages → Team page" on /admin).
+const teamPage = await getEntry('teamPage', 'team');
+const jeff = teamPage?.data.jeff;
 
 const factIcons = ['user', 'users', 'shield', 'map-pin'] as const;
 const facts = home.facts.map((text, i) => ({ icon: factIcons[i] ?? 'check', text }));
 
+const socialLinks = [site.socials.instagram, site.socials.facebook].filter(Boolean);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': ['MedicalBusiness', 'Physiotherapy'],
+  '@id': `${site.url}/#clinic`,
   name: site.name,
   url: site.url,
   image: `${site.url}/og-default.png`,
@@ -44,12 +49,16 @@ const jsonLd = {
     postalCode: site.address.postcode,
     addressCountry: site.address.country,
   },
-  // TODO: openingHoursSpecification and sameAs (socials) once supplied.
+  geo: { '@type': 'GeoCoordinates', latitude: site.address.lat, longitude: site.address.lon },
+  hasMap: site.address.mapUrl,
+  // Instagram and Facebook, once added on /admin (Clinic settings → Clinic details).
+  ...(socialLinks.length > 0 && { sameAs: socialLinks }),
+  // TODO: openingHoursSpecification once hours are supplied in a fixed format.
 };
 ---
 
 <BaseLayout
-  title="Embrace Movement Clinic | Physiotherapy, Exercise Physiology & Pilates in McDowall"
+  title="Physiotherapy & Pilates in McDowall | Embrace Movement Clinic"
   description="Physiotherapy, pelvic floor and vestibular physiotherapy, exercise physiology and small group clinical pilates at 33 Brynner Street, McDowall QLD."
   jsonLd={jsonLd}
 >
@@ -131,6 +140,13 @@ const jsonLd = {
               <TeamCard member={m} />
             </li>
           ))
+        }
+        {
+          jeff && (
+            <li>
+              <TeamCard extra={{ href: '/team#jeff', name: 'Jeff', titles: ['Clinic dog'], photo: jeff.photo, position: jeff.photoPosition, more: 'Say hello' }} />
+            </li>
+          )
         }
       </ul>
     </div>
@@ -325,8 +341,20 @@ const jsonLd = {
   .team-grid {
     display: grid;
     gap: var(--space-m);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-    max-width: 52rem;
+    grid-template-columns: 1fr;
+  }
+
+  /* Two practitioners and Jeff: 2 across on tablets, 3 on wider screens. */
+  @media (min-width: 36em) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 62em) {
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   /* Studio and values: two overlapping photos beside the tagline */

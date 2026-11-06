@@ -10,7 +10,7 @@ oldUrl: /baby-news
 
 ## Baby arrival news!
 
-Nicole and Adrian welcomed their beautiful baby girl, Imogen, on Sunday, June 21st, 2026. She arrived weighing 3.4kg (7lb 8oz) and measuring 49cm long.
+Nicole and Adrian welcomed their beautiful baby girl, Imogen, on Sunday 21 June 2026. She arrived weighing 3.4kg (7lb 8oz) and measuring 49cm long.
 
 Both Nicole and Imogen are healthy, well, and settling into the new rhythm of family life, catching short stints of sleep whenever they can! (Meanwhile, Jeff is still adjusting to his new role as a protective big brother!)
 
@@ -18,7 +18,7 @@ Both Nicole and Imogen are healthy, well, and settling into the new rhythm of fa
 
 ### Laura’s upcoming leave
 
-Laura’s last day in the clinic before she begins her maternity leave will be **Thursday, August 13th**.
+Laura’s last day in the clinic before she begins her maternity leave will be **Thursday 13 August**.
 
 - **Physiotherapy appointments:** Laura is currently fully booked. If you would like to be added to our cancellation waitlist, please text us at **0434 686 261**.
 - **A quick reminder:** If you are unable to attend your booked classes or appointments, please give us as much notice as possible so we can offer the time to someone on our waitlist.

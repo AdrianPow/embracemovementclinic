@@ -31,7 +31,7 @@ Needs Node 22.12 or later.
 | Type sizes, spacing, what each colour token is for | `src/styles/tokens.css` |
 | Home page map | `src/assets/maps/clinic-map.png`, made once by `scripts/make-location-map.mjs` from OpenStreetMap (rerun only if the address or look changes) |
 | Online booking link | `booking.url` in `src/data/site.ts`, plus the `/book-now` line in `public/_redirects` (the link checker flags them if they differ) |
-| Photos | `src/assets/photos/`. A service sets `image`, `imageAlt` and (optionally) `imagePosition` in its Markdown file; a practitioner sets `photo`; a news post lists `images`; home page photos are imported at the top of `src/pages/index.astro`. `imagePosition` / `position` picks which part of the photo is kept when it's cropped, e.g. `'50% 30%'`. The build makes the AVIF/WebP sizes. Placements and alt text are logged in `docs/changes.md`. |
+| Photos | `src/assets/photos/`. A service sets `image`, `imageAlt` and (optionally) `imagePosition` in its Markdown file; a practitioner sets `photo`; a news post lists `images`; home page photos are set in `src/content/home/home.md` (editable on /admin). `imagePosition` / `position` picks which part of the photo is kept when it's cropped, e.g. `'50% 30%'`. The build makes the AVIF/WebP sizes. Placements and alt text are logged in `docs/changes.md`. |
 | Wordmark (SVG, takes the text colour) | `src/assets/brand/wordmark.svg` via `src/components/Wordmark.astro` (originals in `../assets/brand/`) |
 | Fonts | `astro.config.mjs` (`fonts`), self-hosted from `@fontsource-variable/*` |
 | Page shell (head, header, footer) | `src/layouts/BaseLayout.astro` |

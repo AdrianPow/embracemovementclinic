@@ -8,7 +8,7 @@ imageAlt: A client exercising on the reformer while a practitioner watches
 imagePosition: 37% 48%
 blurb: Clinical pilates and small group classes for all ages and abilities.
 summary: Clinical pilates and small group classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and exercise abilities.
-lede: Clinical pilates and small group exercise classes for all ages and abilities, from people who have never stepped foot in a gym to high-level athletes.
+lede: Clinical pilates and small group exercise classes on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and abilities.
 forYou:
   heading: Our classes are perfect for
   items:
@@ -23,10 +23,11 @@ expect:
 practitioners:
   - nicole-saxby
   - laura-bradford
+practitionersNote: Both of our physiotherapists are clinical pilates instructors.
 related:
   - exercise-physiology
   - physiotherapy
   - pelvic-health-physiotherapy
-seoTitle: Clinical Pilates & Small Group Classes in McDowall
-seoDescription: Clinical pilates and small group exercise classes in McDowall on the Reformer, Wunda Chair, Trapeze Table and CoreAlign. Pre-class assessment, timetable and booking.
+seoTitle: Clinical Pilates Classes in McDowall
+seoDescription: Clinical pilates and small group classes in McDowall on the Reformer, Wunda Chair, Trapeze Table and CoreAlign. Pre-class assessment, timetable and booking.
 ---

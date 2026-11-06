@@ -15,20 +15,37 @@ interface Props {
   description: string;
   image?: ImageMetadata;
   imageAlt?: string;
+  /** The photo's focus point ("x% y%"), so the landscape share crop keeps faces in view. */
+  imagePosition?: string;
+  /** A ready-made 1200×630 share image in public/ (e.g. the practitioner cards from scripts/make-share-images.mjs). */
+  shareImage?: string;
+  /** "article" for news posts. */
+  ogType?: 'website' | 'article';
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, image, imageAlt, noindex = false, jsonLd } = Astro.props;
+const { title, description, image, imageAlt, imagePosition, shareImage, ogType = 'website', noindex = false, jsonLd } = Astro.props;
 
-const pageTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+// Search results show about 60 characters, so long titles go without the clinic name.
+const withName = `${title} | ${site.name}`;
+const pageTitle = title.includes(site.name) || withName.length > 65 ? title : withName;
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/(.)\/$/, '$1');
 const canonical = new URL(path, site.url).href;
 
 // Pages can pass their own share image; otherwise the wordmark card in public/og-default.png is used.
-const og = image ? await getImage({ src: image, format: 'jpg', width: Math.min(1200, image.width) }) : null;
-const ogUrl = new URL(og ? og.src : '/og-default.png', site.url).href;
-const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
+// Share images are cropped to 1200×630, the shape Facebook, LinkedIn and messaging apps show.
+const gravity = (pos = '50% 50%') => {
+  const [x = 50, y = 50] = pos.split(/\s+/).map((v) => Number.parseFloat(v));
+  const v = y <= 33 ? 'top' : y >= 67 ? 'bottom' : '';
+  const h = x <= 33 ? 'left' : x >= 67 ? 'right' : '';
+  return [h, v].filter(Boolean).join(' ') || 'centre';
+};
+const og = image
+  ? await getImage({ src: image, format: 'jpg', width: 1200, height: 630, fit: 'cover', position: gravity(imagePosition) })
+  : null;
+const ogUrl = new URL(shareImage ?? (og ? og.src : '/og-default.png'), site.url).href;
+const ogAlt = shareImage || image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
 ---
 
 <!doctype html>
@@ -38,21 +55,25 @@ const ogAlt = image ? imageAlt : `${site.name}: Accept . Support . Challenge .`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
 
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#ffffff" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="en_AU" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     {ogAlt && <meta property="og:image:alt" content={ogAlt} />}
     <meta name="twitter:card" content="summary_large_image" />
 

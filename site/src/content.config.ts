@@ -36,7 +36,9 @@ const services = defineCollection({
         /** Kept verbatim where it's consent or examination wording. */
         text: z.string().optional(),
         steps: z.array(item).optional(),
-      }),
+      })
+      // The editor drops this section if both of its fields are blank.
+      .default({}),
       treatments: z
         .object({
           heading: z.string().default('Treatment may include'),
