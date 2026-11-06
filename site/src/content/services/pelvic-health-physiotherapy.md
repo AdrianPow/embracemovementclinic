@@ -3,8 +3,11 @@ title: Pelvic Floor Physiotherapy
 shortTitle: Pelvic floor
 order: 3
 kind: appointment
-summary: Assessment and treatment for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
+image: ../../assets/photos/pxl-20220611-045341759-2.webp
+imageAlt: A physiotherapist guiding a pregnant client through a lunge
+imagePosition: 59% 85%
 blurb: Assessment and treatment for pelvic health concerns, including pregnancy, postnatal and menopause care.
+summary: Assessment and treatment for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
 lede: Assessment and treatment for pelvic floor and pelvic health concerns, including pregnancy, postnatal and menopause care.
 forYou:
   heading: Conditions we commonly treat
@@ -32,11 +35,14 @@ treatments:
       detail: To improve muscle awareness.
     - name: Manual therapy
     - name: Electrical stimulation
-practitioners: [nicole-saxby, laura-bradford]
+practitioners:
+  - nicole-saxby
+  - laura-bradford
 practitionersNote: Both of our physiotherapists have completed Women’s Pelvic Health Physiotherapy training with the APA.
-related: [physiotherapy, pilates, exercise-physiology]
-image: ../../assets/photos/pxl-20220611-045341759-2.webp
-imageAlt: A physiotherapist guiding a pregnant client through a lunge
+related:
+  - physiotherapy
+  - pilates
+  - exercise-physiology
 seoTitle: Pelvic Floor Physiotherapy in McDowall
 seoDescription: Pelvic floor physiotherapy in McDowall for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
 oldUrl: /womens-health-physio
