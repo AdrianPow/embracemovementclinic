@@ -15,5 +15,5 @@ approach:
   imageAlt: A side stretch on the Wunda Chair in the pilates studio
   insetImage: ../../assets/photos/pxl-20220611-044952545.webp
   insetImageAlt: A pregnant client kneeling beside an exercise ball
-  insetImagePosition: 50% 35%
+  insetImagePosition: 54% 3%
 ---
