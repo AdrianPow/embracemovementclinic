@@ -17,6 +17,13 @@ const pageEntry = await getEntry('patientInfo', 'patient-information');
 const teamEntry = await getEntry('teamPage', 'team');
 if (!pageEntry || !teamEntry) throw new Error('Missing a file in src/content/pages');
 const p = pageEntry.data;
+// Fees listed together under their service, in the order they were entered.
+const feeGroups = p.fees.reduce<{ name?: string; fees: typeof p.fees }[]>((groups, f) => {
+  const last = groups.at(-1);
+  if (last && last.name === f.group) last.fees.push(f);
+  else groups.push({ name: f.group, fees: [f] });
+  return groups;
+}, []);
 const jeff = teamEntry.data.jeff;
 
 const sections = [
@@ -116,21 +123,30 @@ const sections = [
           <h2 id="fees-h">Fees and rebates</h2>
           {
             p.fees.length > 0 ? (
-              <dl class="facts">
-                {p.fees.map((f) => (
-                  <div>
-                    <dt>{f.item}</dt>
-                    <dd>
-                      {f.price}
-                      {f.note && <span class="fee-note">{f.note}</span>}
-                    </dd>
+              <div class="fee-groups">
+                {feeGroups.map((g) => (
+                  <div class="fee-group">
+                    {g.name && <h3 class="h4">{g.name}</h3>}
+                    <dl class="fees">
+                      {g.fees.map((f) => (
+                        <div>
+                          <dt>
+                            {f.item}
+                            {f.note && <span class="fee-note">{f.note}</span>}
+                          </dt>
+                          <dd>{f.price}</dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
                 ))}
-              </dl>
+                <p class="fee-gst">Prices include GST where it applies.</p>
+              </div>
             ) : (
               <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
             )
           }
+          {(p.feeNotes.length > 0 || p.funding.length > 0) && <h3 class="h4 rebates-h">Rebates and funding</h3>}
           {
             p.feeNotes.length > 0 && (
               <ul class="list">
@@ -140,7 +156,6 @@ const sections = [
               </ul>
             )
           }
-          {p.fees.length === 0 && <Todo as="div">confirm class packages and prices are current</Todo>}
           {
             p.funding.length > 0 ? (
               <ul class="list">
@@ -363,6 +378,54 @@ const sections = [
       grid-template-columns: 10rem 1fr;
       gap: var(--space-s);
     }
+  }
+
+  /* Fees: one short price list per service, prices right-aligned. */
+  .fee-groups {
+    display: grid;
+    gap: var(--space-l);
+    margin-bottom: var(--space-l);
+  }
+
+  @media (min-width: 48em) {
+    .fee-groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-l) var(--space-xl);
+    }
+  }
+
+  .fee-group h3 {
+    margin-bottom: var(--space-2xs);
+  }
+
+  .fees div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-s);
+    padding-block: var(--space-xs);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .fees dd {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .fee-gst {
+    grid-column: 1 / -1;
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .rebates-h {
+    margin-bottom: var(--space-2xs);
+  }
+
+  .rebates-h + .list + .list {
+    margin-top: var(--space-xs);
   }
 
   .fee-note {

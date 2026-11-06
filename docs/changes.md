@@ -118,6 +118,10 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | Cancellation notice | "24 hours notice" (Christmas 2024) | "within 8 hours… charged at 50%" (Timetable, Aug 2025) |
 | Equipment | Different lists on three pages | One combined list (`site/src/data/policies.json`, editable on /admin) |
 
+## Fees and funding (6 Nov 2026, from the Nookal booking page)
+
+Prices and funding wording on Patient information come from the clinic's own Nookal booking page (https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location), read on 6 Nov 2026. Names are shortened from Nookal's (e.g. "Physiotherapy Extended Review - 45mins" → "Extended review (45 minutes)", under a "Physiotherapy" heading). Exercise physiology prices are shown as Nookal shows them to clients, GST included ($145, $95, $125). Funding: "Private health, Medicare, DVA, NDIS and WorkCover are all welcome", plus the out-of-pocket note, both condensed from Nookal's appointment descriptions. Class packages aren't on Nookal, so the existing package note needs confirming. Approved: TBC.
+
 ## Design changes
 
 **Full redesign** to modernise the site, with a modern, sleek feel. Brand identity:

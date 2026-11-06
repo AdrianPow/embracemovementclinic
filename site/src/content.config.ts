@@ -158,7 +158,10 @@ const patientInfo = page('patient-information', () => ({
   firstVisit: z.array(z.string()).default([]),
   /** Empty until supplied: the page shows a TODO. */
   whatToBring: z.array(z.string()).default([]),
-  fees: z.array(z.object({ item: z.string(), price: z.string(), note: z.string().optional() })).default([]),
+  /** Prices as shown on the clinic's Nookal booking page (GST included). `group` = the service heading it sits under. */
+  fees: z
+    .array(z.object({ group: z.string().optional(), item: z.string(), price: z.string(), note: z.string().optional() }))
+    .default([]),
   feeNotes: z.array(z.string()).default([]),
   /** Medicare (GP care plan), DVA, NDIS, WorkCover: empty until confirmed. */
   funding: z.array(z.string()).default([]),
