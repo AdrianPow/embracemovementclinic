@@ -77,7 +77,7 @@ Use the screenshots for these. Where a screenshot is missing, leave a `TODO:` ra
 4. Keep every fact from `content.md`. You may tighten wording, add headings or restructure copy to suit the new design. Log each wording change to clinical copy (what a service involves, conditions treated, the examination or consent wording) in `docs/changes.md` for owner approval before launch.
 5. Never invent facts: practitioners, qualifications, services, prices, fees, rebates, opening hours, addresses or phone numbers. If something is missing, leave a visible `TODO:` and add it to `docs/to-supply.md`.
 6. Write in Australian English.
-7. Staff edit content on `/admin` (Sveltia CMS; see `docs/editing.md`). When you change a content field in `site/src/content.config.ts`, `site/src/data/clinic.json`, `site/src/data/policies.json` or `site/src/content/home/home.md`, update `site/public/admin/config.yml` to match and validate it. The editor leaves out blank optional fields, so treat optional values as possibly missing.
+7. Staff edit content on `/admin` (Sveltia CMS; see `docs/editing.md`). Page text staff might change belongs in an editable file, not in page code: `site/src/content/**` (including `home/home.md` and `pages/*.md`) or `site/src/data/{clinic,policies,needs}.json`. When you add or change one of these fields, update `site/public/admin/config.yml` to match and validate it. The editor leaves out blank optional fields, so treat optional values as possibly missing.
 
 ## Health advertising and privacy rules (non-negotiable)
 

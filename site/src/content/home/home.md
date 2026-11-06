@@ -4,6 +4,11 @@ heroIntro: We embrace everyone in their health journey, with one-on-one appointm
 heroImage: /src/assets/photos/embrace_movement_clinic_shirt_edit.webp
 heroImageAlt: A practitioner with Jeff, the clinic dog, at the Trapeze Table in the studio
 heroImagePosition: 51% 53%
+facts:
+  - One-on-one physiotherapy and exercise physiology
+  - Small group pilates classes
+  - Physiotherapists with women’s pelvic health training
+  - 33 Brynner Street, McDowall
 steps:
   - Start with an initial assessment
   - Get a plan tailored to your needs and goals

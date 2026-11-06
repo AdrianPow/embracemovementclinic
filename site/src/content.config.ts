@@ -1,4 +1,4 @@
-import { defineCollection, reference } from 'astro:content';
+import { defineCollection, reference, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -114,6 +114,8 @@ const home = defineCollection({
       heroImage: image(),
       heroImageAlt: z.string(),
       heroImagePosition: z.string().optional(),
+      /** The short facts under the hero (icons: person, group, shield, pin, in that order). */
+      facts: z.array(z.string()).max(4).default([]),
       /** "How it works", one line per step. */
       steps: z.array(z.string()).min(1),
       teamIntro: z.string(),
@@ -129,4 +131,50 @@ const home = defineCollection({
     }),
 });
 
-export const collections = { services, team, news, home };
+// Page text that isn't part of a service, practitioner or news post: one file per page in
+// src/content/pages, edited on /admin ("Pages"). Each is a single-entry collection.
+const page = <T extends z.ZodRawShape>(file: string, shape: (context: SchemaContext) => T) =>
+  defineCollection({
+    loader: glob({ pattern: `${file}.md`, base: './src/content/pages' }),
+    schema: (context) => z.object(shape(context)),
+  });
+
+const teamPage = page('team', ({ image }) => ({
+  intro: z.string(),
+  jeff: z.object({
+    heading: z.string(),
+    text: z.string(),
+    extra: z.string().optional(),
+    photo: image(),
+    photoAlt: z.string(),
+    photoPosition: z.string().optional(),
+  }),
+}));
+
+const patientInfo = page('patient-information', () => ({
+  intro: z.string(),
+  firstVisit: z.array(z.string()).default([]),
+  /** Empty until supplied: the page shows a TODO. */
+  whatToBring: z.array(z.string()).default([]),
+  fees: z.array(z.object({ item: z.string(), price: z.string(), note: z.string().optional() })).default([]),
+  feeNotes: z.array(z.string()).default([]),
+  /** Medicare (GP care plan), DVA, NDIS, WorkCover: empty until confirmed. */
+  funding: z.array(z.string()).default([]),
+  privacy: z.string(),
+}));
+
+const contactPage = page('contact', () => ({
+  intro: z.string(),
+  callNote: z.string(),
+  textNote: z.string(),
+  emailNote: z.string(),
+  bookNote: z.string(),
+}));
+
+const servicesPage = page('services', () => ({
+  intro: z.string(),
+  helpIntro: z.string(),
+  servicesIntro: z.string(),
+}));
+
+export const collections = { services, team, news, home, teamPage, patientInfo, contactPage, servicesPage };

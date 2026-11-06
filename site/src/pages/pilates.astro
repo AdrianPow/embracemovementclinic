@@ -13,18 +13,12 @@ import ServiceCard from '../components/ServiceCard.astro';
 import BookingBand from '../components/BookingBand.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import { site } from '../data/site';
-import { classFacts, equipment, studioEtiquette, cancellationPolicy, booking, timetable } from '../data/policies';
+import { classFacts, classSteps, equipment, studioEtiquette, cancellationPolicy, booking, timetable } from '../data/policies';
 
 const service = (await getEntry('services', 'pilates')) as CollectionEntry<'services'>;
 const d = service.data;
 const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
 
-// One line per step. The full waitlist explanation is in the Timetable section.
-const startSteps = [
-  'Book a once-off pre-class assessment',
-  'Choose your class times online, selecting the relevant practitioner',
-  'Class full? Get in touch to join the waitlist',
-];
 ---
 
 <BaseLayout title={d.seoTitle} description={d.seoDescription} image={d.image} imageAlt={d.imageAlt}>
@@ -73,7 +67,7 @@ const startSteps = [
 
   <section class="section start" id="start" aria-labelledby="start-h">
     <div class="wrap">
-      <StepStrip as="h2" id="start-h" title="How to start classes" steps={startSteps} />
+      <StepStrip as="h2" id="start-h" title="How to start classes" steps={classSteps} />
       <p class="code-tip">
         <Icon name="info" size={20} />
         <span>{booking.bookingCode}</span>

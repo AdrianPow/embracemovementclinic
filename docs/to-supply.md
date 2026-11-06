@@ -33,6 +33,8 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 
 ## Content
 
+Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
+
 - [ ] Practitioner bios, qualifications and AHPRA registration numbers or names as registered
 - [ ] Instagram and Facebook profile URLs (the header has icons, but the links weren't in the export)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)

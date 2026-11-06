@@ -1,6 +1,6 @@
 ---
 // Services hub (old URL /old-services). Problem finder first, then a photo card for each service.
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
@@ -11,6 +11,10 @@ import Button from '../components/Button.astro';
 import { site } from '../data/site';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+// Intro text, edited on /admin ("Pages → Services page").
+const pageEntry = await getEntry('servicesPage', 'services');
+if (!pageEntry) throw new Error('Missing src/content/pages/services.md');
+const page = pageEntry.data;
 ---
 
 <BaseLayout
@@ -20,7 +24,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   <PageHero
     crumbs={[{ label: 'Services' }]}
     title="How we can help"
-    lede="One-on-one appointments and small group classes for injuries and pain, pelvic health, pregnancy and postnatal care, dizziness and balance, healthy ageing and performance."
+    lede={page.intro}
   >
     <Fragment slot="actions">
       <Button href="#help">Find help for a problem</Button>
@@ -31,14 +35,14 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 
   <section class="section" id="help" aria-labelledby="help-h">
     <div class="wrap">
-      <SectionHead id="help-h" title="What can we help with?" intro="Start with what you’re dealing with, then choose a service." />
+      <SectionHead id="help-h" title="What can we help with?" intro={page.helpIntro} />
       <NeedsFinder />
     </div>
   </section>
 
   <section class="section section--alt" id="services" aria-labelledby="services-h">
     <div class="wrap">
-      <SectionHead id="services-h" title="Our services" intro="One-on-one appointments with a physiotherapist or exercise physiologist, and small group classes." />
+      <SectionHead id="services-h" title="Our services" intro={page.servicesIntro} />
       <ServiceGrid services={services} />
     </div>
   </section>

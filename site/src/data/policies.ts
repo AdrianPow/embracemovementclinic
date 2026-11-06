@@ -21,6 +21,7 @@ interface PoliciesData {
   studioEtiquette: { name: string; detail: string }[];
   booking: { classes: string; bookingCode: string; waitlistText: string };
   timetable?: TimetableRow[];
+  classSteps: string[];
 }
 const data = policiesJson as PoliciesData;
 
@@ -29,6 +30,8 @@ export const classFacts = data.classFacts;
 export const equipment = data.equipment;
 export const studioEtiquette = data.studioEtiquette;
 export const booking = data.booking;
+/** "How to start classes" on the Pilates page, one line per step. */
+export const classSteps = data.classSteps;
 
 /** The class timetable as text. Empty until supplied, which shows a TODO (docs/to-supply.md). */
 export const timetable: TimetableRow[] | null = data.timetable?.length ? data.timetable : null;

@@ -52,5 +52,10 @@
     "bookingCode": "Want to save time and avoid creating a new profile every time you book? Ask Nicole or Laura for your unique online booking code.",
     "waitlistText": "To join the cancellation waitlist, text us on"
   },
-  "timetable": []
+  "timetable": [],
+  "classSteps": [
+    "Book a once-off pre-class assessment",
+    "Choose your class times online, selecting the relevant practitioner",
+    "Class full? Get in touch to join the waitlist"
+  ]
 }

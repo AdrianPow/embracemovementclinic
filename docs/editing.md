@@ -9,11 +9,18 @@ The website has an editing screen at **`/admin`** (Sveltia CMS: free and open so
 | **Services** | Each service page: photo and its description, home page card text, opening line, conditions treated, what to expect, treatments, "good to know" notes, who you'll see, related services, Google title and description |
 | **Team** | Each practitioner: headshot, status (e.g. "On maternity leave until January 2027"), titles, qualifications, training, experience, bio |
 | **News** | Add, edit or delete posts, with photos |
-| **Home page** | Headline, intro, main photo, "How it works" steps, team intro, the "Our approach" line and its two photos |
-| **Clinic settings → Clinic details** | Phone, email, opening hours, the notice banner (on/off, message, link, an end date), Instagram and Facebook links, ABN |
-| **Clinic settings → Policies and timetable** | Class timetable, cancellation policy, class facts, studio equipment, "before you come to class" tips, booking notes |
+| **Home page** | Headline, intro, main photo, the facts under the headline, "How it works" steps, team intro, the "Our approach" line and its two photos |
+| **Pages → Team page** | Team page intro, and the Jeff section: heading, text, photo (also used on Patient information) |
+| **Pages → Patient information** | Intro, your first visit, what to bring, fees, rebates and packages, Medicare/DVA/NDIS/WorkCover, privacy summary |
+| **Pages → Contact page** | Intro and the note under each way to get in touch |
+| **Pages → Services page** | Intro and section intros |
+| **Clinic settings → Clinic details** | Phone, email, opening hours, the notice banner (on/off, message, link, an end date), Instagram and Facebook links, ABN, parking, accessibility |
+| **Clinic settings → Policies and timetable** | How to start classes, class timetable, cancellation policy, class facts, studio equipment, "before you come to class" tips, booking notes |
+| **Clinic settings → What can we help with?** | The groups on the home page and Services page: titles, icons, conditions and which services help |
 
-**Stays with Claude Code:** layout and design, new types of section, colours, the clinic name and address, the booking link (it's tied to a redirect), old-address redirects, and anything technical.
+**Stays with Claude Code:** layout and design, new types of section, colours, the clinic name and address, the booking link (it's tied to a redirect), old-address redirects, the menu and footer links, headings that are part of the layout, the privacy policy (a legal document: owner approves changes), and anything technical.
+
+Empty fields like fees, what to bring or parking show a "TODO" note on the site until they're filled in.
 
 ## Rules for every change
 
@@ -58,5 +65,6 @@ Each demo save is a real change on the preview branch. Ask Claude to undo demo e
 - The editor is pinned in `site/package.json` (`@sveltia/cms`), and `scripts/copy-cms.mjs` copies it into `public/admin` before each build. That copy is ignored by Git.
 - `site/public/admin/focus-picker.js` is our own add-on: a custom `focus` field type (click-to-focus with crop previews) registered through `CMS.registerFieldType`. It uses the editor's built-in React. Its options in `config.yml` are `image_field` (the photo's key path, e.g. `approach.insetImage`), `shapes` (`{ label, ratio }` crops to preview) and `default_focus` (what the site uses when blank). It saves `x% y%`, which the site uses as `object-position`. If you change a page's crop shape, update that field's `shapes` too. To update, pick a release at least two weeks old, rebuild, and test `/admin`.
 - **Keep the editor and the site in step:** when a field changes in `site/src/content.config.ts`, `site/src/data/clinic.json`, `site/src/data/policies.json` or `site/src/content/home/home.md`, update `config.yml` too. The editor leaves out blank optional fields (`omit_empty_optional_fields`), so site code must treat optional values as possibly missing.
-- Editable files: `site/src/content/services/*.md`, `site/src/content/team/*.md`, `site/src/content/news/*.md`, `site/src/content/home/home.md`, `site/src/data/clinic.json`, `site/src/data/policies.json`, and photos in `site/src/assets/photos/`.
+- Editable files: `site/src/content/services/*.md`, `site/src/content/team/*.md`, `site/src/content/news/*.md`, `site/src/content/home/home.md`, `site/src/content/pages/*.md` (Team, Patient information, Contact, Services page text), `site/src/data/clinic.json`, `site/src/data/policies.json`, `site/src/data/needs.json`, and photos in `site/src/assets/photos/`.
+- Moving the editor between files by typing an address (`#/collections/settings/entries/…` straight to another file in the same section) can show a blank form. Going through the list or the back arrow works.
 - The editor runs only on `/admin` (not indexed; disallowed in `robots.txt`). It talks to GitHub, and also loads resources and status checks from `unpkg.com`, `cdn.jsdelivr.net` and `githubstatus.com`. Public pages load no third-party scripts.

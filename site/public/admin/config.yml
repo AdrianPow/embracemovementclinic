@@ -278,6 +278,12 @@ collections:
               - { label: Computer, ratio: 1 / 1 }
               - { label: Phone, ratio: 4 / 3 }
             hint: Click the part of the photo to keep in view, and check both previews.
+          - name: facts
+            label: Facts under the headline
+            widget: list
+            max: 4
+            required: false
+            hint: 'Up to four short lines. Their icons go in order: person, group, shield, map pin.'
           - name: steps
             label: How it works (one line per step)
             widget: list
@@ -303,11 +309,107 @@ collections:
                   - { label: Small photo, ratio: 3 / 4 }
                 hint: Click the part of the photo to keep in view.
 
+  # ── Pages ─────────────────────────────────────────────────────────────────
+  - name: pages
+    label: Pages
+    editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
+    description: Text on the Team, Patient information, Contact and Services pages. Service, practitioner and news content are in their own sections.
+    files:
+      - name: team
+        label: Team page
+        file: site/src/content/pages/team.md
+        format: frontmatter
+        media_folder: ../../assets/photos
+        public_folder: ../../assets/photos
+        fields:
+          - { name: intro, label: Intro, widget: text }
+          - name: jeff
+            label: Jeff, the clinic dog
+            widget: object
+            hint: Also used on Patient information.
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: extra, label: Extra line, widget: string, required: false }
+              - { name: photo, label: Photo, widget: image }
+              - { name: photoAlt, label: Photo description, widget: string }
+              - name: photoPosition
+                label: Photo focus
+                widget: focus
+                required: false
+                image_field: jeff.photo
+                default_focus: 50% 50%
+                shapes:
+                  - { label: Team page, ratio: 1 / 1 }
+                hint: Click the part of the photo to keep in view.
+      - name: patient-information
+        label: Patient information
+        file: site/src/content/pages/patient-information.md
+        format: frontmatter
+        fields:
+          - { name: intro, label: Intro, widget: text }
+          - name: firstVisit
+            label: Your first visit (paragraphs)
+            label_singular: paragraph
+            widget: list
+            field: { name: paragraph, label: Paragraph, widget: text }
+            hint: A sentence linking to the service pages is added after the first paragraph.
+          - name: whatToBring
+            label: What to bring
+            label_singular: item
+            widget: list
+            required: false
+            hint: One item per line, e.g. "Your private health fund card". Leave empty until confirmed; the page shows a note instead.
+          - name: fees
+            label: Fees
+            label_singular: fee
+            widget: list
+            required: false
+            summary: '{{fields.item}}: {{fields.price}}'
+            hint: Leave empty until confirmed; the page shows a note instead.
+            fields:
+              - { name: item, label: Appointment or class, widget: string, hint: 'E.g. "Initial physiotherapy consultation (60 minutes)".' }
+              - { name: price, label: Price, widget: string, hint: 'E.g. "$120".' }
+              - { name: note, label: Note, widget: string, required: false }
+          - name: feeNotes
+            label: Rebates and packages
+            label_singular: note
+            widget: list
+            required: false
+            field: { name: note, label: Note, widget: text }
+            hint: Check these are still current (e.g. class packages). No offers without their terms.
+          - name: funding
+            label: Medicare, DVA, NDIS and WorkCover
+            label_singular: line
+            widget: list
+            required: false
+            field: { name: line, label: Line, widget: text }
+            hint: Only what the clinic accepts. Leave empty until confirmed; the page shows a note instead.
+          - { name: privacy, label: Your privacy (summary), widget: text }
+      - name: contact
+        label: Contact page
+        file: site/src/content/pages/contact.md
+        format: frontmatter
+        fields:
+          - { name: intro, label: Intro, widget: text }
+          - { name: callNote, label: Note under Call, widget: string }
+          - { name: textNote, label: Note under Text, widget: string }
+          - { name: emailNote, label: Note under Email, widget: string }
+          - { name: bookNote, label: Note under Book online, widget: string }
+      - name: services
+        label: Services page
+        file: site/src/content/pages/services.md
+        format: frontmatter
+        fields:
+          - { name: intro, label: Intro, widget: text }
+          - { name: helpIntro, label: '"What can we help with?" intro', widget: string }
+          - { name: servicesIntro, label: '"Our services" intro', widget: string }
+
   # ── Clinic settings ───────────────────────────────────────────────────────
   - name: settings
     label: Clinic settings
     editor: { preview: false } # the site itself is the preview: changes show there a minute or two after saving
-    description: Contact details, hours, the notice banner, policies and the class timetable.
+    description: Contact details, hours, the notice banner, policies, the class timetable and the "What can we help with?" groups.
     files:
       - name: clinic
         label: Clinic details
@@ -339,11 +441,19 @@ collections:
           - { name: instagram, label: Instagram profile link, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'] }
           - { name: facebook, label: Facebook page link, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'] }
           - { name: abn, label: ABN, widget: string, required: false }
+          - { name: parking, label: Parking, widget: text, required: false, hint: 'Shown on Contact, Home and Patient information, e.g. "Free street parking on Brynner Street." Leave blank until confirmed.' }
+          - { name: access, label: Accessibility, widget: text, required: false, hint: 'E.g. steps, ramps, wheelchair access. Shown on Patient information. Leave blank until confirmed.' }
       - name: policies
         label: Policies and timetable
         file: site/src/data/policies.json
         format: json
         fields:
+          - name: classSteps
+            label: How to start classes (one line per step)
+            widget: list
+            min: 1
+            max: 4
+            hint: Shown on the Pilates page.
           - name: timetable
             label: Class timetable
             label_singular: class
@@ -388,3 +498,39 @@ collections:
               - { name: classes, label: Booking classes, widget: text }
               - { name: bookingCode, label: Booking code tip, widget: text }
               - { name: waitlistText, label: Waitlist text, widget: string }
+      - name: needs
+        label: What can we help with?
+        file: site/src/data/needs.json
+        format: json
+        fields:
+          - name: needs
+            label: Groups
+            label_singular: group
+            widget: list
+            hint: The groups on the home page and the Services page. Conditions are clinical wording, so changes need owner approval.
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: short, label: Short label (home page tile), widget: string }
+              - name: icon
+                label: Icon
+                widget: select
+                options:
+                  - { label: Pulse (injuries and pain), value: activity }
+                  - { label: Baby (pregnancy), value: baby }
+                  - { label: Heart, value: heart }
+                  - { label: Circular arrows (dizziness), value: spin }
+                  - { label: Sprout (healthy ageing), value: sprout }
+                  - { label: Dumbbell (strength), value: dumbbell }
+                  - { label: Shield, value: shield }
+                  - { label: Tick, value: check }
+              - { name: examples, label: Conditions, widget: list }
+              - name: services
+                label: Services that help
+                widget: relation
+                collection: services
+                value_field: '{{slug}}'
+                search_fields: [title]
+                display_fields: [title]
+                multiple: true
+              - { name: id, label: Link name, widget: string, readonly: true, hint: Used in links from the home page tiles. }

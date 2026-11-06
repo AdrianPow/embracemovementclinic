@@ -1,5 +1,6 @@
 ---
-// Contact & visit (old URL /contact-us-1).
+// Contact & visit (old URL /contact-us-1). Text in src/content/pages/contact.md (edited on /admin).
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import LocationSection from '../components/LocationSection.astro';
@@ -7,11 +8,15 @@ import ClosureNote from '../components/ClosureNote.astro';
 import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 
+const pageEntry = await getEntry('contactPage', 'contact');
+if (!pageEntry) throw new Error('Missing src/content/pages/contact.md');
+const page = pageEntry.data;
+
 const ways = [
-  { icon: 'phone', title: 'Call', text: site.phone.display, href: site.phone.href, note: 'For appointment requests and questions.' },
-  { icon: 'message', title: 'Text', text: site.phone.display, href: site.phone.href.replace('tel:', 'sms:'), note: 'To join the cancellation waitlist.' },
-  { icon: 'mail', title: 'Email', text: site.email.address, href: site.email.href, note: 'For anything else.' },
-  { icon: 'calendar', title: 'Book online', text: 'Booking portal', href: site.booking.url, note: 'Appointments, assessments and classes.' },
+  { icon: 'phone', title: 'Call', text: site.phone.display, href: site.phone.href, note: page.callNote },
+  { icon: 'message', title: 'Text', text: site.phone.display, href: site.phone.href.replace('tel:', 'sms:'), note: page.textNote },
+  { icon: 'mail', title: 'Email', text: site.email.address, href: site.email.href, note: page.emailNote },
+  { icon: 'calendar', title: 'Book online', text: 'Booking portal', href: site.booking.url, note: page.bookNote },
 ] as const;
 
 const jsonLd = {
@@ -43,7 +48,7 @@ const jsonLd = {
   <PageHero
     crumbs={[{ label: 'Contact' }]}
     title="Get in touch"
-    lede={`Call, text, email or book online. We’re at ${site.address.street}, ${site.address.suburb}.`}
+    lede={page.intro}
   />
 
   <section class="section" aria-labelledby="ways-h">

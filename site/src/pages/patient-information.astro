@@ -1,6 +1,8 @@
 ---
 // Patient information: practical facts gathered from the old newsletters and pages,
-// in one evergreen place. Facts live in src/data/policies.ts and src/data/site.ts.
+// in one evergreen place. Facts live in src/data/policies.json and src/data/clinic.json;
+// this page's own text in src/content/pages/patient-information.md (edited on /admin).
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Button from '../components/Button.astro';
@@ -10,6 +12,12 @@ import ClosureNote from '../components/ClosureNote.astro';
 import BookingBand from '../components/BookingBand.astro';
 import { site, fullAddress } from '../data/site';
 import { cancellationPolicy, classFacts, studioEtiquette, booking } from '../data/policies';
+
+const pageEntry = await getEntry('patientInfo', 'patient-information');
+const teamEntry = await getEntry('teamPage', 'team');
+if (!pageEntry || !teamEntry) throw new Error('Missing a file in src/content/pages');
+const p = pageEntry.data;
+const jeff = teamEntry.data.jeff;
 
 const sections = [
   { id: 'booking', label: 'Booking' },
@@ -30,7 +38,7 @@ const sections = [
     crumbs={[{ label: 'Patient information' }]}
     eyebrow="Before you visit"
     title="Patient information"
-    lede="Everything you need to know about booking, your first visit, cancellations, fees and classes."
+    lede={p.intro}
   />
 
   <div class="section">
@@ -79,17 +87,24 @@ const sections = [
 
         <section id="first-visit" aria-labelledby="first-h" class="block">
           <h2 id="first-h">Your first visit</h2>
-          <p>
-            New clients start with an initial consultation. Your practitioner will talk with you about your medical history,
-            concerns and goals, and complete an assessment before recommending treatment.
-          </p>
+          {p.firstVisit[0] && <p>{p.firstVisit[0]}</p>}
           <p>
             Each service page explains what to expect in more detail, including
             <a href="/pelvic-health-physiotherapy#expect">pelvic floor physiotherapy</a>.
           </p>
-          <p>For classes, a once-off pre-class assessment is required before you start.</p>
+          {p.firstVisit.slice(1).map((para) => <p>{para}</p>)}
           <h3 class="h4">What to bring</h3>
-          <Todo as="div">what clients should bring to a first appointment (for example a referral, health fund card or comfortable clothing)</Todo>
+          {
+            p.whatToBring.length > 0 ? (
+              <ul class="list">
+                {p.whatToBring.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <Todo as="div">what clients should bring to a first appointment (for example a referral, health fund card or comfortable clothing)</Todo>
+            )
+          }
         </section>
 
         <section id="cancellations" aria-labelledby="cancel-h" class="block">
@@ -99,15 +114,44 @@ const sections = [
 
         <section id="fees" aria-labelledby="fees-h" class="block">
           <h2 id="fees-h">Fees and rebates</h2>
-          <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
-          <ul class="list">
-            <li>Exercise sessions may be claimable with private health, depending on your level of cover.</li>
-            <li>
-              Class packages are available, and you can still claim on your health fund if you purchase a package.
-              <Todo>confirm class packages and prices are current</Todo>
-            </li>
-          </ul>
-          <Todo as="div">whether you accept Medicare (GP care plan) referrals, DVA, NDIS or WorkCover. Add here if so.</Todo>
+          {
+            p.fees.length > 0 ? (
+              <dl class="facts">
+                {p.fees.map((f) => (
+                  <div>
+                    <dt>{f.item}</dt>
+                    <dd>
+                      {f.price}
+                      {f.note && <span class="fee-note">{f.note}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
+            )
+          }
+          {
+            p.feeNotes.length > 0 && (
+              <ul class="list">
+                {p.feeNotes.map((note) => (
+                  <li>{note}</li>
+                ))}
+              </ul>
+            )
+          }
+          {p.fees.length === 0 && <Todo as="div">confirm class packages and prices are current</Todo>}
+          {
+            p.funding.length > 0 ? (
+              <ul class="list">
+                {p.funding.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <Todo as="div">whether you accept Medicare (GP care plan) referrals, DVA, NDIS or WorkCover. Add here if so.</Todo>
+            )
+          }
         </section>
 
         <section id="classes" aria-labelledby="classes-h" class="block">
@@ -145,26 +189,20 @@ const sections = [
             </div>
             <div>
               <dt>Parking</dt>
-              <dd><Todo>parking details</Todo></dd>
+              <dd>{site.parking ?? <Todo>parking details</Todo>}</dd>
             </div>
             <div>
               <dt>Access</dt>
-              <dd><Todo>accessibility details (e.g. steps, wheelchair access)</Todo></dd>
+              <dd>{site.access ?? <Todo>accessibility details (e.g. steps, wheelchair access)</Todo>}</dd>
             </div>
           </dl>
-          <h3 class="h4"><Icon name="paw" size={18} /> Meet Jeff</h3>
-          <p>
-            You may be lucky to meet the clinic dog, Jeff. He is extremely friendly and just wants to say hello to all the patients,
-            then will go back to sleep on the sunny driveway. If you are not a dog person, don’t stress: he can nap in another room!
-          </p>
+          <h3 class="h4"><Icon name="paw" size={18} /> {jeff.heading}</h3>
+          <p>{[jeff.text, jeff.extra].filter(Boolean).join(' ')}</p>
         </section>
 
         <section id="privacy" aria-labelledby="privacy-h" class="block">
           <h2 id="privacy-h">Your privacy</h2>
-          <p>
-            We handle your personal and health information in line with the Australian Privacy Principles. Bookings are managed
-            in Nookal, our practice management system.
-          </p>
+          <p>{p.privacy}</p>
           <p><a href="/privacy">Read our privacy policy</a></p>
         </section>
       </div>
@@ -321,6 +359,12 @@ const sections = [
       grid-template-columns: 10rem 1fr;
       gap: var(--space-s);
     }
+  }
+
+  .fee-note {
+    display: block;
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
   }
 
   .facts dt {

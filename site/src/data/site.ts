@@ -14,6 +14,8 @@ interface ClinicData {
   instagram?: string;
   facebook?: string;
   abn?: string;
+  parking?: string;
+  access?: string;
 }
 const clinic = clinicJson as ClinicData;
 
@@ -68,8 +70,10 @@ export const site = {
   // TODO until supplied: opening hours, e.g. [{ days: 'Monday', hours: '6am – 3pm' }]
   hours: clinic.hours?.length ? clinic.hours : null,
 
-  // TODO until supplied: ABN
+  // TODO until supplied: ABN, parking and accessibility details
   abn: orNull(clinic.abn),
+  parking: orNull(clinic.parking),
+  access: orNull(clinic.access),
 
   // Site-wide notice banner. Source: reference/pages/baby-news/content.md.
   // `until` (YYYY-MM-DD) hides the banner automatically after that date.

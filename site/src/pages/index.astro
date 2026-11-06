@@ -24,12 +24,8 @@ const homeEntry = await getEntry('home', 'home');
 if (!homeEntry) throw new Error('Missing src/content/home/home.md');
 const home = homeEntry.data;
 
-const facts = [
-  { icon: 'user', text: 'One-on-one physiotherapy and exercise physiology' },
-  { icon: 'users', text: 'Small group pilates classes' },
-  { icon: 'shield', text: 'Physiotherapists with women’s pelvic health training' },
-  { icon: 'map-pin', text: '33 Brynner Street, McDowall' },
-] as const;
+const factIcons = ['user', 'users', 'shield', 'map-pin'] as const;
+const facts = home.facts.map((text, i) => ({ icon: factIcons[i] ?? 'check', text }));
 
 const jsonLd = {
   '@context': 'https://schema.org',
