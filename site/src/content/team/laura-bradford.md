@@ -3,7 +3,7 @@ name: Laura Bradford
 firstName: Laura
 order: 2
 photo: /src/assets/photos/sam_1423-1.webp
-photoPosition: 10%
+photoPosition: 50% 49%
 status: On maternity leave
 titles:
   - Physiotherapist
