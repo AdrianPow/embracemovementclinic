@@ -48,6 +48,7 @@ The owner felt the home page had too much text compared with three competitors (
 - **Services** uses the same photo cards as Home (`ServiceGrid`) in place of the separate Appointments grid and Pilates panel. The class facts it showed are on `/pilates`.
 - **Contact** shows the street map where the front-of-clinic photo placeholder was.
 - **Call button on phones** in the Services and Pilates headers (it replaces the second button on small screens). Service and profile pages already had one.
+- **Service cards (6 Nov 2026):** one "One-on-one appointments" heading above the four one-on-one cards, instead of a "One-on-one" label on each card. The classes card has no label, since its title says what it is.
 - **Pilates:** "How to start classes" is the same slim strip as Home's "How it works" (`StepStrip`), one line per step: "Book a once-off pre-class assessment", "Choose your class times online, selecting the relevant practitioner", "Class full? Get in touch to join the waitlist". The full waitlist explanation stays in the Timetable section.
 
 ## Content changes

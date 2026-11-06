@@ -1,87 +1,120 @@
 ---
-// Photo cards for the services: on wide screens, the one-on-one services in a 2×2 grid beside
-// a tall card for classes; compact rows (photo beside text) on phones. Used on Home and Services.
+// Photo cards for the services, used on Home and Services. One heading labels the one-on-one
+// services, instead of a label on every card; the classes card's own title says what it is.
+// Wide screens: the one-on-one services in a 2×2 grid beside a tall classes card.
+// Phones: compact rows (photo beside text).
 import type { CollectionEntry } from 'astro:content';
 import Photo from './Photo.astro';
 
 interface Props {
   /** Services in display order. */
   services: CollectionEntry<'services'>[];
-  /** Heading level for each card title. */
-  as?: 'h3' | 'h4';
 }
 
-const { services, as: Heading = 'h3' } = Astro.props;
+const { services } = Astro.props;
+const groups = [
+  { kind: 'appointments', list: services.filter((s) => s.data.kind === 'appointment') },
+  { kind: 'classes', list: services.filter((s) => s.data.kind === 'class') },
+];
 ---
 
-<ul class="cards" role="list">
+<div class="service-groups">
+  <h3 class="eyebrow group-label">One-on-one appointments</h3>
   {
-    services.map((s) => (
-      <li class:list={['card', s.data.kind === 'class' && 'card--feature']}>
-        <a href={`/${s.id}`}>
-          <Photo
-            src={s.data.image}
-            alt=""
-            note={s.data.imageNote}
-            position={s.data.imagePosition}
-            ratio="3 / 2"
-            widths={[400, 640, 960]}
-            sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw"
-          />
-          <div class="card__body">
-            <p class="card__kind">{s.data.kind === 'class' ? 'Small group classes' : 'One-on-one'}</p>
-            <Heading class="card__title">{s.data.title}</Heading>
-            <p class="card__blurb">{s.data.blurb ?? s.data.summary}</p>
-          </div>
-        </a>
-      </li>
-    ))
+    groups.map(
+      ({ kind, list }) =>
+        list.length > 0 && (
+          <ul class:list={['cards', `cards--${kind}`]} role="list">
+            {list.map((s) => {
+              // Under the "One-on-one appointments" heading, or a heading of its own for classes.
+              const Heading = kind === 'classes' ? 'h3' : 'h4';
+              return (
+                <li class="card">
+                  <a href={`/${s.id}`}>
+                    <Photo
+                      src={s.data.image}
+                      alt=""
+                      note={s.data.imageNote}
+                      position={s.data.imagePosition}
+                      ratio="3 / 2"
+                      widths={[400, 640, 960]}
+                      sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw"
+                    />
+                    <div class="card__body">
+                      <Heading class="card__title">{s.data.title}</Heading>
+                      <p class="card__blurb">{s.data.blurb ?? s.data.summary}</p>
+                    </div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        ),
+    )
   }
-</ul>
+</div>
 
 <style>
+  .service-groups {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .group-label {
+    margin-bottom: calc(var(--space-xs) - var(--space-m));
+  }
+
   .cards {
     display: grid;
     gap: var(--space-m);
   }
 
   @media (min-width: 40em) {
-    .cards {
+    .cards--appointments {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card--feature {
-      grid-column: 1 / -1;
     }
   }
 
   @media (min-width: 40em) and (max-width: 61.99em) {
-    .card--feature :global(.photo) {
+    .cards--classes :global(.photo) {
       aspect-ratio: 2 / 1 !important;
     }
   }
 
+  /* Wide screens: the heading and 2×2 grid on the left, the classes card full height on the right. */
   @media (min-width: 62em) {
-    .cards {
-      grid-template-columns: 1fr 1fr 1.1fr;
+    .service-groups {
+      grid-template-columns: 2fr 1.1fr;
+      grid-template-rows: auto 1fr;
+      gap: var(--space-xs) var(--space-m);
     }
 
-    .card--feature {
-      grid-column: 3;
+    .group-label {
+      margin-bottom: 0;
+    }
+
+    .cards--appointments {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .cards--classes {
+      grid-column: 2;
       grid-row: 1 / span 2;
+      grid-template-rows: 1fr;
     }
 
-    .cards .card--feature a {
+    .cards--classes .card a {
       grid-template-rows: 1fr auto;
     }
 
-    .card--feature :global(picture) {
+    .cards--classes :global(picture) {
       display: block;
       position: relative;
       min-height: 18rem;
     }
 
-    .card--feature :global(.photo) {
+    .cards--classes :global(.photo) {
       position: absolute;
       inset: 0;
       height: 100%;
@@ -149,14 +182,6 @@ const { services, as: Heading = 'h3' } = Astro.props;
     align-content: start;
     gap: var(--space-2xs);
     padding: var(--space-m);
-  }
-
-  .card__kind {
-    color: var(--color-eyebrow);
-    font-size: var(--step--1);
-    font-weight: 650;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
 
   .card__title {
