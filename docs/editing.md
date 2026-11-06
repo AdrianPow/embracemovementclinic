@@ -21,6 +21,7 @@ The website has an editing screen at **`/admin`** (Sveltia CMS: free and open so
 - **Clinical wording** (conditions treated, what a service involves, examination or consent wording) goes past Adrian before it's published.
 - **Photos of people** need their consent, and a parent's or guardian's for children. Never upload anything that identifies a patient without it.
 - **Fill in the photo description** for every photo. It's read out to people using screen readers.
+- **Photo focus:** under each photo, click (or drag) on the part of the photo to keep in view, such as faces. The small previews underneath show exactly how it will be cropped on the site: page header, card, phone. Use the quick picks (Top, Middle, Bottom) or **Reset** to go back to the default. For headshots, the default keeps the top of the photo, so the whole head shows.
 - Photos can come straight off a phone. The editor converts them to WebP and scales them down before saving, and the site makes the smaller sizes itself.
 - Mistakes are fine: every save is kept in the project history, so anything can be put back. Ask Claude to "restore the version from before my last change".
 
@@ -54,7 +55,8 @@ Each demo save is a real change on the preview branch. Ask Claude to undo demo e
 ## Technical notes (for Claude Code)
 
 - Editor config: `site/public/admin/config.yml`. Validate it against `site/node_modules/@sveltia/cms/schema/sveltia-cms.json` after changes.
-- The editor is pinned in `site/package.json` (`@sveltia/cms`), and `scripts/copy-cms.mjs` copies it into `public/admin` before each build. That copy is ignored by Git. To update, pick a release at least two weeks old, rebuild, and test `/admin`.
+- The editor is pinned in `site/package.json` (`@sveltia/cms`), and `scripts/copy-cms.mjs` copies it into `public/admin` before each build. That copy is ignored by Git.
+- `site/public/admin/focus-picker.js` is our own add-on: a custom `focus` field type (click-to-focus with crop previews) registered through `CMS.registerFieldType`. It uses the editor's built-in React. Its options in `config.yml` are `image_field` (the photo's key path, e.g. `approach.insetImage`), `shapes` (`{ label, ratio }` crops to preview) and `default_focus` (what the site uses when blank). It saves `x% y%`, which the site uses as `object-position`. If you change a page's crop shape, update that field's `shapes` too. To update, pick a release at least two weeks old, rebuild, and test `/admin`.
 - **Keep the editor and the site in step:** when a field changes in `site/src/content.config.ts`, `site/src/data/clinic.json`, `site/src/data/policies.json` or `site/src/content/home/home.md`, update `config.yml` too. The editor leaves out blank optional fields (`omit_empty_optional_fields`), so site code must treat optional values as possibly missing.
 - Editable files: `site/src/content/services/*.md`, `site/src/content/team/*.md`, `site/src/content/news/*.md`, `site/src/content/home/home.md`, `site/src/data/clinic.json`, `site/src/data/policies.json`, and photos in `site/src/assets/photos/`.
 - The editor runs only on `/admin` (not indexed; disallowed in `robots.txt`). It talks to GitHub, and also loads resources and status checks from `unpkg.com`, `cdn.jsdelivr.net` and `githubstatus.com`. Public pages load no third-party scripts.

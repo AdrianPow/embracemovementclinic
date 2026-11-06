@@ -75,7 +75,17 @@ collections:
         required: false
         hint: Shown at the top of the page and on its card.
       - { name: imageAlt, label: Photo description, widget: string, required: false, hint: 'What the photo shows, for people using screen readers. E.g. "A physiotherapist treating a patient’s neck".' }
-      - { name: imagePosition, label: Photo crop, widget: string, required: false, hint: 'Which part of the photo to keep when it’s cropped: left–right then top–bottom, e.g. `50% 30%`. Leave blank for the centre.' }
+      - name: imagePosition
+        label: Photo focus
+        widget: focus
+        required: false
+        image_field: image
+        default_focus: 50% 50%
+        shapes:
+          - { label: Page header, ratio: 4 / 3 }
+          - { label: Card, ratio: 3 / 2 }
+          - { label: Card on a phone, ratio: 3 / 4 }
+        hint: Click the part of the photo to keep in view (e.g. faces), and check the previews. Reset uses the centre.
       - name: blurb
         label: Home page card (15 words or fewer)
         widget: text
@@ -183,7 +193,17 @@ collections:
         widget: image
         required: false
         hint: A portrait with a little space above the head works best.
-      - { name: photoPosition, label: Photo crop, widget: string, required: false, hint: 'Leave blank to keep the top of the photo (the whole head). Or e.g. `50% 20%`.' }
+      - name: photoPosition
+        label: Photo focus
+        widget: focus
+        required: false
+        image_field: photo
+        default_focus: 50% 0%
+        shapes:
+          - { label: Team card, ratio: 1 / 1 }
+          - { label: Profile page, ratio: 4 / 5 }
+          - { label: Service pages, ratio: 1 / 1 }
+        hint: Click where to keep in view. For headshots, keep the whole head in every preview. Reset keeps the top of the photo.
       - { name: status, label: Status, widget: string, required: false, hint: 'Shown on the card, e.g. "On maternity leave until January 2027". Leave blank when not needed.' }
       - name: titles
         label: Titles
@@ -248,7 +268,16 @@ collections:
           - { name: heroIntro, label: Intro, widget: text, hint: One sentence. }
           - { name: heroImage, label: Main photo, widget: image }
           - { name: heroImageAlt, label: Main photo description, widget: string }
-          - { name: heroImagePosition, label: Main photo crop, widget: string, required: false, hint: 'E.g. `75% 50%` keeps the right-hand side. Leave blank for the centre.' }
+          - name: heroImagePosition
+            label: Main photo focus
+            widget: focus
+            required: false
+            image_field: heroImage
+            default_focus: 50% 50%
+            shapes:
+              - { label: Computer, ratio: 1 / 1 }
+              - { label: Phone, ratio: 4 / 3 }
+            hint: Click the part of the photo to keep in view, and check both previews.
           - name: steps
             label: How it works (one line per step)
             widget: list
@@ -264,7 +293,15 @@ collections:
               - { name: imageAlt, label: Large photo description, widget: string }
               - { name: insetImage, label: Small overlapping photo, widget: image }
               - { name: insetImageAlt, label: Small photo description, widget: string }
-              - { name: insetImagePosition, label: Small photo crop, widget: string, required: false }
+              - name: insetImagePosition
+                label: Small photo focus
+                widget: focus
+                required: false
+                image_field: approach.insetImage
+                default_focus: 50% 50%
+                shapes:
+                  - { label: Small photo, ratio: 3 / 4 }
+                hint: Click the part of the photo to keep in view.
 
   # ── Clinic settings ───────────────────────────────────────────────────────
   - name: settings
