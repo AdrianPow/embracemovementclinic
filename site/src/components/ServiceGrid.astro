@@ -24,10 +24,11 @@ const groups = [
     groups.map(
       ({ kind, list }) =>
         list.length > 0 && (
+          <>
+          {kind === 'classes' && <h3 class="eyebrow group-label group-label--classes">Classes</h3>}
           <ul class:list={['cards', `cards--${kind}`]} role="list">
             {list.map((s) => {
-              // Under the "One-on-one appointments" heading, or a heading of its own for classes.
-              const Heading = kind === 'classes' ? 'h3' : 'h4';
+              // Card titles sit under their group's small heading ("One-on-one appointments", "Classes").
               return (
                 <li class="card">
                   <a href={`/${s.id}`}>
@@ -41,7 +42,7 @@ const groups = [
                       sizes="(min-width: 62em) 30vw, (min-width: 40em) 50vw, 100vw"
                     />
                     <div class="card__body">
-                      <Heading class="card__title">{s.data.title}</Heading>
+                      <h4 class="card__title">{s.data.title}</h4>
                       <p class="card__blurb">{s.data.blurb ?? s.data.summary}</p>
                     </div>
                   </a>
@@ -49,6 +50,7 @@ const groups = [
               );
             })}
           </ul>
+          </>
         ),
     )
   }
@@ -81,10 +83,12 @@ const groups = [
     }
   }
 
-  /* Below wide screens the classes card follows the one-on-one cards: a little more space sets it apart. */
+  /* Below wide screens the classes group follows the one-on-one cards: a rule and its label set it apart. */
   @media (max-width: 61.99em) {
-    .cards--classes {
+    .group-label--classes {
       margin-top: var(--space-s);
+      padding-top: var(--space-l);
+      border-top: 1px solid var(--color-line);
     }
   }
 
@@ -93,7 +97,7 @@ const groups = [
     .service-groups {
       grid-template-columns: 2fr 1.1fr;
       grid-template-rows: auto 1fr;
-      gap: var(--space-xs) var(--space-m);
+      gap: var(--space-xs) var(--space-xl);
     }
 
     .group-label {
@@ -103,6 +107,11 @@ const groups = [
     .cards--appointments {
       grid-column: 1;
       grid-row: 2;
+    }
+
+    .group-label--classes {
+      grid-column: 2;
+      grid-row: 1;
     }
 
     .cards--classes {
@@ -144,9 +153,11 @@ const groups = [
       transform 0.2s var(--ease);
   }
 
-  .card a:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    .card a:hover {
+      box-shadow: var(--shadow-m);
+      transform: translateY(-2px);
+    }
   }
 
   @media (max-width: 39.99em) {
@@ -195,9 +206,11 @@ const groups = [
     font-size: var(--step-1);
   }
 
-  .card a:hover .card__title {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+  @media (hover: hover) {
+    .card a:hover .card__title {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
   }
 
   .card__blurb {
