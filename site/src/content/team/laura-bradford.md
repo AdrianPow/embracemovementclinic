@@ -2,6 +2,9 @@
 name: Laura Bradford
 firstName: Laura
 order: 2
+photo: /src/assets/photos/sam_1423-1.webp
+photoPosition: 10%
+status: On maternity leave
 titles:
   - Physiotherapist
   - Pelvic Health Physiotherapist
@@ -19,8 +22,6 @@ experience:
   - Athletes recovering from sporting injuries
   - Pre- and post-surgery rehabilitation
   - Vestibular dysfunction (dizziness, vertigo and balance problems)
-status: On maternity leave
-photo: ../../assets/photos/26-sam-1423.webp
 seoDescription: Laura Bradford is a physiotherapist, pelvic health physiotherapist and clinical pilates instructor at Embrace Movement Clinic, McDowall, with experience in vestibular physiotherapy.
 ---
 
