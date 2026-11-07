@@ -32,6 +32,9 @@ const team = (await getEntries(d.practitioners)) as CollectionEntry<'team'>[];
 const names = team.map((t) => t.data.firstName);
 const seeLine = names.length > 1 ? `${names.slice(0, -1).join(', ')} or ${names.at(-1)}` : names[0];
 
+// Conditions with a short description are laid out together (see .checks-split).
+const described = d.forYou.items.filter((i) => i.detail);
+const short = d.forYou.items.filter((i) => !i.detail);
 const hasExpect = Boolean(d.expect.text || d.expect.steps?.length);
 const sections = [
   { id: 'for-you', label: d.forYou.heading === 'Is this for you?' ? 'Is this for you?' : 'Conditions' },
@@ -94,20 +97,41 @@ const sections = [
         <h2 id="for-you-h">{d.forYou.heading}</h2>
         {d.forYou.intro && <p class="head__intro">{d.forYou.intro}:</p>}
       </div>
-      <ul class="checks" role="list">
-        {
-          // Conditions with a description first, so they can sit together in the first column.
-          [...d.forYou.items.filter((i) => i.detail), ...d.forYou.items.filter((i) => !i.detail)].map((i) => (
-            <li class:list={{ 'has-detail': Boolean(i.detail) }}>
-              <Icon name="check" size={20} class="checks__icon" />
-              <div>
+      {
+        described.length > 0 ? (
+          // Conditions with a description in the first column; the short ones beside them, in their own list.
+          <div class="checks-split">
+            <ul class="checks checks--one" role="list">
+              {described.map((i) => (
+                <li>
+                  <Icon name="check" size={20} class="checks__icon" />
+                  <div>
+                    <p class="checks__name">{i.name}</p>
+                    <p class="checks__detail">{i.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <ul class="checks checks--rest" role="list">
+              {short.map((i) => (
+                <li>
+                  <Icon name="check" size={20} class="checks__icon" />
+                  <p class="checks__name">{i.name}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <ul class="checks" role="list">
+            {short.map((i) => (
+              <li>
+                <Icon name="check" size={20} class="checks__icon" />
                 <p class="checks__name">{i.name}</p>
-                {i.detail && <p class="checks__detail">{i.detail}</p>}
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </div>
   </section>
 
@@ -303,15 +327,32 @@ const sections = [
     gap: var(--space-xs);
   }
 
-  /* Two or more columns: conditions with a description stack in the first column,
-     the short ones fill the columns beside them. */
+  /* With described conditions: those in the first column, the short ones in the column (tablets)
+     or two columns (wider screens) beside them. Each list flows on its own, so rows don't align. */
+  .checks-split {
+    display: grid;
+    gap: var(--space-s) var(--space-l);
+    align-items: start;
+  }
+
+  .checks--one,
+  .checks--rest {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   @media (min-width: 40em) {
-    .checks {
-      grid-auto-flow: row dense;
+    .checks-split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 62em) {
+    .checks-split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     }
 
-    .checks li.has-detail {
-      grid-column: 1;
+    .checks--rest {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
