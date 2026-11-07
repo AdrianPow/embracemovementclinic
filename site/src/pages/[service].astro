@@ -96,8 +96,9 @@ const sections = [
       </div>
       <ul class="checks" role="list">
         {
-          d.forYou.items.map((i) => (
-            <li>
+          // Conditions with a description first, so they can sit together in the first column.
+          [...d.forYou.items.filter((i) => i.detail), ...d.forYou.items.filter((i) => !i.detail)].map((i) => (
+            <li class:list={{ 'has-detail': Boolean(i.detail) }}>
               <Icon name="check" size={20} class="checks__icon" />
               <div>
                 <p class="checks__name">{i.name}</p>
@@ -300,6 +301,18 @@ const sections = [
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-xs);
+  }
+
+  /* Two or more columns: conditions with a description stack in the first column,
+     the short ones fill the columns beside them. */
+  @media (min-width: 40em) {
+    .checks {
+      grid-auto-flow: row dense;
+    }
+
+    .checks li.has-detail {
+      grid-column: 1;
+    }
   }
 
   :global(.checks__icon) {
