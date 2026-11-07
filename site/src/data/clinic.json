@@ -1,7 +1,36 @@
 {
   "phone": "0434 686 261",
   "email": "admin@embracemovementclinic.com.au",
-  "hours": [],
+  "hours": [
+    {
+      "days": "Monday",
+      "hours": "6am - 1pm"
+    },
+    {
+      "days": "Tuesday",
+      "hours": "8am - 8pm"
+    },
+    {
+      "days": "Wednesday",
+      "hours": "6am - 8pm"
+    },
+    {
+      "days": "Thursday",
+      "hours": "8am - 4pm"
+    },
+    {
+      "days": "Friday",
+      "hours": "Closed"
+    },
+    {
+      "days": "Saturday",
+      "hours": "By Appointment Only"
+    },
+    {
+      "days": "Sunday",
+      "hours": "Closed"
+    }
+  ],
   "notice": {
     "enabled": true,
     "message": "The clinic is temporarily closed and reopens on Monday 4 January 2027.",
@@ -11,5 +40,5 @@
   },
   "instagram": "https://www.instagram.com/embrace_movement_clinic/",
   "facebook": "https://www.facebook.com/embracemovementclinic/",
-  "abn": ""
+  "abn": "57 627 072 057"
 }
