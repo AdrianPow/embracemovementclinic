@@ -3,8 +3,12 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
+import Photo from '../../components/Photo.astro';
 
 const posts = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// The first photo in a post (or its closing photo) as the card's picture. Decorative here: the
+// post title says what the card is, and the photos are described on the post itself.
+const cover = (p: (typeof posts)[number]) => p.data.images[0] ?? p.data.closingImage;
 const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
 ---
 
@@ -22,12 +26,19 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
         {
           posts.map((p) => (
             <li>
-              <a class="post" href={`/news/${p.id}`}>
-                <time datetime={p.data.date.toISOString().slice(0, 10)}>{month(p.data.date)}</time>
-                <span class="post__title">{p.data.title}</span>
-                <span class="post__summary">{p.data.summary}</span>
-                {p.data.archivedNote && <span class="post__badge">Archived</span>}
-                <Icon name="arrow-right" size={20} class="post__arrow" />
+              <a class:list={['post', { 'post--photo': cover(p) }]} href={`/news/${p.id}`}>
+                {cover(p) && (
+                  <Photo src={cover(p)!.src} alt="" position={cover(p)!.position} ratio="4 / 3" class="post__photo" widths={[400, 640, 800]} sizes="(min-width: 48em) 20rem, 100vw" />
+                )}
+                <span class="post__text">
+                  <time datetime={p.data.date.toISOString().slice(0, 10)}>{month(p.data.date)}</time>
+                  <span class="post__title">{p.data.title}</span>
+                  <span class="post__summary">{p.data.summary}</span>
+                  {p.data.archivedNote && <span class="post__badge">Archived</span>}
+                  <span class="post__more">
+                    Read the update <Icon name="arrow-right" size={18} />
+                  </span>
+                </span>
               </a>
             </li>
           ))
@@ -45,21 +56,51 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
 
   .posts {
     display: grid;
-    max-width: 52rem;
+    gap: var(--space-m);
+    max-width: 60rem;
   }
 
+  /* Each post as a card: photo on the left (on top on phones), then date, title and summary. */
   .post {
-    position: relative;
     display: grid;
-    gap: var(--space-2xs);
-    padding: var(--space-l) var(--space-xl) var(--space-l) 0;
-    border-top: 1px solid var(--color-line);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
     color: var(--color-ink);
     text-decoration: none;
+    transition:
+      border-color 0.2s var(--ease),
+      box-shadow 0.2s var(--ease);
   }
 
-  .posts li:last-child .post {
-    border-bottom: 1px solid var(--color-line);
+  @media (min-width: 48em) {
+    .post--photo {
+      grid-template-columns: 20rem minmax(0, 1fr);
+    }
+  }
+
+  @media (hover: hover) {
+    .post:hover {
+      border-color: var(--color-icon);
+      box-shadow: var(--shadow-m);
+    }
+
+    .post:hover .post__title {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+  }
+
+  .post :global(.post__photo) {
+    height: 100%;
+  }
+
+  .post__text {
+    display: grid;
+    gap: var(--space-2xs);
+    align-content: center;
+    padding: var(--space-m) var(--space-l);
   }
 
   .post time {
@@ -76,11 +117,6 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
     line-height: 1.2;
   }
 
-  .post:hover .post__title {
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-  }
-
   .post__summary {
     color: var(--color-ink-muted);
   }
@@ -94,11 +130,13 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
     font-weight: 600;
   }
 
-  :global(.post__arrow) {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-icon);
+  .post__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-top: var(--space-2xs);
+    color: var(--color-link, var(--color-brand));
+    font-family: var(--font-display);
+    font-weight: 650;
   }
 </style>

@@ -74,8 +74,8 @@ const jsonLd = {
             </Button>
           )}
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="phone-only">Call {site.phone.display}</Button>
-          <Button href="#help" variant="secondary" size="l" class="wide-only">What can we help with?</Button>
         </div>
+        <a class="hero__link" href="#help">What can we help with? <Icon name="arrow-right" size={18} /></a>
       </div>
       <Photo
         src={home.heroImage}
@@ -111,7 +111,9 @@ const jsonLd = {
           needs.map((n) => (
             <li>
               <a href={`/services#${n.id}`}>
-                <Icon name={n.icon} size={22} />
+                <span class="needs__icon">
+                  <Icon name={n.icon} size={20} />
+                </span>
                 <span>{n.short}</span>
                 <Icon name="arrow-right" size={16} class="needs__arrow" />
               </a>
@@ -249,6 +251,15 @@ const jsonLd = {
     }
   }
 
+  .hero__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: var(--space-m);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
   :global(.hero__photo) {
     border-radius: var(--radius-l);
     max-height: 34rem;
@@ -300,32 +311,46 @@ const jsonLd = {
     }
   }
 
+  /* Needs: bordered tiles with the icon in a pale teal circle, like the picker on Services. */
   .needs a {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
     min-height: 3.5rem;
     height: 100%;
-    padding: var(--space-xs) var(--space-s);
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) var(--space-2xs);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius);
-    background: var(--color-bg-alt);
+    background: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-display);
     font-weight: 650;
     line-height: 1.2;
     text-decoration: none;
-    transition: background-color 0.2s var(--ease);
+    transition:
+      border-color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
   }
 
-  .needs a:hover {
+  @media (hover: hover) {
+    .needs a:hover {
+      border-color: var(--color-icon);
+      background: var(--color-accent-soft);
+    }
+  }
+
+  .needs__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
     background: var(--color-accent-soft);
-  }
-
-  .needs a > :global(svg:first-child) {
     color: var(--color-icon);
   }
 
-  .needs a > span {
+  .needs a > span:not(.needs__icon) {
     flex: 1;
   }
 

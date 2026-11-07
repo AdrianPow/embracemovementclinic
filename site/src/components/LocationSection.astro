@@ -1,6 +1,6 @@
 ---
 // Address, directions, hours and a static street map. Used on Home (compact) and Contact,
-// which also lists phone, email and parking. TODO: add a front-of-clinic photo here once supplied.
+// which also shows parking (phone and email are in Contact's own cards above it). TODO: add a front-of-clinic photo here once supplied.
 import Photo from './Photo.astro';
 import Icon from './Icon.astro';
 import mapImage from '../assets/maps/clinic-map.png';
@@ -13,12 +13,12 @@ interface Props {
   as?: 'h1' | 'h2';
   eyebrow?: string;
   title?: string;
-  /** Home page version: address, directions, hours and a map. Contact shows everything. */
+  /** Home page version: address, directions, hours and a map. Contact adds parking. */
   compact?: boolean;
 }
 
 const { as: Heading = 'h2', eyebrow, title = 'Find the clinic', compact = false } = Astro.props;
-const { address, phone, email, hours, notice } = site;
+const { address, hours, notice } = site;
 ---
 
 <section class="section section--alt location" aria-labelledby="location-h">
@@ -26,7 +26,7 @@ const { address, phone, email, hours, notice } = site;
     <div class="location__info flow" style="--flow-space: var(--space-m)">
       <div class="flow" style="--flow-space: var(--space-xs)">
         {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        <Heading id="location-h" class="h2">{title}</Heading>
+        <Heading id="location-h" class="h2 badged"><span class="hbadge" aria-hidden="true"><Icon name="map-pin" size={24} /></span>{title}</Heading>
       </div>
 
       <address class="location__address">
@@ -40,49 +40,42 @@ const { address, phone, email, hours, notice } = site;
         {!compact && <Button href={address.mapUrl} variant="secondary">Open in Google Maps</Button>}
       </div>
 
-      <dl class="location__details">
+      <ul class="location__cards" role="list">
         {
           !compact && (
             <>
-              <div>
-                <dt>Phone</dt>
-                <dd>
-                  <a href={phone.href}>{phone.display}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Email</dt>
-                <dd>
-                  <a href={email.href}>{email.address.split('@')[0]}@<wbr />{email.address.split('@')[1]}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Parking</dt>
-                <dd>{site.parking ?? <Todo>parking details</Todo>}</dd>
-              </div>
+              <li class="loc-card">
+                <span class="loc-card__icon"><Icon name="info" size={20} /></span>
+                <div>
+                  <h3 class="loc-card__title">Parking</h3>
+                  <p>{site.parking ?? <Todo>parking details</Todo>}</p>
+                </div>
+              </li>
             </>
           )
         }
-        <div>
-          <dt>Hours</dt>
-          <dd>
+        <li class="loc-card">
+          <span class="loc-card__icon"><Icon name="clock" size={20} /></span>
+          <div>
+            <h3 class="loc-card__title">Hours</h3>
             {
               hours ? (
-                <ul role="list">
+                <dl class="hours">
                   {hours.map((h) => (
-                    <li>
-                      {h.days}: {h.hours}
-                    </li>
+                    <div>
+                      <dt>{h.days}</dt>
+                      <dd>{h.hours}</dd>
+                    </div>
                   ))}
-                </ul>
+                </dl>
               ) : (
                 <Todo>opening hours</Todo>
               )
             }
             {notice.enabled && <p class="location__note">{notice.message}</p>}
-          </dd>
-        </div>
-      </dl>
+          </div>
+        </li>
+      </ul>
       {
         compact && (
           <a class="location__more" href="/contact">
@@ -138,36 +131,57 @@ const { address, phone, email, hours, notice } = site;
     gap: var(--space-xs);
   }
 
-  .location__details {
+  /* Parking and hours as white cards with an icon, as on Patient information. */
+  .location__cards {
     display: grid;
     gap: var(--space-s);
-    padding-top: var(--space-m);
+  }
+
+  .loc-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-s);
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+  }
+
+  .loc-card__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-icon);
+  }
+
+  .loc-card__title {
+    margin-bottom: var(--space-3xs);
+    font-size: var(--step-0);
+  }
+
+  /* Hours: day on the left, times on the right. */
+  .hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: 0.3rem;
     border-top: 1px solid var(--color-line);
   }
 
-  .location__details div {
-    display: grid;
-    gap: var(--space-3xs);
+  .hours div:first-child {
+    border-top: 0;
   }
 
-  @media (min-width: 30em) {
-    .location__details div {
-      grid-template-columns: 6rem 1fr;
-      gap: var(--space-s);
-    }
+  .hours dt {
+    font-weight: 600;
   }
 
-  .location__details dt {
-    font-family: var(--font-display);
-    font-weight: 650;
-  }
-
-  .location__details dd {
+  .hours dd {
     margin: 0;
-  }
-
-  .location__details a {
-    overflow-wrap: anywhere;
+    text-align: right;
   }
 
   .location__note {

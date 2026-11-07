@@ -122,7 +122,7 @@ const jsonLd = {
         }
       </aside>
       <div class="profile__main">
-        <h2 id="about-h">About {d.firstName}</h2>
+        <h2 id="about-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="user" size={24} /></span>About {d.firstName}</h2>
         <div class="prose bio">
           <Content />
         </div>
@@ -135,7 +135,7 @@ const jsonLd = {
       <section class="section section--alt" aria-labelledby="services-h">
         <div class="wrap">
           <div class="head">
-            <h2 id="services-h">See {d.firstName} for</h2>
+            <h2 id="services-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="heart" size={24} /></span>See {d.firstName} for</h2>
           </div>
           <ul class="services" role="list" style={`--n: ${Math.min(services.length, 4)}`}>
             {services.map((s) => (
@@ -270,11 +270,13 @@ const jsonLd = {
     align-content: start;
   }
 
+  /* Credentials: a pale teal panel per group, as on the service and patient information pages. */
   .block {
     display: grid;
     gap: var(--space-s);
-    padding-top: var(--space-m);
-    border-top: 1px solid var(--color-line);
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
   }
 
   .block ul {
