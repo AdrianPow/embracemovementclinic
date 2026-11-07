@@ -1,0 +1,53 @@
+---
+// The cancellation policy as a pale teal callout with a large faint clock; the last paragraph
+// (the rule itself) in bold. Text: policies.json "cancellation" (/admin: Clinic settings → Policies).
+import Icon from './Icon.astro';
+import { cancellationPolicy } from '../data/policies';
+
+const paras = cancellationPolicy.paragraphs;
+---
+
+<div class="callout">
+  <span class="callout__mark" aria-hidden="true"><Icon name="clock" size={170} /></span>
+  {paras.map((para, i) => <p class:list={{ callout__rule: i === paras.length - 1 && i > 0 }}>{para}</p>)}
+</div>
+
+<style>
+  .callout {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: var(--space-s);
+    max-width: 52rem;
+    padding: var(--space-l) var(--space-m);
+    padding-right: max(var(--space-m), 9rem);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+    font-size: var(--step-1);
+  }
+
+  @media (max-width: 39.99em) {
+    .callout {
+      padding-right: var(--space-m);
+      font-size: var(--step-0);
+    }
+  }
+
+  .callout__mark {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    color: var(--color-icon);
+    opacity: 0.16;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .callout p {
+    position: relative;
+  }
+
+  .callout__rule {
+    font-weight: 650;
+  }
+</style>

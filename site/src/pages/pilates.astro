@@ -6,6 +6,7 @@ import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
+import CancellationCallout from '../components/CancellationCallout.astro';
 import StepStrip from '../components/StepStrip.astro';
 import Todo from '../components/Todo.astro';
 import PractitionerList from '../components/PractitionerList.astro';
@@ -14,7 +15,7 @@ import BookingBand from '../components/BookingBand.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import Timetable from '../components/Timetable.astro';
 import { site, newTabAttrs } from '../data/site';
-import { classFacts, classSteps, equipment, cancellationPolicy, booking, bookingTip, timetable } from '../data/policies';
+import { classFacts, classSteps, equipment, booking, bookingTip, timetable } from '../data/policies';
 
 const service = (await getEntry('services', 'pilates')) as CollectionEntry<'services'>;
 const d = service.data;
@@ -79,7 +80,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   <section class="section section--alt" id="for-you" aria-labelledby="for-you-h">
     <div class="wrap two-col">
       <div class="head">
-        <h2 id="for-you-h">{d.forYou.heading}</h2>
+        <h2 id="for-you-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="heart" size={24} /></span>{d.forYou.heading}</h2>
         <ul class="ticks" role="list">
           {
             d.forYou.items.map((i) => (
@@ -101,7 +102,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   <section class="section" id="timetable" aria-labelledby="timetable-h">
     <div class="wrap">
       <div class="head head--wide">
-        <h2 id="timetable-h">Timetable</h2>
+        <h2 id="timetable-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="calendar" size={24} /></span>Timetable</h2>
         <p class="head__intro">{booking.classes}</p>
       </div>
       <ClosureNote />
@@ -124,7 +125,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   <section class="section section--alt" id="studio" aria-labelledby="studio-h">
     <div class="wrap">
       <div class="head head--wide">
-        <h2 id="studio-h">Our clinic is equipped with</h2>
+        <h2 id="studio-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="dumbbell" size={24} /></span>Our clinic is equipped with</h2>
       </div>
       <ul class="kit">
         {equipment.map((e) => <li>{e}</li>)}
@@ -134,16 +135,18 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   </section>
 
   <section class="section" id="cancellations" aria-labelledby="cancel-h">
-    <div class="wrap narrow narrow--full">
-      <h2 id="cancel-h">Cancellation policy</h2>
-      {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
+    <div class="wrap">
+      <div class="head head--wide">
+        <h2 id="cancel-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="clock" size={24} /></span>Cancellation policy</h2>
+      </div>
+      <CancellationCallout />
     </div>
   </section>
 
   <section class="section section--alt" id="who" aria-labelledby="who-h">
     <div class="wrap">
       <div class="head">
-        <h2 id="who-h">Who runs the classes</h2>
+        <h2 id="who-h" class="badged"><span class="hbadge" aria-hidden="true"><Icon name="users" size={24} /></span>Who runs the classes</h2>
         {d.practitionersNote && <p class="head__intro">{d.practitionersNote}</p>}
       </div>
       <PractitionerList refs={d.practitioners} />
@@ -361,25 +364,6 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
     flex-wrap: wrap;
     gap: var(--space-xs);
     margin-top: var(--space-m);
-  }
-
-  .narrow {
-    display: grid;
-    gap: var(--space-s);
-  }
-
-  .narrow > * {
-    max-width: 46rem;
-  }
-
-  /* Cancellation policy: text runs the full width. */
-  .narrow--full > * {
-    max-width: none;
-  }
-
-  .narrow p:not(.eyebrow) {
-    font-size: var(--step-1);
-    line-height: 1.6;
   }
 
   .related {
