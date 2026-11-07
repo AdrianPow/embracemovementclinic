@@ -6,7 +6,7 @@ import PageHero from '../components/PageHero.astro';
 import LocationSection from '../components/LocationSection.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
+import { site, newTabAttrs, opensNewTab } from '../data/site';
 
 const pageEntry = await getEntry('contactPage', 'contact');
 if (!pageEntry) throw new Error('Missing src/content/pages/contact.md');
@@ -59,7 +59,7 @@ const jsonLd = {
         {
           ways.map((w) => (
             <li>
-              <a class="way" href={w.href}>
+              <a class="way" href={w.href} {...newTabAttrs(w.href)}>
                 <Icon name={w.icon} size={26} />
                 <span class="way__title">{w.title}</span>
                 <span class:list={['way__text', { 'way__text--long': w.text.includes('@') }]}>
@@ -73,6 +73,7 @@ const jsonLd = {
                   )}
                 </span>
                 <span class="way__note">{w.note}</span>
+                {opensNewTab(w.href) && <span class="visually-hidden"> (opens in a new tab)</span>}
               </a>
             </li>
           ))

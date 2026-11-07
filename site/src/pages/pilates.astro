@@ -13,7 +13,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import BookingBand from '../components/BookingBand.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import Timetable from '../components/Timetable.astro';
-import { site } from '../data/site';
+import { site, newTabAttrs } from '../data/site';
 import { classFacts, classSteps, equipment, cancellationPolicy, booking, bookingTip, timetable } from '../data/policies';
 
 const service = (await getEntry('services', 'pilates')) as CollectionEntry<'services'>;
@@ -71,7 +71,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
       <StepStrip as="h2" id="start-h" title="How to start classes" steps={classSteps} />
       <p class="code-tip">
         <Icon name="info" size={20} />
-        <span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href}>{bookingTip.link.text}</a>}{bookingTip.after}</span>
+        <span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href} {...newTabAttrs(bookingTip.link.href)}>{bookingTip.link.text}<span class="visually-hidden"> (opens in a new tab)</span></a>}{bookingTip.after}</span>
       </p>
     </div>
   </section>

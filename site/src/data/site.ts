@@ -92,4 +92,8 @@ export const site = {
   },
 };
 
+/** Booking and patient-portal links (Nookal) open in a new tab, so the website stays open behind them. */
+export const opensNewTab = (href: string) => /^https:\/\/[a-z0-9-]+\.nookal\.com\//i.test(href);
+export const newTabAttrs = (href: string) => (opensNewTab(href) ? { target: '_blank', rel: 'noopener' } : {});
+
 export const fullAddress = `${site.address.street}, ${site.address.suburb} ${site.address.state} ${site.address.postcode}`;
