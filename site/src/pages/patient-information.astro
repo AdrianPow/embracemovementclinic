@@ -83,7 +83,7 @@ const sections = [
                 <a href={site.phone.href.replace('tel:', 'sms:')}>{site.phone.display}</a>.
               </p>
             </div>
-            <div class="card">
+            <div class="card card--wide">
               <Icon name="mail" size={24} />
               <h3 class="h4">Email</h3>
               <p><a href={site.email.href} class="email">{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</a></p>
@@ -96,8 +96,8 @@ const sections = [
           <h2 id="first-h">Your first visit</h2>
           {p.firstVisit[0] && <p>{p.firstVisit[0]}</p>}
           <p>
-            Each service page explains what to expect in more detail, including{' '}
-            <a href="/pelvic-health-physiotherapy#expect">pelvic health physiotherapy</a>.
+            Each service page explains what to expect in more detail. See{' '}
+            <a href="/services">all services</a>.
           </p>
           {p.firstVisit.slice(1).map((para) => <p>{para}</p>)}
           <h3 class="h4">What to bring</h3>
@@ -308,10 +308,33 @@ const sections = [
     max-width: var(--measure);
   }
 
+  /* Book online and Call or text side by side; Email as a strip underneath, so the address
+     fits on one line. */
   .cards {
     display: grid;
     gap: var(--space-s);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 40em) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card--wide {
+      grid-column: 1 / -1;
+      grid-template-columns: auto auto 1fr;
+      align-items: center;
+      column-gap: var(--space-s);
+    }
+
+    .card--wide .email {
+      white-space: nowrap;
+    }
+
+    .card--wide .email :global(wbr) {
+      display: none;
+    }
   }
 
   .card {

@@ -92,10 +92,33 @@ const jsonLd = {
     margin-bottom: var(--space-l);
   }
 
+  /* Two by two, so the email address fits on one line and no card sits alone on a row. */
   .ways {
     display: grid;
     gap: var(--space-s);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 48em) {
+    .ways {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .way .way__text--long {
+      white-space: nowrap;
+    }
+
+    /* The line-break hint after "@" is only for phones. */
+    .way__text--long :global(wbr) {
+      display: none;
+    }
+  }
+
+  /* Tablets: a little smaller, so the address still fits on one line. */
+  @media (min-width: 48em) and (max-width: 61.99em) {
+    .way .way__text--long {
+      font-size: var(--step--1);
+    }
   }
 
   .way {
