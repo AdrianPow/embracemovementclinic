@@ -36,7 +36,8 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
 
 - [ ] Practitioner bios, qualifications and AHPRA registration numbers or names as registered
-- [ ] Instagram and Facebook profile URLs (the footer shows icons once they're added on /admin: Clinic settings → Clinic details)
+- [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (8 Nov 2026)
+- [ ] Facebook page URL, if there is one (add it on /admin: Clinic settings → Clinic details)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
 - [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
