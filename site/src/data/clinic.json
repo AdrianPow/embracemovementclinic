@@ -4,19 +4,19 @@
   "hours": [
     {
       "days": "Monday",
-      "hours": "6am – 1pm"
+      "hours": "6am – 12.45pm"
     },
     {
       "days": "Tuesday",
-      "hours": "8am – 8pm"
+      "hours": "7am – 11am, 1.15pm – 8pm"
     },
     {
       "days": "Wednesday",
-      "hours": "6am – 8pm"
+      "hours": "6am – 7.30am, 4.30pm – 8pm"
     },
     {
       "days": "Thursday",
-      "hours": "8am – 4pm"
+      "hours": "8am – 11.30am, 1pm – 3.30pm"
     },
     {
       "days": "Friday",

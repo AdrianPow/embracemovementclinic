@@ -446,7 +446,7 @@ collections:
             summary: '{{fields.days}}: {{fields.hours}}'
             fields:
               - { name: days, label: Days, widget: string, hint: 'E.g. "Monday" or "Tuesday to Thursday".' }
-              - { name: hours, label: Hours, widget: string, hint: 'E.g. "6am – 3pm" or "Closed".' }
+              - { name: hours, label: Hours, widget: string, hint: 'E.g. "6am – 3pm" or "Closed". For a split shift, separate the times with a comma, e.g. "7am – 11am, 1.15pm – 8pm" (shown on two lines).' }
           - name: notice
             label: Notice banner
             widget: object

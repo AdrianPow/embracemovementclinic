@@ -93,7 +93,15 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
             {hours.map((h) => (
               <div>
                 <dt>{h.days}</dt>
-                <dd>{h.hours}</dd>
+                <dd>
+                  {/* Split shifts ("7am – 11am, 1.15pm – 8pm") one per line. */}
+                  {h.hours.split(/,\s*/).map((part, i) => (
+                    <>
+                      {i > 0 && <br />}
+                      <span class="nowrap">{part}</span>
+                    </>
+                  ))}
+                </dd>
               </div>
             ))}
           </dl>
@@ -231,6 +239,10 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     display: flex;
     justify-content: space-between;
     gap: var(--space-s);
+  }
+
+  .site-footer__hours dd {
+    text-align: right;
   }
 
   .site-footer__note {

@@ -26,10 +26,10 @@ closingImage:
 
 After a wonderful year of new babies, we’re excited to welcome you back to Embrace. From Monday 4 January, Nicole's hours will be:
 
-- **Monday:** 6am – 1pm
-- **Tuesday:** 8am – 8pm
-- **Wednesday:** 6am – 8pm
-- **Thursday:** 8am – 4pm
+- **Monday:** 6am – 12.45pm
+- **Tuesday:** 7am – 11am, then 1.15pm – 8pm
+- **Wednesday:** 6am – 7.30am, then 4.30pm – 8pm
+- **Thursday:** 8am – 11.30am, then 1pm – 3.30pm
 - **Friday:** Closed
 - **Saturday:** By appointment only
 - **Sunday:** Closed
