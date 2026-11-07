@@ -5,6 +5,7 @@ order: 2
 photo: /src/assets/photos/sam_1423-1.webp
 photoPosition: 50% 28%
 status: On maternity leave until March 2027
+bookingUrl: https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/practitioner/5
 titles:
   - Physiotherapist
   - Clinical Pilates Instructor

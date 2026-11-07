@@ -84,6 +84,8 @@ const team = defineCollection({
       status: z.string().optional(),
       /** AHPRA registration number, as on the public register (e.g. PHY0001234567). */
       registration: z.string().optional(),
+      /** Direct Nookal booking link for this practitioner. */
+      bookingUrl: z.string().url().optional(),
       photo: image().optional(),
       /** Which part to keep when the photo is cropped (CSS object-position). Top by default, so headshots keep the whole head. */
       photoPosition: z.string().default('50% 0%'),

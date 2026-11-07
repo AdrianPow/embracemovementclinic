@@ -63,7 +63,7 @@ const jsonLd = {
           )
         }
         <div class="actions">
-          <Button href={site.booking.url} icon="calendar" size="l">Book with {d.firstName}</Button>
+          <Button href={d.bookingUrl ?? site.booking.url} icon="calendar" size="l">Book with {d.firstName}</Button>
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
             <span class="visually-hidden">Call </span>{site.phone.display}
           </Button>
@@ -149,7 +149,12 @@ const jsonLd = {
     )
   }
 
-  <BookingBand title={`Book with ${d.firstName}`} text={`When booking online, select ${d.firstName} as your practitioner.`} bookLabel="Book now" />
+  <BookingBand
+    title={`Book with ${d.firstName}`}
+    text={d.bookingUrl ? `Book online with ${d.firstName}, or call us on ${site.phone.display}.` : `When booking online, select ${d.firstName} as your practitioner.`}
+    bookLabel={`Book with ${d.firstName}`}
+    bookUrl={d.bookingUrl ?? site.booking.url}
+  />
 </BaseLayout>
 
 <style>
