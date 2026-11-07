@@ -1,0 +1,250 @@
+---
+// Weekly class timetable as a board: a column per day, a pill per class (time, then who runs it).
+// On wider screens classes at the same time share a row across the days, like a wall timetable.
+// Each practitioner has a colour, in Team order (petrol, then light teal, then pale teal), with a
+// key underneath. Names are always written on the pills too, so colour is never the only cue.
+// Data: policies.json "timetable" (/admin: Clinic settings → Policies and timetable).
+import { getCollection } from 'astro:content';
+import type { TimetableDay } from '../data/policies';
+
+interface Props {
+  days: TimetableDay[];
+}
+
+const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const defaultClass = 'Small group exercise';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+const colourOf = (id?: string) => {
+  const i = team.findIndex((m) => m.id === id);
+  return i < 0 ? 'none' : String(Math.min(i + 1, 3));
+};
+const nameOf = (id?: string) => team.find((m) => m.id === id)?.data.firstName;
+
+const days = Astro.props.days
+  .filter((d) => d.classes?.length)
+  .sort((a, b) => weekdays.indexOf(a.day) - weekdays.indexOf(b.day));
+const people = team.filter((m) => days.some((d) => d.classes.some((c) => c.with === m.id)));
+// Every distinct class time in the week, earliest first: one row each on wide screens.
+const minutes = (t: string) => {
+  const m = t.trim().toLowerCase().match(/^(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)$/);
+  if (!m) return 24 * 60;
+  return ((Number(m[1]) % 12) + (m[3] === 'pm' ? 12 : 0)) * 60 + Number(m[2] ?? 0);
+};
+const slots = [...new Set(days.flatMap((d) => d.classes.map((c) => minutes(c.time))))].sort((a, b) => a - b);
+const rowOf = (t: string) => slots.indexOf(minutes(t)) + 1;
+const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c.class.trim() !== defaultClass));
+---
+
+<div class="board-wrap">
+  {!otherClasses && <p class="board-title">{defaultClass} classes</p>}
+  <ul class="board" role="list" style={`--days: ${days.length}; --rows: ${slots.length}`}>
+    {
+      days.map((d) => (
+        <li class="day">
+          <h3 class="day__name">
+            <span class="day__long">{d.day}</span>
+            <span class="day__short" aria-hidden="true">
+              {d.day.slice(0, 3)}
+            </span>
+          </h3>
+          <ul class="slots" role="list">
+            {d.classes.map((c) => (
+              <li class="slot" data-colour={colourOf(c.with)} style={`--row: ${rowOf(c.time)}`}>
+                <span class="slot__time">{c.time}</span>
+                {(otherClasses || nameOf(c.with)) && (
+                  <span class="slot__detail">
+                    {[otherClasses ? c.class?.trim() || defaultClass : null, nameOf(c.with) && `with ${nameOf(c.with)}`]
+                      .filter(Boolean)
+                      .join(', ')}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+  {
+    people.length > 0 && (
+      <ul class="key" role="list" aria-label="Who runs each class">
+        {people.map((m) => (
+          <li class="key__item" data-colour={colourOf(m.id)}>
+            {m.data.firstName}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</div>
+
+<style>
+  .board-title {
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  /* Phones: a block per day, the day's name above its classes, which wrap. */
+  .board {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    border-radius: var(--radius-l);
+    background: var(--color-bg-alt);
+  }
+
+  .day {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+  }
+
+  .day__name,
+  .key__item,
+  .slot {
+    border-radius: 999px;
+  }
+
+  .day__name {
+    justify-self: start;
+    min-width: 7rem;
+    padding: 0.35em 1em;
+    background: var(--color-bg);
+    font-size: var(--step-0);
+    font-weight: 750;
+    text-align: center;
+  }
+
+  .day__short {
+    display: none;
+  }
+
+  .slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .slot {
+    display: grid;
+    justify-items: center;
+    min-width: 6.5rem;
+    padding: 0.45em 1em;
+    text-align: center;
+  }
+
+  .slot__time {
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 750;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .slot__detail {
+    font-size: var(--step--1);
+    line-height: 1.3;
+  }
+
+  /* Practitioner colours (Team order). All pass AA for their text. */
+  [data-colour='1'] {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  [data-colour='2'] {
+    background: var(--color-accent-on-brand);
+    color: var(--color-ink);
+  }
+
+  [data-colour='3'],
+  [data-colour='none'] {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 2px var(--color-brand);
+  }
+
+  .key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: var(--space-s);
+    font-size: var(--step--1);
+  }
+
+  .key::before {
+    content: 'Classes with:';
+    margin-right: var(--space-3xs);
+    color: var(--color-ink-muted);
+  }
+
+  .key__item {
+    padding: 0.25em 0.9em;
+    font-weight: 650;
+  }
+
+  /* Tablets and up: a column per day, and a shared row per class time (subgrid), so classes at
+     the same time line up across the week. */
+  @media (min-width: 48em) {
+    .board {
+      grid-template-columns: repeat(var(--days, 5), minmax(0, 1fr));
+      grid-template-rows: auto repeat(var(--rows, 1), auto);
+      gap: var(--space-xs) var(--space-s);
+      padding: var(--space-m);
+    }
+
+    .day {
+      grid-row: 1 / -1;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: subgrid;
+      gap: inherit;
+    }
+
+    .day__name {
+      justify-self: stretch;
+      min-width: 0;
+      margin-bottom: var(--space-2xs);
+      padding: 0.45em 0.6em;
+    }
+
+    .slots {
+      display: grid;
+      grid-row: 2 / -1;
+      grid-template-rows: subgrid;
+    }
+
+    .slot {
+      grid-row: var(--row);
+    }
+
+    .slot {
+      min-width: 0;
+      padding: 0.6em 0.75em;
+      border-radius: var(--radius-l);
+    }
+
+    .slot__time {
+      font-size: var(--step-1);
+    }
+  }
+
+  /* Many days on a narrow board: short day names. */
+  @media (min-width: 48em) and (max-width: 61.99em) {
+    .day__long {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .day__short {
+      display: inline;
+    }
+  }
+</style>

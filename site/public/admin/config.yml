@@ -465,16 +465,30 @@ collections:
             label_singular: day
             widget: list
             required: false
-            hint: One row per day, with all of that day’s class times. Leave out days with no classes. Keep it the same as Nookal.
+            hint: One entry per day, with that day’s classes earliest first. Leave out days with no classes. Keep it the same as Nookal.
             summary: '{{fields.day}}'
             fields:
               - name: day
                 label: Day
                 widget: select
                 options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-              - { name: times, label: Class times, widget: list, label_singular: time, hint: 'One time per entry, earliest first, e.g. "6.00am", "6.45am".' }
-              - { name: with, label: With, widget: string, required: false, hint: 'E.g. "Nicole" or "Nicole or Laura".' }
-              - { name: class, label: Class, widget: string, required: false, hint: 'Leave blank for small group exercise classes. Fill in only for a different kind of class.' }
+              - name: classes
+                label: Classes
+                label_singular: class
+                widget: list
+                summary: '{{fields.time}}'
+                fields:
+                  - { name: time, label: Time, widget: string, hint: 'E.g. "6.00am" or "4.45pm".' }
+                  - name: with
+                    label: With
+                    widget: relation
+                    collection: team
+                    value_field: '{{slug}}'
+                    search_fields: [name]
+                    display_fields: [name]
+                    required: false
+                    hint: Each practitioner has their own colour on the timetable.
+                  - { name: class, label: Class, widget: string, required: false, hint: 'Leave blank for small group exercise. Fill in only for a different kind of class.' }
           - name: cancellation
             label: Cancellation policy
             widget: object

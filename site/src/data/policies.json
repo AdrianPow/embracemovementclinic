@@ -7,45 +7,95 @@
   "timetable": [
     {
       "day": "Monday",
-      "times": [
-        "6.00am",
-        "6.45am",
-        "9.00am",
-        "9.45am"
-      ],
-      "with": "Nicole"
+      "classes": [
+        {
+          "time": "6.00am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "6.45am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "9.00am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "9.45am",
+          "with": "nicole-saxby"
+        }
+      ]
     },
     {
       "day": "Tuesday",
-      "times": [
-        "8.15am",
-        "9.00am",
-        "1.15pm",
-        "4.45pm",
-        "5.30pm",
-        "6.15pm"
-      ],
-      "with": "Nicole"
+      "classes": [
+        {
+          "time": "8.15am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "9.00am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "1.15pm",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "4.45pm",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "5.30pm",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "6.15pm",
+          "with": "nicole-saxby"
+        }
+      ]
     },
     {
       "day": "Wednesday",
-      "times": [
-        "6.00am",
-        "6.45am",
-        "4.45pm",
-        "5.30pm",
-        "6.15pm"
-      ],
-      "with": "Nicole"
+      "classes": [
+        {
+          "time": "6.00am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "6.45am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "4.45pm",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "5.30pm",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "6.15pm",
+          "with": "nicole-saxby"
+        }
+      ]
     },
     {
       "day": "Thursday",
-      "times": [
-        "9.00am",
-        "9.45am",
-        "1.15pm"
-      ],
-      "with": "Nicole"
+      "classes": [
+        {
+          "time": "9.00am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "9.45am",
+          "with": "nicole-saxby"
+        },
+        {
+          "time": "1.15pm",
+          "with": "nicole-saxby"
+        }
+      ]
     }
   ],
   "cancellation": {
