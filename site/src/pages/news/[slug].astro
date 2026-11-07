@@ -22,7 +22,7 @@ const { Content } = await render(post);
 // "…see Patient information." → link that phrase rather than repeating it after the note.
 const noteParts = d.archivedNote ? d.archivedNote.split('Patient information') : [];
 // One photo fills the column; two or three share it (the grid fits up to three across).
-const imageSizes = `(min-width: 46rem) ${Math.round(46 / Math.min(Math.max(d.images.length, 1), 3))}rem, 100vw`;
+const imageSizes = `(min-width: 40rem) 16.5rem, ${Math.round(100 / Math.min(Math.max(d.images.length, 1), 3))}vw`;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -82,7 +82,7 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
       }
       {
         d.images.length > 0 && (
-          <div class="images">
+          <div class="images" style={`--n: ${Math.min(d.images.length, 3)}`}>
             {d.images.map((img) => (
               <Photo src={img.src} alt={img.alt} position={img.position} ratio={img.src.height > img.src.width ? '4 / 5' : '4 / 3'} sizes={imageSizes} />
             ))}
@@ -99,7 +99,7 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
             alt={d.closingImage.alt}
             position={d.closingImage.position}
             ratio={d.closingImage.src.height > d.closingImage.src.width ? '4 / 5' : '4 / 3'}
-            sizes="(min-width: 46rem) 23rem, 100vw"
+            sizes="(min-width: 40rem) 16.5rem, 70vw"
             class="closing-photo"
           />
         )
@@ -164,14 +164,15 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
   }
 
   :global(.closing-photo) {
-    max-width: 23rem;
+    max-width: 16.5rem;
     border-radius: var(--radius);
   }
 
+  /* Post photos at a modest size (about 265px wide each), side by side, even on phones. */
   .images {
     display: grid;
     gap: var(--space-s);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    grid-template-columns: repeat(var(--n, 2), minmax(0, 16.5rem));
   }
 
   .images :global(.photo) {
