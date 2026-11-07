@@ -16,8 +16,10 @@ images:
   - src: ../../assets/photos/charlotte.webp
     alt: Baby Charlotte in her pram, wearing a floral headband
     position: 50% 30%
-imageNotes:
-  - Nicole and Imogen (photo to come)
+closingImage:
+  src: ../../assets/photos/nicole-imogen.webp
+  alt: Nicole holding baby Imogen over her shoulder, under festoon lights
+  position: 50% 45%
 ---
 
 ## Back in the clinic from 4 January
