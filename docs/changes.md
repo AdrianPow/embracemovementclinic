@@ -146,7 +146,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 ## Privacy policy approved (7 Nov 2026)
 
-Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note removed; an AI tool line added ("We may use an AI tool to help with note-taking and administration. It can summarise your appointment and help draft notes and letters. Your practitioner always reviews what it produces."); the paragraph about contacting the OAIC if not satisfied removed at the owner's request; no named privacy contact (the clinic's email and phone); retention stated as "as long as the law requires"; "Last updated 7 November 2026". Overseas: "All of your information is stored within Australia." (owner, 7 Nov 2026).
+Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note removed; an AI tool line added ("We may use an AI tool to help with note-taking and administration. It can summarise your appointment and help draft notes and letters. Your practitioner always reviews what it produces. Please let us know if you would prefer us not to use AI tools."); the paragraph about contacting the OAIC if not satisfied removed at the owner's request; no named privacy contact (the clinic's email and phone); retention stated as "as long as the law requires"; "Last updated 7 November 2026". Overseas: "All of your information is stored within Australia." (owner, 7 Nov 2026).
 
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 
