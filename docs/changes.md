@@ -17,8 +17,8 @@ Anything not listed here stays as it is on the current site.
 | /contact-us-1 | Contact | /contact | **Change** (301) |
 | /book-now | Nookal booking embed | Nookal booking page (new link supplied 19 Oct 2026) | **Change** (302 to Nookal; every "Book now" links there directly) |
 | /group-exercise-timetable | Class timetable and cancellation policy | /pilates#timetable (merged with the Pilates page, 18 Oct 2026) | **Change** (301) |
-| /clinic-updates | Clinic news | /news (post deleted 8 Nov 2026, owner's request) | **Change** (301) |
-| /xmas-2024 | Christmas 2024 newsletter | /news (post deleted 8 Nov 2026, owner's request) | **Change** (301) |
+| /clinic-updates | Clinic news | /news (post deleted 7 Nov 2026, owner's request) | **Change** (301) |
+| /xmas-2024 | Christmas 2024 newsletter | /news (post deleted 7 Nov 2026, owner's request) | **Change** (301) |
 | /baby-news | July 2026 update | /news/july-2026-update | **Change** (301) |
 | /blog-posts/* | Linked from homepage and team images, but not in the export | /news | **Change** (301). The image links aren't carried over. |
 
@@ -103,7 +103,7 @@ Each change to what a service involves, conditions treated, or examination or co
 | Home (how it works) | (new) | Three steps: start with an assessment, a plan tailored to you, keep moving | New copy built from existing facts (initial consultation, pre-class assessment, tailored programs, classes) | TBC |
 | Home and Services ("What can we help with?") | Conditions spread across five pages | Grouped into six everyday needs (`site/src/data/needs.ts`) | New grouping; conditions unchanged | TBC |
 | Christmas 2024 (archived) | "These classes are designed to enhance your recovery and promote overall strength…" | "…designed to support your recovery and overall strength…" | Softens an outcome claim | TBC |
-| Exercise Physiology (treatments, 6 Nov 2026) | "Treatment may include" listed 11 items, 6 of which repeated the conditions list (injury rehabilitation, injury prevention, chronic pain and disease management, osteoporosis and healthy ageing, musculoskeletal and neurological rehabilitation, strength and conditioning and athletic performance) | Treatments now list the 5 ways of working (functional and resistance training, pilates, coaching, home and gym programs, exercise guidelines). The examples "arthritis, diabetes and cardiovascular disease" were first moved under "Chronic pain and disease management", then removed at the owner's request (8 Nov 2026) | The same items appeared twice on one page | TBC |
+| Exercise Physiology (treatments, 6 Nov 2026) | "Treatment may include" listed 11 items, 6 of which repeated the conditions list (injury rehabilitation, injury prevention, chronic pain and disease management, osteoporosis and healthy ageing, musculoskeletal and neurological rehabilitation, strength and conditioning and athletic performance) | Treatments now list the 5 ways of working (functional and resistance training, pilates, coaching, home and gym programs, exercise guidelines). The examples "arthritis, diabetes and cardiovascular disease" were first moved under "Chronic pain and disease management", then removed at the owner's request (7 Nov 2026) | The same items appeared twice on one page | TBC |
 | Vestibular ("Good to know", 6 Nov 2026) | Heading "An evidence-based approach" above "Vestibular physiotherapy is an evidence-based approach…" | Heading "Our approach"; sentence unchanged | The heading repeated the sentence | TBC |
 | Pilates (opening line, 6 Nov 2026) | "…for all ages and abilities, from people who have never stepped foot in a gym to high-level athletes." | "…on the Reformer, Wunda Chair, Trapeze Table and CoreAlign, for all ages and abilities." | The gym-to-athletes line was repeated word for word further down the page, where it stays | TBC |
 
@@ -122,7 +122,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 | # | Decision | What changed on the site |
 |---|---|---|
-| 1 | Titles as recommended | Nicole: "Physiotherapist · Exercise Physiologist · Clinical Pilates Instructor" ("(pelvic health)" removed at her request, 8 Nov 2026). Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
+| 1 | Titles as recommended | Nicole: "Physiotherapist · Exercise Physiologist · Clinical Pilates Instructor" ("(pelvic health)" removed at her request, 7 Nov 2026). Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
 | 2 | "Pelvic Health" everywhere | Service renamed "Pelvic Health Physiotherapy" (menu, cards, page title, Google title and description, Patient information link). Clinical terms such as "pelvic floor exercises" and course names are unchanged |
 | 3 | Keep "Book now" | No change: Nookal only shows slots from January |
 | 4 | Laura back in April 2027; vestibular unavailable until then | Laura's status "On maternity leave until April 2027"; availability note under the Vestibular page title |
@@ -136,13 +136,17 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | 13 | Add third related services | Exercise Physiology → Pelvic Health added; Vestibular → Pilates added |
 | 14 | Reopens Monday 4 January 2027 | Banner: "The clinic is temporarily closed and reopens on Monday 4 January 2027." It and the closure notes hide themselves after 3 January |
 
-## Exercise Physiology becomes Exercise Therapy (8 Nov 2026, owner's request)
+## Exercise Physiology becomes Exercise Therapy (7 Nov 2026, owner's request)
 
 - The service is now **Exercise Therapy**, a broader name, so both Nicole and Laura can provide it. Address `/exercise-therapy`; `/exercise-physiology` redirects there (301). Content otherwise unchanged.
 - "Who you'll see" lists Nicole and Laura, with the note "Nicole and Laura both provide exercise therapy. Nicole is also an Accredited Exercise Physiologist (AEP)."
 - Nicole's title is now "Accredited Exercise Physiologist" (her AEP accreditation confirmed by the owner).
 - Fees: an "Exercise therapy" group with an initial consultation (45 minutes, $145) and reviews (30 minutes, $95; 45 minutes, $125), each with Nicole or Laura. Exercise physiology is no longer listed separately, and the separate "1 on 1 Exercise Therapy Session" ($125) is covered by the 45-minute review. The clinic will update Nookal to match.
 - Still "Exercise Physiology" by the owner's choice of words: the home page headline and facts (editable on /admin), and the privacy policy's description of the clinic's services.
+
+## Privacy policy approved (7 Nov 2026)
+
+Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note removed; an AI tool line added ("We may use an AI tool to help with note-taking and administration. It can summarise your appointment and help draft notes and letters. Your practitioner always reviews what it produces."); the paragraph about contacting the OAIC if not satisfied removed at the owner's request; no named privacy contact (the clinic's email and phone); retention stated as "as long as the law requires"; "Last updated 7 November 2026". Still open: overseas storage or processing (APP 8 / APP 1.4(f)–(g)).
 
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 

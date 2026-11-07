@@ -36,29 +36,29 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
 
 - [ ] AHPRA registration numbers for Nicole and Laura: now a field on /admin (Team → each practitioner → AHPRA registration number)
-- [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (8 Nov 2026)
-- [x] Facebook: https://www.facebook.com/embracemovementclinic/ (8 Nov 2026)
+- [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (7 Nov 2026)
+- [x] Facebook: https://www.facebook.com/embracemovementclinic/ (7 Nov 2026)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
 - [x] **Opening hours**: entered on /admin (Mon 6am–1pm, Tue 8am–8pm, Wed 6am–8pm, Thu 8am–4pm, Fri closed, Sat by appointment only, Sun closed)
 - [x] **ABN**: 57 627 072 057, entered on /admin
 - [ ] **Parking details** for the location section (street parking, driveway, accessibility)
 - [x] **Reopening date**: Monday 4 January 2027 (Nicole, 7 Nov 2026). The banner and closure notes hide after 3 January. Previously: so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
-- [x] **Class timetable**: from Nookal's week of 4 January 2027 (Monday to Thursday, all with Nicole), added 8 Nov 2026. Keep it in step with Nookal on /admin: Clinic settings → Policies and timetable
+- [x] **Class timetable**: from Nookal's week of 4 January 2027 (Monday to Thursday, all with Nicole), added 7 Nov 2026. Keep it in step with Nookal on /admin: Clinic settings → Policies and timetable
 - [x] **Which practitioner provides which service:** Nookal is right; Laura isn't seeing pelvic health clients for now (Nicole, 7 Nov 2026). Previously: Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
-- [ ] **Privacy contact** (name or role, plus email) for the privacy policy
-- [x] Google Forms: no longer linked (the June 2025 update was deleted on 8 Nov 2026)
+- [x] **Privacy contact**: the clinic's email and phone (no named person), as approved 7 Nov 2026
+- [x] Google Forms: no longer linked (the June 2025 update was deleted on 7 Nov 2026)
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
 - [ ] Existing privacy policy, terms or cancellation policy
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees
-- [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 8 Nov 2026). On Patient information
+- [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 7 Nov 2026). On Patient information
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
 - [ ] **What to bring** to a first appointment
-- [x] **Accessibility**: not shown on the site (owner's call, 8 Nov 2026). The field stays on /admin if wanted later
+- [x] **Accessibility**: not shown on the site (owner's call, 7 Nov 2026). The field stays on /admin if wanted later
 - [x] **Class facts:** 4–5 people and 45 minutes (Nookal); cancellation is at least 8 hours' notice or the full cost is charged (Nicole, 7 Nov 2026). Confirm it covers one-on-one appointments too
 - [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)
 - [x] A photo of Jeff, the clinic dog (the team photo with Laura and Nicole)
-- [ ] **Privacy policy details:** a privacy contact, whether data is stored overseas (e.g. by Nookal), whether AI admin tools are still used, and your record retention period. Then approve the draft at `/privacy`.
+- [x] **Privacy policy**: reviewed and approved by Nicole (7 Nov 2026). AI note-taking line added; OAIC paragraph removed at her request. Still open: whether any information is stored or processed overseas (e.g. by Nookal or the AI tool), and where
 - [ ] Approve the wording changes in `docs/changes.md`
 
 ## Access (confirm who has it; don't store it here)

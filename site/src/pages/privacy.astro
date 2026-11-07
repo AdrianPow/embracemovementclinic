@@ -15,7 +15,6 @@ import { site, fullAddress } from '../data/site';
 
   <section class="section">
     <div class="wrap-narrow prose policy">
-      <Todo as="div">DRAFT: the owner must review and approve this policy before launch. Consider professional advice.</Todo>
 
       <p>
         {site.name} (“we”, “us”) provides physiotherapy, exercise physiology and clinical pilates at {fullAddress}. As a health
@@ -53,12 +52,12 @@ import { site, fullAddress } from '../data/site';
         <Todo>confirm whether any information is stored or processed overseas (for example by Nookal or other software providers), and where</Todo>
       </p>
       <p>
-        <Todo>confirm whether healthcare-specific AI tools are still used for admin (notes, summary emails, letters), which ones, and how information is protected. Describe them here if so.</Todo>
+        We may use an AI tool to help with note-taking and administration. It can summarise your appointment and help draft notes
+        and letters. Your practitioner always reviews what it produces.
       </p>
 
       <h2>How we store and protect it</h2>
       <p>Your records are stored securely in our practice management system, with access limited to the practitioners and staff who need it. We keep health records for as long as the law requires.</p>
-      <p><Todo>confirm the retention period you follow (for example the Queensland requirements for health records)</Todo></p>
 
       <h2>This website</h2>
       <ul>
@@ -75,16 +74,11 @@ import { site, fullAddress } from '../data/site';
       <h2>Questions and complaints</h2>
       <p>
         If you have a question or concern about your privacy, please contact us first:{' '}
-        <a href={site.email.href}>{site.email.address}</a> or <a href={site.phone.href}>{site.phone.display}</a>.{' '}
-        <Todo>name the person or role responsible for privacy</Todo>
-      </p>
-      <p>
-        If you are not satisfied with our response, you can contact the Office of the Australian Information Commissioner (OAIC)
-        at <a href="https://www.oaic.gov.au">www.oaic.gov.au</a> or on 1300 363 992.
+        <a href={site.email.href}>{site.email.address}</a> or <a href={site.phone.href}>{site.phone.display}</a>.
       </p>
 
       <h2>Changes to this policy</h2>
-      <p>We may update this policy from time to time. The current version is always on this page. <Todo>last updated date</Todo></p>
+      <p>We may update this policy from time to time. The current version is always on this page. Last updated 7 November 2026.</p>
     </div>
   </section>
 </BaseLayout>
