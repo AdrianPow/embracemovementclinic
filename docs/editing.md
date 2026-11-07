@@ -32,7 +32,7 @@ Empty fields like fees, what to bring or parking show a "TODO" note on the site 
 - Photos can come straight off a phone. The editor converts them to WebP and scales them down before saving, and the site makes the smaller sizes itself.
 - **Text boxes are text only.** Photos go in the photo fields (each service, practitioner and news post has its own), not inside the text.
 - **Google titles** are short (about 35 characters, e.g. "Physiotherapy in McDowall"): " | Embrace Movement Clinic" is added after them.
-- **Don't delete the July 2026 update** while the notice banner links to it.
+- **Deleting a news post:** if the notice banner links to it, change or remove the banner link first. While there are no posts, News drops out of the menu and footer.
 - **If a change doesn't appear** after five minutes, the site check probably stopped it (for example a link to a page that no longer exists). The live site stays as it was. Ask Claude to look at the latest Cloudflare deployment.
 - Mistakes are fine: every save is kept in the project history, so anything can be put back. Ask Claude to "restore the version from before my last change".
 

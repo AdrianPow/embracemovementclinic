@@ -4,10 +4,14 @@ import Icon from './Icon.astro';
 import Button from './Button.astro';
 import Todo from './Todo.astro';
 import { footerLinks } from '../data/navigation';
+import { getCollection } from 'astro:content';
 import { site } from '../data/site';
 import { booking } from '../data/policies';
 
 const year = new Date().getFullYear();
+// "Clinic news" shows only while there are posts.
+const hasNews = (await getCollection('news')).length > 0;
+const links = footerLinks.filter((l) => l.href !== '/news' || hasNews);
 const { socials, hours, abn, address } = site;
 const hasSocials = Boolean(socials.instagram || socials.facebook);
 ---
@@ -104,7 +108,7 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
       <h2 class="site-footer__heading">Explore</h2>
       <ul class="site-footer__list" role="list">
         {
-          footerLinks.map((l) => (
+          links.map((l) => (
             <li>
               <a href={l.href}>{l.label}</a>
             </li>

@@ -80,7 +80,7 @@ export const site = {
   parking: orNull(clinic.parking),
   access: orNull(clinic.access),
 
-  // Site-wide notice banner. Source: reference/pages/baby-news/content.md.
+  // Site-wide notice banner (edited on /admin: Clinic details → Notice banner).
   // `until` (YYYY-MM-DD) hides the banner automatically after that date.
   notice: {
     enabled: clinic.notice.enabled,

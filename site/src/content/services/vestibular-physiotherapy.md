@@ -40,7 +40,7 @@ goodToKnow:
     detail: Vestibular physiotherapy is an evidence-based approach to managing the symptoms of vestibular disorders.
 practitioners:
   - laura-bradford
-notice: Vestibular physiotherapy is available again from April 2027, when Laura returns from leave.
+notice: Vestibular physiotherapy is available again from March 2027, when Laura returns from leave.
 practitionersNote: Book vestibular physiotherapy appointments with Laura.
 related:
   - physiotherapy

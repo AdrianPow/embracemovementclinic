@@ -17,6 +17,7 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
   <section class="section" aria-labelledby="posts-h">
     <div class="wrap">
       <h2 id="posts-h" class="visually-hidden">All posts</h2>
+      {posts.length === 0 && <p class="empty">No updates right now. New clinic updates will appear here.</p>}
       <ol class="posts" role="list">
         {
           posts.map((p) => (
@@ -37,6 +38,11 @@ const month = (d: Date) => d.toLocaleDateString('en-AU', { month: 'long', year: 
 </BaseLayout>
 
 <style>
+  .empty {
+    color: var(--color-ink-muted);
+    font-size: var(--step-1);
+  }
+
   .posts {
     display: grid;
     max-width: 52rem;

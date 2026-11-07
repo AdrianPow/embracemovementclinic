@@ -7,6 +7,8 @@ import { primaryLinks } from '../data/navigation';
 import { site } from '../data/site';
 import { booking } from '../data/policies';
 
+// News appears in the menu only while there are posts.
+const hasNews = (await getCollection('news')).length > 0;
 const serviceLinks = (await getCollection('services'))
   .sort((a, b) => a.data.order - b.data.order)
   .map((s) => ({ label: s.data.title, href: `/${s.id}`, kind: s.data.kind }));
@@ -115,7 +117,15 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
           </li>
         ))
       }
-      <li><a href="/news" aria-current={current('/news')}>News</a></li>
+      {
+        hasNews && (
+          <li>
+            <a href="/news" aria-current={current('/news')}>
+              News
+            </a>
+          </li>
+        )
+      }
       {booking.portalUrl && <li><a href={booking.portalUrl}>Patient portal</a></li>}
     </ul>
   </nav>

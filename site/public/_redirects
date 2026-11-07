@@ -10,7 +10,8 @@
 /xmas-2024                    /news                                301
 /news/clinic-update-june-2025 /news                                301
 /news/christmas-2024          /news                                301
-/baby-news                    /news/july-2026-update               301
+/baby-news                    /news                                301
+/news/july-2026-update        /news                                301
 /blog-posts/*                 /news                                301
 /classes                      /pilates                             301
 /exercise-physiology          /exercise-therapy                    301

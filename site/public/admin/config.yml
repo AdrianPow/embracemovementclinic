@@ -155,7 +155,7 @@ collections:
         display_fields: [name]
         multiple: true
       - { name: practitionersNote, label: Note about who you’ll see, widget: string, required: false }
-      - { name: notice, label: Availability note, widget: string, required: false, hint: 'Shown under the page title, e.g. "Available again from April 2027, when Laura returns from leave." Leave blank when not needed.' }
+      - { name: notice, label: Availability note, widget: string, required: false, hint: 'Shown under the page title, e.g. "Available again from March 2027, when Laura returns from leave." Leave blank when not needed.' }
       - name: related
         label: Related services
         widget: relation
@@ -228,7 +228,7 @@ collections:
     label_singular: News post
     description: >-
       Clinic updates. No offers without clear terms, and no patient stories about treatment results.
-      Don't delete the July 2026 update while the notice banner links to it.
+      If the notice banner links to a post, update or remove that link before deleting the post.
     folder: site/src/content/news
     extension: md
     format: frontmatter

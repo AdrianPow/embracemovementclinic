@@ -125,7 +125,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | 1 | Titles as recommended | Nicole: "Physiotherapist · Exercise Physiologist · Clinical Pilates Instructor" ("(pelvic health)" removed at her request, 7 Nov 2026). Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
 | 2 | "Pelvic Health" everywhere | Service renamed "Pelvic Health Physiotherapy" (menu, cards, page title, Google title and description, Patient information link). Clinical terms such as "pelvic floor exercises" and course names are unchanged |
 | 3 | Keep "Book now" | No change: Nookal only shows slots from January |
-| 4 | Laura back in April 2027; vestibular unavailable until then | Laura's status "On maternity leave until April 2027"; availability note under the Vestibular page title |
+| 4 | Laura back in March 2027 (moved from April, 7 Nov 2026); vestibular unavailable until then | Laura's status "On maternity leave until March 2027"; availability note under the Vestibular page title |
 | 5 | Nookal is right: Laura isn't seeing pelvic health clients for now | Laura removed from Pelvic Health "Who you'll see"; note now "Book pelvic health appointments with Nicole…" |
 | 7 | Keep the photos with the old logo for now | No change |
 | 8 | Internal exam only ever optional and with consent | Pelvic "What to expect": "…then complete a comprehensive assessment to work out the best course of treatment. An internal (vaginal) examination is only ever optional, and only goes ahead with your consent." Replaces "(potentially a vaginal examination if deemed necessary)". Nicole to approve the exact words |
@@ -147,6 +147,11 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 ## Privacy policy approved (7 Nov 2026)
 
 Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note removed; an AI tool line added ("We may use an AI tool to help with note-taking and administration. It can summarise your appointment and help draft notes and letters. Your practitioner always reviews what it produces. Please let us know if you would prefer us not to use AI tools."); the paragraph about contacting the OAIC if not satisfied removed at the owner's request; no named privacy contact (the clinic's email and phone); retention stated as "as long as the law requires"; "Last updated 7 November 2026". Overseas: "All of your information is stored within Australia." (owner, 7 Nov 2026).
+
+## Later changes (7 Nov 2026)
+
+- The July 2026 update was deleted (owner's request; a new update is coming). `/baby-news` and `/news/july-2026-update` redirect to /news. The notice banner no longer has a "Read the latest update" link. While there are no posts, /news shows a short note and News is left out of the menu and footer.
+- Laura's return moved to March 2027 (status and the Vestibular availability note).
 
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 

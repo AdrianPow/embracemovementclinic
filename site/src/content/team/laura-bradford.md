@@ -4,7 +4,7 @@ firstName: Laura
 order: 2
 photo: /src/assets/photos/sam_1423-1.webp
 photoPosition: 50% 28%
-status: On maternity leave until April 2027
+status: On maternity leave until March 2027
 titles:
   - Physiotherapist
   - Clinical Pilates Instructor
