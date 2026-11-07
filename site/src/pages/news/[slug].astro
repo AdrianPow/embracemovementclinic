@@ -73,6 +73,14 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
         )
       }
       {
+        (d.introHeading || d.intro) && (
+          <div class="prose post-body post-intro">
+            {d.introHeading && <h2>{d.introHeading}</h2>}
+            {d.intro?.split(/\n\s*\n/).map((para) => <p>{para.trim()}</p>)}
+          </div>
+        )
+      }
+      {
         d.images.length > 0 && (
           <div class="images">
             {d.images.map((img) => (
@@ -84,6 +92,18 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
       <div class="prose post-body">
         <Content />
       </div>
+      {
+        d.closingImage && (
+          <Photo
+            src={d.closingImage.src}
+            alt={d.closingImage.alt}
+            position={d.closingImage.position}
+            ratio={d.closingImage.src.height > d.closingImage.src.width ? '4 / 5' : '4 / 3'}
+            sizes="(min-width: 46rem) 23rem, 100vw"
+            class="closing-photo"
+          />
+        )
+      }
       {
         d.imageNotes.length > 0 && (
           <div class="images">
@@ -133,6 +153,19 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
     margin-top: 0.15em;
     flex-shrink: 0;
     color: var(--color-icon);
+  }
+
+  .post-intro {
+    margin-top: var(--space-s);
+  }
+
+  .post-intro :global(h2) {
+    margin-top: 0;
+  }
+
+  :global(.closing-photo) {
+    max-width: 23rem;
+    border-radius: var(--radius);
   }
 
   .images {

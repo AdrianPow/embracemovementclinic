@@ -105,7 +105,12 @@ const news = defineCollection({
       /** Photos in src/assets/photos, each with a description and an optional crop position. */
       images: z.array(z.object({ src: image(), alt: z.string(), position: z.string().optional() })).default([]),
       /** Photos still to be supplied (shown as placeholders). */
+      /** Optional text above the photos: a heading and paragraphs (blank line between paragraphs). */
+      introHeading: z.string().optional(),
+      intro: z.string().optional(),
       imageNotes: z.array(z.string()).default([]),
+      /** Optional photo after the text, e.g. with the sign-off. */
+      closingImage: z.object({ src: image(), alt: z.string(), position: z.string().optional() }).optional(),
       oldUrl: z.string().optional(),
     }),
 });
