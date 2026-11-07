@@ -104,7 +104,7 @@ const showWith = Boolean(timetable?.some((r) => r.with?.trim()));
 
   <section class="section" id="timetable" aria-labelledby="timetable-h">
     <div class="wrap">
-      <div class="head">
+      <div class="head head--wide">
         <h2 id="timetable-h">Timetable</h2>
         <p class="head__intro">{booking.classes}</p>
       </div>
@@ -279,6 +279,11 @@ const showWith = Boolean(timetable?.some((r) => r.with?.trim()));
     align-content: start;
     max-width: 46rem;
     margin-bottom: var(--space-l);
+  }
+
+  /* Timetable intro runs the full width, like the notice and table under it. */
+  .head--wide {
+    max-width: none;
   }
 
   .head__intro {
