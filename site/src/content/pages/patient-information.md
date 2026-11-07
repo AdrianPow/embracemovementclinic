@@ -33,21 +33,17 @@ fees:
     item: Review (30 minutes)
     price: $110
   - group: Exercise therapy
-    item: One-on-one exercise therapy session (45 minutes)
-    price: $125
-    note: With Nicole or Laura. For people who prefer not to, or aren’t suited to, join a class.
-  - group: Exercise therapy
-    item: Exercise physiology initial consultation (45 minutes)
+    item: Initial consultation (45 minutes)
     price: $145
-    note: With Nicole, an Accredited Exercise Physiologist.
+    note: With Nicole or Laura.
   - group: Exercise therapy
-    item: Exercise physiology review (30 minutes)
+    item: Review (30 minutes)
     price: $95
-    note: With Nicole.
+    note: With Nicole or Laura.
   - group: Exercise therapy
-    item: Exercise physiology review (45 minutes)
+    item: Review (45 minutes)
     price: $125
-    note: With Nicole.
+    note: With Nicole or Laura.
   - group: Classes
     item: Pre-class assessment (45 minutes)
     price: $125

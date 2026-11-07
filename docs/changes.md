@@ -141,7 +141,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 - The service is now **Exercise Therapy**, a broader name, so both Nicole and Laura can provide it. Address `/exercise-therapy`; `/exercise-physiology` redirects there (301). Content otherwise unchanged.
 - "Who you'll see" lists Nicole and Laura, with the note "Nicole and Laura both provide exercise therapy. Nicole is also an Accredited Exercise Physiologist (AEP)."
 - Nicole's title is now "Accredited Exercise Physiologist" (her AEP accreditation confirmed by the owner).
-- Fees: an "Exercise therapy" group lists the one-on-one exercise therapy session (Nicole or Laura, $125) and Nicole's exercise physiology consultations ($145, $95, $125), as on Nookal.
+- Fees: an "Exercise therapy" group with an initial consultation (45 minutes, $145) and reviews (30 minutes, $95; 45 minutes, $125), each with Nicole or Laura. Exercise physiology is no longer listed separately, and the separate "1 on 1 Exercise Therapy Session" ($125) is covered by the 45-minute review. The clinic will update Nookal to match.
 - Still "Exercise Physiology" by the owner's choice of words: the home page headline and facts (editable on /admin), and the privacy policy's description of the clinic's services.
 
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
