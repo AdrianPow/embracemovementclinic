@@ -37,7 +37,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 
 - [ ] Practitioner bios, qualifications and AHPRA registration numbers or names as registered
 - [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (8 Nov 2026)
-- [ ] Facebook page URL, if there is one (add it on /admin: Clinic settings → Clinic details)
+- [x] Facebook: https://www.facebook.com/embracemovementclinic/ (8 Nov 2026)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
 - [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
