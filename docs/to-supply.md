@@ -58,7 +58,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Class facts:** 4–5 people and 45 minutes (Nookal); cancellation is at least 8 hours' notice or the full cost is charged (Nicole, 7 Nov 2026). Confirm it covers one-on-one appointments too
 - [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)
 - [x] A photo of Jeff, the clinic dog (the team photo with Laura and Nicole)
-- [x] **Privacy policy**: reviewed and approved by Nicole (7 Nov 2026). AI note-taking line added; OAIC paragraph removed at her request. Still open: whether any information is stored or processed overseas (e.g. by Nookal or the AI tool), and where
+- [x] **Privacy policy**: reviewed and approved by Nicole (7 Nov 2026). AI note-taking line added; OAIC paragraph removed at her request. All information is stored within Australia (owner, 7 Nov 2026)
 - [ ] Approve the wording changes in `docs/changes.md`
 
 ## Access (confirm who has it; don't store it here)
