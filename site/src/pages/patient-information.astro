@@ -2,11 +2,14 @@
 // Patient information: practical facts gathered from the old newsletters and pages,
 // in one evergreen place. Facts live in src/data/policies.json and src/data/clinic.json;
 // this page's own text in src/content/pages/patient-information.md (edited on /admin).
+// Layout: an icon grid to jump to each topic, then one band per topic (alternating white and
+// mist), each headed by its icon, so the page scans as a set of short, visual sections.
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Button from '../components/Button.astro';
-import Icon from '../components/Icon.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
 import Todo from '../components/Todo.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import BookingBand from '../components/BookingBand.astro';
@@ -40,15 +43,23 @@ const feeGroups = p.fees.reduce<{ name?: string; fees: typeof p.fees }[]>((group
 }, []);
 const jeff = teamEntry.data.jeff;
 
-const sections = [
-  { id: 'booking', label: 'Booking' },
-  { id: 'first-visit', label: 'Your first visit' },
-  { id: 'cancellations', label: 'Cancellations' },
-  { id: 'fees', label: 'Fees and rebates' },
-  { id: 'classes', label: 'Classes' },
-  { id: 'at-the-clinic', label: 'At the clinic' },
-  { id: 'privacy', label: 'Your privacy' },
+const sections: { id: string; label: string; icon: IconName }[] = [
+  { id: 'booking', label: 'Booking', icon: 'calendar' },
+  { id: 'first-visit', label: 'Your first visit', icon: 'user' },
+  { id: 'cancellations', label: 'Cancellations', icon: 'clock' },
+  { id: 'fees', label: 'Fees and rebates', icon: 'card' },
+  { id: 'classes', label: 'Classes', icon: 'users' },
+  { id: 'at-the-clinic', label: 'At the clinic', icon: 'map-pin' },
+  { id: 'privacy', label: 'Your privacy', icon: 'shield' },
 ];
+const sec = Object.fromEntries(sections.map((s) => [s.id, s]));
+
+// Stop short facts breaking at a dash or hyphen ("4–" / "5 people", "pre-" / "class") with word joiners.
+const keepTogether = (t: string) => t.replace(/(\w)([–-])(\w)/g, '$1\u2060$2\u2060$3');
+
+// Class facts are edited on /admin, so pick each tile's icon from its label rather than its position.
+const factIcon = (label: string): IconName =>
+  /size|people/i.test(label) ? 'users' : /length|long|minute|time/i.test(label) ? 'clock' : /health|fund|rebate|claim/i.test(label) ? 'card' : 'check';
 ---
 
 <BaseLayout
@@ -62,325 +73,527 @@ const sections = [
     lede={p.intro}
   />
 
-  <div class="section">
-    <div class="wrap layout">
-      <nav class="toc" aria-label="On this page">
-        <p class="toc__title">On this page</p>
-        <ul role="list">
+  <div class="band band--first">
+    <div class="wrap jump-wrap">
+      <ClosureNote />
+      <nav aria-label="On this page">
+        <ul class="jump" role="list">
           {
             sections.map((s) => (
               <li>
-                <a href={`#${s.id}`}>{s.label}</a>
+                <a href={`#${s.id}`}>
+                  <span class="badge">
+                    <Icon name={s.icon} size={22} />
+                  </span>
+                  <span>{s.label}</span>
+                </a>
               </li>
             ))
           }
         </ul>
       </nav>
+    </div>
+  </div>
 
-      <div class="content">
-        <ClosureNote />
-
-        <section id="booking" aria-labelledby="booking-h" class="block">
-          <h2 id="booking-h">Booking</h2>
-          <div class="cards">
-            <div class="card">
-              <Icon name="calendar" size={24} />
-              <h3 class="h4">Book online</h3>
-              <p>Book appointments, pre-class assessments and classes through our online booking portal.</p>
-              <div class="card__actions">
-                <Button href={site.booking.url} size="s">Book now</Button>
-                {booking.portalUrl && (
-                  <Button href={booking.portalUrl} variant="secondary" size="s">
-                    Patient portal
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div class="card">
-              <Icon name="phone" size={24} />
-              <h3 class="h4">Call or text</h3>
-              <p>
-                Call <a href={site.phone.href}>{site.phone.display}</a>. {booking.waitlistText}{' '}
-                <a href={site.phone.href.replace('tel:', 'sms:')}>{site.phone.display}</a>.
-              </p>
-            </div>
-            <div class="card card--wide">
-              <Icon name="mail" size={24} />
-              <h3 class="h4">Email</h3>
-              <p><a href={site.email.href} class="email">{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</a></p>
-            </div>
+  <section id="booking" aria-labelledby="booking-h" class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec.booking.icon} size={26} /></span>
+        <h2 id="booking-h">Booking</h2>
+      </div>
+      <div class="ways">
+        <div class="way way--main on-brand">
+          <span class="way__mark" aria-hidden="true"><Icon name="calendar" size={150} /></span>
+          <Icon name="calendar" size={26} />
+          <h3 class="h4">Book online</h3>
+          <p>Book appointments, pre-class assessments and classes through our online booking portal.</p>
+          <div class="way__actions">
+            <Button href={site.booking.url} size="s">Book now</Button>
+            {booking.portalUrl && (
+              <Button href={booking.portalUrl} variant="secondary" size="s">
+                Patient portal
+              </Button>
+            )}
           </div>
-          <p class="tip"><Icon name="info" size={20} /><span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href} {...newTabAttrs(bookingTip.link.href)}>{bookingTip.link.text}<span class="visually-hidden"> (opens in a new tab)</span></a>}{bookingTip.after}</span></p>
-        </section>
+        </div>
+        <div class="way">
+          <Icon name="phone" size={26} />
+          <h3 class="h4">Call or text</h3>
+          <p>
+            Call <a href={site.phone.href}>{site.phone.display}</a>. {booking.waitlistText}{' '}
+            <a href={site.phone.href.replace('tel:', 'sms:')}>{site.phone.display}</a>.
+          </p>
+        </div>
+        <div class="way">
+          <Icon name="mail" size={26} />
+          <h3 class="h4">Email</h3>
+          <p><a href={site.email.href} class="email">{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</a></p>
+        </div>
+      </div>
+      <p class="tip"><Icon name="info" size={20} /><span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href} {...newTabAttrs(bookingTip.link.href)}>{bookingTip.link.text}<span class="visually-hidden"> (opens in a new tab)</span></a>}{bookingTip.after}</span></p>
+    </div>
+  </section>
 
-        <section id="first-visit" aria-labelledby="first-h" class="block">
-          <h2 id="first-h">Your first visit</h2>
-          {p.firstVisit[0] && <p>{p.firstVisit[0]}</p>}
+  <section id="first-visit" aria-labelledby="first-h" class="band band--alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec['first-visit'].icon} size={26} /></span>
+        <h2 id="first-h">Your first visit</h2>
+      </div>
+      <div class="split">
+        <div class="prose">
+          {p.firstVisit[0] && <p class="lede-s">{p.firstVisit[0]}</p>}
+          {p.firstVisit.slice(1).map((para) => <p>{para}</p>)}
           <p>
             Each service page explains what to expect in more detail. See{' '}
             <a href="/services">all services</a>.
           </p>
-          {p.firstVisit.slice(1).map((para) => <p>{para}</p>)}
+        </div>
+        <div class="panel">
           <h3 class="h4">What to bring</h3>
           {
             p.whatToBring.length > 0 ? (
-              <ul class="list">
+              <ul class="ticks" role="list">
                 {p.whatToBring.map((item) => (
-                  <li>{item}</li>
+                  <li>
+                    <Icon name="check" size={18} />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             ) : (
               <Todo as="div">what clients should bring to a first appointment (for example a referral, health fund card or comfortable clothing)</Todo>
             )
           }
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="cancellations" aria-labelledby="cancel-h" class="block">
-          <h2 id="cancel-h">Cancellations</h2>
-          {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
-        </section>
+  <section id="cancellations" aria-labelledby="cancel-h" class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec.cancellations.icon} size={26} /></span>
+        <h2 id="cancel-h">Cancellations</h2>
+      </div>
+      <div class="callout">
+        <span class="callout__mark" aria-hidden="true"><Icon name="clock" size={170} /></span>
+        {cancellationPolicy.paragraphs.map((para, i) => <p class:list={{ 'callout__rule': i === cancellationPolicy.paragraphs.length - 1 && i > 0 }}>{para}</p>)}
+      </div>
+    </div>
+  </section>
 
-        <section id="fees" aria-labelledby="fees-h" class="block">
-          <h2 id="fees-h">Fees and rebates</h2>
-          {
-            p.fees.length > 0 ? (
-              <div class="fee-groups">
-                {feeGroups.map((g) => (
-                  <div class="fee-group">
-                    {g.name && (
-                      <h3 class="h4 fee-group__title">
-                        {serviceFor(g.name) ? (
-                          <a class="fee-pill" href={`/${serviceFor(g.name)!.id}`}>
-                            {g.name}
-                            <Icon name="arrow-right" size={18} />
-                          </a>
-                        ) : (
-                          <span class="fee-pill">
-                            {g.name}
-                          </span>
-                        )}
-                      </h3>
+  <section id="fees" aria-labelledby="fees-h" class="band band--alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec.fees.icon} size={26} /></span>
+        <h2 id="fees-h">Fees and rebates</h2>
+      </div>
+      {
+        p.fees.length > 0 ? (
+          <div class="fee-groups">
+            {feeGroups.map((g) => (
+              <div class="panel fee-group">
+                {g.name && (
+                  <h3 class="h4 fee-group__title">
+                    {serviceFor(g.name) ? (
+                      <a class="fee-pill" href={`/${serviceFor(g.name)!.id}`}>
+                        {g.name}
+                        <Icon name="arrow-right" size={18} />
+                      </a>
+                    ) : (
+                      <span class="fee-pill">{g.name}</span>
                     )}
-                    <dl class="fees">
-                      {g.fees.map((f) => (
-                        <div>
-                          <dt>
-                            {f.item}
-                            {f.note && (
-                              <>
-                                {' '}
-                                <span class="fee-note">{f.note}</span>
-                              </>
-                            )}
-                          </dt>
-                          <dd>{f.price}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                ))}
-                <p class="fee-gst">Prices include GST where it applies.</p>
+                  </h3>
+                )}
+                <dl class="fees">
+                  {g.fees.map((f) => (
+                    <div>
+                      <dt>
+                        {f.item}
+                        {f.note && (
+                          <>
+                            {' '}
+                            <span class="fee-note">{f.note}</span>
+                          </>
+                        )}
+                      </dt>
+                      <dd>{f.price}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-            ) : (
-              <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
-            )
-          }
-          {(p.feeNotes.length > 0 || p.funding.length > 0) && <h3 class="h4 rebates-h">Rebates and funding</h3>}
-          {
-            p.feeNotes.length > 0 && (
-              <ul class="list">
+            ))}
+          </div>
+        ) : (
+          <Todo as="div">fees for initial and follow-up appointments, pre-class assessments and classes</Todo>
+        )
+      }
+      {p.fees.length > 0 && <p class="small">Prices include GST where it applies.</p>}
+
+      <h3 class="h3 sub-h">Rebates and funding</h3>
+      <div class="pair">
+        {
+          p.feeNotes.length > 0 && (
+            <div class="panel">
+              <ul class="ticks" role="list">
                 {p.feeNotes.map((note) => (
-                  <li>{note}</li>
+                  <li>
+                    <Icon name="card" size={18} />
+                    <span>{note}</span>
+                  </li>
                 ))}
               </ul>
-            )
-          }
+            </div>
+          )
+        }
+        <div class="panel">
           {
             p.funding.length > 0 ? (
-              <ul class="list">
+              <ul class="ticks" role="list">
                 {p.funding.map((item) => (
-                  <li>{item}</li>
+                  <li>
+                    <Icon name="shield" size={18} />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             ) : (
               <Todo as="div">whether you accept Medicare (GP care plan) referrals, DVA, NDIS or WorkCover. Add here if so.</Todo>
             )
           }
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="classes" aria-labelledby="classes-h" class="block">
-          <h2 id="classes-h">Classes</h2>
-          <dl class="facts">
-            {
-              classFacts.map((f) => (
-                <div>
-                  <dt>{f.label}</dt>
-                  <dd>{f.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
+  <section id="classes" aria-labelledby="classes-h" class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec.classes.icon} size={26} /></span>
+        <h2 id="classes-h">Classes</h2>
+      </div>
+      <dl class="stats">
+        {
+          classFacts.map((f) => (
+            <div class:list={['stat', { 'stat--long': f.value.length > 40 }]}>
+              <Icon name={factIcon(f.label)} size={24} />
+              <dt>{f.label}</dt>
+              <dd>{keepTogether(f.value)}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <div class="split">
+        <div class="prose">
           <p>{booking.classes}</p>
+          <div class="actions">
+            <Button href="/pilates#timetable" icon="calendar">See the class timetable</Button>
+          </div>
+        </div>
+        <div class="panel panel--mist">
           <h3 class="h4">What to wear</h3>
-          <ul class="list">
+          <ul class="ticks" role="list">
             {
               studioEtiquette.map((e) => (
                 <li>
-                  <strong>{/[.?!]$/.test(e.name) ? e.name : `${e.name}.`}</strong> {e.detail}
+                  <Icon name="check" size={18} />
+                  <span>
+                    <strong>{/[.?!]$/.test(e.name) ? e.name : `${e.name}.`}</strong> {e.detail}
+                  </span>
                 </li>
               ))
             }
           </ul>
-          <p><a href="/pilates">Pilates and class timetable</a></p>
-        </section>
-
-        <section id="at-the-clinic" aria-labelledby="clinic-h" class="block">
-          <h2 id="clinic-h">At the clinic</h2>
-          <dl class="facts">
-            <div>
-              <dt>Address</dt>
-              <dd><a href={site.address.directionsUrl}>{fullAddress}</a></dd>
-            </div>
-            <div>
-              <dt>Parking</dt>
-              <dd>{site.parking ?? <Todo>parking details</Todo>}</dd>
-            </div>
-            {
-              site.access && (
-                <div>
-                  <dt>Access</dt>
-                  <dd>{site.access}</dd>
-                </div>
-              )
-            }
-          </dl>
-          <h3 class="h4"><Icon name="paw" size={18} /> {jeff.heading}</h3>
-          <p>{[jeff.text, jeff.extra].filter(Boolean).join(' ')}</p>
-        </section>
-
-        <section id="privacy" aria-labelledby="privacy-h" class="block">
-          <h2 id="privacy-h">Your privacy</h2>
-          <p>{p.privacy}</p>
-          <p><a href="/privacy">Read our privacy policy</a></p>
-        </section>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section id="at-the-clinic" aria-labelledby="clinic-h" class="band band--alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="badge badge--l"><Icon name={sec['at-the-clinic'].icon} size={26} /></span>
+        <h2 id="clinic-h">At the clinic</h2>
+      </div>
+      <div class="split split--even">
+        <div class="stack">
+          <div class="panel place">
+            <Icon name="map-pin" size={24} />
+            <div>
+              <h3 class="h4">Address</h3>
+              <p><a href={site.address.directionsUrl}>{fullAddress}</a></p>
+            </div>
+          </div>
+          <div class="panel place">
+            <Icon name="info" size={24} />
+            <div>
+              <h3 class="h4">Parking</h3>
+              <p>{site.parking ?? <Todo>parking details</Todo>}</p>
+            </div>
+          </div>
+          {
+            site.access && (
+              <div class="panel place">
+                <Icon name="info" size={24} />
+                <div>
+                  <h3 class="h4">Access</h3>
+                  <p>{site.access}</p>
+                </div>
+              </div>
+            )
+          }
+        </div>
+        <div class="panel jeff">
+          <Photo src={jeff.photo} alt={jeff.photoAlt} position={jeff.photoPosition} ratio="16 / 10" class="jeff__photo" sizes="(min-width: 56em) 36rem, 100vw" />
+          <div class="jeff__text">
+            <h3 class="h4"><Icon name="paw" size={20} /> {jeff.heading}</h3>
+            <p>{[jeff.text, jeff.extra].filter(Boolean).join(' ')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" aria-labelledby="privacy-h" class="band">
+    <div class="wrap">
+      <div class="privacy">
+        <span class="badge badge--l"><Icon name={sec.privacy.icon} size={26} /></span>
+        <div>
+          <h2 id="privacy-h" class="h3">Your privacy</h2>
+          <p>{p.privacy}</p>
+        </div>
+        <Button href="/privacy" variant="secondary" size="s">Read our privacy policy</Button>
+      </div>
+    </div>
+  </section>
 
   <BookingBand />
 </BaseLayout>
 
 <style>
-  .layout {
-    display: grid;
-    gap: var(--space-l);
+  /* One band per topic, alternating white and mist; tighter than a full .section. */
+  .band {
+    padding-block: var(--space-xl);
+    scroll-margin-top: var(--header-h);
   }
 
-  @media (min-width: 62em) {
-    .layout {
-      grid-template-columns: 14rem minmax(0, 1fr);
-      gap: var(--space-xl);
-      align-items: start;
+  .band--first {
+    padding-block: var(--space-m) 0;
+  }
+
+  .band--alt {
+    background: var(--color-bg-alt);
+  }
+
+  .band--alt .panel {
+    background: var(--color-bg);
+  }
+
+  .jump-wrap {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  /* Jump grid: one icon tile per topic. */
+  .jump {
+    display: grid;
+    gap: var(--space-2xs);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* An odd last tile spans the row on phones, so there's no gap. */
+  @media (max-width: 39.99em) {
+    .jump li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
     }
-
-    .toc {
-      position: sticky;
-      top: calc(var(--header-h) + var(--space-m));
-    }
-  }
-
-  .toc {
-    padding: var(--space-m);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
-  }
-
-  .toc__title {
-    margin-bottom: var(--space-2xs);
-    font-family: var(--font-display);
-    font-size: var(--step--1);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-ink-muted);
-  }
-
-  .toc ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 var(--space-s);
-  }
-
-  @media (min-width: 62em) {
-    .toc ul {
-      display: grid;
-    }
-  }
-
-  .toc a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.5rem;
-    font-weight: 550;
-  }
-
-  .content {
-    display: grid;
-    gap: var(--space-xl);
-    max-width: 50rem;
-  }
-
-  .block {
-    display: grid;
-    gap: var(--space-s);
-    scroll-margin-top: calc(var(--header-h) + var(--space-m));
-  }
-
-  .block h2 {
-    font-size: var(--step-3);
-  }
-
-  .block h3 {
-    display: flex;
-    align-items: center;
-    gap: 0.4em;
-    margin-top: var(--space-xs);
-  }
-
-  .block > p {
-    max-width: var(--measure);
-  }
-
-  /* Book online and Call or text side by side; Email as a strip underneath, so the address
-     fits on one line. */
-  .cards {
-    display: grid;
-    gap: var(--space-s);
-    grid-template-columns: minmax(0, 1fr);
   }
 
   @media (min-width: 40em) {
-    .cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card--wide {
-      grid-column: 1 / -1;
-      grid-template-columns: auto auto 1fr;
-      align-items: center;
-      column-gap: var(--space-s);
-    }
-
-    .card--wide .email {
-      white-space: nowrap;
-    }
-
-    .card--wide .email :global(wbr) {
-      display: none;
+    .jump {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
-  .card {
+  @media (min-width: 70em) {
+    .jump {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .jump a {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      min-height: 7.5rem;
+    }
+  }
+
+  .jump a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    height: 100%;
+    min-height: 3.5rem;
+    padding: var(--space-xs);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      border-color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+  }
+
+  @media (hover: hover) {
+    .jump a:hover {
+      border-color: var(--color-icon);
+      background: var(--color-accent-soft);
+    }
+  }
+
+  @media (max-width: 39.99em) {
+    .jump a {
+      font-size: var(--step--1);
+    }
+  }
+
+  .badge {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-icon);
+  }
+
+  .badge--l {
+    width: 3.25rem;
+    height: 3.25rem;
+    background: var(--color-brand);
+    color: var(--color-accent-on-brand);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    margin-bottom: var(--space-m);
+  }
+
+  .head h2 {
+    font-size: var(--step-3);
+  }
+
+  .panel {
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+  }
+
+  .panel--mist {
+    border-color: transparent;
+    background: var(--color-bg-alt);
+  }
+
+  .panel > h3 {
+    margin-bottom: var(--space-s);
+  }
+
+  .prose {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+    max-width: var(--measure);
+  }
+
+  .lede-s {
+    font-size: var(--step-1);
+  }
+
+  .small {
+    margin-top: var(--space-s);
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .split {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 56em) {
+    .split {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-l);
+      align-items: start;
+    }
+
+    .split--even {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+
+  .stack {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+  }
+
+  /* Lists with an icon per item (check, card, shield). */
+  .ticks {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .ticks li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.65rem;
+    align-items: start;
+  }
+
+  .ticks :global(svg) {
+    margin-top: 0.2em;
+    color: var(--color-icon);
+  }
+
+  /* Booking: three ways to book, online first and in petrol. */
+  .ways {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (min-width: 48em) {
+    .ways {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .way--main {
+      grid-row: span 2;
+    }
+  }
+
+  @media (min-width: 70em) {
+    .ways {
+      grid-template-columns: 1.3fr 1fr 1fr;
+    }
+
+    .way--main {
+      grid-row: auto;
+    }
+  }
+
+  .way {
+    position: relative;
+    overflow: hidden;
     display: grid;
     gap: var(--space-xs);
     align-content: start;
@@ -391,29 +604,56 @@ const sections = [
     background: var(--color-bg);
   }
 
-  .card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs);
-  }
-
-  .card :global(svg) {
+  .way > :global(svg) {
     color: var(--color-icon);
   }
 
-  .card p {
+  .way p {
     color: var(--color-ink-muted);
   }
 
+  .way--main {
+    border-color: var(--color-brand);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .way--main > :global(svg) {
+    color: var(--color-accent-on-brand);
+  }
+
+  .way--main p {
+    position: relative;
+    color: var(--color-on-brand);
+  }
+
+  .way__mark {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -1.5rem;
+    color: var(--color-accent-on-brand);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .way__actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-2xs);
+  }
+
   .email {
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
   }
 
   .tip {
     display: flex;
     gap: var(--space-xs);
     align-items: flex-start;
-    padding: var(--space-m);
+    margin-top: var(--space-s);
+    padding: var(--space-s) var(--space-m);
     border-radius: var(--radius-l);
     background: var(--color-accent-soft);
   }
@@ -424,50 +664,65 @@ const sections = [
     color: var(--color-icon);
   }
 
-  .list {
+  /* Cancellations: a pale teal callout with a large faint clock; the rule itself in bold. */
+  .callout {
+    position: relative;
+    overflow: hidden;
     display: grid;
-    gap: var(--space-xs);
-    padding-left: 1.25em;
+    gap: var(--space-s);
+    max-width: 52rem;
+    padding: var(--space-l) var(--space-m);
+    padding-right: max(var(--space-m), 9rem);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+    font-size: var(--step-1);
   }
 
-  .list li::marker {
-    color: var(--color-icon);
-  }
-
-  .facts {
-    display: grid;
-  }
-
-  .facts div {
-    display: grid;
-    gap: var(--space-3xs);
-    padding-block: var(--space-xs);
-    border-top: 1px solid var(--color-line);
-  }
-
-  @media (min-width: 40em) {
-    .facts div {
-      grid-template-columns: 10rem 1fr;
-      gap: var(--space-s);
+  @media (max-width: 39.99em) {
+    .callout {
+      padding-right: var(--space-m);
+      font-size: var(--step-0);
     }
   }
 
-  /* Fees: one short price list per service, prices right-aligned. */
+  .callout__mark {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    color: var(--color-icon);
+    opacity: 0.16;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .callout p {
+    position: relative;
+  }
+
+  .callout__rule {
+    font-weight: 650;
+  }
+
+  /* Fees: a card per service, prices right-aligned. */
   .fee-groups {
     display: grid;
-    gap: var(--space-l);
-    margin-bottom: var(--space-l);
+    gap: var(--space-s);
   }
 
   @media (min-width: 48em) {
     .fee-groups {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-l) var(--space-xl);
+    }
+  }
+
+  @media (min-width: 76em) {
+    .fee-groups {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
   .fee-group__title {
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-2xs);
   }
 
   /* Service name as a petrol pill linking to its page. */
@@ -501,25 +756,16 @@ const sections = [
     border-top: 1px solid var(--color-line);
   }
 
+  .fees div:first-child {
+    border-top: 0;
+  }
+
   .fees dd {
     font-family: var(--font-display);
-    font-weight: 650;
+    font-size: var(--step-1);
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-  }
-
-  .fee-gst {
-    grid-column: 1 / -1;
-    color: var(--color-ink-muted);
-    font-size: var(--step--1);
-  }
-
-  .rebates-h {
-    margin-bottom: var(--space-2xs);
-  }
-
-  .rebates-h + .list + .list {
-    margin-top: var(--space-xs);
   }
 
   .fee-note {
@@ -528,12 +774,142 @@ const sections = [
     font-size: var(--step--1);
   }
 
-  .facts dt {
-    font-family: var(--font-display);
-    font-weight: 650;
+  .sub-h {
+    margin: var(--space-l) 0 var(--space-s);
   }
 
-  .facts dd {
+  .pair {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (min-width: 48em) {
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Classes: the key facts as tiles. */
+  .stats {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: var(--space-l);
+  }
+
+  @media (min-width: 62em) {
+    .stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stat {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: var(--space-3xs);
+    align-content: start;
+    padding: var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-accent-soft);
+  }
+
+  .stat > :global(svg) {
+    margin-bottom: var(--space-2xs);
+    color: var(--color-icon);
+  }
+
+  .stat dt {
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
+  }
+
+  .stat dd {
     margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 650;
+    line-height: 1.25;
+  }
+
+  .stat--long dd {
+    font-size: var(--step-0);
+  }
+
+  @media (max-width: 39.99em) {
+    .stat {
+      padding: var(--space-s);
+    }
+
+    .stat dd {
+      font-size: var(--step-0);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-2xs);
+  }
+
+  /* At the clinic: address and parking beside a Jeff card with his photo. */
+  .place {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+  }
+
+  .place > :global(svg) {
+    color: var(--color-icon);
+  }
+
+  .place h3 {
+    margin-bottom: var(--space-3xs);
+  }
+
+  .jeff {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .jeff__text {
+    display: grid;
+    gap: var(--space-2xs);
+    align-content: start;
+    padding: var(--space-m);
+  }
+
+  .jeff__text h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  .jeff__text :global(svg) {
+    color: var(--color-icon);
+  }
+
+  /* Privacy: one row. */
+  .privacy {
+    display: grid;
+    gap: var(--space-s);
+    align-items: center;
+    padding: var(--space-m);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-l);
+  }
+
+  @media (min-width: 48em) {
+    .privacy {
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-m);
+    }
+  }
+
+  .privacy p {
+    margin-top: var(--space-3xs);
+    color: var(--color-ink-muted);
   }
 </style>
