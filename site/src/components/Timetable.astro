@@ -32,13 +32,24 @@ const minutes = (t: string) => {
   return ((Number(m[1]) % 12) + (m[3] === 'pm' ? 12 : 0)) * 60 + Number(m[2] ?? 0);
 };
 const slots = [...new Set(days.flatMap((d) => d.classes.map((c) => minutes(c.time))))].sort((a, b) => a - b);
-const rowOf = (t: string) => slots.indexOf(minutes(t)) + 1;
+// A small gap row between the morning and afternoon classes.
+const noon = 12 * 60;
+const am = slots.filter((m) => m < noon).length;
+const pm = slots.length - am;
+const gap = am > 0 && pm > 0;
+const rowOf = (t: string) => {
+  const i = slots.indexOf(minutes(t));
+  return i + 1 + (gap && i >= am ? 1 : 0);
+};
+const rows = ['auto', am && `repeat(${am}, auto)`, gap && 'var(--space-s)', pm && `repeat(${pm}, auto)`].filter(Boolean).join(' ');
+const isFirstPm = (classes: { time: string }[], i: number) =>
+  minutes(classes[i].time) >= noon && (i === 0 || minutes(classes[i - 1].time) < noon) && i > 0;
 const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c.class.trim() !== defaultClass));
 ---
 
 <div class="board-wrap">
   {!otherClasses && <p class="board-title">{defaultClass} classes</p>}
-  <ul class="board" role="list" style={`--days: ${days.length}; --rows: ${slots.length}`}>
+  <ul class="board" role="list" style={`--days: ${days.length}; --rows: ${rows}`}>
     {
       days.map((d) => (
         <li class="day">
@@ -49,7 +60,9 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
             </span>
           </h3>
           <ul class="slots" role="list">
-            {d.classes.map((c) => (
+            {d.classes.map((c, i) => (
+              <>
+              {isFirstPm(d.classes, i) && <li class="slots__break" aria-hidden="true" />}
               <li class="slot" data-colour={colourOf(c.with)} style={`--row: ${rowOf(c.time)}`}>
                 <span class="slot__time">{c.time}</span>
                 {(otherClasses || nameOf(c.with)) && (
@@ -60,6 +73,7 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
                   </span>
                 )}
               </li>
+              </>
             ))}
           </ul>
         </li>
@@ -127,6 +141,12 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
     gap: var(--space-2xs);
   }
 
+  /* Phones: morning and afternoon classes start on separate lines, with a little extra space. */
+  .slots__break {
+    flex-basis: 100%;
+    height: var(--space-3xs);
+  }
+
   .slot {
     display: grid;
     justify-items: center;
@@ -192,7 +212,7 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
   @media (min-width: 48em) {
     .board {
       grid-template-columns: repeat(var(--days, 5), minmax(0, 1fr));
-      grid-template-rows: auto repeat(var(--rows, 1), auto);
+      grid-template-rows: var(--rows, auto);
       gap: var(--space-xs) var(--space-s);
       padding: var(--space-m);
     }
@@ -219,6 +239,10 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
 
     .slot {
       grid-row: var(--row);
+    }
+
+    .slots__break {
+      display: none;
     }
 
     .slot {
