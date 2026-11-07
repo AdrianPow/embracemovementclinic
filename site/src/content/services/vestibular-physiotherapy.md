@@ -44,7 +44,7 @@ notice: Vestibular physiotherapy is available again from April 2027, when Laura 
 practitionersNote: Book vestibular physiotherapy appointments with Laura.
 related:
   - physiotherapy
-  - exercise-physiology
+  - exercise-therapy
   - pilates
 seoTitle: Vestibular Physiotherapy in McDowall
 seoDescription: Vestibular physiotherapy in McDowall for vertigo, dizziness and decreased balance, including BPPV. Assessment and an individualised treatment plan.

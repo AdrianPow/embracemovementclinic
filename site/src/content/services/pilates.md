@@ -25,7 +25,7 @@ practitioners:
   - laura-bradford
 practitionersNote: Both of our physiotherapists are clinical pilates instructors.
 related:
-  - exercise-physiology
+  - exercise-therapy
   - physiotherapy
   - pelvic-health-physiotherapy
 seoTitle: Clinical Pilates Classes in McDowall

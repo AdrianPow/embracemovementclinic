@@ -49,7 +49,7 @@ practitioners:
   - nicole-saxby
   - laura-bradford
 related:
-  - exercise-physiology
+  - exercise-therapy
   - pelvic-health-physiotherapy
   - pilates
 seoTitle: Physiotherapy in McDowall

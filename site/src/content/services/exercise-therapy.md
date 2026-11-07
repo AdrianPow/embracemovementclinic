@@ -1,5 +1,5 @@
 ---
-title: Exercise Physiology
+title: Exercise Therapy
 order: 2
 kind: appointment
 image: /src/assets/photos/file_00000000abd8820b845426267182cca5.webp
@@ -42,10 +42,13 @@ treatments:
       detail: Personalised advice on how to fit exercise into your daily routine safely and effectively.
 practitioners:
   - nicole-saxby
+  - laura-bradford
+practitionersNote: Nicole and Laura both provide exercise therapy. Nicole is also an Accredited Exercise Physiologist (AEP).
 related:
   - pilates
   - physiotherapy
   - pelvic-health-physiotherapy
-seoTitle: Exercise Physiology in McDowall
-seoDescription: Exercise physiology in McDowall for injury rehabilitation, chronic pain and disease management, osteoporosis, healthy ageing and athletic performance.
+seoTitle: Exercise Therapy in McDowall
+seoDescription: Exercise therapy and exercise physiology in McDowall for injury rehabilitation, chronic pain and disease management, osteoporosis, healthy ageing and athletic performance.
+oldUrl: /exercise-physiology
 ---

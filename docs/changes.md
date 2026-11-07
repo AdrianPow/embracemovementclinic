@@ -136,6 +136,14 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | 13 | Add third related services | Exercise Physiology → Pelvic Health added; Vestibular → Pilates added |
 | 14 | Reopens Monday 4 January 2027 | Banner: "The clinic is temporarily closed and reopens on Monday 4 January 2027." It and the closure notes hide themselves after 3 January |
 
+## Exercise Physiology becomes Exercise Therapy (8 Nov 2026, owner's request)
+
+- The service is now **Exercise Therapy**, a broader name, so both Nicole and Laura can provide it. Address `/exercise-therapy`; `/exercise-physiology` redirects there (301). Content otherwise unchanged.
+- "Who you'll see" lists Nicole and Laura, with the note "Nicole and Laura both provide exercise therapy. Nicole is also an Accredited Exercise Physiologist (AEP)."
+- Nicole's title is now "Accredited Exercise Physiologist" (her AEP accreditation confirmed by the owner).
+- Fees: an "Exercise therapy" group lists the one-on-one exercise therapy session (Nicole or Laura, $125) and Nicole's exercise physiology consultations ($145, $95, $125), as on Nookal.
+- Still "Exercise Physiology" by the owner's choice of words: the home page headline and facts (editable on /admin), and the privacy policy's description of the clinic's services.
+
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 
 Prices and funding wording on Patient information come from the clinic's own Nookal booking page (https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location), read on 6 Nov 2026. Names are shortened from Nookal's (e.g. "Physiotherapy Extended Review - 45mins" → "Extended review (45 minutes)", under a "Physiotherapy" heading). Exercise physiology prices are shown as Nookal shows them to clients, GST included ($145, $95, $125). Funding: "Private health, Medicare, DVA, NDIS and WorkCover are all welcome", plus the out-of-pocket note, both condensed from Nookal's appointment descriptions. Class packages aren't on Nookal, so the existing package note needs confirming. Approved: TBC.

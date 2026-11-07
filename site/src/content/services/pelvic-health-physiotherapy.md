@@ -41,7 +41,7 @@ practitionersNote: Book pelvic health appointments with Nicole, who has complete
 related:
   - physiotherapy
   - pilates
-  - exercise-physiology
+  - exercise-therapy
 seoTitle: Pelvic Health Physiotherapy in McDowall
 seoDescription: Pelvic health physiotherapy in McDowall for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
 oldUrl: /womens-health-physio

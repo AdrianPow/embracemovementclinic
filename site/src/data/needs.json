@@ -14,7 +14,7 @@
       ],
       "services": [
         "physiotherapy",
-        "exercise-physiology"
+        "exercise-therapy"
       ]
     },
     {
@@ -31,7 +31,7 @@
       "services": [
         "pelvic-health-physiotherapy",
         "physiotherapy",
-        "exercise-physiology",
+        "exercise-therapy",
         "pilates"
       ]
     },
@@ -77,7 +77,7 @@
         "Neurological rehabilitation"
       ],
       "services": [
-        "exercise-physiology",
+        "exercise-therapy",
         "pilates"
       ]
     },
@@ -92,7 +92,7 @@
         "Injury prevention"
       ],
       "services": [
-        "exercise-physiology",
+        "exercise-therapy",
         "pilates"
       ]
     }
