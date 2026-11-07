@@ -187,19 +187,19 @@ const sections = [
       <h2 id="practical-h" class="h3">Good to know</h2>
       <ul class="practical" role="list">
         <li>
-          <a href="/patient-information#fees">
+          <a class="hover-tile" href="/patient-information#fees">
             <span class="tile__badge"><Icon name="card" size={20} /></span>
             <span><strong>Fees and rebates</strong> What appointments cost and what you can claim</span>
           </a>
         </li>
         <li>
-          <a href="/patient-information#cancellations">
+          <a class="hover-tile" href="/patient-information#cancellations">
             <span class="tile__badge"><Icon name="clock" size={20} /></span>
             <span><strong>Cancellations</strong> Our cancellation policy</span>
           </a>
         </li>
         <li>
-          <a href="/contact">
+          <a class="hover-tile" href="/contact">
             <span class="tile__badge"><Icon name="map-pin" size={20} /></span>
             <span><strong>Getting here</strong> 33 Brynner Street, McDowall</span>
           </a>
@@ -334,8 +334,8 @@ const sections = [
     display: grid;
     flex: none;
     place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-bottom: var(--space-2xs);
     border-radius: 50%;
     background: var(--color-bg);
@@ -488,16 +488,6 @@ const sections = [
     border-radius: var(--radius-l);
     color: var(--color-ink);
     text-decoration: none;
-    transition:
-      border-color 0.2s var(--ease),
-      background-color 0.2s var(--ease);
-  }
-
-  @media (hover: hover) {
-    .practical a:hover {
-      border-color: var(--color-icon);
-      background: var(--color-accent-soft);
-    }
   }
 
   .practical .tile__badge {

@@ -15,7 +15,7 @@ const { member, ratio = '1 / 1', sizes = '(min-width: 62em) 24rem, (min-width: 4
 const { name, titles, status, photo, photoPosition, photoNote } = member.data;
 ---
 
-<a class="team-card" href={`/team/${member.id}`}>
+<a class="team-card hover-card" href={`/team/${member.id}`}>
   <Photo src={photo} alt="" note={photoNote} position={photoPosition} ratio={ratio} sizes={sizes} />
   <div class="team-card__body">
     <h3 class="h4">{name}</h3>
@@ -43,14 +43,6 @@ const { name, titles, status, photo, photoPosition, photoNote } = member.data;
     border-radius: var(--radius-l);
     color: var(--color-ink);
     text-decoration: none;
-    transition:
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease);
-  }
-
-  .team-card:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-2px);
   }
 
   .team-card__body {

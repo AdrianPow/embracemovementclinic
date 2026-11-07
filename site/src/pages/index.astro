@@ -110,7 +110,7 @@ const jsonLd = {
         {
           needs.map((n) => (
             <li>
-              <a href={`/services#${n.id}`}>
+              <a class="hover-tile" href={`/services#${n.id}`}>
                 <span class="needs__icon">
                   <Icon name={n.icon} size={20} />
                 </span>
@@ -327,16 +327,6 @@ const jsonLd = {
     font-weight: 650;
     line-height: 1.2;
     text-decoration: none;
-    transition:
-      border-color 0.2s var(--ease),
-      background-color 0.2s var(--ease);
-  }
-
-  @media (hover: hover) {
-    .needs a:hover {
-      border-color: var(--color-icon);
-      background: var(--color-accent-soft);
-    }
   }
 
   .needs__icon {

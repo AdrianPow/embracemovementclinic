@@ -82,7 +82,7 @@ const factIcon = (label: string): IconName =>
           {
             sections.map((s) => (
               <li>
-                <a href={`#${s.id}`}>
+                <a class="hover-tile" href={`#${s.id}`}>
                   <span class="badge">
                     <Icon name={s.icon} size={22} />
                   </span>
@@ -441,16 +441,6 @@ const factIcon = (label: string): IconName =>
     font-weight: 650;
     line-height: 1.2;
     text-decoration: none;
-    transition:
-      border-color 0.2s var(--ease),
-      background-color 0.2s var(--ease);
-  }
-
-  @media (hover: hover) {
-    .jump a:hover {
-      border-color: var(--color-icon);
-      background: var(--color-accent-soft);
-    }
   }
 
   @media (max-width: 39.99em) {
@@ -694,16 +684,13 @@ const factIcon = (label: string): IconName =>
     background: var(--color-brand);
     color: var(--color-on-brand);
     text-decoration: none;
-    transition:
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease);
+    transition: background-color 0.2s var(--ease);
   }
 
-  @media (hover: hover) {
-    a.fee-pill:hover {
-      box-shadow: var(--shadow-m);
-      transform: translateY(-1px);
-    }
+  /* Like a button: a little darker on hover. */
+  a.fee-pill:hover {
+    background: color-mix(in srgb, var(--color-brand) 84%, #000);
+    color: var(--color-on-brand);
   }
 
   .fees div {

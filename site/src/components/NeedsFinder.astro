@@ -18,7 +18,7 @@ const byId = new Map(services.map((s) => [s.id, s]));
       needs.map((n, i) => (
         <button
           type="button"
-          class="finder__tab"
+          class="finder__tab hover-tile"
           role="tab"
           id={`${n.id}-tab`}
           aria-controls={n.id}
@@ -176,9 +176,6 @@ const byId = new Map(services.map((s) => [s.id, s]));
     font: 650 var(--step-0) / 1.2 var(--font-display);
     text-align: left;
     cursor: pointer;
-    transition:
-      background-color 0.2s var(--ease),
-      border-color 0.2s var(--ease);
   }
 
   .finder__tab-icon {
@@ -192,11 +189,6 @@ const byId = new Map(services.map((s) => [s.id, s]));
     color: var(--color-icon);
   }
 
-  @media (hover: hover) {
-    .finder__tab:hover {
-      border-color: var(--color-icon);
-    }
-  }
 
   .finder__tab[aria-selected='true'] {
     border-color: var(--color-brand);
@@ -326,6 +318,6 @@ const byId = new Map(services.map((s) => [s.id, s]));
   }
 
   .finder__links a:hover {
-    background: var(--color-on-brand);
+    background: color-mix(in srgb, var(--color-accent-on-brand) 84%, #000);
   }
 </style>

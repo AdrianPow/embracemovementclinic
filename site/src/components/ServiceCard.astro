@@ -11,7 +11,7 @@ const { service } = Astro.props;
 const { title, summary, image, imagePosition, imageNote } = service.data;
 ---
 
-<a class="service-card" href={`/${service.id}`}>
+<a class="service-card hover-card" href={`/${service.id}`}>
   <Photo src={image} alt="" note={imageNote} position={imagePosition} ratio="3 / 2" sizes="(min-width: 62em) 33vw, (min-width: 40em) 50vw, 100vw" />
   <div class="service-card__body">
     <h3 class="h4">{title}</h3>
@@ -31,14 +31,6 @@ const { title, summary, image, imagePosition, imageNote } = service.data;
     border-radius: var(--radius-l);
     color: var(--color-ink);
     text-decoration: none;
-    transition:
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease);
-  }
-
-  .service-card:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-2px);
   }
 
   .service-card__body {

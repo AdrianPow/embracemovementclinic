@@ -59,7 +59,7 @@ const jsonLd = {
         {
           ways.map((w) => (
             <li>
-              <a class="way" href={w.href} {...newTabAttrs(w.href)}>
+              <a class="way hover-card" href={w.href} {...newTabAttrs(w.href)}>
                 <Icon name={w.icon} size={26} />
                 <span class="way__title">{w.title}</span>
                 <span class:list={['way__text', { 'way__text--long': w.text.includes('@') }]}>
@@ -132,11 +132,6 @@ const jsonLd = {
     border-radius: var(--radius-l);
     color: var(--color-ink);
     text-decoration: none;
-    transition: box-shadow 0.2s var(--ease);
-  }
-
-  .way:hover {
-    box-shadow: var(--shadow-m);
   }
 
   .way :global(svg) {

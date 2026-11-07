@@ -38,7 +38,7 @@ const groups = [
               // Card titles sit under their group's small heading ("One-on-one appointments", "Classes").
               return (
                 <li class="card">
-                  <a href={`/${s.id}`}>
+                  <a class="hover-card" href={`/${s.id}`}>
                     <Photo
                       src={s.data.image}
                       alt=""
@@ -160,16 +160,6 @@ const groups = [
     background: var(--color-bg);
     color: var(--color-ink);
     text-decoration: none;
-    transition:
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease);
-  }
-
-  @media (hover: hover) {
-    .card a:hover {
-      box-shadow: var(--shadow-m);
-      transform: translateY(-2px);
-    }
   }
 
   @media (max-width: 39.99em) {
