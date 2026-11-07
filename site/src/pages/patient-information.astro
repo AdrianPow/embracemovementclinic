@@ -136,17 +136,17 @@ const sections = [
           {
             p.fees.length > 0 ? (
               <div class="fee-groups">
-                {feeGroups.map((g, i) => (
+                {feeGroups.map((g) => (
                   <div class="fee-group">
                     {g.name && (
                       <h3 class="h4 fee-group__title">
                         {serviceFor(g.name) ? (
-                          <a class="fee-pill" data-colour={(i % 3) + 1} href={`/${serviceFor(g.name)!.id}`}>
+                          <a class="fee-pill" href={`/${serviceFor(g.name)!.id}`}>
                             {g.name}
                             <Icon name="arrow-right" size={18} />
                           </a>
                         ) : (
-                          <span class="fee-pill" data-colour={(i % 3) + 1}>
+                          <span class="fee-pill">
                             {g.name}
                           </span>
                         )}
@@ -231,10 +231,14 @@ const sections = [
               <dt>Parking</dt>
               <dd>{site.parking ?? <Todo>parking details</Todo>}</dd>
             </div>
-            <div>
-              <dt>Access</dt>
-              <dd>{site.access ?? <Todo>accessibility details (e.g. steps, wheelchair access)</Todo>}</dd>
-            </div>
+            {
+              site.access && (
+                <div>
+                  <dt>Access</dt>
+                  <dd>{site.access}</dd>
+                </div>
+              )
+            }
           </dl>
           <h3 class="h4"><Icon name="paw" size={18} /> {jeff.heading}</h3>
           <p>{[jeff.text, jeff.extra].filter(Boolean).join(' ')}</p>
@@ -446,32 +450,19 @@ const sections = [
     margin-bottom: var(--space-xs);
   }
 
-  /* Service name as a coloured pill linking to its page (brand shades in turn). */
+  /* Service name as a petrol pill linking to its page. */
   .fee-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
     padding: 0.3em 0.9em;
     border-radius: 999px;
+    background: var(--color-brand);
+    color: var(--color-on-brand);
     text-decoration: none;
     transition:
       box-shadow 0.2s var(--ease),
       transform 0.2s var(--ease);
-  }
-
-  .fee-pill[data-colour='1'] {
-    background: var(--color-brand);
-    color: var(--color-on-brand);
-  }
-
-  .fee-pill[data-colour='2'] {
-    background: var(--color-accent);
-    color: var(--color-ink);
-  }
-
-  .fee-pill[data-colour='3'] {
-    background: var(--color-accent-on-brand);
-    color: var(--color-ink);
   }
 
   @media (hover: hover) {

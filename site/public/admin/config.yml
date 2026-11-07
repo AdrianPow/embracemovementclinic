@@ -449,7 +449,7 @@ collections:
           - { name: facebook, label: Facebook page link, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'] }
           - { name: abn, label: ABN, widget: string, required: false }
           - { name: parking, label: Parking, widget: text, required: false, hint: 'Shown on Contact, Home and Patient information, e.g. "Free street parking on Brynner Street." Leave blank until confirmed.' }
-          - { name: access, label: Accessibility, widget: text, required: false, hint: 'E.g. steps, ramps, wheelchair access. Shown on Patient information. Leave blank until confirmed.' }
+          - { name: access, label: Accessibility, widget: text, required: false, hint: 'Optional. E.g. steps, ramps, wheelchair access. When filled in, it shows on Patient information.' }
       - name: policies
         label: Policies and timetable
         file: site/src/data/policies.json

@@ -54,7 +54,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 8 Nov 2026). On Patient information
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
 - [ ] **What to bring** to a first appointment
-- [ ] **Accessibility** of the clinic (steps, wheelchair access)
+- [x] **Accessibility**: not shown on the site (owner's call, 8 Nov 2026). The field stays on /admin if wanted later
 - [x] **Class facts:** 4–5 people and 45 minutes (Nookal); cancellation is at least 8 hours' notice or the full cost is charged (Nicole, 7 Nov 2026). Confirm it covers one-on-one appointments too
 - [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)
 - [x] A photo of Jeff, the clinic dog (the team photo with Laura and Nicole)
