@@ -6,11 +6,11 @@ The redesign doesn't copy the old layout, so only a few more are needed, mainly 
 
 - [x] homepage (desktop)
 - [x] team (desktop, top of page)
-- [ ] **Footer**: scroll to the bottom of any page (hours, address, social links, anything else there)
-- [ ] **Our Services**, scrolled through, to show button labels
-- [ ] **One service page** (e.g. Physiotherapy) and **Book Now**, to show what the code block is
-- [ ] **Team page, scrolled to the end**, to show all practitioners
-- [ ] Squarespace **Pages** panel, showing pages in and out of the menu
+- [x] ~~Footer screenshot~~: not needed (site rebuilt; footer details supplied on /admin)
+- [x] ~~Our Services screenshot~~: not needed
+- [x] ~~Service page and Book Now screenshots~~: not needed
+- [x] ~~Team page screenshot~~: not needed
+- [x] ~~Squarespace Pages panel~~: not needed (old addresses redirect)
 
 Save them in `reference/screenshots/` as `<page-folder>-desktop.png` (folder names are in `reference/INVENTORY.md`).
 
@@ -38,7 +38,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] AHPRA registration numbers: not shown on the site for now (owner, 7 Nov 2026). Optional field on /admin if wanted later
 - [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (7 Nov 2026)
 - [x] Facebook: https://www.facebook.com/embracemovementclinic/ (7 Nov 2026)
-- [ ] Any new content for the refresh (new services, updated bios, new photos)
+- [x] New content: added through 7 Nov 2026; anything further can be added on /admin
 - [x] Services, fees and funding: from Nookal, confirmed with Nicole (7 Nov 2026)
 - [x] **Opening hours**: entered on /admin (Mon 6am–1pm, Tue 8am–8pm, Wed 6am–8pm, Thu 8am–4pm, Fri closed, Sat by appointment only, Sun closed)
 - [x] **ABN**: 57 627 072 057, entered on /admin
@@ -48,7 +48,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Which practitioner provides which service:** Nookal is right; Laura isn't seeing pelvic health clients for now (Nicole, 7 Nov 2026). Previously: Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
 - [x] **Privacy contact**: the clinic's email and phone (no named person), as approved 7 Nov 2026
 - [x] Google Forms: no longer linked (the June 2025 update was deleted on 7 Nov 2026)
-- [ ] Any pages not linked from the menu (old landing pages, campaign pages)
+- [x] ~~Pages not linked from the menu~~: not needed (old addresses redirect)
 - [x] Privacy policy (approved 7 Nov 2026) and cancellation policy (8 hours' notice or full price)
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees
 - [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 7 Nov 2026). On Patient information
@@ -59,11 +59,11 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)
 - [x] A photo of Jeff, the clinic dog (the team photo with Laura and Nicole)
 - [x] **Privacy policy**: reviewed and approved by Nicole (7 Nov 2026). AI note-taking line added; OAIC paragraph removed at her request. All information is stored within Australia (owner, 7 Nov 2026)
-- [ ] Approve the wording changes in `docs/changes.md`
+- [x] Wording changes approved by Nicole (7 Nov 2026)
 
 ## Access (confirm who has it; don't store it here)
 
-- [ ] Current website platform admin, plus a content export if it offers one
+- [ ] Before cancelling Squarespace: export a copy of the old site's content as a backup
 - [ ] Domain registrar / DNS: login for Web Address Registration (the registrar), or whoever manages the domain's DNS, for go-live
 - [ ] Is Google Workspace (the clinic's email) billed through Squarespace? Check before cancelling Squarespace
 - [ ] Free GitHub accounts for anyone who'll use the admin page (e.g. Nicole)
