@@ -1,14 +1,14 @@
 ---
-title: 'We’re reopening on Monday 4 January 2027'
+title: We’re reopening on Monday 4 January 2027
 date: 2026-11-07
 summary: The clinic reopens on Monday 4 January 2027 with a new class timetable, bookings are open, a patient portal is on its way, and Laura welcomed baby Charlotte.
 images:
   - src: ../../assets/photos/laura-teddy-charlotte.webp
     alt: Laura holding baby Charlotte, with big brother Teddy beside them
-    position: '50% 30%'
+    position: 50% 30%
   - src: ../../assets/photos/charlotte.webp
     alt: Baby Charlotte in her pram, wearing a floral headband
-    position: '50% 30%'
+    position: 50% 30%
 ---
 
 ## Baby news from Laura!
@@ -35,16 +35,14 @@ After a wonderful year of new babies, we’re excited to welcome you back to the
 
 Small group classes are back, with Nicole, from Monday to Thursday. See the [new class timetable](/pilates#timetable) for all the times.
 
-New to classes? Start with a once-off [pre-class assessment](/pilates#start) before your first class.
-
 ### Book in now
 
-Bookings for January are open now, so you can [book online](https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location) or call us on [0434 686 261](tel:+61434686261). Many of our classes have a waitlist, so we recommend booking early.
+Bookings for January are open now, so you can [book online](https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location) or call us on [0434 686 261](tel:+61434686261). We expect many of our classes to have a waitlist, so recommend booking early!
 
 Vestibular physiotherapy will be available again from March, when Laura returns.
 
 ## Coming soon: our patient portal
 
-We’re setting up a patient portal, so you’ll soon be able to manage your bookings online. If you’d like to know more, ask Nicole at your first appointment back.
+We're excited to launch our new Patient Portal, where you can easily book appointments, pay invoices, securely message clinic staff and update your details online! Keep an eye out for your unique sign-up link in your next appointment reminder to get started. If you’d like to know more about the portal, ask Nicole at your first appointment back.
 
 Thank you all so much for your support and patience while we’ve been away. We can’t wait to see you in the new year!
