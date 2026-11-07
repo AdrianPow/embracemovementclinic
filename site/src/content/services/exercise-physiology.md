@@ -15,7 +15,6 @@ forYou:
     - name: Injury prevention
     - name: Prenatal and postnatal exercise
     - name: Chronic pain and disease management
-      detail: For example arthritis, diabetes and cardiovascular disease.
     - name: Osteoporosis and healthy ageing
     - name: Strength and conditioning
     - name: Athletic performance
