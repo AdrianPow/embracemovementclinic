@@ -462,19 +462,19 @@ collections:
             hint: Shown on the Pilates page.
           - name: timetable
             label: Class timetable
-            label_singular: class
+            label_singular: day
             widget: list
             required: false
-            hint: Leave empty until it’s ready; the Pilates page shows a note instead.
-            summary: '{{fields.day}} {{fields.time}}'
+            hint: One row per day, with all of that day’s class times. Leave out days with no classes. Keep it the same as Nookal.
+            summary: '{{fields.day}}'
             fields:
               - name: day
                 label: Day
                 widget: select
                 options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-              - { name: time, label: Time, widget: string, hint: 'E.g. "6:00am".' }
-              - { name: class, label: Class, widget: string, required: false, hint: 'Leave blank for a small group exercise class. Fill in only for a different kind of class.' }
-              - { name: with, label: With, widget: string, required: false }
+              - { name: times, label: Class times, widget: list, label_singular: time, hint: 'One time per entry, earliest first, e.g. "6.00am", "6.45am".' }
+              - { name: with, label: With, widget: string, required: false, hint: 'E.g. "Nicole" or "Nicole or Laura".' }
+              - { name: class, label: Class, widget: string, required: false, hint: 'Leave blank for small group exercise classes. Fill in only for a different kind of class.' }
           - name: cancellation
             label: Cancellation policy
             widget: object

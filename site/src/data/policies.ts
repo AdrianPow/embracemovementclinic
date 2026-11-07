@@ -6,9 +6,10 @@
 // studio etiquette: June 2025 update and Christmas 2024 newsletter).
 import policiesJson from './policies.json';
 
+/** One row per day, with all of that day's class times. */
 export interface TimetableRow {
   day: string;
-  time: string;
+  times: string[];
   /** Blank = a small group exercise class (all classes are, for now). */
   class?: string;
   with?: string;

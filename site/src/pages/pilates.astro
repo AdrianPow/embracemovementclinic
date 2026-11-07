@@ -116,7 +116,7 @@ const showWith = Boolean(timetable?.some((r) => r.with?.trim()));
             <thead>
               <tr>
                 <th scope="col">Day</th>
-                <th scope="col">Time</th>
+                <th scope="col">Times</th>
                 {showClass && <th scope="col">Class</th>}
                 {showWith && <th scope="col">With</th>}
               </tr>
@@ -125,7 +125,7 @@ const showWith = Boolean(timetable?.some((r) => r.with?.trim()));
               {timetable.map((r) => (
                 <tr>
                   <th scope="row">{r.day}</th>
-                  <td>{r.time}</td>
+                  <td>{(r.times ?? []).join(', ')}</td>
                   {showClass && <td>{r.class?.trim() || defaultClass}</td>}
                   {showWith && <td>{r.with ?? ''}</td>}
                 </tr>

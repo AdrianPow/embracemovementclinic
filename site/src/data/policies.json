@@ -7,11 +7,45 @@
   "timetable": [
     {
       "day": "Monday",
-      "time": "6:00am"
+      "times": [
+        "6.00am",
+        "6.45am",
+        "9.00am",
+        "9.45am"
+      ],
+      "with": "Nicole"
     },
     {
-      "day": "Monday",
-      "time": "6:45am"
+      "day": "Tuesday",
+      "times": [
+        "8.15am",
+        "9.00am",
+        "1.15pm",
+        "4.45pm",
+        "5.30pm",
+        "6.15pm"
+      ],
+      "with": "Nicole"
+    },
+    {
+      "day": "Wednesday",
+      "times": [
+        "6.00am",
+        "6.45am",
+        "4.45pm",
+        "5.30pm",
+        "6.15pm"
+      ],
+      "with": "Nicole"
+    },
+    {
+      "day": "Thursday",
+      "times": [
+        "9.00am",
+        "9.45am",
+        "1.15pm"
+      ],
+      "with": "Nicole"
     }
   ],
   "cancellation": {
