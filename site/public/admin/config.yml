@@ -466,14 +466,14 @@ collections:
             widget: list
             required: false
             hint: Leave empty until it’s ready; the Pilates page shows a note instead.
-            summary: '{{fields.day}} {{fields.time}} – {{fields.class}}'
+            summary: '{{fields.day}} {{fields.time}}'
             fields:
               - name: day
                 label: Day
                 widget: select
                 options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
               - { name: time, label: Time, widget: string, hint: 'E.g. "6:00am".' }
-              - { name: class, label: Class, widget: string }
+              - { name: class, label: Class, widget: string, required: false, hint: 'Leave blank for a small group exercise class. Fill in only for a different kind of class.' }
               - { name: with, label: With, widget: string, required: false }
           - name: cancellation
             label: Cancellation policy

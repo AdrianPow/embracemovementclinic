@@ -9,7 +9,8 @@ import policiesJson from './policies.json';
 export interface TimetableRow {
   day: string;
   time: string;
-  class: string;
+  /** Blank = a small group exercise class (all classes are, for now). */
+  class?: string;
   with?: string;
 }
 

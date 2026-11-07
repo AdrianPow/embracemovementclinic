@@ -19,6 +19,11 @@ const service = (await getEntry('services', 'pilates')) as CollectionEntry<'serv
 const d = service.data;
 const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
 
+// Timetable: every class is small group exercise unless a row says otherwise, so the Class
+// column only appears when the classes differ, and "With" only when someone is named.
+const defaultClass = 'Small group exercise';
+const showClass = Boolean(timetable?.some((r) => r.class?.trim() && r.class.trim() !== defaultClass));
+const showWith = Boolean(timetable?.some((r) => r.with?.trim()));
 ---
 
 <BaseLayout title={d.seoTitle} description={d.seoDescription} shareImage={d.image ? `/og/services/${service.id}.jpg` : undefined} imageAlt={d.imageAlt}>
@@ -107,12 +112,13 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
       {
         timetable ? (
           <table class="timetable">
+            {!showClass && <caption>{defaultClass} classes</caption>}
             <thead>
               <tr>
                 <th scope="col">Day</th>
                 <th scope="col">Time</th>
-                <th scope="col">Class</th>
-                <th scope="col">With</th>
+                {showClass && <th scope="col">Class</th>}
+                {showWith && <th scope="col">With</th>}
               </tr>
             </thead>
             <tbody>
@@ -120,14 +126,14 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
                 <tr>
                   <th scope="row">{r.day}</th>
                   <td>{r.time}</td>
-                  <td>{r.class}</td>
-                  <td>{r.with ?? ''}</td>
+                  {showClass && <td>{r.class?.trim() || defaultClass}</td>}
+                  {showWith && <td>{r.with ?? ''}</td>}
                 </tr>
               ))}
             </tbody>
           </table>
         ) : (
-          <Todo as="div">current class timetable as text (days, times and class types). The old timetable was an image from July 2025.</Todo>
+          <Todo as="div">current class timetable as text (days and times, and who runs each class). The old timetable was an image from July 2025.</Todo>
         )
       }
       <div class="timetable__actions">
@@ -375,6 +381,13 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   .timetable {
     width: 100%;
     border-collapse: collapse;
+  }
+
+  .timetable caption {
+    padding-bottom: var(--space-2xs);
+    font-family: var(--font-display);
+    font-weight: 650;
+    text-align: left;
   }
 
   .timetable th,
