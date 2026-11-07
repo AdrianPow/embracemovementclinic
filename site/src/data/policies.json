@@ -1,4 +1,19 @@
 {
+  "classSteps": [
+    "Book a once-off pre-class assessment",
+    "Choose your class times online, selecting the relevant practitioner",
+    "Class full? Get in touch to join the waitlist"
+  ],
+  "timetable": [
+    {
+      "day": "Monday",
+      "time": "6:00am"
+    },
+    {
+      "day": "Monday",
+      "time": "6:45am"
+    }
+  ],
   "cancellation": {
     "paragraphs": [
       "Given there is a waitlist for many classes, please provide as much notice as possible if you need to cancel or reschedule your booking so the time can be offered to another client.",
@@ -51,11 +66,5 @@
     "classes": "Check availability and book classes in the online booking portal. When booking, select the relevant practitioner. If your preferred class time isn’t showing, it’s at full capacity, but please get in touch if you’d like to be added to the waitlist.",
     "bookingCode": "Want to save time and avoid creating a new profile every time you book? Ask Nicole or Laura for your unique online booking code.",
     "waitlistText": "To join the cancellation waitlist, text us on"
-  },
-  "timetable": [],
-  "classSteps": [
-    "Book a once-off pre-class assessment",
-    "Choose your class times online, selecting the relevant practitioner",
-    "Class full? Get in touch to join the waitlist"
-  ]
+  }
 }
