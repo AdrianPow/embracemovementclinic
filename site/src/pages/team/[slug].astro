@@ -55,7 +55,18 @@ const jsonLd = {
           {d.titles.map((t) => <li>{t}</li>)}
         </ul>
         {d.status && <p class="status">{d.status}</p>}
-        <p class="ahpra"><Todo>AHPRA registration name and number, to match the public register</Todo></p>
+        {
+          d.registration ? (
+            <p class="ahpra">
+              AHPRA registration{' '}
+              <a href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx">{d.registration}</a>
+            </p>
+          ) : (
+            <p class="ahpra">
+              <Todo>AHPRA registration number (Team → {d.firstName} → AHPRA registration number)</Todo>
+            </p>
+          )
+        }
         <div class="actions">
           <Button href={site.booking.url} icon="calendar" size="l">Book with {d.firstName}</Button>
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone">
@@ -224,6 +235,11 @@ const jsonLd = {
     color: var(--color-ink);
     font-size: var(--step--1);
     font-weight: 650;
+  }
+
+  .ahpra {
+    color: var(--color-ink-muted);
+    font-size: var(--step--1);
   }
 
   .actions {

@@ -52,9 +52,17 @@ fees:
     item: Small group clinical exercise class (45 minutes)
     price: $40
     note: A maximum of 4–5 people.
+  - group: Classes
+    item: 10-class pack
+    price: $380
+    note: Buy in the clinic.
+  - group: Classes
+    item: 20-class pack
+    price: $700
+    note: Buy in the clinic.
 feeNotes:
   - Exercise sessions may be claimable with private health, depending on your level of cover.
-  - Class packages are available, and you can still claim on your health fund if you purchase a package.
+  - You can still claim on your health fund if you buy a class pack.
 funding:
   - Private health, Medicare, DVA, NDIS and WorkCover are all welcome.
   - What you pay out of pocket depends on who is paying. Some arrangements have a gap fee, and others may be fully covered. Call us to check yours.

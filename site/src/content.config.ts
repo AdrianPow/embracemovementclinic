@@ -82,6 +82,8 @@ const team = defineCollection({
       experienceHeading: z.string().default('Experience'),
       /** Short status shown on cards, e.g. leave dates. */
       status: z.string().optional(),
+      /** AHPRA registration number, as on the public register (e.g. PHY0001234567). */
+      registration: z.string().optional(),
       photo: image().optional(),
       /** Which part to keep when the photo is cropped (CSS object-position). Top by default, so headshots keep the whole head. */
       photoPosition: z.string().default('50% 0%'),

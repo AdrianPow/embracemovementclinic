@@ -4,19 +4,19 @@
   "hours": [
     {
       "days": "Monday",
-      "hours": "6am - 1pm"
+      "hours": "6am – 1pm"
     },
     {
       "days": "Tuesday",
-      "hours": "8am - 8pm"
+      "hours": "8am – 8pm"
     },
     {
       "days": "Wednesday",
-      "hours": "6am - 8pm"
+      "hours": "6am – 8pm"
     },
     {
       "days": "Thursday",
-      "hours": "8am - 4pm"
+      "hours": "8am – 4pm"
     },
     {
       "days": "Friday",
@@ -24,7 +24,7 @@
     },
     {
       "days": "Saturday",
-      "hours": "By Appointment Only"
+      "hours": "By appointment only"
     },
     {
       "days": "Sunday",

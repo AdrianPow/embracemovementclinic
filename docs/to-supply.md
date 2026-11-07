@@ -35,13 +35,13 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 
 Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
 
-- [ ] Practitioner bios, qualifications and AHPRA registration numbers or names as registered
+- [ ] AHPRA registration numbers for Nicole and Laura: now a field on /admin (Team → each practitioner → AHPRA registration number)
 - [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (8 Nov 2026)
 - [x] Facebook: https://www.facebook.com/embracemovementclinic/ (8 Nov 2026)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
 - [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
-- [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
-- [ ] **ABN** (footer)
+- [x] **Opening hours**: entered on /admin (Mon 6am–1pm, Tue 8am–8pm, Wed 6am–8pm, Thu 8am–4pm, Fri closed, Sat by appointment only, Sun closed)
+- [x] **ABN**: 57 627 072 057, entered on /admin
 - [ ] **Parking details** for the location section (street parking, driveway, accessibility)
 - [x] **Reopening date**: Monday 4 January 2027 (Nicole, 7 Nov 2026). The banner and closure notes hide after 3 January. Previously: so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
 - [x] **Class timetable**: from Nookal's week of 4 January 2027 (Monday to Thursday, all with Nicole), added 8 Nov 2026. Keep it in step with Nookal on /admin: Clinic settings → Policies and timetable
@@ -51,7 +51,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
 - [ ] Existing privacy policy, terms or cancellation policy
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees
-- [ ] **Class packages:** are they still offered, and at what price?
+- [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 8 Nov 2026). On Patient information
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
 - [ ] **What to bring** to a first appointment
 - [ ] **Accessibility** of the clinic (steps, wheelchair access)

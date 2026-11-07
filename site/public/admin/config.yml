@@ -208,6 +208,7 @@ collections:
           - { label: Service pages, ratio: 1 / 1 }
         hint: Click where to keep in view. For headshots, keep the whole head in every preview. Reset keeps the top of the photo.
       - { name: status, label: Status, widget: string, required: false, hint: 'Shown on the card, e.g. "On maternity leave until January 2027". Leave blank when not needed.' }
+      - { name: registration, label: AHPRA registration number, widget: string, required: false, pattern: ['^[A-Z]{3}[0-9]{10}$', 'Three capital letters and 10 digits, e.g. PHY0001234567'], hint: 'As on the public register (ahpra.gov.au), e.g. PHY0001234567. Shown on the profile page.' }
       - name: titles
         label: Titles
         widget: list
