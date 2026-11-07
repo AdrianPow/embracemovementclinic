@@ -35,18 +35,26 @@ fees:
   - group: Vestibular physiotherapy
     item: Review (30 minutes)
     price: $110
-  - group: Exercise therapy
+  - group: Exercise physiology
     item: Initial consultation (45 minutes)
     price: $145
-    note: With Nicole or Laura.
-  - group: Exercise therapy
+    note: With Nicole, an Accredited Exercise Physiologist. Includes GST.
+  - group: Exercise physiology
     item: Review (30 minutes)
     price: $95
-    note: With Nicole or Laura.
-  - group: Exercise therapy
+    note: With Nicole. Includes GST.
+  - group: Exercise physiology
     item: Review (45 minutes)
     price: $125
-    note: With Nicole or Laura.
+    note: With Nicole. Includes GST.
+  - group: Exercise therapy
+    item: One-on-one session (30 minutes)
+    price: $95
+    note: With Laura, from March 2027, after an initial physiotherapy consultation.
+  - group: Exercise therapy
+    item: One-on-one session (45 minutes)
+    price: $125
+    note: With Laura, from March 2027, after an initial physiotherapy consultation.
   - group: Classes
     item: Pre-class assessment (45 minutes)
     price: $125
@@ -65,6 +73,7 @@ fees:
     note: Buy in the clinic.
 feeNotes:
   - Exercise sessions may be claimable with private health, depending on your level of cover.
+  - Exercise therapy with Laura is claimable as physiotherapy. If your referral or rebate is specifically for exercise physiology (for example a GP care plan referral to an exercise physiologist), please book with Nicole, our Accredited Exercise Physiologist.
   - You can still claim on your health fund if you buy a class pack.
 funding:
   - Private health, Medicare, DVA, NDIS and WorkCover are all welcome.

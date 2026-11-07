@@ -156,6 +156,10 @@ Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note 
 - AHPRA registration numbers won't be shown for now: the profile TODO is gone; the optional field stays on /admin.
 - Consent confirmed for everyone pictured, including the two children. Their photos are now in `site/src/assets/photos/` (`pxl-20220610-235914156.webp`, `pxl-20220611-052505665.webp`), ready to choose on /admin, but not placed on a page yet.
 
+## Exercise physiology and exercise therapy (7 Nov 2026, matches Nookal)
+
+Nicole keeps exercise physiology (billing and rebates need an Accredited Exercise Physiologist; GST applies: $145 initial, $95 and $125 reviews, GST included). Laura offers exercise therapy as a physiotherapy service, GST-free: 30 minutes $95 and 45 minutes $125, as follow-ups after an initial physiotherapy consultation, from March 2027. Fees list both groups; the Exercise Therapy page and fees add: "Exercise therapy with Laura is claimable as physiotherapy. If your referral or rebate is specifically for exercise physiology (for example a GP care plan referral to an exercise physiologist), please book with Nicole, our Accredited Exercise Physiologist."
+
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 
 Prices and funding wording on Patient information come from the clinic's own Nookal booking page (https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location), read on 6 Nov 2026. Names are shortened from Nookal's (e.g. "Physiotherapy Extended Review - 45mins" → "Extended review (45 minutes)", under a "Physiotherapy" heading). Exercise physiology prices are shown as Nookal shows them to clients, GST included ($145, $95, $125). Funding: "Private health, Medicare, DVA, NDIS and WorkCover are all welcome", plus the out-of-pocket note, both condensed from Nookal's appointment descriptions. Class packages aren't on Nookal, so the existing package note needs confirming. Approved: TBC.

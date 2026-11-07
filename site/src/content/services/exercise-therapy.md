@@ -40,10 +40,13 @@ treatments:
       detail: Customised exercise routines you can do at home or in the gym, tailored to your specific needs.
     - name: Exercise guidelines
       detail: Personalised advice on how to fit exercise into your daily routine safely and effectively.
+goodToKnow:
+  - name: Referrals and rebates
+    detail: Exercise therapy with Laura is claimable as physiotherapy. If your referral or rebate is specifically for exercise physiology (for example a GP care plan referral to an exercise physiologist), please book with Nicole, our Accredited Exercise Physiologist.
 practitioners:
   - nicole-saxby
   - laura-bradford
-practitionersNote: Nicole and Laura both provide exercise therapy. Nicole is also an Accredited Exercise Physiologist (AEP).
+practitionersNote: Nicole provides exercise physiology as an Accredited Exercise Physiologist (AEP). Laura provides exercise therapy as a physiotherapist, from March 2027, after an initial physiotherapy consultation.
 related:
   - pilates
   - physiotherapy
