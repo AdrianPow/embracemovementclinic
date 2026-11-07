@@ -47,7 +47,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Class timetable**: from Nookal's week of 4 January 2027 (Monday to Thursday, all with Nicole), added 8 Nov 2026. Keep it in step with Nookal on /admin: Clinic settings → Policies and timetable
 - [x] **Which practitioner provides which service:** Nookal is right; Laura isn't seeing pelvic health clients for now (Nicole, 7 Nov 2026). Previously: Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
 - [ ] **Privacy contact** (name or role, plus email) for the privacy policy
-- [ ] Are the **Google Forms** (feedback survey, SMS list, home program request) still active? They're linked from the archived June 2025 update.
+- [x] Google Forms: no longer linked (the June 2025 update was deleted on 8 Nov 2026)
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
 - [ ] Existing privacy policy, terms or cancellation policy
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees

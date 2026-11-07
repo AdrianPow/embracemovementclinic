@@ -17,8 +17,8 @@ Anything not listed here stays as it is on the current site.
 | /contact-us-1 | Contact | /contact | **Change** (301) |
 | /book-now | Nookal booking embed | Nookal booking page (new link supplied 19 Oct 2026) | **Change** (302 to Nookal; every "Book now" links there directly) |
 | /group-exercise-timetable | Class timetable and cancellation policy | /pilates#timetable (merged with the Pilates page, 18 Oct 2026) | **Change** (301) |
-| /clinic-updates | Clinic news | /news/clinic-update-june-2025 | **Change** (301) |
-| /xmas-2024 | Christmas 2024 newsletter | /news/christmas-2024 | **Change** (301) |
+| /clinic-updates | Clinic news | /news (post deleted 8 Nov 2026, owner's request) | **Change** (301) |
+| /xmas-2024 | Christmas 2024 newsletter | /news (post deleted 8 Nov 2026, owner's request) | **Change** (301) |
 | /baby-news | July 2026 update | /news/july-2026-update | **Change** (301) |
 | /blog-posts/* | Linked from homepage and team images, but not in the export | /news | **Change** (301). The image links aren't carried over. |
 

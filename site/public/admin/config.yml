@@ -228,7 +228,7 @@ collections:
     label_singular: News post
     description: >-
       Clinic updates. No offers without clear terms, and no patient stories about treatment results.
-      Don't delete the Christmas 2024, June 2025 or July 2026 posts: old addresses and the notice banner link to them.
+      Don't delete the July 2026 update while the notice banner links to it.
     folder: site/src/content/news
     extension: md
     format: frontmatter
