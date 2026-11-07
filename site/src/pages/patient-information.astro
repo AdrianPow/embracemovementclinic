@@ -85,7 +85,14 @@ const sections = [
               <Icon name="calendar" size={24} />
               <h3 class="h4">Book online</h3>
               <p>Book appointments, pre-class assessments and classes through our online booking portal.</p>
-              <Button href={site.booking.url} size="s">Book now</Button>
+              <div class="card__actions">
+                <Button href={site.booking.url} size="s">Book now</Button>
+                {booking.portalUrl && (
+                  <Button href={booking.portalUrl} variant="secondary" size="s">
+                    Patient portal
+                  </Button>
+                )}
+              </div>
             </div>
             <div class="card">
               <Icon name="phone" size={24} />
@@ -380,6 +387,12 @@ const sections = [
     border: 1px solid var(--color-line);
     border-radius: var(--radius-l);
     background: var(--color-bg);
+  }
+
+  .card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
   }
 
   .card :global(svg) {

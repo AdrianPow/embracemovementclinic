@@ -53,7 +53,7 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees
 - [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 7 Nov 2026). On Patient information
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
-- [ ] **What to bring** to a first appointment
+- [x] **What to bring**: comfortable clothing; relevant health information such as referrals or scans; private health insurance and Medicare cards (owner, 7 Nov 2026)
 - [x] **Accessibility**: not shown on the site (owner's call, 7 Nov 2026). The field stays on /admin if wanted later
 - [x] **Class facts:** 4–5 people and 45 minutes (Nookal); cancellation is at least 8 hours' notice or the full cost is charged (Nicole, 7 Nov 2026). Confirm it covers one-on-one appointments too
 - [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)

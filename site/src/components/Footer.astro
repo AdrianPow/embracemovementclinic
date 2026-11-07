@@ -5,6 +5,7 @@ import Button from './Button.astro';
 import Todo from './Todo.astro';
 import { footerLinks } from '../data/navigation';
 import { site } from '../data/site';
+import { booking } from '../data/policies';
 
 const year = new Date().getFullYear();
 const { socials, hours, abn, address } = site;
@@ -70,7 +71,14 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
           </a>
         </li>
       </ul>
-      <Button href={site.booking.url} size="s" class="site-footer__book">Book now</Button>
+      <div class="site-footer__buttons">
+        <Button href={site.booking.url} size="s">Book now</Button>
+        {booking.portalUrl && (
+          <Button href={booking.portalUrl} variant="secondary" size="s">
+            Patient portal
+          </Button>
+        )}
+      </div>
     </div>
 
     <div class="site-footer__col">
@@ -208,7 +216,10 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
     overflow-wrap: anywhere;
   }
 
-  :global(.site-footer__book) {
+  .site-footer__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
     margin-top: var(--space-s);
   }
 

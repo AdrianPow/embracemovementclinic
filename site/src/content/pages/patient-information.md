@@ -3,7 +3,10 @@ intro: Everything you need to know about booking, your first visit, cancellation
 firstVisit:
   - New clients start with an initial consultation. Your practitioner will talk with you about your medical history, concerns and goals, and complete an assessment before recommending treatment.
   - For classes, a once-off pre-class assessment is required before you start.
-whatToBring: []
+whatToBring:
+  - Comfortable clothing you can move in
+  - Any relevant health information, such as referrals or scans, if you have them
+  - Your private health insurance card and Medicare card
 fees:
   - group: Physiotherapy
     item: Initial consultation (45 minutes)
