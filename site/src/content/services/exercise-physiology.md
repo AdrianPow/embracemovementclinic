@@ -46,6 +46,7 @@ practitioners:
 related:
   - pilates
   - physiotherapy
+  - pelvic-health-physiotherapy
 seoTitle: Exercise Physiology in McDowall
 seoDescription: Exercise physiology in McDowall for injury rehabilitation, chronic pain and disease management, osteoporosis, healthy ageing and athletic performance.
 ---

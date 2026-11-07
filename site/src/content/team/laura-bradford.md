@@ -4,10 +4,9 @@ firstName: Laura
 order: 2
 photo: /src/assets/photos/sam_1423-1.webp
 photoPosition: 50% 49%
-status: On maternity leave
+status: On maternity leave until April 2027
 titles:
   - Physiotherapist
-  - Pelvic Health Physiotherapist
   - Clinical Pilates Instructor
 education:
   - Bachelor of Physiotherapy, with distinction

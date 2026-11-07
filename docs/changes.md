@@ -118,6 +118,24 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 | Cancellation notice | "24 hours notice" (Christmas 2024) | "within 8 hours… charged at 50%" (Timetable, Aug 2025) |
 | Equipment | Different lists on three pages | One combined list (`site/src/data/policies.json`, editable on /admin) |
 
+## Nicole's decisions (weekend run-through, actioned 7 Nov 2026)
+
+| # | Decision | What changed on the site |
+|---|---|---|
+| 1 | Titles as recommended | Nicole: "Physiotherapist (pelvic health) · Exercise Physiologist · Clinical Pilates Instructor". Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
+| 2 | "Pelvic Health" everywhere | Service renamed "Pelvic Health Physiotherapy" (menu, cards, page title, Google title and description, Patient information link). Clinical terms such as "pelvic floor exercises" and course names are unchanged |
+| 3 | Keep "Book now" | No change: Nookal only shows slots from January |
+| 4 | Laura back in April 2027; vestibular unavailable until then | Laura's status "On maternity leave until April 2027"; availability note under the Vestibular page title |
+| 5 | Nookal is right: Laura isn't seeing pelvic health clients for now | Laura removed from Pelvic Health "Who you'll see"; note now "Book pelvic health appointments with Nicole…" |
+| 7 | Keep the photos with the old logo for now | No change |
+| 8 | Internal exam only ever optional and with consent | Pelvic "What to expect": "…then complete a comprehensive assessment to work out the best course of treatment. An internal (vaginal) examination is only ever optional, and only goes ahead with your consent." Replaces "(potentially a vaginal examination if deemed necessary)". Nicole to approve the exact words |
+| 9 | Cancellation: at least 8 hours' notice or the full cost is charged | "Please give at least 8 hours' notice if you need to cancel. Bookings cancelled with less than 8 hours' notice are charged the full price." (was 50%). Applied to appointments and classes: confirm appointments are included |
+| 10 | Grip socks: no price, available to buy in clinic | "They're available to buy in the clinic…" |
+| 11 | Remove Jeff from the home page | Removed; Jeff stays on the Team page. Home shows the two practitioners side by side |
+| 12 | Switch on analytics | Privacy policy now says the site uses Cloudflare Web Analytics (no cookies, no cross-site tracking, not for advertising). Adrian switches it on in Cloudflare |
+| 13 | Add third related services | Exercise Physiology → Pelvic Health added; Vestibular → Pilates added |
+| 14 | Reopens Monday 4 January 2027 | Banner: "The clinic is temporarily closed and reopens on Monday 4 January 2027." It and the closure notes hide themselves after 3 January |
+
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 
 Prices and funding wording on Patient information come from the clinic's own Nookal booking page (https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location), read on 6 Nov 2026. Names are shortened from Nookal's (e.g. "Physiotherapy Extended Review - 45mins" → "Extended review (45 minutes)", under a "Physiotherapy" heading). Exercise physiology prices are shown as Nookal shows them to clients, GST included ($145, $95, $125). Funding: "Private health, Medicare, DVA, NDIS and WorkCover are all welcome", plus the out-of-pocket note, both condensed from Nookal's appointment descriptions. Class packages aren't on Nookal, so the existing package note needs confirming. Approved: TBC.

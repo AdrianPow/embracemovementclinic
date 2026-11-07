@@ -2,7 +2,7 @@
   "cancellation": {
     "paragraphs": [
       "Given there is a waitlist for many classes, please provide as much notice as possible if you need to cancel or reschedule your booking so the time can be offered to another client.",
-      "All bookings that are cancelled within 8 hours or less of the scheduled appointment or class will be charged at 50% of the applicable price."
+      "Please give at least 8 hours’ notice if you need to cancel. Bookings cancelled with less than 8 hours’ notice are charged the full price."
     ]
   },
   "classFacts": [
@@ -36,7 +36,7 @@
   "studioEtiquette": [
     {
       "name": "Grip socks, please",
-      "detail": "Grip socks are preferred on the equipment for hygiene and to help it last. Grip socks are available in the studio, or bring your hospital or trampoline socks."
+      "detail": "Grip socks are preferred on the equipment for hygiene and to help it last. They’re available to buy in the clinic, or bring your hospital or trampoline socks."
     },
     {
       "name": "No sneakers on the equipment",

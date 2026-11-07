@@ -42,9 +42,9 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [ ] **Opening hours** (from the January 2027 reopening). Address, phone and email are already in the export.
 - [ ] **ABN** (footer)
 - [ ] **Parking details** for the location section (street parking, driveway, accessibility)
-- [ ] **Reopening date**, so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
+- [x] **Reopening date**: Monday 4 January 2027 (Nicole, 7 Nov 2026). The banner and closure notes hide after 3 January. Previously: so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
 - [ ] **Current class timetable as text** (days, times, class type). The current timetable is an image of the July 2025 timetable, which isn't accessible.
-- [ ] **Which practitioner provides which service.** Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
+- [x] **Which practitioner provides which service:** Nookal is right; Laura isn't seeing pelvic health clients for now (Nicole, 7 Nov 2026). Previously: Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
 - [ ] **Privacy contact** (name or role, plus email) for the privacy policy
 - [ ] Are the **Google Forms** (feedback survey, SMS list, home program request) still active? They're linked from the archived June 2025 update.
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
@@ -54,8 +54,8 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
 - [ ] **What to bring** to a first appointment
 - [ ] **Accessibility** of the clinic (steps, wheelchair access)
-- [ ] **Confirm class facts:** Nookal confirms a maximum of 4–5 people and 45 minutes. Still to confirm: the 8-hour / 50% cancellation policy (older pages said 24 hours)
-- [ ] **Grip socks:** still sold in the studio? (The June 2025 price was $15; it isn't shown on the new pages)
+- [x] **Class facts:** 4–5 people and 45 minutes (Nookal); cancellation is at least 8 hours' notice or the full cost is charged (Nicole, 7 Nov 2026). Confirm it covers one-on-one appointments too
+- [x] **Grip socks:** available to buy in the clinic; no price on the site (Nicole, 7 Nov 2026)
 - [x] A photo of Jeff, the clinic dog (the team photo with Laura and Nicole)
 - [ ] **Privacy policy details:** a privacy contact, whether data is stored overseas (e.g. by Nookal), whether AI admin tools are still used, and your record retention period. Then approve the draft at `/privacy`.
 - [ ] Approve the wording changes in `docs/changes.md`

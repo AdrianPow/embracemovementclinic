@@ -48,6 +48,8 @@ const services = defineCollection({
       goodToKnow: z.array(item).default([]),
       practitioners: z.array(reference('team')),
       practitionersNote: z.string().optional(),
+      /** Short availability note under the page title, e.g. while the practitioner is on leave. */
+      notice: z.string().optional(),
       related: z.array(reference('services')).default([]),
       /** Photo in src/assets/photos, used on the page, its card and when the page is shared. */
       image: image().optional(),

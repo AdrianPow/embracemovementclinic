@@ -155,6 +155,7 @@ collections:
         display_fields: [name]
         multiple: true
       - { name: practitionersNote, label: Note about who you’ll see, widget: string, required: false }
+      - { name: notice, label: Availability note, widget: string, required: false, hint: 'Shown under the page title, e.g. "Available again from April 2027, when Laura returns from leave." Leave blank when not needed.' }
       - name: related
         label: Related services
         widget: relation
@@ -202,8 +203,7 @@ collections:
         image_field: photo
         default_focus: 50% 0%
         shapes:
-          - { label: Home page card, ratio: 1 / 1 }
-          - { label: Team page card, ratio: 4 / 3 }
+          - { label: Home and Team page cards, ratio: 4 / 3 }
           - { label: Profile page, ratio: 4 / 5 }
           - { label: Service pages, ratio: 1 / 1 }
         hint: Click where to keep in view. For headshots, keep the whole head in every preview. Reset keeps the top of the photo.

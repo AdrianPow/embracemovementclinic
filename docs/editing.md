@@ -6,7 +6,7 @@ The website has an editing screen at **`/admin`** (Sveltia CMS: free and open so
 
 | Section in the editor | What's in it |
 |---|---|
-| **Services** | Each service page: photo and its description, home page card text, opening line, conditions treated, what to expect, treatments, "good to know" notes, who you'll see, related services, Google title and description |
+| **Services** | Each service page: photo and its description, an availability note under the title (e.g. while a practitioner is on leave), home page card text, opening line, conditions treated, what to expect, treatments, "good to know" notes, who you'll see, related services, Google title and description |
 | **Team** | Each practitioner: headshot, status (e.g. "On maternity leave until January 2027"), titles, qualifications, training, experience, bio |
 | **News** | Add, edit or delete posts, with photos |
 | **Home page** | Headline, intro, main photo, the facts under the headline, "How it works" steps, team intro, the "Our approach" line and its two photos |

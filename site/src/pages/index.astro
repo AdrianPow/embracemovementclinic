@@ -23,9 +23,6 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
 const homeEntry = await getEntry('home', 'home');
 if (!homeEntry) throw new Error('Missing src/content/home/home.md');
 const home = homeEntry.data;
-// Jeff's photo and heading come from the Team page text ("Pages → Team page" on /admin).
-const teamPage = await getEntry('teamPage', 'team');
-const jeff = teamPage?.data.jeff;
 
 const factIcons = ['user', 'users', 'shield', 'map-pin'] as const;
 const facts = home.facts.map((text, i) => ({ icon: factIcons[i] ?? 'check', text }));
@@ -137,16 +134,9 @@ const jsonLd = {
         {
           team.map((m) => (
             <li>
-              <TeamCard member={m} />
+              <TeamCard member={m} ratio="4 / 3" sizes="(min-width: 75em) 37rem, (min-width: 40em) 50vw, 100vw" />
             </li>
           ))
-        }
-        {
-          jeff && (
-            <li>
-              <TeamCard extra={{ href: '/team#jeff', name: 'Jeff', titles: ['Clinic dog'], photo: jeff.photo, position: jeff.photoPosition, more: 'Say hello' }} />
-            </li>
-          )
         }
       </ul>
     </div>
@@ -344,16 +334,10 @@ const jsonLd = {
     grid-template-columns: 1fr;
   }
 
-  /* Two practitioners and Jeff: 2 across on tablets, 3 on wider screens. */
-  @media (min-width: 36em) {
+  /* The two practitioners side by side, as on the Team page. */
+  @media (min-width: 40em) {
     .team-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 62em) {
-    .team-grid {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 

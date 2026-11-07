@@ -40,10 +40,12 @@ goodToKnow:
     detail: Vestibular physiotherapy is an evidence-based approach to managing the symptoms of vestibular disorders.
 practitioners:
   - laura-bradford
+notice: Vestibular physiotherapy is available again from April 2027, when Laura returns from leave.
 practitionersNote: Book vestibular physiotherapy appointments with Laura.
 related:
   - physiotherapy
   - exercise-physiology
+  - pilates
 seoTitle: Vestibular Physiotherapy in McDowall
 seoDescription: Vestibular physiotherapy in McDowall for vertigo, dizziness and decreased balance, including BPPV. Assessment and an individualised treatment plan.
 oldUrl: /pilates-1

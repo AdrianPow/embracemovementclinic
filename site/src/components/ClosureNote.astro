@@ -11,7 +11,7 @@ const show = notice.enabled && !expired;
 
 {
   show && (
-    <aside class="closure" aria-label="Clinic notice">
+    <aside class="closure" aria-label="Clinic notice" data-hide-after={notice.until || undefined}>
       <Icon name="info" size={22} />
       <p>
         <strong>{notice.message}</strong> {notice.link && <a href={notice.link.href}>{notice.link.label}</a>}

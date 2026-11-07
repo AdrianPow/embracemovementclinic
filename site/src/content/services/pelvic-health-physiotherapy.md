@@ -1,6 +1,6 @@
 ---
-title: Pelvic Floor Physiotherapy
-shortTitle: Pelvic floor
+title: Pelvic Health Physiotherapy
+shortTitle: Pelvic health
 order: 3
 kind: appointment
 image: ../../assets/photos/pxl-20220611-045341759-2.webp
@@ -23,7 +23,7 @@ forYou:
     - name: Sexual dysfunction
     - name: Menopause care
 expect:
-  text: During your initial consultation your physiotherapist will discuss your medical history and concerns. They will then perform a comprehensive assessment (potentially a vaginal examination if deemed necessary) to determine the best course of treatment.
+  text: During your initial consultation your physiotherapist will discuss your medical history and concerns, then complete a comprehensive assessment to work out the best course of treatment. An internal (vaginal) examination is only ever optional, and only goes ahead with your consent.
 treatments:
   heading: Treatment may include
   items:
@@ -37,13 +37,12 @@ treatments:
     - name: Electrical stimulation
 practitioners:
   - nicole-saxby
-  - laura-bradford
-practitionersNote: Both of our physiotherapists have completed Women’s Pelvic Health Physiotherapy training with the APA.
+practitionersNote: Book pelvic health appointments with Nicole, who has completed Women’s Pelvic Health Physiotherapy training with the APA.
 related:
   - physiotherapy
   - pilates
   - exercise-physiology
-seoTitle: Pelvic Floor Physiotherapy in McDowall
-seoDescription: Pelvic floor physiotherapy in McDowall for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
+seoTitle: Pelvic Health Physiotherapy in McDowall
+seoDescription: Pelvic health physiotherapy in McDowall for incontinence, prolapse, pelvic pain, diastasis recti, pre- and postnatal care, sexual dysfunction and menopause care.
 oldUrl: /womens-health-physio
 ---
