@@ -11,7 +11,7 @@ import Todo from '../components/Todo.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import BookingBand from '../components/BookingBand.astro';
 import { site, fullAddress } from '../data/site';
-import { cancellationPolicy, classFacts, studioEtiquette, booking } from '../data/policies';
+import { cancellationPolicy, classFacts, studioEtiquette, booking, bookingTip } from '../data/policies';
 
 const pageEntry = await getEntry('patientInfo', 'patient-information');
 const teamEntry = await getEntry('teamPage', 'team');
@@ -89,7 +89,7 @@ const sections = [
               <p><a href={site.email.href} class="email">{site.email.address.split('@')[0]}@<wbr />{site.email.address.split('@')[1]}</a></p>
             </div>
           </div>
-          <p class="tip"><Icon name="info" size={20} /><span>{booking.bookingCode}</span></p>
+          <p class="tip"><Icon name="info" size={20} /><span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href}>{bookingTip.link.text}</a>}{bookingTip.after}</span></p>
         </section>
 
         <section id="first-visit" aria-labelledby="first-h" class="block">

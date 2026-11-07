@@ -517,7 +517,8 @@ collections:
             widget: object
             fields:
               - { name: classes, label: Booking classes, widget: text }
-              - { name: bookingCode, label: Booking code tip, widget: text }
+              - { name: bookingCode, label: Booking code tip, widget: text, hint: 'The words "patient portal" link to the portal address below.' }
+              - { name: portalUrl, label: Patient portal address, widget: string, required: false, pattern: ['^https://', 'Paste the full link, starting with https://'], hint: 'The Nookal patient portal link.' }
               - { name: waitlistText, label: Waitlist text, widget: string }
       - name: needs
         label: What can we help with?

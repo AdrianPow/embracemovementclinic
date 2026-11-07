@@ -26,7 +26,7 @@ interface PoliciesData {
   classFacts: { label: string; value: string }[];
   equipment: string[];
   studioEtiquette: { name: string; detail: string }[];
-  booking: { classes: string; bookingCode: string; waitlistText: string };
+  booking: { classes: string; bookingCode: string; waitlistText: string; portalUrl?: string };
   timetable?: TimetableDay[];
   classSteps: string[];
 }
@@ -37,6 +37,14 @@ export const classFacts = data.classFacts;
 export const equipment = data.equipment;
 export const studioEtiquette = data.studioEtiquette;
 export const booking = data.booking;
+/** The booking code tip, split so the words "patient portal" can link to the Nookal patient portal. */
+export const bookingTip = (() => {
+  const phrase = 'patient portal';
+  const text = data.booking.bookingCode;
+  const at = text.indexOf(phrase);
+  if (at < 0 || !data.booking.portalUrl) return { before: text, link: null, after: '' };
+  return { before: text.slice(0, at), link: { text: phrase, href: data.booking.portalUrl }, after: text.slice(at + phrase.length) };
+})();
 /** "How to start classes" on the Pilates page, one line per step. */
 export const classSteps = data.classSteps;
 

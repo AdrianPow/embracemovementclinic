@@ -14,7 +14,7 @@ import BookingBand from '../components/BookingBand.astro';
 import ClosureNote from '../components/ClosureNote.astro';
 import Timetable from '../components/Timetable.astro';
 import { site } from '../data/site';
-import { classFacts, classSteps, equipment, studioEtiquette, cancellationPolicy, booking, timetable } from '../data/policies';
+import { classFacts, classSteps, equipment, cancellationPolicy, booking, bookingTip, timetable } from '../data/policies';
 
 const service = (await getEntry('services', 'pilates')) as CollectionEntry<'services'>;
 const d = service.data;
@@ -71,7 +71,7 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
       <StepStrip as="h2" id="start-h" title="How to start classes" steps={classSteps} />
       <p class="code-tip">
         <Icon name="info" size={20} />
-        <span>{booking.bookingCode}</span>
+        <span>{bookingTip.before}{bookingTip.link && <a href={bookingTip.link.href}>{bookingTip.link.text}</a>}{bookingTip.after}</span>
       </p>
     </div>
   </section>
@@ -122,32 +122,19 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
   </section>
 
   <section class="section section--alt" id="studio" aria-labelledby="studio-h">
-    <div class="wrap two-col">
-      <div class="head">
+    <div class="wrap">
+      <div class="head head--wide">
         <h2 id="studio-h">Our clinic is equipped with</h2>
-        <ul class="kit">
-          {equipment.map((e) => <li>{e}</li>)}
-        </ul>
-        <p class="kit__more">And much more.</p>
       </div>
-      <div>
-        <h3 class="h4 etiquette__title">Before you come to class</h3>
-        <ul class="etiquette" role="list">
-          {
-            studioEtiquette.map((e) => (
-              <li>
-                <p class="etiquette__name">{e.name}</p>
-                <p>{e.detail}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <ul class="kit">
+        {equipment.map((e) => <li>{e}</li>)}
+      </ul>
+      <p class="kit__more">And much more.</p>
     </div>
   </section>
 
   <section class="section" id="cancellations" aria-labelledby="cancel-h">
-    <div class="wrap narrow">
+    <div class="wrap narrow narrow--full">
       <h2 id="cancel-h">Cancellation policy</h2>
       {cancellationPolicy.paragraphs.map((p) => <p>{p}</p>)}
     </div>
@@ -331,6 +318,12 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
     line-height: 1.35;
   }
 
+  @media (min-width: 56em) {
+    .kit {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
   .kit li {
     padding-left: 0.2em;
     font-weight: 550;
@@ -370,25 +363,6 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
     margin-top: var(--space-m);
   }
 
-  .etiquette__title {
-    margin-bottom: var(--space-s);
-  }
-
-  .etiquette li {
-    padding-block: var(--space-s);
-    border-top: 1px solid var(--color-line);
-  }
-
-  .etiquette__name {
-    font-family: var(--font-display);
-    font-weight: 650;
-  }
-
-  .etiquette li p + p {
-    margin-top: var(--space-3xs);
-    color: var(--color-ink-muted);
-  }
-
   .narrow {
     display: grid;
     gap: var(--space-s);
@@ -396,6 +370,11 @@ const related = (await getEntries(d.related)) as CollectionEntry<'services'>[];
 
   .narrow > * {
     max-width: 46rem;
+  }
+
+  /* Cancellation policy: text runs the full width. */
+  .narrow--full > * {
+    max-width: none;
   }
 
   .narrow p:not(.eyebrow) {

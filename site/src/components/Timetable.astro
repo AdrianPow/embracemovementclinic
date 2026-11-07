@@ -64,7 +64,7 @@ const otherClasses = days.some((d) => d.classes.some((c) => c.class?.trim() && c
               <>
               {isFirstPm(d.classes, i) && <li class="slots__break" aria-hidden="true" />}
               <li class="slot" data-colour={colourOf(c.with)} style={`--row: ${rowOf(c.time)}`}>
-                <span class="slot__time">{c.time}</span>
+                <span class="slot__time">{c.time}</span>{' '}
                 {(otherClasses || nameOf(c.with)) && (
                   <span class="slot__detail">
                     {[otherClasses ? c.class?.trim() || defaultClass : null, nameOf(c.with) && `with ${nameOf(c.with)}`]
