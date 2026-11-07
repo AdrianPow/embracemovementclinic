@@ -31,7 +31,7 @@ After a wonderful year of new babies, we’re excited to welcome you back to Emb
 - **Wednesday:** 6am – 7.30am, then 4.30pm – 8pm
 - **Thursday:** 8am – 4pm
 - **Friday:** Closed
-- **Saturday:** By appointment only
+- **Saturday:** Closed (occasional appointments on request)
 - **Sunday:** Closed
 
 Small group classes are back, all with Nicole. See the [new class timetable](/pilates#timetable) for all the times.

@@ -90,20 +90,27 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
       {
         hours ? (
           <dl class="site-footer__hours">
-            {hours.map((h) => (
-              <div>
-                <dt>{h.days}</dt>
-                <dd>
-                  {/* Split shifts ("7am – 11am, 1.15pm – 8pm") one per line. */}
-                  {h.hours.split(/,\s*/).map((part, i) => (
-                    <>
-                      {i > 0 && <br />}
-                      <span class="nowrap">{part}</span>
-                    </>
-                  ))}
-                </dd>
-              </div>
-            ))}
+            {hours.map((h) => {
+              // "Closed (occasional appointments on request)": the bracketed note gets its own line.
+              const at = h.hours.indexOf(' (');
+              const main = at > -1 ? h.hours.slice(0, at) : h.hours;
+              const note = at > -1 ? h.hours.slice(at + 1) : '';
+              return (
+                <div>
+                  <dt>{h.days}</dt>
+                  <dd>
+                    {/* Split shifts ("7am – 11am, 1pm – 8pm") one per line. */}
+                    {main.split(/,\s*/).map((part, i) => (
+                      <>
+                        {i > 0 && <br />}
+                        <span class="nowrap">{part}</span>
+                      </>
+                    ))}
+                  </dd>
+                  {note && <dd class="site-footer__hours-note">{note}</dd>}
+                </div>
+              );
+            })}
           </dl>
         ) : (
           <Todo>opening hours</Todo>
@@ -237,12 +244,20 @@ const hasSocials = Boolean(socials.instagram || socials.facebook);
 
   .site-footer__hours div {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: var(--space-s);
+    column-gap: var(--space-s);
   }
 
   .site-footer__hours dd {
     text-align: right;
+  }
+
+  /* A note in brackets, e.g. Saturday's "(occasional appointments on request)". */
+  .site-footer__hours-note {
+    flex-basis: 100%;
+    color: var(--color-on-brand-muted);
+    font-size: 0.875em;
   }
 
   .site-footer__note {
