@@ -19,9 +19,9 @@ Charlotte and Laura are both doing well, and big brother Teddy is loving his new
 
 Laura plans to return to the clinic part-time by March 2027.
 
-## Back in the studio from 4 January
+## Back in the clinic from 4 January
 
-After a wonderful year of new babies, we’re excited to welcome you back to the studio. From Monday 4 January, our opening hours will be:
+After a wonderful year of new babies, we’re excited to welcome you back to Embrace. From Monday 4 January, Nicole's hours will be:
 
 - **Monday:** 6am – 1pm
 - **Tuesday:** 8am – 8pm
@@ -31,15 +31,15 @@ After a wonderful year of new babies, we’re excited to welcome you back to the
 - **Saturday:** By appointment only
 - **Sunday:** Closed
 
-### New class timetable
-
-Small group classes are back, with Nicole, from Monday to Thursday. See the [new class timetable](/pilates#timetable) for all the times.
+Small group classes are back, with Nicole everyday. See the [new class timetable](/pilates#timetable) for all the times.
 
 ### Book in now
 
-Bookings for January are open now, so you can [book online](https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location) or call us on [0434 686 261](tel:+61434686261). We expect many of our classes to have a waitlist, so recommend booking early!
+Bookings for January are open now for both one-on-one appointments and classes so you can [book online](https://book.nookal.com/bookings/book/EE4e4bFE-aEC6-E51D-2cda-aE95ddcBeb3E/location). We expect many of our classes to have a waitlist, so recommend booking early! If you want to lock in a regular booking time, text Nicole on [0434 686 261](tel:+61434686261). 
 
-Vestibular physiotherapy will be available again from March, when Laura returns.
+Vestibular physiotherapy will be available again from March, when Laura returns.New class timetable
+
+### 
 
 ## Coming soon: our patient portal
 
