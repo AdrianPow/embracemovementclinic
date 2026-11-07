@@ -120,8 +120,9 @@ const ogAlt = shareImage || image ? imageAlt : `${site.name}: Accept . Support .
     <script is:inline>
       // Closure notes repeat the notice banner; like the banner, they go once its end date has passed
       // (Brisbane time), even before the site is next rebuilt.
-      // Nookal links typed into news posts or bios open in a new tab, like the booking buttons.
-      document.querySelectorAll('a[href*=".nookal.com/"]:not([target])').forEach(function (a) {
+      // Nookal links typed into posts or bios, and every page link inside a news post (e.g. the
+      // timetable), open in a new tab, so readers keep their place. Phone, text and email links don't.
+      document.querySelectorAll('a[href*=".nookal.com/"]:not([target]), .post-body a[href^="/"]:not([target])').forEach(function (a) {
         a.target = '_blank';
         a.rel = 'noopener';
         var s = document.createElement('span');
