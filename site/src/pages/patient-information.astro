@@ -2,7 +2,7 @@
 // Patient information: practical facts gathered from the old newsletters and pages,
 // in one evergreen place. Facts live in src/data/policies.json and src/data/clinic.json;
 // this page's own text in src/content/pages/patient-information.md (edited on /admin).
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Button from '../components/Button.astro';
@@ -18,6 +18,18 @@ const teamEntry = await getEntry('teamPage', 'team');
 if (!pageEntry || !teamEntry) throw new Error('Missing a file in src/content/pages');
 const p = pageEntry.data;
 // Fees listed together under their service, in the order they were entered.
+// Each fee group heading links to its service page: matched on the service's title, short name or
+// address ("Physiotherapy" → /physiotherapy), and any "class" group → the classes page.
+const services = await getCollection('services');
+const norm = (t: string) => t.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').trim();
+const serviceFor = (group?: string) => {
+  if (!group) return undefined;
+  const g = norm(group);
+  return (
+    services.find((s) => [s.data.title, s.data.shortTitle ?? '', s.id.replace(/-/g, ' ')].some((n) => norm(n) === g)) ??
+    (/\bclass/.test(g) ? services.find((s) => s.data.kind === 'class') : undefined)
+  );
+};
 const feeGroups = p.fees.reduce<{ name?: string; fees: typeof p.fees }[]>((groups, f) => {
   const last = groups.at(-1);
   if (last && last.name === f.group) last.fees.push(f);
@@ -124,9 +136,22 @@ const sections = [
           {
             p.fees.length > 0 ? (
               <div class="fee-groups">
-                {feeGroups.map((g) => (
+                {feeGroups.map((g, i) => (
                   <div class="fee-group">
-                    {g.name && <h3 class="h4">{g.name}</h3>}
+                    {g.name && (
+                      <h3 class="h4 fee-group__title">
+                        {serviceFor(g.name) ? (
+                          <a class="fee-pill" data-colour={(i % 3) + 1} href={`/${serviceFor(g.name)!.id}`}>
+                            {g.name}
+                            <Icon name="arrow-right" size={18} />
+                          </a>
+                        ) : (
+                          <span class="fee-pill" data-colour={(i % 3) + 1}>
+                            {g.name}
+                          </span>
+                        )}
+                      </h3>
+                    )}
                     <dl class="fees">
                       {g.fees.map((f) => (
                         <div>
@@ -417,8 +442,43 @@ const sections = [
     }
   }
 
-  .fee-group h3 {
-    margin-bottom: var(--space-2xs);
+  .fee-group__title {
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Service name as a coloured pill linking to its page (brand shades in turn). */
+  .fee-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+    text-decoration: none;
+    transition:
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+
+  .fee-pill[data-colour='1'] {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .fee-pill[data-colour='2'] {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  .fee-pill[data-colour='3'] {
+    background: var(--color-accent-on-brand);
+    color: var(--color-ink);
+  }
+
+  @media (hover: hover) {
+    a.fee-pill:hover {
+      box-shadow: var(--shadow-m);
+      transform: translateY(-1px);
+    }
   }
 
   .fees div {
