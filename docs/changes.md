@@ -152,6 +152,8 @@ Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note 
 
 - The July 2026 update was deleted (owner's request; a new update is coming). `/baby-news` and `/news/july-2026-update` redirect to /news. The notice banner no longer has a "Read the latest update" link. While there are no posts, /news shows a short note and News is left out of the menu and footer.
 - Laura's return moved to March 2027 (status and the Vestibular availability note).
+- AHPRA registration numbers won't be shown for now: the profile TODO is gone; the optional field stays on /admin.
+- Consent confirmed for everyone pictured, including the two children. Their photos are now in `site/src/assets/photos/` (`pxl-20220610-235914156.webp`, `pxl-20220611-052505665.webp`), ready to choose on /admin, but not placed on a page yet.
 
 ## Fees and funding (6 Nov 2026, from the Nookal booking page)
 

@@ -25,17 +25,17 @@ Tick items off as they arrive. Brand files go in `assets/brand/`; screenshots go
 - [x] **Colour palette:** Petrol + Teal (petrol chosen 19 Oct 2026; accent changed from coral to teal on 20 Oct). `/palette` stays for trying other combinations later.
 - [x] Font choice: Red Hat Display + Red Hat Text (open licence, self-hosted)
 - [x] Clinic, team and treatment photos: 16 received on 19 Oct 2026. 13 are on the site (`site/src/assets/photos/`): headshots, the team photo with Jeff, the home page and every service page. More can be added on /admin.
-- [ ] **Guardian consent for the two photos of children** (`PXL_20220610_235914156`, a child using a wheelchair beside the reformer, and `PXL_20220611_052505665`, a child on the treatment table). They're held back until you confirm a parent or guardian agreed to their use on the website.
+- [x] **Guardian consent for the two photos of children**: given (owner, 7 Nov 2026). The photos (`PXL_20220610_235914156`, `PXL_20220611_052505665`) can now be used
 - [ ] **Photo of the front of the clinic** (or the driveway and parking). Optional now: Home and Contact show a street map, but a photo of the entrance would still help on Contact
-- [ ] **Two photos of baby Imogen** for the archived July 2026 update (`DSC_6425.JPG` and `DSC_6872.JPG` on the old site), if you'd like them kept
-- [ ] Photo permissions confirmed for everyone pictured (clients as well as staff)
-- [ ] Check the alt text (the description read out by screen readers) for each photo. They're listed in `docs/changes.md` under "Photos".
+- [x] ~~Two photos of baby Imogen~~: not needed, the July 2026 update was deleted (7 Nov 2026). (`DSC_6425.JPG` and `DSC_6872.JPG` on the old site), if you'd like them kept
+- [x] Photo permissions confirmed for everyone pictured, including children (owner, 7 Nov 2026)
+- [x] Check the alt text (the description read out by screen readers) for each photo (checked 7 Nov 2026). They're listed in `docs/changes.md` under "Photos".
 
 ## Content
 
 Many of these can now be filled in directly on the website editor (`/admin`): opening hours, parking and accessibility (Clinic details), fees, what to bring, Medicare/DVA/NDIS/WorkCover (Pages → Patient information), the class timetable (Policies and timetable), and the Instagram, Facebook and ABN details. See `docs/editing.md`.
 
-- [ ] AHPRA registration numbers for Nicole and Laura: now a field on /admin (Team → each practitioner → AHPRA registration number)
+- [x] AHPRA registration numbers: not shown on the site for now (owner, 7 Nov 2026). Optional field on /admin if wanted later
 - [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (7 Nov 2026)
 - [x] Facebook: https://www.facebook.com/embracemovementclinic/ (7 Nov 2026)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)

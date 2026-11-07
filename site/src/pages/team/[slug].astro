@@ -8,7 +8,6 @@ import Button from '../../components/Button.astro';
 import Icon from '../../components/Icon.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import BookingBand from '../../components/BookingBand.astro';
-import Todo from '../../components/Todo.astro';
 import { site } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -56,14 +55,10 @@ const jsonLd = {
         </ul>
         {d.status && <p class="status">{d.status}</p>}
         {
-          d.registration ? (
+          d.registration && (
             <p class="ahpra">
               AHPRA registration{' '}
               <a href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx">{d.registration}</a>
-            </p>
-          ) : (
-            <p class="ahpra">
-              <Todo>AHPRA registration number (Team → {d.firstName} → AHPRA registration number)</Todo>
             </p>
           )
         }
