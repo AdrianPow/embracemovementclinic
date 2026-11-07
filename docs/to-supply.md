@@ -39,17 +39,17 @@ Many of these can now be filled in directly on the website editor (`/admin`): op
 - [x] Instagram: https://www.instagram.com/embrace_movement_clinic/ (7 Nov 2026)
 - [x] Facebook: https://www.facebook.com/embracemovementclinic/ (7 Nov 2026)
 - [ ] Any new content for the refresh (new services, updated bios, new photos)
-- [ ] Current services list and fees, plus any rebate or funding info (to confirm accuracy)
+- [x] Services, fees and funding: from Nookal, confirmed with Nicole (7 Nov 2026)
 - [x] **Opening hours**: entered on /admin (Mon 6am–1pm, Tue 8am–8pm, Wed 6am–8pm, Thu 8am–4pm, Fri closed, Sat by appointment only, Sun closed)
 - [x] **ABN**: 57 627 072 057, entered on /admin
-- [ ] **Parking details** for the location section (street parking, driveway, accessibility)
+- [x] **Parking**: entered on /admin (driveway, or free street parking on Brynner or Bassey Street)
 - [x] **Reopening date**: Monday 4 January 2027 (Nicole, 7 Nov 2026). The banner and closure notes hide after 3 January. Previously: so the closure banner can hide itself automatically (on /admin: Clinic settings → Clinic details → Notice banner → Hide automatically after)
 - [x] **Class timetable**: from Nookal's week of 4 January 2027 (Monday to Thursday, all with Nicole), added 7 Nov 2026. Keep it in step with Nookal on /admin: Clinic settings → Policies and timetable
 - [x] **Which practitioner provides which service:** Nookal is right; Laura isn't seeing pelvic health clients for now (Nicole, 7 Nov 2026). Previously: Nookal (6 Nov 2026) matches the site except Pelvic Health: bookable online with Nicole only, while the site lists Nicole and Laura. Confirm which is right
 - [x] **Privacy contact**: the clinic's email and phone (no named person), as approved 7 Nov 2026
 - [x] Google Forms: no longer linked (the June 2025 update was deleted on 7 Nov 2026)
 - [ ] Any pages not linked from the menu (old landing pages, campaign pages)
-- [ ] Existing privacy policy, terms or cancellation policy
+- [x] Privacy policy (approved 7 Nov 2026) and cancellation policy (8 hours' notice or full price)
 - [x] **Fees**: taken from the Nookal booking page on 6 Nov 2026 (15 prices, GST included where it applies). Keep the site and Nookal in step: on /admin, Pages → Patient information → Fees
 - [x] **Class packages:** 10-class pack $380, 20-class pack $700, bought in the clinic (Nicole, 7 Nov 2026). On Patient information
 - [x] **Funding:** Nookal's appointment descriptions say private health, Medicare, DVA, NDIS and WorkCover are welcome, and out-of-pocket costs vary by payer. Now on Patient information; Nicole to confirm the wording
