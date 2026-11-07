@@ -152,6 +152,7 @@ Nicole reviewed and approved /privacy. Changes at the same time: the DRAFT note 
 
 - The July 2026 update was deleted (owner's request; a new update is coming). `/baby-news` and `/news/july-2026-update` redirect to /news. The notice banner no longer has a "Read the latest update" link. While there are no posts, /news shows a short note and News is left out of the menu and footer.
 - Laura's return moved to March 2027 (status and the Vestibular availability note).
+- New post (7 Nov 2026): "We’re reopening on Monday 4 January 2027" (`/news/reopening-january-2027`): Laura’s baby Charlotte Anne (born Tuesday 15 September 2026, 3.7kg; big brother Teddy), Laura back part-time by March 2027, opening hours, the new class timetable, booking, and a patient portal teaser. Two photos supplied by the owner (converted from HEIC, location and camera data removed). The notice banner links to it.
 - AHPRA registration numbers won't be shown for now: the profile TODO is gone; the optional field stays on /admin.
 - Consent confirmed for everyone pictured, including the two children. Their photos are now in `site/src/assets/photos/` (`pxl-20220610-235914156.webp`, `pxl-20220611-052505665.webp`), ready to choose on /admin, but not placed on a page yet.
 

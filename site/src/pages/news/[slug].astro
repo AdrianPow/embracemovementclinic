@@ -76,7 +76,7 @@ const month = d.date.toLocaleDateString('en-AU', { month: 'long', year: 'numeric
         d.images.length > 0 && (
           <div class="images">
             {d.images.map((img) => (
-              <Photo src={img.src} alt={img.alt} position={img.position} ratio="4 / 3" sizes={imageSizes} />
+              <Photo src={img.src} alt={img.alt} position={img.position} ratio={img.src.height > img.src.width ? '4 / 5' : '4 / 3'} sizes={imageSizes} />
             ))}
           </div>
         )
