@@ -91,6 +91,20 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
     </div>
   </div>
 
+  {
+    booking.portalUrl && (
+      <div class="site-header__portal-row">
+        <div class="wrap">
+          <a href={booking.portalUrl} class="site-header__portal-link" {...newTabAttrs(booking.portalUrl)}>
+            Patient portal
+            <Icon name="arrow-right" size={16} />
+            <span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+    )
+  }
+
   <!-- Mobile navigation (same links, kept after the menu button in reading order) -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Main">
     <ul class="wrap mobile-nav__list" role="list">
@@ -370,6 +384,36 @@ const inServices = path === '/services' || serviceLinks.some((l) => l.kind === '
   @media (min-width: 30em) {
     .site-header__logo {
       width: 8.5rem;
+    }
+  }
+
+  /* Phones and tablets: Patient portal in a slim row under the bar (no room beside Book now). */
+  .site-header__portal-row {
+    border-top: 1px solid var(--divider);
+  }
+
+  .site-header__portal-row .wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .site-header__portal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    min-height: 2.25rem;
+    color: inherit;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 650;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (min-width: 62em) {
+    .site-header__portal-row {
+      display: none;
     }
   }
 

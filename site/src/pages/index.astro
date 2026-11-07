@@ -15,6 +15,7 @@ import StepStrip from '../components/StepStrip.astro';
 import Icon from '../components/Icon.astro';
 import Todo from '../components/Todo.astro';
 import { site } from '../data/site';
+import { booking } from '../data/policies';
 import { needs } from '../data/needs';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
@@ -67,6 +68,11 @@ const jsonLd = {
         <p class="lede">{home.heroIntro}</p>
         <div class="hero__actions">
           <Button href={site.booking.url} icon="calendar" size="l">Book now</Button>
+          {booking.portalUrl && (
+            <Button href={booking.portalUrl} variant="secondary" size="l">
+              Patient portal
+            </Button>
+          )}
           <Button href={site.phone.href} variant="secondary" size="l" icon="phone" class="phone-only">Call {site.phone.display}</Button>
           <Button href="#help" variant="secondary" size="l" class="wide-only">What can we help with?</Button>
         </div>
@@ -223,6 +229,24 @@ const jsonLd = {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-s);
+  }
+
+  /* Phones: Book now and Patient portal side by side, Call underneath. */
+  @media (max-width: 39.99em) {
+    .hero__actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-xs);
+    }
+
+    .hero__actions > :global(.btn) {
+      padding-inline: 0.6em;
+      font-size: var(--step-0);
+    }
+
+    .hero__actions > :global(.phone-only) {
+      grid-column: 1 / -1;
+    }
   }
 
   :global(.hero__photo) {
