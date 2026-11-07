@@ -44,7 +44,7 @@ Vestibular physiotherapy will be available again from March, when Laura returns.
 
 ## Coming soon: our patient portal
 
-We're excited to launch our new Patient Portal, where you can easily book appointments, pay invoices, securely message clinic staff and update your details online! Keep an eye out for your unique sign-up link in your next appointment reminder to get started. If you’d like to know more about the portal, ask Nicole at your first appointment back.
+We're excited to launch our new Patient Portal, where you can easily book appointments, pay invoices, message clinic staff and update your details online! Keep an eye out for your unique sign-up link in your next appointment reminder to get started. If you’d like to know more about the portal, ask Nicole at your first appointment back.
 
 ## Our new website
 
