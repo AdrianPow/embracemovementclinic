@@ -1,7 +1,7 @@
 ---
-// Photo cards for the services, used on Home and Services. One heading labels the one-on-one
-// services, instead of a label on every card; the classes card's own title says what it is.
-// Wide screens: the one-on-one services in a 2×2 grid beside a tall classes card.
+// Photo cards for the services, used on Home and Services, in two labelled groups: classes first
+// (owner's choice, 8 Nov 2026), then one-on-one appointments.
+// Wide screens: a tall classes card beside the one-on-one services in a 2×2 grid.
 // Phones: compact rows (photo beside text).
 import type { CollectionEntry } from 'astro:content';
 import Photo from './Photo.astro';
@@ -13,19 +13,26 @@ interface Props {
 
 const { services } = Astro.props;
 const groups = [
-  { kind: 'appointments', list: services.filter((s) => s.data.kind === 'appointment') },
-  { kind: 'classes', list: services.filter((s) => s.data.kind === 'class') },
+  { kind: 'classes', label: 'Classes', list: services.filter((s) => s.data.kind === 'class') },
+  { kind: 'appointments', label: 'One-on-one appointments', list: services.filter((s) => s.data.kind === 'appointment') },
 ];
 ---
 
 <div class="service-groups">
-  <h3 class="eyebrow group-label"><span class="nowrap">One-on-one</span> appointments</h3>
   {
     groups.map(
-      ({ kind, list }) =>
+      ({ kind, label, list }) =>
         list.length > 0 && (
           <>
-          {kind === 'classes' && <h3 class="eyebrow group-label group-label--classes">Classes</h3>}
+          <h3 class:list={['eyebrow', 'group-label', `group-label--${kind}`]}>
+            {kind === 'appointments' ? (
+              <>
+                <span class="nowrap">One-on-one</span> appointments
+              </>
+            ) : (
+              label
+            )}
+          </h3>
           <ul class:list={['cards', `cards--${kind}`]} role="list">
             {list.map((s) => {
               // Card titles sit under their group's small heading ("One-on-one appointments", "Classes").
@@ -83,19 +90,19 @@ const groups = [
     }
   }
 
-  /* Below wide screens the classes group follows the one-on-one cards: a rule and its label set it apart. */
+  /* Below wide screens the one-on-one group follows the classes card: a rule and its label set it apart. */
   @media (max-width: 61.99em) {
-    .group-label--classes {
+    .group-label--appointments {
       margin-top: var(--space-s);
       padding-top: var(--space-l);
       border-top: 1px solid var(--color-line);
     }
   }
 
-  /* Wide screens: the heading and 2×2 grid on the left, the classes card beside the grid, tops aligned. */
+  /* Wide screens: the classes card on the left, the one-on-one 2×2 grid beside it, labels and tops aligned. */
   @media (min-width: 62em) {
     .service-groups {
-      grid-template-columns: 2fr 1.1fr;
+      grid-template-columns: 1.1fr 2fr;
       grid-template-rows: auto 1fr;
       gap: var(--space-xs) var(--space-xl);
     }
@@ -104,18 +111,23 @@ const groups = [
       margin-bottom: 0;
     }
 
-    .cards--appointments {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .group-label--classes {
+    .group-label--appointments {
       grid-column: 2;
       grid-row: 1;
     }
 
-    .cards--classes {
+    .cards--appointments {
       grid-column: 2;
+      grid-row: 2;
+    }
+
+    .group-label--classes {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .cards--classes {
+      grid-column: 1;
       grid-row: 2;
       grid-template-rows: 1fr;
     }

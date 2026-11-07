@@ -3,7 +3,7 @@ name: Laura Bradford
 firstName: Laura
 order: 2
 photo: /src/assets/photos/sam_1423-1.webp
-photoPosition: 50% 49%
+photoPosition: 50% 28%
 status: On maternity leave until April 2027
 titles:
   - Physiotherapist

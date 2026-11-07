@@ -122,7 +122,7 @@ Mechanical edits across all pages (one entry): Australian spelling (customised, 
 
 | # | Decision | What changed on the site |
 |---|---|---|
-| 1 | Titles as recommended | Nicole: "Physiotherapist (pelvic health) · Exercise Physiologist · Clinical Pilates Instructor". Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
+| 1 | Titles as recommended | Nicole: "Physiotherapist · Exercise Physiologist · Clinical Pilates Instructor" ("(pelvic health)" removed at her request, 8 Nov 2026). Laura: "Physiotherapist · Clinical Pilates Instructor" (she isn't seeing pelvic health clients for now; her pelvic health training stays under qualifications). "Accredited Exercise Physiologist" only once ESSA accreditation is confirmed |
 | 2 | "Pelvic Health" everywhere | Service renamed "Pelvic Health Physiotherapy" (menu, cards, page title, Google title and description, Patient information link). Clinical terms such as "pelvic floor exercises" and course names are unchanged |
 | 3 | Keep "Book now" | No change: Nookal only shows slots from January |
 | 4 | Laura back in April 2027; vestibular unavailable until then | Laura's status "On maternity leave until April 2027"; availability note under the Vestibular page title |

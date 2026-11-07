@@ -10,8 +10,8 @@ const serviceLinks = (await getCollection('services'))
   .sort((a, b) => a.data.order - b.data.order)
   .map((s) => ({ label: s.data.title, href: `/${s.id}`, kind: s.data.kind }));
 const serviceGroups = [
-  { label: 'One-on-one appointments', links: serviceLinks.filter((l) => l.kind === 'appointment') },
   { label: 'Classes', links: serviceLinks.filter((l) => l.kind === 'class') },
+  { label: 'One-on-one appointments', links: serviceLinks.filter((l) => l.kind === 'appointment') },
 ];
 // The mobile menu lists every service under Services, so leave out top-level links that repeat one (Classes).
 const mobileLinks = primaryLinks.filter((l) => !serviceLinks.some((s) => s.href === l.href));
