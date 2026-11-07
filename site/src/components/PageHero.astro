@@ -35,7 +35,19 @@ const hasAside = Astro.slots.has('aside');
         )
       }
       <h1 id="page-title">{title}</h1>
-      {lede && <p class="lede page-hero__lede">{lede}</p>}
+      {
+        lede && (
+          <p class="lede page-hero__lede">
+            {/* A new line typed in the editor starts a new line here. */}
+            {lede.split(/\n+/).map((line, i) => (
+              <>
+                {i > 0 && <br />}
+                {line.trim()}
+              </>
+            ))}
+          </p>
+        )
+      }
       <slot />
       {
         Astro.slots.has('actions') && (

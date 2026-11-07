@@ -398,7 +398,7 @@ collections:
         file: site/src/content/pages/contact.md
         format: frontmatter
         fields:
-          - { name: intro, label: Intro, widget: text }
+          - { name: intro, label: Intro, widget: text, hint: Press Enter to start a new line on the page. }
           - { name: callNote, label: Note under Call, widget: string }
           - { name: textNote, label: Note under Text, widget: string }
           - { name: emailNote, label: Note under Email, widget: string }

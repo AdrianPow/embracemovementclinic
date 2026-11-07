@@ -157,7 +157,12 @@ const sections = [
                         <div>
                           <dt>
                             {f.item}
-                            {f.note && <span class="fee-note">{f.note}</span>}
+                            {f.note && (
+                              <>
+                                {' '}
+                                <span class="fee-note">{f.note}</span>
+                              </>
+                            )}
                           </dt>
                           <dd>{f.price}</dd>
                         </div>
