@@ -1,6 +1,9 @@
 ---
-// "What can we help with?" Everyday needs, each listing the conditions the clinic treats
-// and linking to the services that cover them. Data: src/data/needs.ts.
+// "What can we help with?" Pick a need (left, or a 2-column grid on phones) to see the
+// conditions the clinic treats for it and the services that cover them (petrol panel).
+// Tabs follow the WAI-ARIA tabs pattern (arrow keys, Home/End). /services#<need id> opens that
+// need, which is how the home page tiles link here. Without JavaScript the tabs stay hidden
+// and every panel shows, one after another. Data: src/data/needs.ts.
 import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
 import { needs } from '../data/needs';
@@ -9,90 +12,320 @@ const services = await getCollection('services');
 const byId = new Map(services.map((s) => [s.id, s]));
 ---
 
-<ul class="needs" role="list">
-  {
-    needs.map((need) => (
-      <li class="need" id={need.id}>
-        <h3 class="h4 need__title">{need.title}</h3>
-        <ul class="need__examples" role="list">
-          {need.examples.map((e) => (
-            <li>{e}</li>
-          ))}
-        </ul>
-        <ul class="need__links" role="list" aria-label={`Services for ${need.title.toLowerCase()}`}>
-          {need.services.map((id) => {
-            const s = byId.get(id);
-            return (
-              s && (
-                <li>
-                  <a href={`/${s.id}`}>
-                    {s.data.shortTitle ?? s.data.title}
-                    <Icon name="arrow-right" size={15} />
-                  </a>
-                </li>
-              )
-            );
-          })}
-        </ul>
-      </li>
-    ))
+<div class="finder" data-finder>
+  <div class="finder__tabs" role="tablist" aria-label="What you're dealing with" hidden>
+    {
+      needs.map((n, i) => (
+        <button
+          type="button"
+          class="finder__tab"
+          role="tab"
+          id={`${n.id}-tab`}
+          aria-controls={n.id}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+        >
+          <span class="finder__tab-icon">
+            <Icon name={n.icon} size={22} />
+          </span>
+          <span>{n.short || n.title}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="finder__panels">
+    {
+      needs.map((n) => (
+        <section class="finder__panel on-brand" id={n.id} aria-labelledby={`${n.id}-title`}>
+          <span class="finder__mark" aria-hidden="true">
+            <Icon name={n.icon} size={170} />
+          </span>
+          <h3 class="h3 finder__title" id={`${n.id}-title`}>
+            {n.title}
+          </h3>
+          {n.examples.length > 0 && (
+            <>
+              <p class="finder__label">We commonly help with</p>
+              <ul class="finder__list" role="list">
+                {n.examples.map((e) => (
+                  <li>
+                    <Icon name="check" size={18} />
+                    <span>{e}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          <p class="finder__label">Services that can help</p>
+          <ul class="finder__links" role="list">
+            {n.services.map((id) => {
+              const s = byId.get(id);
+              return (
+                s && (
+                  <li>
+                    <a href={`/${s.id}`}>
+                      {s.data.shortTitle ?? s.data.title}
+                      <Icon name="arrow-right" size={16} />
+                    </a>
+                  </li>
+                )
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const finder of document.querySelectorAll<HTMLElement>('[data-finder]')) {
+    const list = finder.querySelector<HTMLElement>('[role="tablist"]')!;
+    const tabs = [...finder.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')!)!);
+
+    const select = (i: number, focus = false) => {
+      tabs.forEach((t, j) => {
+        t.setAttribute('aria-selected', String(i === j));
+        t.tabIndex = i === j ? 0 : -1;
+        panels[j].hidden = i !== j;
+      });
+      if (focus) tabs[i].focus();
+    };
+
+    // Enhance: show the tabs, make each panel a tab panel labelled by its tab, show one at a time.
+    list.hidden = false;
+    finder.classList.add('finder--tabs');
+    panels.forEach((p, i) => {
+      p.setAttribute('role', 'tabpanel');
+      p.setAttribute('aria-labelledby', tabs[i].id);
+      p.tabIndex = 0;
+    });
+
+    const fromHash = () => {
+      const i = panels.findIndex((p) => '#' + p.id === location.hash);
+      if (i < 0) return false;
+      select(i);
+      finder.scrollIntoView({ block: 'start' });
+      return true;
+    };
+    if (!fromHash()) select(0);
+    addEventListener('hashchange', fromHash);
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        const last = tabs.length - 1;
+        const to =
+          e.key === 'ArrowRight' || e.key === 'ArrowDown' ? (i === last ? 0 : i + 1)
+          : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? (i === 0 ? last : i - 1)
+          : e.key === 'Home' ? 0
+          : e.key === 'End' ? last
+          : -1;
+        if (to < 0) return;
+        e.preventDefault();
+        select(to, true);
+      });
+    });
   }
-</ul>
+</script>
 
 <style>
-  .needs {
+  .finder {
     display: grid;
-    gap: var(--space-s);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
-  }
-
-  .need {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: var(--space-s);
-    padding: var(--space-m);
-    background: var(--color-bg);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-l);
+    gap: var(--space-m);
     scroll-margin-top: calc(var(--header-h) + var(--space-m));
   }
 
-  .need__examples {
-    display: grid;
-    align-content: start;
-    gap: 0.35rem;
-    color: var(--color-ink-muted);
+  @media (min-width: 56em) {
+    .finder--tabs {
+      grid-template-columns: minmax(15rem, 1fr) 2fr;
+      align-items: stretch;
+    }
   }
 
-  .need__examples li {
+  /* Tabs: a 2-column grid on phones, a column beside the panel on wide screens. */
+  .finder__tabs {
     display: grid;
-    grid-template-columns: 0.4rem 1fr;
+    gap: var(--space-2xs);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+  }
+
+  .finder__tabs[hidden] {
+    display: none;
+  }
+
+  @media (min-width: 56em) {
+    .finder__tabs {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .finder__tab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-height: 3.5rem;
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) var(--space-2xs);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font: 650 var(--step-0) / 1.2 var(--font-display);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .finder__tab-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-icon);
+  }
+
+  @media (hover: hover) {
+    .finder__tab:hover {
+      border-color: var(--color-icon);
+    }
+  }
+
+  .finder__tab[aria-selected='true'] {
+    border-color: var(--color-brand);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .finder__tab[aria-selected='true'] .finder__tab-icon {
+    background: var(--color-accent-on-brand);
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 39.99em) {
+    .finder__tab {
+      font-size: var(--step--1);
+    }
+  }
+
+  /* Panels: petrol, with the need's icon large and faint in the corner. */
+  .finder__panels {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .finder__panel {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-l) var(--space-m);
+    border-radius: var(--radius-l);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    scroll-margin-top: calc(var(--header-h) + var(--space-m));
+  }
+
+  @media (min-width: 40em) {
+    .finder__panel {
+      padding: var(--space-l);
+    }
+  }
+
+  .finder__panel[hidden] {
+    display: none;
+  }
+
+  .finder--tabs .finder__panel {
+    animation: finder-in 0.3s var(--ease);
+  }
+
+  @keyframes finder-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .finder--tabs .finder__panel {
+      animation: none;
+    }
+  }
+
+  .finder__mark {
+    position: absolute;
+    right: -1.75rem;
+    bottom: -1.75rem;
+    color: var(--color-accent-on-brand);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .finder__title {
+    position: relative;
+    color: inherit;
+  }
+
+  .finder__label {
+    position: relative;
+    margin: var(--space-m) 0 var(--space-xs);
+    color: var(--color-accent-on-brand);
+    font-family: var(--font-display);
+    font-weight: 650;
+  }
+
+  .finder__list {
+    position: relative;
+    display: grid;
+    gap: 0.5rem var(--space-m);
+  }
+
+  @media (min-width: 40em) {
+    .finder__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .finder__list li {
+    display: flex;
     gap: 0.6rem;
     align-items: baseline;
   }
 
-  .need__examples li::before {
-    content: '';
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-    transform: translateY(-0.1em);
+  .finder__list :global(svg) {
+    color: var(--color-accent-on-brand);
+    transform: translateY(0.2em);
   }
 
-  .need__links {
+  .finder__links {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3xs) var(--space-m);
-    padding-top: var(--space-2xs);
+    gap: var(--space-2xs);
   }
 
-  .need__links a {
+  .finder__links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.35em;
+    gap: 0.4em;
     min-height: 2.75rem;
+    padding: 0.4em 1.1em;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-on-brand);
+    color: var(--color-brand);
     font-family: var(--font-display);
-    font-weight: 650;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s var(--ease);
+  }
+
+  .finder__links a:hover {
+    background: var(--color-on-brand);
   }
 </style>
